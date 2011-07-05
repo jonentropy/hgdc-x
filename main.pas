@@ -43,6 +43,7 @@ type
   private
     { private declarations }
     FClient: THGDClient;
+    procedure ShowStatus(Msg: string; Error: boolean);
 
   public
     { public declarations }
@@ -59,6 +60,8 @@ implementation
 
 procedure TfrmMain.btnApplyClick(Sender: TObject);
 begin
+  ShowStatus('Applying...', False);
+
   FClient.HostAddress := Edit1.Text;
   FClient.HostPort := Edit2.Text;
   FClient.UserName := Edit3.Text;
@@ -82,17 +85,25 @@ begin
   FClient := THGDClient.Create(Edit1.Text, Edit2.Text, Edit3.Text, Edit4.Text, chkSSL.Checked, Memo1);
 end;
 
+procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);
+begin
+  if Error then
+    lblError.Font.Color := clRed
+  else
+    lblError.Font.Color := clBlue;
+
+  lblError.Caption := Msg;
+end;
+
 procedure TfrmMain.tmrStateTimer(Sender: TObject);
 begin
   if FClient.State = hsError then
   begin
-    lblError.Caption := FClient.ErrMsg ;
-    lblError.Font.Color := clRed;
+    ShowStatus(FClient.ErrMsg, True);
   end
-  else if FCLient.State = hsUserSet then
+  else if FClient.State = hsUserSet then
   begin
-    lblError.Caption := 'Ready';
-    lblError.Font.Color := clBlue;
+    ShowStatus('Ready', False);
   end;
 end;
 

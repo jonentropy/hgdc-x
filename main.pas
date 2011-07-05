@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  HGDClient;
+  ExtCtrls, HGDClient;
 
 type
 
@@ -27,15 +27,18 @@ type
     Edit4: TEdit;
     gbHGDServer: TGroupBox;
     Label1: TLabel;
+    lblError: TLabel;
     lblHost: TLabel;
     lblPort: TLabel;
     lblUser: TLabel;
     lblPassword: TLabel;
     Memo1: TMemo;
+    tmrState: TTimer;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure tmrStateTimer(Sender: TObject);
   private
     { private declarations }
     FClient: THGDClient;
@@ -76,6 +79,20 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   FClient := THGDClient.Create(Edit1.Text, Edit2.Text, Edit3.Text, Edit4.Text, chkSSL.Checked, Memo1);
+end;
+
+procedure TfrmMain.tmrStateTimer(Sender: TObject);
+begin
+  if FClient.State = hsError then
+  begin
+    lblError.Caption := FClient.ErrMsg ;
+    lblError.Font.Color := clRed;
+  end
+  else if FCLient.State = hsUserSet then
+  begin
+    lblError.Caption := 'Ready';
+    lblError.Font.Color := clBlue;
+  end;
 end;
 
 end.

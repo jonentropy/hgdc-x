@@ -14,6 +14,9 @@ interface
 uses
   Classes, SysUtils, BlckSock, StdCtrls;
 
+const
+  HGD_PROTO = '2';
+
 type
 
   THGDCState = (hsNone, hsError, hsConnected, hsUserSet);
@@ -31,11 +34,14 @@ type
       Socket: TTCPBlockSocket;
 
       FState: THGDCState;
-
+      FErrorMsg: string;
       FDebugMemo: TMemo;
 
       function Connect: boolean;
+      procedure Disconnect;
+      function GetProto: string;
       procedure Log(Message: string);
+      function ProcessReply(Reply: string; var Msg: string): boolean;
       procedure SetHostAddress(const AValue: string);
       procedure SetHostPort(const AValue: string);
       procedure SetPassword(const AValue: string);
@@ -48,9 +54,13 @@ type
 
       constructor Create(HostAddress, HostPort, UserName, Password: string; SSL: boolean); overload;
       constructor Create(HostAddress, HostPort, UserName, Password: string; SSL: boolean; DebugMemo: TMemo); overload;
-      destructor Destroy;
+      destructor Destroy; override;
 
       procedure ApplyChanges;
+
+      property State: THGDCState read FState;
+      property ErrMsg: string read FErrorMsg;
+
       property UserName: string read FUsername write SetUsername;
       property Password: string write SetPassword;
       property HostAddress: string read FHostAddress write SetHostAddress;
@@ -65,6 +75,8 @@ constructor THGDClient.Create(HostAddress, HostPort, UserName,
   Password: string; SSL: boolean);
 begin
   FState := hsNone;
+  FErrorMsg := '';
+
   //2 second socket timeout
   Timeout := 2000;
   Socket := TTCPBlockSocket.Create();
@@ -86,17 +98,24 @@ end;
 
 destructor THGDClient.Destroy;
 begin
-  Socket.CloseSocket;
+  Disconnect();
   Socket.Free;
+end;
+
+procedure THGDClient.Disconnect;
+begin
+  Socket.SendString('bye');
+  Socket.CloseSocket;
 end;
 
 function THGDClient.Connect: boolean;
 var
-  Reply: string;
+  Reply, Msg: string;
 begin
+  Disconnect();
+
   Result := False;
   FState := hsNone;
-  Socket.CloseSocket;
 
   Log('Connecting...');
 
@@ -104,27 +123,89 @@ begin
   Reply := Socket.RecvString(Timeout);
   Log(Reply);
 
+  Result := ProcessReply(Reply, Msg);
+
+  if Result then
+  begin
+    if GetProto() <> HGD_PROTO then
+    begin
+      FState := hsError;
+      Result := False;
+      FErrorMsg := 'Protocol Version Mismatch';
+    end;
+  end
+  else
+    FState := hsConnected;
+end;
+
+function THGDClient.GetProto: string;
+var
+  Reply: string;
+begin
+  Result := '';
+  Log('Getting Proto...');
+  Socket.SendString('proto' + LineEnding);
+  Reply := Socket.RecvString(Timeout);
+  Log('GetProto Reply: ' + Reply);
+  if not ProcessReply(Reply, Result) then
+    Result := '';
+end;
+
+function THGDClient.ProcessReply(Reply: string; var Msg: string): boolean;
+begin
+  //todo make this parse more than one string from the reply
+  Msg := Copy(Reply, Pos('|', Reply) + 1, MaxInt);
+
   if Pos('ok', Reply) > 0 then
   begin
     Result := True;
-    FState := hsConnected;
-    Log('Connected');
+    Log('OK');
   end
   else
   begin
-    FState := hsNone;
-    Socket.CloseSocket;
-    if Pos('err', Reply) > 0 then
-      Log(Copy(Reply, Pos('|', Reply) + 1, MaxInt));
-  end;
+    Result := False;
+    FState := hsError;
+    Disconnect();
 
-  //Socket.LastError;
+    if Pos('err', Reply) > 0 then
+    begin
+      Log('Error Occurred: ' + Msg);
+    end;
+  end;
 end;
 
 procedure THGDClient.ApplyChanges;
 begin
   if Connect() then
     SendUser(FUsername, FPassword);
+end;
+
+function THGDClient.SendUser(Username, Password: string): boolean;
+var
+  Reply, Msg: string;
+begin
+  Result := False;
+  Log('Sending username...');
+  Socket.SendString('user|' + Username + '|' + Password + LineEnding);
+  Reply := Socket.RecvString(Timeout);
+  Log(Reply);
+
+  Result := ProcessReply(Reply, Msg);
+
+  if Result then
+  begin
+    FState := hsUserSet;
+    Log('User Logged In');
+  end
+  else
+  begin
+    FErrorMsg := 'Error Logging In: ' + Msg;
+  end;
+end;
+
+procedure THGDClient.Log(Message: string);
+begin
+  FDebugMemo.Lines.Add(Message);
 end;
 
 procedure THGDClient.SetHostAddress(const AValue: string);
@@ -149,35 +230,6 @@ procedure THGDClient.SetUsername(const AValue: string);
 begin
   if FUsername = AValue then Exit;
   FUsername := AValue;
-end;
-
-function THGDClient.SendUser(Username, Password: string): boolean;
-var
-  Reply: string;
-begin
-  Result := False;
-  Socket.SendString('user|' + Username + '|' + Password + LineEnding);
-  Reply := Socket.RecvString(Timeout);
-  Log(Reply);
-
-  if Pos('ok', Reply) > 0 then
-  begin
-    Result := True;
-    FState := hsUserSet;
-    Log('User Logged In');
-  end
-  else
-  begin
-    FState := hsNone;
-    Socket.CloseSocket;
-    if Pos('err', Reply) > 0 then
-      Log(Copy(Reply, Pos('|', Reply) + 1, MaxInt));
-  end;
-end;
-
-procedure THGDClient.Log(Message: string);
-begin
-  FDebugMemo.Lines.Add(Message);
 end;
 
 end.

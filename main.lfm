@@ -1,13 +1,13 @@
 object frmMain: TfrmMain
-  Left = 274
-  Height = 494
-  Top = 170
-  Width = 229
+  Left = 299
+  Height = 693
+  Top = 139
+  Width = 277
   Caption = 'hgdc-x'
-  ClientHeight = 494
-  ClientWidth = 229
+  ClientHeight = 693
+  ClientWidth = 277
   Icon.Data = {
-    8A02000000000100010010100000010010007402000016000000280000001000
+    7E02000000000100010010100000010010007402000016000000280000001000
     0000200000000100100003000000000200006400000064000000000000000000
     000000F80000E00700001F000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF694AE739A63186316529FFFFFFFFFFFF
@@ -27,7 +27,7 @@ object frmMain: TfrmMain
     718C518C3084EF7BCF7BAE732C63FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
     0000000000000000000000000000000000000000000000000000000000000000
-    0000000000000000000000000000
+    0000
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -35,9 +35,9 @@ object frmMain: TfrmMain
   LCLVersion = '0.9.30'
   object Memo1: TMemo
     Left = 8
-    Height = 188
+    Height = 392
     Top = 296
-    Width = 216
+    Width = 264
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 0
@@ -45,18 +45,18 @@ object frmMain: TfrmMain
   end
   object gbHGDServer: TGroupBox
     Left = 8
-    Height = 256
+    Height = 240
     Top = 8
-    Width = 216
+    Width = 264
     Caption = 'HGD Server'
-    ClientHeight = 237
-    ClientWidth = 212
+    ClientHeight = 221
+    ClientWidth = 260
     TabOrder = 1
     object Edit1: TEdit
       Left = 112
       Height = 27
       Top = 16
-      Width = 80
+      Width = 134
       TabOrder = 0
       Text = '127.0.0.1'
     end
@@ -64,7 +64,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 27
       Top = 60
-      Width = 80
+      Width = 134
       TabOrder = 1
       Text = '6633'
     end
@@ -72,7 +72,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 27
       Top = 143
-      Width = 80
+      Width = 134
       EchoMode = emPassword
       PasswordChar = '*'
       TabOrder = 2
@@ -81,7 +81,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 27
       Top = 100
-      Width = 80
+      Width = 134
       TabOrder = 3
       Text = 'tris'
     end
@@ -122,7 +122,7 @@ object frmMain: TfrmMain
       Left = 14
       Height = 25
       Top = 188
-      Width = 168
+      Width = 232
       Caption = 'Apply'
       OnClick = btnApplyClick
       TabOrder = 4
@@ -143,5 +143,20 @@ object frmMain: TfrmMain
     Width = 69
     Caption = 'Debug Log:'
     ParentColor = False
+  end
+  object lblError: TLabel
+    Left = 8
+    Height = 1
+    Top = 254
+    Width = 1
+    Font.Color = clRed
+    ParentColor = False
+    ParentFont = False
+  end
+  object tmrState: TTimer
+    Interval = 500
+    OnTimer = tmrStateTimer
+    left = 200
+    top = 248
   end
 end

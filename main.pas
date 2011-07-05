@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, HGDClient;
+  ExtCtrls, XMLPropStorage, HGDClient;
 
 type
 
@@ -34,6 +34,7 @@ type
     lblPassword: TLabel;
     Memo1: TMemo;
     tmrState: TTimer;
+    XMLPropStorage1: TXMLPropStorage;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);

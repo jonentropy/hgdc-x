@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 299
+  Left = 348
   Height = 693
-  Top = 139
+  Top = 128
   Width = 277
   Caption = 'hgdc-x'
   ClientHeight = 693
@@ -32,6 +32,7 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
+  SessionProperties = 'Edit1.Text;Edit2.Text;Edit3.Text;Edit4.Text;chkSSL.Checked'
   LCLVersion = '0.9.30'
   object Memo1: TMemo
     Left = 8
@@ -157,6 +158,11 @@ object frmMain: TfrmMain
     Interval = 500
     OnTimer = tmrStateTimer
     left = 200
+    top = 248
+  end
+  object XMLPropStorage1: TXMLPropStorage
+    StoredValues = <>
+    left = 128
     top = 248
   end
 end

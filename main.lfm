@@ -134,6 +134,7 @@ object frmMain: TfrmMain
       Top = 39
       Width = 44
       Caption = 'SSL'
+      Enabled = False
       TabOrder = 5
     end
   end

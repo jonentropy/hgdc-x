@@ -32,7 +32,7 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnShow = FormShow
-  SessionProperties = 'Edit1.Text;Edit2.Text;Edit3.Text;Edit4.Text;chkSSL.Checked'
+  SessionProperties = 'chkSSL.Checked;Edit1.Text;Edit2.Text;Edit3.Text'
   LCLVersion = '0.9.30'
   object Memo1: TMemo
     Left = 8
@@ -157,7 +157,7 @@ object frmMain: TfrmMain
   object tmrState: TTimer
     Interval = 500
     OnTimer = tmrStateTimer
-    left = 200
+    left = 224
     top = 248
   end
   object XMLPropStorage1: TXMLPropStorage

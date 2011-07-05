@@ -45,7 +45,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="43" Y="17"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="28"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -56,9 +56,9 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="55"/>
-        <CursorPos X="3" Y="62"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="65"/>
+        <CursorPos X="14" Y="104"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -78,7 +78,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
         <CursorPos X="73" Y="126"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -108,23 +108,23 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="66" Column="17" TopLine="31"/>
+        <Caret Line="56" Column="19" TopLine="33"/>
       </Position1>
       <Position2>
-        <Filename Value="main.pas"/>
-        <Caret Line="63" Column="18" TopLine="33"/>
-      </Position2>
-      <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="56" Column="19" TopLine="33"/>
-      </Position3>
-      <Position4>
         <Filename Value="hgdclient.pas"/>
         <Caret Line="46" Column="29" TopLine="24"/>
+      </Position2>
+      <Position3>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="70" Column="15" TopLine="33"/>
+      </Position3>
+      <Position4>
+        <Filename Value="main.pas"/>
+        <Caret Line="56" Column="17" TopLine="33"/>
       </Position4>
       <Position5>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="70" Column="15" TopLine="33"/>
+        <Caret Line="46" Column="29" TopLine="24"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
@@ -132,99 +132,99 @@
       </Position6>
       <Position7>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="46" Column="29" TopLine="24"/>
+        <Caret Line="135" Column="20" TopLine="121"/>
       </Position7>
       <Position8>
-        <Filename Value="main.pas"/>
-        <Caret Line="56" Column="17" TopLine="33"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="114" Column="66" TopLine="92"/>
       </Position8>
       <Position9>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="135" Column="20" TopLine="121"/>
+        <Caret Line="18" Column="16" TopLine="1"/>
       </Position9>
       <Position10>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="114" Column="66" TopLine="92"/>
+        <Caret Line="127" Column="6" TopLine="103"/>
       </Position10>
       <Position11>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="18" Column="16" TopLine="1"/>
+        <Caret Line="93" Column="24" TopLine="89"/>
       </Position11>
       <Position12>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="127" Column="6" TopLine="103"/>
+        <Caret Line="56" Column="18" TopLine="34"/>
       </Position12>
       <Position13>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="93" Column="24" TopLine="89"/>
+        <Caret Line="102" Column="25" TopLine="99"/>
       </Position13>
       <Position14>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="56" Column="18" TopLine="34"/>
+        <Caret Line="159" Column="1" TopLine="137"/>
       </Position14>
       <Position15>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="102" Column="25" TopLine="99"/>
+        <Caret Line="192" Column="62" TopLine="167"/>
       </Position15>
       <Position16>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="159" Column="1" TopLine="137"/>
+        <Caret Line="42" Column="43" TopLine="24"/>
       </Position16>
       <Position17>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="192" Column="62" TopLine="167"/>
+        <Caret Line="101" Column="21" TopLine="64"/>
       </Position17>
       <Position18>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="42" Column="43" TopLine="24"/>
+        <Caret Line="111" Column="16" TopLine="74"/>
       </Position18>
       <Position19>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="101" Column="21" TopLine="64"/>
+        <Caret Line="152" Column="19" TopLine="115"/>
       </Position19>
       <Position20>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="111" Column="16" TopLine="74"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="33" Column="44" TopLine="27"/>
       </Position20>
       <Position21>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="152" Column="19" TopLine="115"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="86" Column="3" TopLine="44"/>
       </Position21>
       <Position22>
         <Filename Value="main.pas"/>
-        <Caret Line="33" Column="44" TopLine="27"/>
+        <Caret Line="88" Column="28" TopLine="45"/>
       </Position22>
       <Position23>
         <Filename Value="main.pas"/>
-        <Caret Line="86" Column="3" TopLine="44"/>
+        <Caret Line="89" Column="28" TopLine="46"/>
       </Position23>
       <Position24>
-        <Filename Value="main.pas"/>
-        <Caret Line="88" Column="28" TopLine="45"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="133" Column="7" TopLine="105"/>
       </Position24>
       <Position25>
-        <Filename Value="main.pas"/>
-        <Caret Line="89" Column="28" TopLine="46"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="131" Column="24" TopLine="110"/>
       </Position25>
       <Position26>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="133" Column="7" TopLine="105"/>
+        <Caret Line="15" Column="49" TopLine="1"/>
       </Position26>
       <Position27>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="131" Column="24" TopLine="110"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="63" Column="68" TopLine="1"/>
       </Position27>
       <Position28>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="15" Column="49" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="61" Column="3" TopLine="54"/>
       </Position28>
       <Position29>
         <Filename Value="main.pas"/>
-        <Caret Line="63" Column="68" TopLine="1"/>
+        <Caret Line="103" Column="5" TopLine="63"/>
       </Position29>
       <Position30>
         <Filename Value="main.pas"/>
-        <Caret Line="61" Column="3" TopLine="54"/>
+        <Caret Line="62" Column="26" TopLine="60"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

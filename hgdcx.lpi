@@ -53,10 +53,9 @@
         <ComponentName Value="frmMain"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="65"/>
+        <TopLine Value="1"/>
         <CursorPos X="14" Y="104"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
@@ -74,10 +73,11 @@
         <Filename Value="hgdclient.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="HGDClient"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
-        <CursorPos X="73" Y="126"/>
+        <CursorPos X="17" Y="18"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit3>

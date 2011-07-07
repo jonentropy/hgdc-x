@@ -15,8 +15,9 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls;
 
 const
-  HGD_PROTO = '2';
-
+  HGD_PROTO = '3';
+  //protocol is telnet based, override lineending
+  LineEnding = #13#10;
 type
 
   THGDCState = (hsNone, hsError, hsConnected, hsUserSet);

@@ -16,8 +16,8 @@ uses
 
 const
   HGD_PROTO = '3';
-  //protocol is telnet based, override lineending
-  LineEnding = #13#10;
+  //protocol is telnet based, use Windows LineEnding
+  ProtoLineEnding = #13#10;
 type
 
   THGDCState = (hsNone, hsError, hsConnected, hsUserSet);
@@ -145,7 +145,7 @@ var
 begin
   Result := '';
   Log('Getting Proto...');
-  Socket.SendString('proto' + LineEnding);
+  Socket.SendString('proto' + ProtoLineEnding);
   Reply := Socket.RecvString(Timeout);
   Log('GetProto Reply: ' + Reply);
   if not ProcessReply(Reply, Result) then
@@ -187,7 +187,7 @@ var
 begin
   Result := False;
   Log('Sending username...');
-  Socket.SendString('user|' + Username + '|' + Password + LineEnding);
+  Socket.SendString('user|' + Username + '|' + Password + ProtoLineEnding);
   Reply := Socket.RecvString(Timeout);
   Log(Reply);
 

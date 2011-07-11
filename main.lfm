@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
-  Left = 348
+  Left = 578
   Height = 693
-  Top = 128
-  Width = 277
+  Top = 72
+  Width = 557
   Caption = 'hgdc-x'
   ClientHeight = 693
-  ClientWidth = 277
+  ClientWidth = 557
   Icon.Data = {
     7E02000000000100010010100000010010007402000016000000280000001000
     0000200000000100100003000000000200006400000064000000000000000000
@@ -164,6 +164,12 @@ object frmMain: TfrmMain
   object XMLPropStorage1: TXMLPropStorage
     StoredValues = <>
     left = 128
+    top = 248
+  end
+  object tmrPlaylist: TTimer
+    Interval = 5000
+    OnTimer = tmrPlaylistTimer
+    left = 287
     top = 248
   end
 end

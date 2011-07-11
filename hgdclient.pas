@@ -22,6 +22,13 @@ type
 
   THGDCState = (hsNone, hsError, hsConnected, hsUserSet);
 
+  TTrackInfo = record
+    Filename: string;
+    Artist: string;
+    Title: string;
+    User: string;
+  end;
+
   { THGDClient }
 
   THGDClient = class
@@ -58,6 +65,7 @@ type
       destructor Destroy; override;
 
       procedure ApplyChanges;
+      function GetPlaylist(var PList: array of TTrackInfo): boolean;
 
       property State: THGDCState read FState;
       property ErrMsg: string read FErrorMsg;
@@ -152,9 +160,34 @@ begin
     Result := '';
 end;
 
+function THGDClient.GetPlaylist(var PList: array of TTrackInfo): boolean;
+var
+  Reply: string;
+  Err: string;
+begin
+  Result := False;
+
+  //only do this if at least connected...
+  if FState > hsConnected then
+  begin
+    Log('Getting Playlist...');
+    Socket.SendString('ls' + ProtoLineEnding);
+    Reply := Socket.RecvString(Timeout);
+    Log('GetPlaylist Reply: ' + Reply);
+    if ProcessReply(Reply, Err) then
+    begin
+      //Playlist came back OK. Parse it up, d00d...
+
+      //ToDo: Parse Playlist here...
+      Result := True;
+    end;
+  end;
+end;
+
 function THGDClient.ProcessReply(Reply: string; var Msg: string): boolean;
 begin
-  //todo make this parse more than one string from the reply
+  //todo make this parse more than one string from the reply? Maybe?
+  //Or leave this as a general check for "OK" then re-parse the message?
   Msg := Copy(Reply, Pos('|', Reply) + 1, MaxInt);
 
   if Pos('ok', Reply) > 0 then
@@ -162,16 +195,19 @@ begin
     Result := True;
     Log('OK');
   end
-  else
+  else if Pos('err', Reply) > 0 then
   begin
     Result := False;
     FState := hsError;
+    Log('Error Occurred: ' + Msg +', Disconnecting');
     Disconnect();
-
-    if Pos('err', Reply) > 0 then
-    begin
-      Log('Error Occurred: ' + Msg);
-    end;
+  end
+  else
+  begin
+    //could be blank reply...
+    Result := False;
+    FState := hsError;
+    Log('Not OK or Err');
   end;
 end;
 
@@ -196,11 +232,13 @@ begin
   if Result then
   begin
     FState := hsUserSet;
-    Log('User Logged In');
+    Log('SendUser Successful');
   end
   else
   begin
+    Log('SendUser Failed');
     FErrorMsg := 'Error Logging In: ' + Msg;
+    //todo, do a better error handling scheme.
   end;
 end;
 

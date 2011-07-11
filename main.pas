@@ -33,12 +33,14 @@ type
     lblUser: TLabel;
     lblPassword: TLabel;
     Memo1: TMemo;
+    tmrPlaylist: TTimer;
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
     procedure btnApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure tmrPlaylistTimer(Sender: TObject);
     procedure tmrStateTimer(Sender: TObject);
   private
     { private declarations }
@@ -60,6 +62,7 @@ implementation
 
 procedure TfrmMain.btnApplyClick(Sender: TObject);
 begin
+  tmrPlaylist.Enabled := False;
   ShowStatus('Applying...', False);
 
   FClient.HostAddress := Edit1.Text;
@@ -68,6 +71,7 @@ begin
   FClient.Password := Edit4.Text;
 
   FClient.ApplyChanges();
+  tmrPlaylist.Enabled := True;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
@@ -83,6 +87,13 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   FClient := THGDClient.Create(Edit1.Text, Edit2.Text, Edit3.Text, Edit4.Text, chkSSL.Checked, Memo1);
+end;
+
+procedure TfrmMain.tmrPlaylistTimer(Sender: TObject);
+var
+  PL: array of TTrackInfo;
+begin
+  FClient.GetPlaylist(PL);
 end;
 
 procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);

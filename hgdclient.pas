@@ -29,6 +29,8 @@ type
     User: string;
   end;
 
+  TPlaylist = array of TTrackInfo;
+
   { THGDClient }
 
   THGDClient = class
@@ -65,7 +67,7 @@ type
       destructor Destroy; override;
 
       procedure ApplyChanges;
-      function GetPlaylist(var PList: array of TTrackInfo): boolean;
+      function GetPlaylist(var PList: TPlaylist): boolean;
 
       property State: THGDCState read FState;
       property ErrMsg: string read FErrorMsg;
@@ -160,12 +162,15 @@ begin
     Result := '';
 end;
 
-function THGDClient.GetPlaylist(var PList: array of TTrackInfo): boolean;
+function THGDClient.GetPlaylist(var PList: TPlaylist): boolean;
 var
   Reply: string;
-  Err: string;
+  Msg: string;
+  i: integer;
 begin
   Result := False;
+  log(inttostr(Length(PList)));
+  SetLength(PList, 0);
 
   //only do this if at least connected...
   if FState > hsConnected then
@@ -174,9 +179,23 @@ begin
     Socket.SendString('ls' + ProtoLineEnding);
     Reply := Socket.RecvString(Timeout);
     Log('GetPlaylist Reply: ' + Reply);
-    if ProcessReply(Reply, Err) then
+    if ProcessReply(Reply, Msg) then
     begin
       //Playlist came back OK. Parse it up, d00d...
+      Log('Number of playlist items: ' + Msg);
+      for i := 1 to StrToIntDef(Msg, 0) do
+      begin
+        Reply := Socket.RecvString(Timeout);
+        Log('Playlist item ' + IntToStr(i) + ': ' + Reply);
+
+        SetLength(PList, Length(PList) + 1);
+
+        //todo parse...
+        PList[Length(PList) - 1].Artist := '';  //todo populate these
+        PList[Length(PList) - 1].Filename := '';
+        PList[Length(PList) - 1].Title := '';
+        PList[Length(PList) - 1].User := '';
+      end;
 
       //ToDo: Parse Playlist here...
       Result := True;

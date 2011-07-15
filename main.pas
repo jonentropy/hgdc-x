@@ -12,21 +12,29 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, XMLPropStorage, HGDClient;
+  ExtCtrls, XMLPropStorage, Buttons, HGDClient;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
-    btnApply: TButton;
+    btnLastFMApply: TBitBtn;
+    btnHGDApply: TButton;
+    chkScrobbling: TCheckBox;
+    chkScrobbling1: TCheckBox;
     chkSSL: TCheckBox;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
-    Edit4: TEdit;
+    edtHost: TEdit;
+    edtPort: TEdit;
+    edtUser: TEdit;
+    edtPwd: TEdit;
     gbHGDServer: TGroupBox;
+    GroupBox1: TGroupBox;
+    Image1: TImage;
+    Image2: TImage;
     Label1: TLabel;
+    edtLastFMUser: TLabeledEdit;
+    lblLastFM: TLabel;
     lblError: TLabel;
     lblHost: TLabel;
     lblPort: TLabel;
@@ -36,7 +44,7 @@ type
     tmrPlaylist: TTimer;
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
-    procedure btnApplyClick(Sender: TObject);
+    procedure btnHGDApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -60,15 +68,15 @@ implementation
 
 { TfrmMain }
 
-procedure TfrmMain.btnApplyClick(Sender: TObject);
+procedure TfrmMain.btnHGDApplyClick(Sender: TObject);
 begin
   tmrPlaylist.Enabled := False;
   ShowStatus('Applying...', False);
 
-  FClient.HostAddress := Edit1.Text;
-  FClient.HostPort := Edit2.Text;
-  FClient.UserName := Edit3.Text;
-  FClient.Password := Edit4.Text;
+  FClient.HostAddress := edtHost.Text;
+  FClient.HostPort := edtPort.Text;
+  FClient.UserName := edtUser.Text;
+  FClient.Password := edtPwd.Text;
 
   FClient.ApplyChanges();
   tmrPlaylist.Enabled := True;
@@ -86,7 +94,7 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-  FClient := THGDClient.Create(Edit1.Text, Edit2.Text, Edit3.Text, Edit4.Text, chkSSL.Checked, Memo1);
+  FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text, edtPwd.Text, chkSSL.Checked, Memo1);
 end;
 
 procedure TfrmMain.tmrPlaylistTimer(Sender: TObject);

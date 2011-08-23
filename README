@@ -1,8 +1,6 @@
 hgdc-x is a cross-platform hgd client.
 It is a GUI client written in Lazarus.
 
-It is the best hgd Client... Out there.
-
 It will build with no additional libraries (except for synapse, which is statically linked and included in the source tree), on Lazarus 0.9.30 or later.
 
 Tristan Linnell 2011

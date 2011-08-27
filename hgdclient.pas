@@ -12,10 +12,10 @@ unit HGDClient;
 interface
 
 uses
-  Classes, SysUtils, BlckSock, StdCtrls, FileUtil;
+  Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, dialogs;
 
 const
-  HGD_PROTO = '3';
+  HGD_PROTO: string = '3';
   //protocol is telnet based, use Windows LineEnding
   ProtoLineEnding = #13#10;
 
@@ -43,6 +43,9 @@ type
       FHostAddress: string;
       FHostPort: string;
 
+      FSSL: boolean; //SSl is set
+      FEncrypted: boolean; //connection has been successfully encrypted
+
       Socket: TTCPBlockSocket;
 
       FState: THGDCState;
@@ -55,6 +58,7 @@ type
       procedure Log(Message: string);
       procedure ParseHGDPacket(Packet: string; List: TStringList);
       function ProcessReply(Reply: string; var Msg: string): boolean;
+      function ReceiveStringAndDeBork: string;
       procedure SetHostAddress(const AValue: string);
       procedure SetHostPort(const AValue: string);
       procedure SetPassword(const AValue: string);
@@ -81,6 +85,8 @@ type
       property Password: string write SetPassword;
       property HostAddress: string read FHostAddress write SetHostAddress;
       property HostPort: string read FHostPort write SetHostPort;
+      property SSL: boolean read FSSL write FSSL;
+      property Encrypted: boolean read FEncrypted;
   end;
 
 implementation
@@ -101,6 +107,8 @@ begin
   FPassword := Password;
   FHostAddress := HostAddress;
   FHostPort := HostPort;
+  FSSL := SSL;
+  FEncrypted := False;
 
   ApplyChanges();
 end;
@@ -136,13 +144,57 @@ begin
   Log('Connecting...');
 
   Socket.Connect(FHostAddress, FHostPort);
-  Reply := Socket.RecvString(Timeout);
+  Reply := ReceiveStringAndDeBork();
   Log(Reply);
 
   Result := ProcessReply(Reply, Msg);
 
   if Result then
   begin
+
+    if FSSL then
+    begin
+      Log('Checking if server supoprts encryption...');
+      Socket.SendString('encrypt?' + ProtoLineEnding);
+      Reply := ReceiveStringAndDeBork();
+      Log('Encrypt? Reply: ' + Reply);
+
+      if ProcessReply(Reply, Msg) then
+      begin
+
+        Log('Encrypting Socket...');
+        Socket.SendString('encrypt' + ProtoLineEnding);
+        Socket.SSLDoConnect;
+
+        if Socket.LastError <>  0 then //check for success start of SSL
+        begin
+          FEncrypted := False;
+          FState := hsError;
+          Result := False;
+          FErrorMsg := 'Error setting SSL';
+        end;
+
+        Reply := ReceiveStringAndDeBork();
+
+        Log('Encrypt Reply: ' + Reply);
+        if ProcessReply(Reply, Msg) then
+        begin
+          FEncrypted := True;
+        end
+        else
+          FEncrypted := False;
+      end
+      else
+      begin
+        Socket.SSLDoShutdown;
+        FEncrypted := False;
+      end;
+    end
+    else
+    begin
+      FEncrypted := False;
+    end;
+
     if GetProto() <> HGD_PROTO then
     begin
       FState := hsError;
@@ -156,12 +208,12 @@ end;
 
 function THGDClient.GetProto: string;
 var
-  Reply: string;
+  Reply: ansistring;
 begin
   Result := '';
   Log('Getting Proto...');
   Socket.SendString('proto' + ProtoLineEnding);
-  Reply := Socket.RecvString(Timeout);
+  Reply := ReceiveStringAndDeBork();
   Log('GetProto Reply: ' + Reply);
   if not ProcessReply(Reply, Result) then
     Result := '';
@@ -184,7 +236,7 @@ begin
   begin
     Log('Getting Playlist...');
     Socket.SendString('ls' + ProtoLineEnding);
-    Reply := Socket.RecvString(Timeout);
+    Reply := ReceiveStringAndDeBork();
     Log('GetPlaylist Reply: ' + Reply);
     if ProcessReply(Reply, Msg) then
     begin
@@ -195,7 +247,7 @@ begin
 
       for i := 1 to StrToIntDef(Msg, 0) do
       begin
-        Reply := Socket.RecvString(Timeout);
+        Reply := ReceiveStringAndDeBork();
         Log('Playlist item ' + IntToStr(i) + ': ' + Reply);
 
         SetLength(PList, Length(PList) + 1);
@@ -227,7 +279,7 @@ begin
   FileSizeValue := FileSize(Filename);
   Log('Queueing track ' + ExtractFilename(Filename) + '...');
   Socket.SendString('q|' + ExtractFilename(Filename) + '|' + IntToStr(FileSizeValue) + ProtoLineEnding);
-  Reply := Socket.RecvString(Timeout);
+  Reply := ReceiveStringAndDeBork();
   Log(Reply);
 
   Result := ProcessReply(Reply, Msg);
@@ -251,7 +303,7 @@ begin
 
     SetLength(DataArray, 0);
 
-    Reply := Socket.RecvString(Timeout);
+    Reply := ReceiveStringAndDeBork();
     Log(Reply);
 
     Result := ProcessReply(Reply, Msg);
@@ -270,7 +322,7 @@ begin
   Result := False;
   Log('Crapping on song...');
   Socket.SendString('vo' + ProtoLineEnding);
-  Reply := Socket.RecvString(Timeout);
+  Reply := ReceiveStringAndDeBork();
   Log(Reply);
 
   Result := ProcessReply(Reply, Msg);
@@ -310,9 +362,7 @@ begin
   end
   else
   begin
-    //could be blank reply...
     Result := False;
-    FState := hsError;
     Log('Not OK or Err');
   end;
 end;
@@ -330,7 +380,7 @@ begin
   Result := False;
   Log('Sending username...');
   Socket.SendString('user|' + Username + '|' + Password + ProtoLineEnding);
-  Reply := Socket.RecvString(Timeout);
+  Reply := ReceiveStringAndDeBork();
   Log(Reply);
 
   Result := ProcessReply(Reply, Msg);
@@ -374,6 +424,11 @@ procedure THGDClient.SetUsername(const AValue: string);
 begin
   if FUsername = AValue then Exit;
   FUsername := AValue;
+end;
+
+function THGDClient.ReceiveStringAndDeBork: string;
+begin
+  Result := Copy(Socket.RecvString(Timeout), 1, MaxInt);
 end;
 
 end.

@@ -32,10 +32,11 @@ type
     edtPwd: TEdit;
     gbHGDServer: TGroupBox;
     GroupBox1: TGroupBox;
-    imSecure: TImage;
+    imInsecure: TImage;
     Image2: TImage;
     edtLastFMUser: TLabeledEdit;
     imDebug: TImage;
+    imSecure: TImage;
     lblLastFM: TLabel;
     lblError: TLabel;
     lblHost: TLabel;
@@ -86,6 +87,7 @@ begin
   FClient.HostPort := edtPort.Text;
   FClient.UserName := edtUser.Text;
   FClient.Password := edtPwd.Text;
+  FClient.SSL := chkSSL.Checked;
 
   FClient.ApplyChanges();
   tmrPlaylist.Enabled := True;
@@ -198,6 +200,9 @@ begin
   begin
     ShowStatus('Ready', False);
   end;
+
+  imSecure.Visible := FClient.Encrypted;
+  imInsecure.Visible := not FClient.Encrypted;
 end;
 
 end.

@@ -200,7 +200,6 @@ begin
         PLStringList.Clear;
         ParseHGDPacket(Reply, PLStringList);
 
-        //todo parse...
         PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0], 0);
         PList[Length(PList) - 1].Filename := PLStringList.Strings[1];
         PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
@@ -209,8 +208,6 @@ begin
       end;
 
       PLStringList.Free;
-
-      //ToDo: Parse Playlist here...
       Result := True;
     end;
   end;
@@ -218,6 +215,7 @@ end;
 
 procedure THGDClient.ParseHGDPacket(Packet: string; List: TStringList);
 begin
+  List.StrictDelimiter := True;
   List.Delimiter := '|';
   List.DelimitedText := Packet;
 end;

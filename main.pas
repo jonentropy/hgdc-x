@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, XMLPropStorage, Buttons, HGDClient;
+  ExtCtrls, XMLPropStorage, Buttons, Grids, HGDClient;
 
 type
 
@@ -41,6 +41,7 @@ type
     lblUser: TLabel;
     lblPassword: TLabel;
     Memo1: TMemo;
+    sgPlaylist: TStringGrid;
     tmrPlaylist: TTimer;
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
@@ -99,9 +100,21 @@ end;
 
 procedure TfrmMain.tmrPlaylistTimer(Sender: TObject);
 var
-  PL: array of TTrackInfo;
+  PL: TPlaylist;
+  i: integer;
+
 begin
+  sgPlaylist.RowCount := 1;
   FClient.GetPlaylist(PL);
+
+  for i := 0 to Length(PL) - 1 do
+  begin
+    sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
+    sgPlaylist.Cells[0, sgPlaylist.RowCount -1] := IntToStr(PL[i].Number);
+    sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title;
+    sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
+    sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].User;
+  end;
 end;
 
 procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);

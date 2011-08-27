@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
-  Left = 378
+  Left = 342
   Height = 657
-  Top = 112
-  Width = 536
+  Top = 128
+  Width = 855
   Caption = 'hgdc-x'
   ClientHeight = 657
-  ClientWidth = 536
+  ClientWidth = 855
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
     0000400000000100200000000000001000006400000064000000000000000000
@@ -152,7 +152,7 @@ object frmMain: TfrmMain
     Left = 8
     Height = 392
     Top = 256
-    Width = 264
+    Width = 240
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 0
@@ -429,6 +429,39 @@ object frmMain: TfrmMain
       Caption = 'Apply'
       TabOrder = 3
     end
+  end
+  object sgPlaylist: TStringGrid
+    Left = 272
+    Height = 400
+    Top = 240
+    Width = 576
+    ColCount = 4
+    Columns = <    
+      item
+        ButtonStyle = cbsButtonColumn
+        Title.Alignment = taCenter
+        Title.Caption = 'Track ID'
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Title'
+        Width = 200
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Artist'
+        Width = 200
+      end    
+      item
+        Title.Alignment = taCenter
+        Title.Caption = 'Submitted By'
+        Width = 100
+      end>
+    FixedCols = 0
+    MouseWheelOption = mwGrid
+    RowCount = 1
+    TabOrder = 3
+    TitleStyle = tsNative
   end
   object tmrState: TTimer
     Interval = 500

@@ -12,13 +12,14 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, XMLPropStorage, Buttons, Grids, HGDClient, DebugLog;
+  ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient, DebugLog;
 
 type
 
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    btnSubmit: TBitBtn;
     btnLastFMApply: TBitBtn;
     btnHGDApply: TButton;
     chkScrobbling: TCheckBox;
@@ -40,11 +41,14 @@ type
     lblPort: TLabel;
     lblUser: TLabel;
     lblPassword: TLabel;
+    OpenDialog1: TOpenDialog;
+    pbarUpload: TProgressBar;
     sgPlaylist: TStringGrid;
     tmrPlaylist: TTimer;
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
     procedure btnHGDApplyClick(Sender: TObject);
+    procedure btnSubmitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -85,6 +89,20 @@ begin
   tmrPlaylist.Enabled := True;
 end;
 
+procedure TfrmMain.btnSubmitClick(Sender: TObject);
+begin
+  TBitBtn(Sender).Enabled := False;
+
+  if OpenDialog1.Execute() then
+  begin
+    pbarUpload.Visible := True;
+    FClient.QueueSong(OpenDialog1.FileName);
+  end;
+
+  pbarUpload.Visible := False;
+  TBitBtn(Sender).Enabled := True;
+end;
+
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
 
@@ -102,7 +120,7 @@ end;
 
 procedure TfrmMain.imDebugClick(Sender: TObject);
 begin
-  frmDebug.Show;
+  frmDebug.Show();
 end;
 
 procedure TfrmMain.sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;

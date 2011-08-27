@@ -12,12 +12,14 @@ unit HGDClient;
 interface
 
 uses
-  Classes, SysUtils, BlckSock, StdCtrls;
+  Classes, SysUtils, BlckSock, StdCtrls, FileUtil;
 
 const
   HGD_PROTO = '3';
   //protocol is telnet based, use Windows LineEnding
   ProtoLineEnding = #13#10;
+
+  FILE_BUFFER_SIZE = 4096;
 type
 
   THGDCState = (hsNone, hsError, hsConnected, hsUserSet);
@@ -70,6 +72,7 @@ type
 
       procedure ApplyChanges;
       function GetPlaylist(var PList: TPlaylist): boolean;
+      function QueueSong(Filename: string): boolean;
 
       property State: THGDCState read FState;
       property ErrMsg: string read FErrorMsg;
@@ -211,6 +214,59 @@ begin
       Result := True;
     end;
   end;
+end;
+
+function THGDClient.QueueSong(Filename: string): boolean;
+var
+  Reply, Msg: string;
+  Fin: File;
+  DataArray: array of byte;
+  FileSizeValue: Int64;
+begin
+  Result := False;
+  FileSizeValue := FileSize(Filename);
+  Log('Queueing track ' + ExtractFilename(Filename) + '...');
+  Socket.SendString('q|' + ExtractFilename(Filename) + '|' + IntToStr(FileSizeValue) + ProtoLineEnding);
+  Reply := Socket.RecvString(Timeout);
+  Log(Reply);
+
+  Result := ProcessReply(Reply, Msg);
+
+  if Result then
+  begin
+    Log('q successful, sending data...');
+
+
+
+    SetLength(DataArray, FileSizeValue);
+    AssignFile(Fin, Filename);
+
+    try
+      FileMode := fmOpenRead;
+      Reset(Fin, 1);
+      BlockRead(Fin, DataArray[0], FileSizeValue);
+    finally
+      CloseFile(fin);
+    end;
+
+    Socket.SendBuffer(@DataArray[0], FileSizeValue);
+
+    SetLength(DataArray, 0);
+
+    Reply := Socket.RecvString(Timeout);
+    Log(Reply);
+
+    Result := ProcessReply(Reply, Msg);
+
+
+  end
+  else
+  begin
+    Log('q Failed');
+    FErrorMsg := 'Error queueing track ' + Msg;
+    //todo, do a better error handling scheme.
+  end;
+
 end;
 
 procedure THGDClient.ParseHGDPacket(Packet: string; List: TStringList);

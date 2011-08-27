@@ -33,7 +33,7 @@ type
     gbHGDServer: TGroupBox;
     GroupBox1: TGroupBox;
     imInsecure: TImage;
-    Image2: TImage;
+    imLastFM: TImage;
     edtLastFMUser: TLabeledEdit;
     imDebug: TImage;
     imSecure: TImage;

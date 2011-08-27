@@ -14,8 +14,10 @@ type
 
   TfrmDebug = class(TForm)
     BitBtn1: TBitBtn;
+    btmClose: TBitBtn;
     Memo1: TMemo;
     procedure BitBtn1Click(Sender: TObject);
+    procedure btmCloseClick(Sender: TObject);
     procedure Memo1Change(Sender: TObject);
   private
     { private declarations }
@@ -41,6 +43,11 @@ end;
 procedure TfrmDebug.BitBtn1Click(Sender: TObject);
 begin
   Memo1.Clear();
+end;
+
+procedure TfrmDebug.btmCloseClick(Sender: TObject);
+begin
+  Close();
 end;
 
 end.

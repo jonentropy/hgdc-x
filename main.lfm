@@ -333,7 +333,7 @@ object frmMain: TfrmMain
     ClientHeight = 157
     ClientWidth = 245
     TabOrder = 1
-    object Image2: TImage
+    object imLastFM: TImage
       Left = 6
       Height = 32
       Top = 6

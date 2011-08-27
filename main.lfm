@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
-  Left = 531
+  Left = 378
   Height = 657
-  Top = 119
-  Width = 557
+  Top = 112
+  Width = 536
   Caption = 'hgdc-x'
   ClientHeight = 657
-  ClientWidth = 557
+  ClientWidth = 536
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
     0000400000000100200000000000001000006400000064000000000000000000
@@ -164,12 +164,12 @@ object frmMain: TfrmMain
     Top = 8
     Width = 264
     Caption = 'HGD Server'
-    ClientHeight = 173
+    ClientHeight = 176
     ClientWidth = 260
     TabOrder = 1
     object edtHost: TEdit
       Left = 112
-      Height = 21
+      Height = 25
       Top = 6
       Width = 134
       TabOrder = 0
@@ -177,7 +177,7 @@ object frmMain: TfrmMain
     end
     object edtPort: TEdit
       Left = 112
-      Height = 21
+      Height = 25
       Top = 46
       Width = 134
       TabOrder = 1
@@ -185,7 +185,7 @@ object frmMain: TfrmMain
     end
     object edtPwd: TEdit
       Left = 112
-      Height = 21
+      Height = 25
       Top = 94
       Width = 134
       EchoMode = emPassword
@@ -194,7 +194,7 @@ object frmMain: TfrmMain
     end
     object edtUser: TEdit
       Left = 112
-      Height = 21
+      Height = 25
       Top = 70
       Width = 134
       TabOrder = 3
@@ -202,33 +202,33 @@ object frmMain: TfrmMain
     end
     object lblPassword: TLabel
       Left = 8
-      Height = 14
+      Height = 16
       Top = 98
-      Width = 51
+      Width = 60
       Caption = 'Password:'
       ParentColor = False
     end
     object lblUser: TLabel
       Left = 8
-      Height = 14
+      Height = 16
       Top = 74
-      Width = 27
+      Width = 32
       Caption = 'User:'
       ParentColor = False
     end
     object lblPort: TLabel
       Left = 8
-      Height = 14
+      Height = 16
       Top = 50
-      Width = 25
+      Width = 29
       Caption = 'Port:'
       ParentColor = False
     end
     object lblHost: TLabel
       Left = 8
-      Height = 14
+      Height = 16
       Top = 10
-      Width = 27
+      Width = 32
       Caption = 'Host:'
       Layout = tlBottom
       ParentColor = False
@@ -244,9 +244,9 @@ object frmMain: TfrmMain
     end
     object chkSSL: TCheckBox
       Left = 6
-      Height = 17
+      Height = 24
       Top = 29
-      Width = 35
+      Width = 49
       Caption = 'SSL'
       Enabled = False
       TabOrder = 5
@@ -286,16 +286,16 @@ object frmMain: TfrmMain
   end
   object Label1: TLabel
     Left = 8
-    Height = 14
+    Height = 16
     Top = 232
-    Width = 56
+    Width = 71
     Caption = 'Debug Log:'
     ParentColor = False
   end
   object lblError: TLabel
     Left = 8
     Height = 1
-    Top = 254
+    Top = 210
     Width = 1
     Font.Color = clRed
     ParentColor = False
@@ -306,13 +306,13 @@ object frmMain: TfrmMain
     Height = 193
     Top = 8
     Width = 249
-    ClientHeight = 173
+    ClientHeight = 189
     ClientWidth = 245
     TabOrder = 2
     object Image2: TImage
       Left = 6
       Height = 32
-      Top = -2
+      Top = 6
       Width = 32
       Picture.Data = {
         1754506F727461626C654E6574776F726B477261706869636B07000089504E47
@@ -380,9 +380,10 @@ object frmMain: TfrmMain
     end
     object lblLastFM: TLabel
       Left = 46
-      Height = 14
-      Top = 6
-      Width = 43
+      Height = 16
+      Top = 13
+      Width = 53
+      HelpType = htKeyword
       Caption = 'Last.fm'
       Font.Color = clRed
       Font.Style = [fsBold]
@@ -391,31 +392,31 @@ object frmMain: TfrmMain
     end
     object chkScrobbling: TCheckBox
       Left = 6
-      Height = 17
+      Height = 24
       Top = 47
-      Width = 102
+      Width = 136
       Caption = 'Enable Scrobbling'
       TabOrder = 0
     end
     object chkScrobbling1: TCheckBox
       Left = 6
-      Height = 17
+      Height = 24
       Top = 70
-      Width = 107
+      Width = 138
       Caption = 'Scrobble All Tracks'
       TabOrder = 1
     end
     object edtLastFMUser: TLabeledEdit
       Left = 6
-      Height = 21
+      Height = 25
       Top = 118
       Width = 144
       EditLabel.AnchorSideLeft.Control = edtLastFMUser
       EditLabel.AnchorSideBottom.Control = edtLastFMUser
       EditLabel.Left = 6
-      EditLabel.Height = 14
-      EditLabel.Top = 101
-      EditLabel.Width = 53
+      EditLabel.Height = 16
+      EditLabel.Top = 99
+      EditLabel.Width = 66
       EditLabel.Caption = 'Username:'
       EditLabel.ParentColor = False
       TabOrder = 2

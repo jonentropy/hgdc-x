@@ -23,6 +23,7 @@ type
   THGDCState = (hsNone, hsError, hsConnected, hsUserSet);
 
   TTrackInfo = record
+    Number: integer;
     Filename: string;
     Artist: string;
     Title: string;
@@ -51,6 +52,7 @@ type
       procedure Disconnect;
       function GetProto: string;
       procedure Log(Message: string);
+      procedure ParseHGDPacket(Packet: string; List: TStringList);
       function ProcessReply(Reply: string; var Msg: string): boolean;
       procedure SetHostAddress(const AValue: string);
       procedure SetHostPort(const AValue: string);
@@ -167,6 +169,8 @@ var
   Reply: string;
   Msg: string;
   i: integer;
+  PLStringList: TStringList;
+  D: Integer;
 begin
   Result := False;
   log(inttostr(Length(PList)));
@@ -183,6 +187,9 @@ begin
     begin
       //Playlist came back OK. Parse it up, d00d...
       Log('Number of playlist items: ' + Msg);
+
+      PLStringList := TStringList.Create;
+
       for i := 1 to StrToIntDef(Msg, 0) do
       begin
         Reply := Socket.RecvString(Timeout);
@@ -190,17 +197,29 @@ begin
 
         SetLength(PList, Length(PList) + 1);
 
+        PLStringList.Clear;
+        ParseHGDPacket(Reply, PLStringList);
+
         //todo parse...
-        PList[Length(PList) - 1].Artist := '';  //todo populate these
-        PList[Length(PList) - 1].Filename := '';
-        PList[Length(PList) - 1].Title := '';
-        PList[Length(PList) - 1].User := '';
+        PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0], 0);
+        PList[Length(PList) - 1].Filename := PLStringList.Strings[1];
+        PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
+        PList[Length(PList) - 1].Title := PLStringList.Strings[3];
+        PList[Length(PList) - 1].User := PLStringList.Strings[4];
       end;
+
+      PLStringList.Free;
 
       //ToDo: Parse Playlist here...
       Result := True;
     end;
   end;
+end;
+
+procedure THGDClient.ParseHGDPacket(Packet: string; List: TStringList);
+begin
+  List.Delimiter := '|';
+  List.DelimitedText := Packet;
 end;
 
 function THGDClient.ProcessReply(Reply: string; var Msg: string): boolean;

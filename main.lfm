@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
-  Left = 342
-  Height = 657
-  Top = 128
-  Width = 855
+  Left = 449
+  Height = 661
+  Top = 118
+  Width = 587
   Caption = 'hgdc-x'
-  ClientHeight = 657
-  ClientWidth = 855
+  ClientHeight = 661
+  ClientWidth = 587
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
     0000400000000100200000000000001000006400000064000000000000000000
@@ -148,30 +148,20 @@ object frmMain: TfrmMain
   OnShow = FormShow
   SessionProperties = 'chkSSL.Checked;chkScrobbling.Checked;chkScrobbling1.Checked;edtLastFMUser.Text;edtPort.Text;edtUser.Text;edtHost.Text'
   LCLVersion = '0.9.30'
-  object Memo1: TMemo
-    Left = 8
-    Height = 392
-    Top = 256
-    Width = 240
-    ReadOnly = True
-    ScrollBars = ssBoth
-    TabOrder = 0
-    WordWrap = False
-  end
   object gbHGDServer: TGroupBox
-    Left = 8
+    Left = 6
     Height = 193
     Top = 8
-    Width = 264
+    Width = 304
     Caption = 'HGD Server'
     ClientHeight = 176
-    ClientWidth = 260
-    TabOrder = 1
+    ClientWidth = 300
+    TabOrder = 0
     object edtHost: TEdit
       Left = 112
       Height = 25
       Top = 6
-      Width = 134
+      Width = 182
       TabOrder = 0
       Text = '127.0.0.1'
     end
@@ -179,7 +169,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 25
       Top = 46
-      Width = 134
+      Width = 182
       TabOrder = 1
       Text = '6633'
     end
@@ -187,7 +177,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 25
       Top = 94
-      Width = 134
+      Width = 182
       EchoMode = emPassword
       PasswordChar = '*'
       TabOrder = 2
@@ -196,7 +186,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 25
       Top = 70
-      Width = 134
+      Width = 182
       TabOrder = 3
       Text = 'tris'
     end
@@ -237,8 +227,9 @@ object frmMain: TfrmMain
       Left = 14
       Height = 25
       Top = 126
-      Width = 232
+      Width = 280
       Caption = 'Apply'
+      Default = True
       OnClick = btnHGDApplyClick
       TabOrder = 4
     end
@@ -251,11 +242,13 @@ object frmMain: TfrmMain
       Enabled = False
       TabOrder = 5
     end
-    object Image1: TImage
-      Left = 238
+    object imSecure: TImage
+      Left = 278
       Height = 16
+      Hint = 'Connection is Unencrypted'
       Top = 154
       Width = 16
+      ParentShowHint = False
       Picture.Data = {
         1754506F727461626C654E6574776F726B47726170686963DB02000089504E47
         0D0A1A0A0000000D49484452000000100000001008060000001FF3FF61000000
@@ -282,38 +275,32 @@ object frmMain: TfrmMain
         7E0C05296EA0B7750C232383EE4E30522E5830572C92BFBED9F83F99A3558EFF
         156000962C1B2CDAB9C3C70000000049454E44AE426082
       }
+      ShowHint = True
+    end
+    object lblError: TLabel
+      Left = 30
+      Height = 1
+      Top = 153
+      Width = 1
+      Font.Color = clRed
+      ParentColor = False
+      ParentFont = False
     end
   end
-  object Label1: TLabel
-    Left = 8
-    Height = 16
-    Top = 232
-    Width = 71
-    Caption = 'Debug Log:'
-    ParentColor = False
-  end
-  object lblError: TLabel
-    Left = 8
-    Height = 1
-    Top = 210
-    Width = 1
-    Font.Color = clRed
-    ParentColor = False
-    ParentFont = False
-  end
   object GroupBox1: TGroupBox
-    Left = 280
+    Left = 327
     Height = 193
     Top = 8
     Width = 249
     ClientHeight = 189
     ClientWidth = 245
-    TabOrder = 2
+    TabOrder = 1
     object Image2: TImage
       Left = 6
       Height = 32
       Top = 6
       Width = 32
+      Enabled = False
       Picture.Data = {
         1754506F727461626C654E6574776F726B477261706869636B07000089504E47
         0D0A1A0A0000000D4948445200000020000000200806000000737A7AF4000000
@@ -385,6 +372,7 @@ object frmMain: TfrmMain
       Width = 53
       HelpType = htKeyword
       Caption = 'Last.fm'
+      Enabled = False
       Font.Color = clRed
       Font.Style = [fsBold]
       ParentColor = False
@@ -396,6 +384,7 @@ object frmMain: TfrmMain
       Top = 47
       Width = 136
       Caption = 'Enable Scrobbling'
+      Enabled = False
       TabOrder = 0
     end
     object chkScrobbling1: TCheckBox
@@ -404,6 +393,7 @@ object frmMain: TfrmMain
       Top = 70
       Width = 138
       Caption = 'Scrobble All Tracks'
+      Enabled = False
       TabOrder = 1
     end
     object edtLastFMUser: TLabeledEdit
@@ -419,6 +409,7 @@ object frmMain: TfrmMain
       EditLabel.Width = 66
       EditLabel.Caption = 'Username:'
       EditLabel.ParentColor = False
+      Enabled = False
       TabOrder = 2
     end
     object btnLastFMApply: TBitBtn
@@ -427,14 +418,16 @@ object frmMain: TfrmMain
       Top = 118
       Width = 75
       Caption = 'Apply'
+      Enabled = False
       TabOrder = 3
     end
   end
   object sgPlaylist: TStringGrid
-    Left = 272
-    Height = 400
-    Top = 240
-    Width = 576
+    Left = 8
+    Height = 420
+    Top = 216
+    Width = 568
+    Anchors = [akTop, akLeft, akRight, akBottom]
     ColCount = 4
     Columns = <    
       item
@@ -460,24 +453,64 @@ object frmMain: TfrmMain
     FixedCols = 0
     MouseWheelOption = mwGrid
     RowCount = 1
-    TabOrder = 3
+    TabOrder = 2
     TitleStyle = tsNative
+    OnDrawCell = sgPlaylistDrawCell
+  end
+  object imDebug: TImage
+    Left = 6
+    Height = 20
+    Hint = 'Show Debug Log'
+    Top = 640
+    Width = 16
+    Anchors = [akLeft, akBottom]
+    OnClick = imDebugClick
+    ParentShowHint = False
+    Picture.Data = {
+      1754506F727461626C654E6574776F726B477261706869630603000089504E47
+      0D0A1A0A0000000D49484452000000100000001008060000001FF3FF61000000
+      0467414D410000AFC837058AE90000001974455874536F667477617265004164
+      6F626520496D616765526561647971C9653C000002984944415438CB9D93C94F
+      535114C6F91B5C031D5E5BA0D8AA747AEF158A25080B6C1924962A93052A162A
+      94323AA0010A695270088812A6168AB4B6160A048D06046330D1E8C6C4854B77
+      2626603434C4F0F91E8928A665E1E24BEEC9BDE777CE77724F1C80B858CA5CA6
+      91B94869D973C66355517A40B9FDEF9B0381F6999AF83BD6844964845461CB80
+      9EAFF6296AE819F9B7430127D98A4B54F3EF383DA88AA8FDCAAFE61B39DE825E
+      7A9B1E93ED96D8D4CE9800CD02B999314F46F65A0E905BF4AC0294570ECA2D47
+      E77A13D63F87D0EEAA80AE26AD252A80F1A94D7FA484C6476EE6054E21F8611C
+      4F3E4E63E0A503925BC9A858CE87FFF5304EF41FC571672AA40E3153759EDC62
+      7CEE7B677CEE667A29CCBEBB8D9EA7265C0D97A0355C09CD3009893305A66903
+      B20B449FF63B607CEE303E413F5478345EF2CBD96001BC6FFB7173A91CF6603E
+      CAA6B260F417C2F7660443AB039076A7406D14860E58A0A6E51BA45B06725C86
+      C0FB41742E96A229A047995B0BC38C1EF7D71CB0CF1AF060A517924E31C41DA2
+      EF29AD42EB811990A3B288D15704D7732B1AFD3A944E64A1D8731AF756BB619D
+      2A44D5582E037042DC2642B25DB09BD4484054CFFF3340D550DA8FDAA0097756
+      DA5036998D331379702DB6C3E2D1C3349A0BC7BC0D0D931624D90448AE278EB0
+      3984997B6D1F40DF55F4A5B924E85A6A43F1B80EAE850E58DC3A548EE4A067CE
+      06EABA12A2CB4CD53AA23AE63F90F51D5B239AB9187B3188AE503D2E32A09EB9
+      465C996981B08E0F412D0F440D37C237719AA3025849AF8AD7A41D6234B86B61
+      F7D4416A13EF250ACDBC6A2651CBAB48DCE4962680732E9E880A60956A17B993
+      ACFC9F824B4C453317FC2ACEAB580B1777D836B2E25FE06CF0CA13C13D9F40FC
+      178015C718BF936888DF8A76F70BB72C7113087182FA0000000049454E44AE42
+      6082
+    }
+    ShowHint = True
   end
   object tmrState: TTimer
     Interval = 500
     OnTimer = tmrStateTimer
-    left = 112
-    top = 264
+    left = 32
+    top = 248
   end
   object XMLPropStorage1: TXMLPropStorage
     StoredValues = <>
-    left = 48
-    top = 264
+    left = 64
+    top = 584
   end
   object tmrPlaylist: TTimer
     Interval = 5000
     OnTimer = tmrPlaylistTimer
-    left = 175
-    top = 264
+    left = 120
+    top = 248
   end
 end

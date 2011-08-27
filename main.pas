@@ -4,7 +4,7 @@
 //
 // main.pas - HGD Client GUI
 
-unit main;
+unit Main;
 
 {$mode objfpc}{$H+}
 
@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, XMLPropStorage, Buttons, Grids, HGDClient;
+  ExtCtrls, XMLPropStorage, Buttons, Grids, HGDClient, DebugLog;
 
 type
 
@@ -30,17 +30,16 @@ type
     edtPwd: TEdit;
     gbHGDServer: TGroupBox;
     GroupBox1: TGroupBox;
-    Image1: TImage;
+    imSecure: TImage;
     Image2: TImage;
-    Label1: TLabel;
     edtLastFMUser: TLabeledEdit;
+    imDebug: TImage;
     lblLastFM: TLabel;
     lblError: TLabel;
     lblHost: TLabel;
     lblPort: TLabel;
     lblUser: TLabel;
     lblPassword: TLabel;
-    Memo1: TMemo;
     sgPlaylist: TStringGrid;
     tmrPlaylist: TTimer;
     tmrState: TTimer;
@@ -49,6 +48,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure imDebugClick(Sender: TObject);
+    procedure sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
+      aRect: TRect; aState: TGridDrawState);
     procedure tmrPlaylistTimer(Sender: TObject);
     procedure tmrStateTimer(Sender: TObject);
   private
@@ -95,7 +97,27 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-  FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text, edtPwd.Text, chkSSL.Checked, Memo1);
+  FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text, edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
+end;
+
+procedure TfrmMain.imDebugClick(Sender: TObject);
+begin
+  frmDebug.Show;
+end;
+
+procedure TfrmMain.sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
+  aRect: TRect; aState: TGridDrawState);
+var
+  S: string;
+begin
+  if (aRow = 1) and (aCol > 0) then
+  begin
+    TStringGrid(Sender).Canvas.Brush.Color :=  clHighLight;
+    TStringGrid(Sender).Canvas.FillRect(aRect);
+
+    S := TStringGrid(Sender).Cells[aCol, aRow];
+    TStringGrid(Sender).Canvas.TextOut(aRect.Left + 2, aRect.Top + 2, S);
+  end;
 end;
 
 procedure TfrmMain.tmrPlaylistTimer(Sender: TObject);
@@ -111,7 +133,12 @@ begin
   begin
     sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
     sgPlaylist.Cells[0, sgPlaylist.RowCount -1] := IntToStr(PL[i].Number);
-    sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title;
+
+    if PL[i].Title <> '' then
+      sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title
+    else
+      sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Filename;
+
     sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
     sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].User;
   end;

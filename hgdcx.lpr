@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, main, HGDClient
+  Forms, Main, HGDClient, DebugLog
   { you can add units after this };
 
 {$R *.res}
@@ -16,6 +16,7 @@ begin
   Application.Title:='hgdc-x';
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmDebug, frmDebug);
   Application.Run;
 end.
 

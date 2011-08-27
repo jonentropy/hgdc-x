@@ -22,6 +22,7 @@ type
     btnSubmit: TBitBtn;
     btnLastFMApply: TBitBtn;
     btnHGDApply: TButton;
+    btnCrapSong: TBitBtn;
     chkScrobbling: TCheckBox;
     chkScrobbling1: TCheckBox;
     chkSSL: TCheckBox;
@@ -47,6 +48,7 @@ type
     tmrPlaylist: TTimer;
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
+    procedure btnCrapSongClick(Sender: TObject);
     procedure btnHGDApplyClick(Sender: TObject);
     procedure btnSubmitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -87,6 +89,12 @@ begin
 
   FClient.ApplyChanges();
   tmrPlaylist.Enabled := True;
+  tmrPlayListTimer(Self);
+end;
+
+procedure TfrmMain.btnCrapSongClick(Sender: TObject);
+begin
+  FClient.VoteOff();
 end;
 
 procedure TfrmMain.btnSubmitClick(Sender: TObject);
@@ -95,11 +103,16 @@ begin
 
   if OpenDialog1.Execute() then
   begin
-    pbarUpload.Visible := True;
+    tmrPlayList.Enabled := False;
+ //   pbarUpload.Visible := True;
+    Application.ProcessMessages;
+  //  tmrUpload.Enabled := True;
     FClient.QueueSong(OpenDialog1.FileName);
+  //  tmrUpload.Enabled := False;
+    tmrPlayList.Enabled := True;
   end;
 
-  pbarUpload.Visible := False;
+//  pbarUpload.Visible := False;
   TBitBtn(Sender).Enabled := True;
 end;
 
@@ -165,9 +178,17 @@ end;
 procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);
 begin
   if Error then
-    lblError.Font.Color := clRed
+  begin
+    lblError.Font.Color := clRed;
+    btnSubmit.Enabled := False;
+    btnCrapSong.Enabled := False;
+  end
   else
+  begin
     lblError.Font.Color := clBlue;
+    btnSubmit.Enabled := True;
+    btnCrapSong.Enabled := True;
+  end;
 
   lblError.Caption := Msg;
 end;

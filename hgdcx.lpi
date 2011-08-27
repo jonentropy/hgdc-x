@@ -38,7 +38,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="11">
+    <Units Count="13">
       <Unit0>
         <Filename Value="hgdcx.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -46,7 +46,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="43" Y="17"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="44"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -56,10 +56,9 @@
         <UnitName Value="Main"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="84"/>
-        <CursorPos X="8" Y="101"/>
-        <ComponentState Value="1"/>
-        <UsageCount Value="41"/>
+        <TopLine Value="165"/>
+        <CursorPos X="25" Y="200"/>
+        <UsageCount Value="44"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -76,11 +75,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="HGDClient"/>
         <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="230"/>
-        <CursorPos X="24" Y="252"/>
-        <UsageCount Value="41"/>
+        <TopLine Value="346"/>
+        <CursorPos X="34" Y="290"/>
+        <UsageCount Value="44"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -101,30 +100,30 @@
       <Unit6>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/customtimer.pas"/>
         <UnitName Value="CustomTimer"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
         <TopLine Value="134"/>
         <CursorPos X="1" Y="156"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="12"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="/usr/share/fpcsrc/2.4.2/rtl/objpas/classes/classesh.inc"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="603"/>
         <CursorPos X="14" Y="625"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/grids.pas"/>
         <UnitName Value="Grids"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
         <TopLine Value="91"/>
         <CursorPos X="3" Y="113"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -133,144 +132,164 @@
         <ComponentName Value="frmDebug"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DebugLog"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="11" Y="23"/>
-        <UsageCount Value="23"/>
+        <CursorPos X="76" Y="4"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="/windows/Users/Tristan/Projects/Hexy/main.pas"/>
         <UnitName Value="main"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="109"/>
         <CursorPos X="7" Y="119"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="backup/hgdclient.pas.bak.sectional"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="237"/>
+        <CursorPos X="41" Y="249"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/include/control.inc"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="2266"/>
+        <CursorPos X="1" Y="2288"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit12>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="218" Column="12" TopLine="195"/>
+        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/include/control.inc"/>
+        <Caret Line="2288" Column="1" TopLine="2266"/>
       </Position1>
       <Position2>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="203" Column="25" TopLine="183"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="104" Column="1" TopLine="82"/>
       </Position2>
       <Position3>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="143" Column="16" TopLine="113"/>
+        <Caret Line="246" Column="42" TopLine="234"/>
       </Position3>
       <Position4>
-        <Filename Value="main.pas"/>
-        <Caret Line="117" Column="7" TopLine="94"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="258" Column="1" TopLine="234"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="116" Column="7" TopLine="93"/>
+        <Caret Line="104" Column="1" TopLine="82"/>
       </Position5>
       <Position6>
-        <Filename Value="debuglog.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="198" Column="5" TopLine="157"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="116" Column="7" TopLine="93"/>
+        <Caret Line="197" Column="5" TopLine="156"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="115" Column="7" TopLine="92"/>
+        <Caret Line="104" Column="5" TopLine="80"/>
       </Position8>
       <Position9>
-        <Filename Value="debuglog.pas"/>
-        <Caret Line="1" Column="1" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="61" Column="71" TopLine="98"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="115" Column="7" TopLine="92"/>
+        <Caret Line="27" Column="37" TopLine="14"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="122" Column="7" TopLine="94"/>
+        <Caret Line="46" Column="9" TopLine="14"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="10" Column="31" TopLine="1"/>
+        <Caret Line="100" Column="11" TopLine="64"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="103" Column="17" TopLine="101"/>
+        <Caret Line="114" Column="9" TopLine="73"/>
       </Position13>
       <Position14>
-        <Filename Value="main.pas"/>
-        <Caret Line="123" Column="68" TopLine="104"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="76" Column="20" TopLine="60"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="129" Column="63" TopLine="102"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="299" Column="28" TopLine="278"/>
       </Position15>
       <Position16>
-        <Filename Value="main.pas"/>
-        <Caret Line="109" Column="32" TopLine="96"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="127" Column="34" TopLine="104"/>
       </Position16>
       <Position17>
-        <Filename Value="main.pas"/>
-        <Caret Line="118" Column="5" TopLine="96"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="276" Column="28" TopLine="253"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="30" Column="60" TopLine="1"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="116" Column="32" TopLine="105"/>
       </Position18>
       <Position19>
         <Filename Value="main.pas"/>
-        <Caret Line="31" Column="60" TopLine="1"/>
+        <Caret Line="19" Column="29" TopLine="1"/>
       </Position19>
       <Position20>
         <Filename Value="main.pas"/>
-        <Caret Line="114" Column="18" TopLine="114"/>
+        <Caret Line="22" Column="14" TopLine="1"/>
       </Position20>
       <Position21>
         <Filename Value="main.pas"/>
-        <Caret Line="115" Column="18" TopLine="115"/>
+        <Caret Line="53" Column="24" TopLine="17"/>
       </Position21>
       <Position22>
         <Filename Value="main.pas"/>
-        <Caret Line="93" Column="38" TopLine="91"/>
+        <Caret Line="99" Column="29" TopLine="63"/>
       </Position22>
       <Position23>
         <Filename Value="main.pas"/>
-        <Caret Line="94" Column="38" TopLine="92"/>
+        <Caret Line="189" Column="32" TopLine="158"/>
       </Position23>
       <Position24>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="73" Column="53" TopLine="49"/>
+        <Filename Value="debuglog.pas"/>
+        <Caret Line="24" Column="11" TopLine="1"/>
       </Position24>
       <Position25>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="15" Column="69" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="92" Column="76" TopLine="80"/>
       </Position25>
       <Position26>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="222" Column="42" TopLine="186"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="97" Column="3" TopLine="95"/>
       </Position26>
       <Position27>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="236" Column="39" TopLine="211"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="200" Column="25" TopLine="165"/>
       </Position27>
       <Position28>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="223" Column="103" TopLine="205"/>
+        <Caret Line="79" Column="45" TopLine="57"/>
       </Position28>
       <Position29>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="259" Column="4" TopLine="229"/>
+        <Caret Line="95" Column="12" TopLine="95"/>
       </Position29>
       <Position30>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="252" Column="24" TopLine="230"/>
+        <Caret Line="151" Column="16" TopLine="127"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

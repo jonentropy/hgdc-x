@@ -68,11 +68,12 @@ type
 
       constructor Create(HostAddress, HostPort, UserName, Password: string; SSL: boolean); overload;
       constructor Create(HostAddress, HostPort, UserName, Password: string; SSL: boolean; DebugMemo: TMemo); overload;
-      destructor Destroy; override;
+      destructor Destroy(); override;
 
-      procedure ApplyChanges;
+      procedure ApplyChanges();
       function GetPlaylist(var PList: TPlaylist): boolean;
       function QueueSong(Filename: string): boolean;
+      function VoteOff(): boolean;
 
       property State: THGDCState read FState;
       property ErrMsg: string read FErrorMsg;
@@ -112,19 +113,19 @@ begin
   Create(HostAddress, HostPort, UserName, Password, SSL);
 end;
 
-destructor THGDClient.Destroy;
+destructor THGDClient.Destroy();
 begin
   Disconnect();
   Socket.Free;
 end;
 
-procedure THGDClient.Disconnect;
+procedure THGDClient.Disconnect();
 begin
   Socket.SendString('bye');
   Socket.CloseSocket;
 end;
 
-function THGDClient.Connect: boolean;
+function THGDClient.Connect(): boolean;
 var
   Reply, Msg: string;
 begin
@@ -258,7 +259,6 @@ begin
 
     Result := ProcessReply(Reply, Msg);
 
-
   end
   else
   begin
@@ -266,7 +266,29 @@ begin
     FErrorMsg := 'Error queueing track ' + Msg;
     //todo, do a better error handling scheme.
   end;
+end;
 
+function THGDClient.VoteOff(): boolean;
+var
+  Reply, Msg: string;
+begin
+  Result := False;
+  Log('Crapping on song...');
+  Socket.SendString('vo' + ProtoLineEnding);
+  Reply := Socket.RecvString(Timeout);
+  Log(Reply);
+
+  Result := ProcessReply(Reply, Msg);
+
+  if Result then
+  begin
+    Log('Vote off Successful');
+  end
+  else
+  begin
+    Log('Vote off Failed');
+    FErrorMsg := 'Vote off failed ' + Msg;
+  end;
 end;
 
 procedure THGDClient.ParseHGDPacket(Packet: string; List: TStringList);

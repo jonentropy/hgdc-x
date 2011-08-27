@@ -53,6 +53,7 @@ object frmDebug: TfrmDebug
     Top = 0
     Width = 320
     Align = alClient
+    OnChange = Memo1Change
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 0

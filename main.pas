@@ -104,15 +104,14 @@ begin
   if OpenDialog1.Execute() then
   begin
     tmrPlayList.Enabled := False;
- //   pbarUpload.Visible := True;
+    Screen.Cursor := crHourglass;
     Application.ProcessMessages;
-  //  tmrUpload.Enabled := True;
     FClient.QueueSong(OpenDialog1.FileName);
-  //  tmrUpload.Enabled := False;
     tmrPlayList.Enabled := True;
+    tmrPlayListTimer(Self);
+    Screen.Cursor := crDefault;
   end;
 
-//  pbarUpload.Visible := False;
   TBitBtn(Sender).Enabled := True;
 end;
 
@@ -180,14 +179,10 @@ begin
   if Error then
   begin
     lblError.Font.Color := clRed;
-    btnSubmit.Enabled := False;
-    btnCrapSong.Enabled := False;
   end
   else
   begin
     lblError.Font.Color := clBlue;
-    btnSubmit.Enabled := True;
-    btnCrapSong.Enabled := True;
   end;
 
   lblError.Caption := Msg;

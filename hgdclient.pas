@@ -19,7 +19,6 @@ const
   //protocol is telnet based, use Windows LineEnding
   ProtoLineEnding = #13#10;
 
-  FILE_BUFFER_SIZE = 4096;
 type
 
   THGDCState = (hsNone, hsError, hsConnected, hsUserSet);
@@ -180,8 +179,8 @@ begin
   log(inttostr(Length(PList)));
   SetLength(PList, 0);
 
-  //only do this if at least connected...
-  if FState > hsConnected then
+  //only do this if at least Error...
+  if FState > hsNone then
   begin
     Log('Getting Playlist...');
     Socket.SendString('ls' + ProtoLineEnding);
@@ -237,8 +236,6 @@ begin
   begin
     Log('q successful, sending data...');
 
-
-
     SetLength(DataArray, FileSizeValue);
     AssignFile(Fin, Filename);
 
@@ -258,13 +255,11 @@ begin
     Log(Reply);
 
     Result := ProcessReply(Reply, Msg);
-
   end
   else
   begin
     Log('q Failed');
     FErrorMsg := 'Error queueing track ' + Msg;
-    //todo, do a better error handling scheme.
   end;
 end;
 
@@ -300,8 +295,6 @@ end;
 
 function THGDClient.ProcessReply(Reply: string; var Msg: string): boolean;
 begin
-  //todo make this parse more than one string from the reply? Maybe?
-  //Or leave this as a general check for "OK" then re-parse the message?
   Msg := Copy(Reply, Pos('|', Reply) + 1, MaxInt);
 
   if Pos('ok', Reply) > 0 then
@@ -313,8 +306,7 @@ begin
   begin
     Result := False;
     FState := hsError;
-    Log('Error Occurred: ' + Msg +', Disconnecting');
-    Disconnect();
+    Log('Error Occurred: ' + Msg);
   end
   else
   begin
@@ -352,7 +344,6 @@ begin
   begin
     Log('SendUser Failed');
     FErrorMsg := 'Error Logging In: ' + Msg;
-    //todo, do a better error handling scheme.
   end;
 end;
 

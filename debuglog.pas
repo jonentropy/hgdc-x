@@ -5,14 +5,17 @@ unit DebugLog;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  Buttons;
 
 type
 
   { TfrmDebug }
 
   TfrmDebug = class(TForm)
+    BitBtn1: TBitBtn;
     Memo1: TMemo;
+    procedure BitBtn1Click(Sender: TObject);
     procedure Memo1Change(Sender: TObject);
   private
     { private declarations }
@@ -33,6 +36,11 @@ procedure TfrmDebug.Memo1Change(Sender: TObject);
 begin
   while Memo1.Lines.Count > 1000 do
     Memo1.Lines.Delete(0);
+end;
+
+procedure TfrmDebug.BitBtn1Click(Sender: TObject);
+begin
+  Memo1.Clear();
 end;
 
 end.

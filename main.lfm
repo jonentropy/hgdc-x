@@ -224,10 +224,10 @@ object frmMain: TfrmMain
       ParentColor = False
     end
     object btnHGDApply: TButton
-      Left = 14
+      Left = 6
       Height = 25
       Top = 126
-      Width = 280
+      Width = 288
       Caption = 'Apply'
       Default = True
       OnClick = btnHGDApplyClick
@@ -503,7 +503,6 @@ object frmMain: TfrmMain
     Top = 176
     Width = 113
     Caption = 'Queue Song'
-    Enabled = False
     Glyph.Data = {
       42020000424D4202000000000000420000002800000010000000100000000100
       100003000000000200006400000064000000000000000000000000F80000E007
@@ -542,7 +541,6 @@ object frmMain: TfrmMain
     Top = 176
     Width = 113
     Caption = 'Vote Off!'
-    Enabled = False
     Glyph.Data = {
       36040000424D3604000000000000360000002800000010000000100000000100
       2000000000000004000064000000640000000000000000000000FFFFFF00FFFF

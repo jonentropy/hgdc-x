@@ -159,7 +159,7 @@ begin
       Reply := ReceiveStringAndDeBork();
       Log('Encrypt? Reply: ' + Reply);
 
-      if ProcessReply(Reply, Msg) then
+      if ProcessReply(Reply, Msg) and (Msg <> 'nocrypto') then
       begin
 
         Log('Encrypting Socket...');

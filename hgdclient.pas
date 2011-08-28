@@ -15,12 +15,12 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, dialogs;
 
 const
-  HGD_PROTO: string = '3';
+  HGD_PROTO: string = '4|1';  //todo this is a hack. Deal with proper proto strings
   //protocol is telnet based, use Windows LineEnding
-  ProtoLineEnding = #13#10;
+  ProtoLineEnding = CRLF;
 
 type
-
+  //todo better way of storing/dealing with state
   THGDCState = (hsNone, hsError, hsConnected, hsUserSet);
 
   TTrackInfo = record
@@ -154,7 +154,7 @@ begin
 
     if FSSL then
     begin
-      Log('Checking if server supoprts encryption...');
+      Log('Checking if server supprts encryption...');
       Socket.SendString('encrypt?' + ProtoLineEnding);
       Reply := ReceiveStringAndDeBork();
       Log('Encrypt? Reply: ' + Reply);
@@ -164,6 +164,7 @@ begin
 
         Log('Encrypting Socket...');
         Socket.SendString('encrypt' + ProtoLineEnding);
+
         Socket.SSLDoConnect;
 
         if Socket.LastError <>  0 then //check for success start of SSL
@@ -426,10 +427,10 @@ begin
   FUsername := AValue;
 end;
 
+//todo investigate blank strings when using ssl
 function THGDClient.ReceiveStringAndDeBork: string;
 begin
   Result := Copy(Socket.RecvString(Timeout), 1, MaxInt);
 end;
 
 end.
-

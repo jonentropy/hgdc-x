@@ -1,3 +1,9 @@
+//
+// Copyright 2011 Tristan Linnell
+//    tris@canthack.org
+//
+// DebugLog.pas - Debug logging GUI
+
 unit DebugLog;
 
 {$mode objfpc}{$H+}

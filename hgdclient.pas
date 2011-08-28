@@ -12,7 +12,7 @@ unit HGDClient;
 interface
 
 uses
-  Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, dialogs;
+  Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
 
 const
   HGD_PROTO: string = '4|1';  //todo this is a hack. Deal with proper proto strings
@@ -141,23 +141,22 @@ begin
   Result := False;
   FState := hsNone;
 
-  Log('Connecting...');
+  Log('Connecting to hgd server (' + FHostAddress + ':' + FHostPort + ')...');
 
   Socket.Connect(FHostAddress, FHostPort);
   Reply := ReceiveStringAndDeBork();
-  Log(Reply);
+  Log('connect reply: ' + Reply);
 
   Result := ProcessReply(Reply, Msg);
 
   if Result then
   begin
-
     if FSSL then
     begin
       Log('Checking if server supprts encryption...');
       Socket.SendString('encrypt?' + ProtoLineEnding);
       Reply := ReceiveStringAndDeBork();
-      Log('Encrypt? Reply: ' + Reply);
+      Log('encrypt? reply: ' + Reply);
 
       if ProcessReply(Reply, Msg) and (Msg <> 'nocrypto') then
       begin
@@ -177,7 +176,7 @@ begin
 
         Reply := ReceiveStringAndDeBork();
 
-        Log('Encrypt Reply: ' + Reply);
+        Log('encrypt reply: ' + Reply);
         if ProcessReply(Reply, Msg) then
         begin
           FEncrypted := True;
@@ -215,7 +214,7 @@ begin
   Log('Getting Proto...');
   Socket.SendString('proto' + ProtoLineEnding);
   Reply := ReceiveStringAndDeBork();
-  Log('GetProto Reply: ' + Reply);
+  Log('proto reply: ' + Reply);
   if not ProcessReply(Reply, Result) then
     Result := '';
 end;
@@ -229,7 +228,7 @@ var
   D: Integer;
 begin
   Result := False;
-  log(inttostr(Length(PList)));
+  log('Length of playlist: ' + IntToStr(Length(PList)));
   SetLength(PList, 0);
 
   //only do this if at least Error...
@@ -238,7 +237,7 @@ begin
     Log('Getting Playlist...');
     Socket.SendString('ls' + ProtoLineEnding);
     Reply := ReceiveStringAndDeBork();
-    Log('GetPlaylist Reply: ' + Reply);
+    Log('ls reply: ' + Reply);
     if ProcessReply(Reply, Msg) then
     begin
       //Playlist came back OK. Parse it up, d00d...
@@ -276,12 +275,13 @@ var
   DataArray: array of byte;
   FileSizeValue: Int64;
 begin
+  //todo send track piece by piece, not all at same time
   Result := False;
   FileSizeValue := FileSize(Filename);
   Log('Queueing track ' + ExtractFilename(Filename) + '...');
   Socket.SendString('q|' + ExtractFilename(Filename) + '|' + IntToStr(FileSizeValue) + ProtoLineEnding);
   Reply := ReceiveStringAndDeBork();
-  Log(Reply);
+  Log('q reply: ' + Reply);
 
   Result := ProcessReply(Reply, Msg);
 
@@ -305,7 +305,7 @@ begin
     SetLength(DataArray, 0);
 
     Reply := ReceiveStringAndDeBork();
-    Log(Reply);
+    Log('q reply: ' + Reply);
 
     Result := ProcessReply(Reply, Msg);
   end
@@ -320,14 +320,16 @@ function THGDClient.VoteOff(): boolean;
 var
   Reply, Msg: string;
 begin
+  //todo see if we can use the "safe" vo variant
   Result := False;
   Log('Crapping on song...');
   Socket.SendString('vo' + ProtoLineEnding);
   Reply := ReceiveStringAndDeBork();
-  Log(Reply);
+  Log('vo reply: ' + Reply);
 
   Result := ProcessReply(Reply, Msg);
 
+  //todo think of a way to feed back to the user if the crapping succeeded
   if Result then
   begin
     Log('Vote off Successful');
@@ -353,7 +355,7 @@ begin
   if Pos('ok', Reply) > 0 then
   begin
     Result := True;
-    Log('OK');
+    Log('"OK" found in reply');
   end
   else if Pos('err', Reply) > 0 then
   begin
@@ -382,7 +384,7 @@ begin
   Log('Sending username...');
   Socket.SendString('user|' + Username + '|' + Password + ProtoLineEnding);
   Reply := ReceiveStringAndDeBork();
-  Log(Reply);
+  Log('user reply: ' + Reply);
 
   Result := ProcessReply(Reply, Msg);
 
@@ -427,10 +429,18 @@ begin
   FUsername := AValue;
 end;
 
-//todo investigate blank strings when using ssl
 function THGDClient.ReceiveStringAndDeBork: string;
+var
+  s: string;
+  i: integer;
 begin
-  Result := Copy(Socket.RecvString(Timeout), 1, MaxInt);
+  //Strip nulls out of string, in case of SSL padding
+  Result := '';
+  s := Socket.RecvString(Timeout);
+
+  for i := 1 to length(s) do
+    if s[i] <> #0 then
+      Result := Result + s[i];
 end;
 
 end.

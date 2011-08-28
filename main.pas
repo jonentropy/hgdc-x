@@ -192,17 +192,20 @@ end;
 
 procedure TfrmMain.tmrStateTimer(Sender: TObject);
 begin
-  if FClient.State = hsError then
+  if Assigned(FClient) then
   begin
-    ShowStatus(FClient.ErrMsg, True);
-  end
-  else if FClient.State = hsUserSet then
-  begin
-    ShowStatus('Ready', False);
-  end;
+    if FClient.State = hsError then
+    begin
+      ShowStatus(FClient.ErrMsg, True);
+    end
+    else if FClient.State = hsUserSet then
+    begin
+      ShowStatus('Ready', False);
+    end;
 
-  imSecure.Visible := FClient.Encrypted;
-  imInsecure.Visible := not FClient.Encrypted;
+    imSecure.Visible := FClient.Encrypted;
+    imInsecure.Visible := not FClient.Encrypted;
+  end;
 end;
 
 end.

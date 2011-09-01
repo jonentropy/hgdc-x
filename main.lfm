@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 385
+  Left = 466
   Height = 660
-  Top = 100
+  Top = 70
   Width = 587
   Caption = 'hgdc-x'
   ClientHeight = 660
@@ -469,27 +469,33 @@ object frmMain: TfrmMain
     Top = 224
     Width = 568
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ColCount = 4
     Columns = <    
       item
         ButtonStyle = cbsButtonColumn
         Title.Alignment = taCenter
-        Title.Caption = 'Track ID'
+        Title.Caption = '#'
+        Width = 25
       end    
       item
         Title.Alignment = taCenter
         Title.Caption = 'Title'
-        Width = 200
+        Width = 158
       end    
       item
         Title.Alignment = taCenter
         Title.Caption = 'Artist'
-        Width = 200
+        Width = 158
+      end    
+      item
+        Alignment = taLeftJustify
+        Title.Alignment = taCenter
+        Title.Caption = 'Album'
+        Width = 158
       end    
       item
         Title.Alignment = taCenter
         Title.Caption = 'Submitted By'
-        Width = 100
+        Width = 65
       end>
     FixedCols = 0
     MouseWheelOption = mwGrid

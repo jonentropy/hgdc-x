@@ -16,7 +16,7 @@ uses
 
 const
   HGD_PROTO: string = '4|1';  //todo this is a hack. Deal with proper proto strings
-  //protocol is telnet based, use Windows LineEnding
+  //protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;
 
 type
@@ -28,6 +28,7 @@ type
     Filename: string;
     Artist: string;
     Title: string;
+    Album: string;
     User: string;
   end;
 
@@ -63,7 +64,6 @@ type
       procedure SetHostPort(const AValue: string);
       procedure SetPassword(const AValue: string);
       procedure SetUsername(const AValue: string);
-
       function SendUser(Username, Password: string): boolean;
 
     public
@@ -260,6 +260,7 @@ begin
         PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
         PList[Length(PList) - 1].Title := PLStringList.Strings[3];
         PList[Length(PList) - 1].User := PLStringList.Strings[4];
+        PList[Length(PList) - 1].User := PLStringList.Strings[5];
       end;
 
       PLStringList.Free;
@@ -355,7 +356,7 @@ begin
   if Pos('ok', Reply) > 0 then
   begin
     Result := True;
-    Log('"OK" found in reply');
+    Log('"ok" found in reply');
   end
   else if Pos('err', Reply) > 0 then
   begin
@@ -366,7 +367,7 @@ begin
   else
   begin
     Result := False;
-    Log('Not OK or Err');
+    Log('"ok" or "err" not found in packet.');
   end;
 end;
 

@@ -37,6 +37,7 @@ type
     edtLastFMUser: TLabeledEdit;
     imDebug: TImage;
     imSecure: TImage;
+    lblNowPlaying: TLabel;
     lblLastFM: TLabel;
     lblError: TLabel;
     lblHost: TLabel;
@@ -172,7 +173,8 @@ begin
       sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Filename;
 
     sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
-    sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].User;
+    sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].Album;
+    sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
   end;
 end;
 

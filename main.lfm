@@ -155,12 +155,12 @@ object frmMain: TfrmMain
     Top = 8
     Width = 304
     Caption = 'HGD Server'
-    ClientHeight = 173
+    ClientHeight = 176
     ClientWidth = 300
     TabOrder = 0
     object edtHost: TEdit
       Left = 112
-      Height = 21
+      Height = 25
       Top = 6
       Width = 182
       TabOrder = 0
@@ -168,7 +168,7 @@ object frmMain: TfrmMain
     end
     object edtPort: TEdit
       Left = 112
-      Height = 21
+      Height = 25
       Top = 46
       Width = 182
       TabOrder = 1
@@ -176,7 +176,7 @@ object frmMain: TfrmMain
     end
     object edtPwd: TEdit
       Left = 112
-      Height = 21
+      Height = 25
       Top = 94
       Width = 182
       EchoMode = emPassword
@@ -185,7 +185,7 @@ object frmMain: TfrmMain
     end
     object edtUser: TEdit
       Left = 112
-      Height = 21
+      Height = 25
       Top = 70
       Width = 182
       TabOrder = 3
@@ -193,33 +193,33 @@ object frmMain: TfrmMain
     end
     object lblPassword: TLabel
       Left = 8
-      Height = 14
+      Height = 16
       Top = 98
-      Width = 51
+      Width = 60
       Caption = 'Password:'
       ParentColor = False
     end
     object lblUser: TLabel
       Left = 8
-      Height = 14
+      Height = 16
       Top = 74
-      Width = 27
+      Width = 32
       Caption = 'User:'
       ParentColor = False
     end
     object lblPort: TLabel
       Left = 8
-      Height = 14
+      Height = 16
       Top = 50
-      Width = 25
+      Width = 29
       Caption = 'Port:'
       ParentColor = False
     end
     object lblHost: TLabel
       Left = 8
-      Height = 14
+      Height = 16
       Top = 10
-      Width = 27
+      Width = 32
       Caption = 'Host:'
       Layout = tlBottom
       ParentColor = False
@@ -236,10 +236,10 @@ object frmMain: TfrmMain
     end
     object chkSSL: TCheckBox
       Left = 6
-      Height = 17
+      Height = 24
       Hint = 'Encrypt connection to server (if server supports it).'
       Top = 29
-      Width = 35
+      Width = 49
       Caption = 'SSL'
       ParentShowHint = False
       ShowHint = True
@@ -333,13 +333,13 @@ object frmMain: TfrmMain
     Height = 161
     Top = 8
     Width = 249
-    ClientHeight = 141
+    ClientHeight = 157
     ClientWidth = 245
     TabOrder = 1
     object imLastFM: TImage
       Left = 6
       Height = 32
-      Top = -2
+      Top = 2
       Width = 32
       Enabled = False
       Picture.Data = {
@@ -408,9 +408,9 @@ object frmMain: TfrmMain
     end
     object lblLastFM: TLabel
       Left = 46
-      Height = 14
+      Height = 16
       Top = 6
-      Width = 43
+      Width = 53
       HelpType = htKeyword
       Caption = 'Last.fm'
       Enabled = False
@@ -421,33 +421,33 @@ object frmMain: TfrmMain
     end
     object chkScrobbling: TCheckBox
       Left = 6
-      Height = 17
+      Height = 24
       Top = 38
-      Width = 102
+      Width = 136
       Caption = 'Enable Scrobbling'
       Enabled = False
       TabOrder = 0
     end
     object chkScrobbling1: TCheckBox
       Left = 6
-      Height = 17
+      Height = 24
       Top = 54
-      Width = 107
+      Width = 138
       Caption = 'Scrobble All Tracks'
       Enabled = False
       TabOrder = 1
     end
     object edtLastFMUser: TLabeledEdit
       Left = 6
-      Height = 21
+      Height = 25
       Top = 102
       Width = 144
       EditLabel.AnchorSideLeft.Control = edtLastFMUser
       EditLabel.AnchorSideBottom.Control = edtLastFMUser
       EditLabel.Left = 6
-      EditLabel.Height = 14
-      EditLabel.Top = 85
-      EditLabel.Width = 53
+      EditLabel.Height = 16
+      EditLabel.Top = 83
+      EditLabel.Width = 66
       EditLabel.Caption = 'Username:'
       EditLabel.ParentColor = False
       Enabled = False
@@ -464,10 +464,10 @@ object frmMain: TfrmMain
     end
   end
   object sgPlaylist: TStringGrid
-    Left = 8
+    Left = 6
     Height = 411
     Top = 224
-    Width = 568
+    Width = 570
     Anchors = [akTop, akLeft, akRight, akBottom]
     ColCount = 4
     Columns = <    
@@ -629,9 +629,9 @@ object frmMain: TfrmMain
   end
   object lblNowPlaying: TLabel
     Left = 8
-    Height = 14
+    Height = 16
     Top = 207
-    Width = 63
+    Width = 78
     Caption = 'Now Playing:'
     ParentColor = False
   end

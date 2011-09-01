@@ -260,7 +260,7 @@ begin
         PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
         PList[Length(PList) - 1].Title := PLStringList.Strings[3];
         PList[Length(PList) - 1].User := PLStringList.Strings[4];
-        PList[Length(PList) - 1].User := PLStringList.Strings[5];
+        PList[Length(PList) - 1].Album := PLStringList.Strings[5];
       end;
 
       PLStringList.Free;

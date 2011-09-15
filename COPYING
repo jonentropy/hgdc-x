@@ -13,29 +13,3 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-
-// hgdc-x Cross Platform hgd client written in Lazarus/Freepascal
-// hgdc-x.lpr - Main project file for hgdc-x
-
-program hgdcx;
-
-{$mode objfpc}{$H+}
-
-uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
-  cthreads,
-  {$ENDIF}{$ENDIF}
-  Interfaces, // this includes the LCL widgetset
-  Forms, Main, HGDClient, DebugLog
-  { you can add units after this };
-
-{$R *.res}
-
-begin
-  Application.Title:='hgdc-x';
-  Application.Initialize;
-  Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmDebug, frmDebug);
-  Application.Run;
-end.
-

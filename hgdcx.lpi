@@ -45,8 +45,14 @@
         <UnitName Value="hgdcx1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
+<<<<<<< HEAD
         <CursorPos X="75" Y="22"/>
         <UsageCount Value="63"/>
+=======
+        <CursorPos X="2" Y="1"/>
+        <UsageCount Value="62"/>
+        <Loaded Value="True"/>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -65,6 +71,10 @@
       <Unit2>
         <Filename Value="libs/synapse/blcksock.pas"/>
         <UnitName Value="blcksock"/>
+<<<<<<< HEAD
+=======
+        <EditorIndex Value="5"/>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
         <WindowIndex Value="0"/>
         <TopLine Value="981"/>
         <CursorPos X="14" Y="1003"/>
@@ -76,9 +86,15 @@
         <UnitName Value="HGDClient"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
+<<<<<<< HEAD
         <TopLine Value="13"/>
         <CursorPos X="22" Y="38"/>
         <UsageCount Value="63"/>
+=======
+        <TopLine Value="230"/>
+        <CursorPos X="1" Y="252"/>
+        <UsageCount Value="62"/>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -125,7 +141,11 @@
         <ComponentName Value="frmDebug"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DebugLog"/>
+<<<<<<< HEAD
         <EditorIndex Value="3"/>
+=======
+        <EditorIndex Value="8"/>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
         <WindowIndex Value="0"/>
         <TopLine Value="17"/>
         <CursorPos X="34" Y="26"/>
@@ -159,6 +179,10 @@
       <Unit13>
         <Filename Value="libs/synapse/ssl_openssl_lib.pas"/>
         <UnitName Value="ssl_openssl_lib"/>
+<<<<<<< HEAD
+=======
+        <EditorIndex Value="3"/>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
         <WindowIndex Value="0"/>
         <TopLine Value="1158"/>
         <CursorPos X="25" Y="1171"/>
@@ -183,6 +207,10 @@
       <Unit16>
         <Filename Value="libs/synapse/ssl_openssl.pas"/>
         <UnitName Value="ssl_openssl"/>
+<<<<<<< HEAD
+=======
+        <EditorIndex Value="4"/>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
         <WindowIndex Value="0"/>
         <TopLine Value="557"/>
         <CursorPos X="18" Y="578"/>
@@ -191,6 +219,10 @@
       <Unit17>
         <Filename Value="libs/synapse/synsock.pas"/>
         <UnitName Value="synsock"/>
+<<<<<<< HEAD
+=======
+        <EditorIndex Value="7"/>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
         <WindowIndex Value="0"/>
         <TopLine Value="24"/>
         <CursorPos X="15" Y="61"/>
@@ -206,6 +238,10 @@
       <Unit19>
         <Filename Value="libs/synapse/ssfpc.pas"/>
         <UnitName Value="ssfpc"/>
+<<<<<<< HEAD
+=======
+        <EditorIndex Value="6"/>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
         <WindowIndex Value="0"/>
         <TopLine Value="72"/>
         <CursorPos X="3" Y="94"/>
@@ -232,12 +268,17 @@
         <Loaded Value="True"/>
       </Unit21>
     </Units>
+<<<<<<< HEAD
     <JumpHistory Count="5" HistoryIndex="4">
+=======
+    <JumpHistory Count="30" HistoryIndex="0">
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
       <Position1>
-        <Filename Value="main.pas"/>
-        <Caret Line="162" Column="1" TopLine="140"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="252" Column="1" TopLine="230"/>
       </Position1>
       <Position2>
+<<<<<<< HEAD
         <Filename Value="main.pas"/>
         <Caret Line="163" Column="18" TopLine="156"/>
       </Position2>
@@ -253,6 +294,123 @@
         <Filename Value="lastfm.pas"/>
         <Caret Line="36" Column="26" TopLine="6"/>
       </Position5>
+=======
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="447" Column="64" TopLine="409"/>
+      </Position2>
+      <Position3>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="441" Column="11" TopLine="409"/>
+      </Position3>
+      <Position4>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="447" Column="20" TopLine="409"/>
+      </Position4>
+      <Position5>
+        <Filename Value="libs/synapse/blcksock.pas"/>
+        <Caret Line="1003" Column="36" TopLine="981"/>
+      </Position5>
+      <Position6>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="448" Column="22" TopLine="409"/>
+      </Position6>
+      <Position7>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="15" Column="9" TopLine="1"/>
+      </Position7>
+      <Position8>
+        <Filename Value="hgdcx.lpr"/>
+        <Caret Line="7" Column="9" TopLine="1"/>
+      </Position8>
+      <Position9>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="448" Column="51" TopLine="412"/>
+      </Position9>
+      <Position10>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="447" Column="7" TopLine="414"/>
+      </Position10>
+      <Position11>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="448" Column="42" TopLine="414"/>
+      </Position11>
+      <Position12>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="444" Column="1" TopLine="414"/>
+      </Position12>
+      <Position13>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="377" Column="1" TopLine="355"/>
+      </Position13>
+      <Position14>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="448" Column="1" TopLine="414"/>
+      </Position14>
+      <Position15>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="218" Column="1" TopLine="196"/>
+      </Position15>
+      <Position16>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="448" Column="1" TopLine="414"/>
+      </Position16>
+      <Position17>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="449" Column="1" TopLine="414"/>
+      </Position17>
+      <Position18>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="450" Column="1" TopLine="414"/>
+      </Position18>
+      <Position19>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="449" Column="68" TopLine="414"/>
+      </Position19>
+      <Position20>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="445" Column="55" TopLine="414"/>
+      </Position20>
+      <Position21>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="444" Column="24" TopLine="415"/>
+      </Position21>
+      <Position22>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="457" Column="15" TopLine="415"/>
+      </Position22>
+      <Position23>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="439" Column="9" TopLine="408"/>
+      </Position23>
+      <Position24>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="443" Column="7" TopLine="423"/>
+      </Position24>
+      <Position25>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="447" Column="3" TopLine="421"/>
+      </Position25>
+      <Position26>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="441" Column="13" TopLine="419"/>
+      </Position26>
+      <Position27>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="443" Column="58" TopLine="421"/>
+      </Position27>
+      <Position28>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="442" Column="1" TopLine="421"/>
+      </Position28>
+      <Position29>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="429" Column="45" TopLine="401"/>
+      </Position29>
+      <Position30>
+        <Filename Value="hgdcx.lpr"/>
+        <Caret Line="22" Column="75" TopLine="1"/>
+      </Position30>
+>>>>>>> 5feb3d23e4856a06206a3dd2cc69969b209f01d6
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

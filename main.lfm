@@ -487,7 +487,6 @@ object frmMain: TfrmMain
         Width = 158
       end    
       item
-        Alignment = taLeftJustify
         Title.Alignment = taCenter
         Title.Caption = 'Album'
         Width = 158

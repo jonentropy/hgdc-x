@@ -15,7 +15,7 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
 
 const
-  HGD_PROTO: string = '4|1';  //todo this is a hack. Deal with proper proto strings
+  HGD_PROTO: string = '7|0';  //todo this is a hack. Deal with proper proto strings
   //protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;
 

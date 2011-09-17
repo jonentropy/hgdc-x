@@ -145,6 +145,7 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text, edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
+  tmrPlaylistTimer(Self);
 end;
 
 procedure TfrmMain.imDebugClick(Sender: TObject);

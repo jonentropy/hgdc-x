@@ -150,7 +150,10 @@ end;
 
 procedure TfrmMain.imDebugClick(Sender: TObject);
 begin
-  frmDebug.Show();
+  if not frmDebug.Visible then             //todo check on Win/Mac/QT
+    frmDebug.Left := Self.Left + Self.Width + 6;
+
+  frmDebug.Visible := not frmDebug.Visible;
 end;
 
 procedure TfrmMain.sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;

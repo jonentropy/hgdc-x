@@ -110,6 +110,7 @@ object frmDebug: TfrmDebug
     Height = 30
     Top = 497
     Width = 91
+    Anchors = [akLeft, akBottom]
     Caption = 'Close'
     Glyph.Data = {
       36040000424D3604000000000000360000002800000010000000100000000100

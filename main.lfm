@@ -241,6 +241,7 @@ object frmMain: TfrmMain
       Top = 29
       Width = 49
       Caption = 'SSL'
+      ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 5

@@ -110,7 +110,8 @@ end;
 
 procedure TfrmMain.btnCrapSongClick(Sender: TObject);
 begin
-  FClient.VoteOff();
+  if sgPlaylist.RowCount > 1 then
+    FClient.VoteOff(StrToIntDef(sgPlaylist.Cells[0,1], -1));
 end;
 
 procedure TfrmMain.btnSubmitClick(Sender: TObject);

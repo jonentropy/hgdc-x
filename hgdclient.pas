@@ -89,7 +89,7 @@ type
       procedure ApplyChanges();
       function GetPlaylist(var PList: TPlaylist): boolean;
       function QueueSong(Filename: string): boolean;
-      function VoteOff(): boolean;
+      function VoteOff(id: integer): boolean;
 
       property State: THGDCState read FState;
       property ErrMsg: string read FErrorMsg;
@@ -330,14 +330,13 @@ begin
   end;
 end;
 
-function THGDClient.VoteOff(): boolean;
+function THGDClient.VoteOff(id: integer): boolean;
 var
   Reply, Msg: string;
 begin
-  //todo see if we can use the "safe" vo variant
   Result := False;
-  Log('Crapping on song...');
-  Socket.SendString('vo' + ProtoLineEnding);
+  Log('Crapping on song id ' + IntToStr(id) + '...');
+  Socket.SendString('vo|' + intToStr(id) + ProtoLineEnding);
   Reply := ReceiveStringAndDeBork();
   Log('vo reply: ' + Reply);
 

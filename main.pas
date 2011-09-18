@@ -178,21 +178,25 @@ var
 
 begin
   sgPlaylist.RowCount := 1;
-  FClient.GetPlaylist(PL);
 
-  for i := 0 to Length(PL) - 1 do
+  if Assigned(FClient) then
   begin
-    sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
-    sgPlaylist.Cells[0, sgPlaylist.RowCount -1] := IntToStr(PL[i].Number);
+    FClient.GetPlaylist(PL);
 
-    if PL[i].Title <> '' then
-      sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title
-    else
-      sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Filename;
+    for i := 0 to Length(PL) - 1 do
+    begin
+      sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
+      sgPlaylist.Cells[0, sgPlaylist.RowCount -1] := IntToStr(PL[i].Number);
 
-    sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
-    sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].Album;
-    sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
+      if PL[i].Title <> '' then
+        sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title
+      else
+        sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Filename;
+
+      sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
+      sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].Album;
+      sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
+    end;
   end;
 end;
 
@@ -214,14 +218,8 @@ procedure TfrmMain.tmrStateTimer(Sender: TObject);
 begin
   if Assigned(FClient) then
   begin
-    if FClient.State = hsError then
-    begin
-      ShowStatus(FClient.ErrMsg, True);
-    end
-    else if FClient.State = hsUserSet then
-    begin
-      ShowStatus('Ready', False);
-    end;
+
+    ShowStatus(FClient.StatusMessage, Pos('error', LowerCase(FCLient.StatusMessage)) > 0);
 
     imSecure.Visible := FClient.Encrypted;
     imInsecure.Visible := not FClient.Encrypted;

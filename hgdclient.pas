@@ -34,7 +34,7 @@ const
 
 type
   //todo better way of storing/dealing with state
-  THGDCState = (hsNone, hsError, hsConnected, hsUserSet);
+  THGDCState = (hsDisconnected, hsConnected, hsAuthenticated);
 
   TTrackInfo = record
     Number: integer;
@@ -63,7 +63,7 @@ type
       Socket: TTCPBlockSocket;
 
       FState: THGDCState;
-      FErrorMsg: string;
+      FStatusMessage: string;
       FDebugMemo: TMemo;
 
       function Connect: boolean;
@@ -92,7 +92,7 @@ type
       function VoteOff(id: integer): boolean;
 
       property State: THGDCState read FState;
-      property ErrMsg: string read FErrorMsg;
+      property StatusMessage: string read FStatusMessage;
 
       property UserName: string read FUsername write SetUsername;
       property Password: string write SetPassword;
@@ -109,8 +109,8 @@ implementation
 constructor THGDClient.Create(HostAddress, HostPort, UserName,
   Password: string; SSL: boolean);
 begin
-  FState := hsNone;
-  FErrorMsg := '';
+  FState := hsDisconnected;
+  FStatusMessage := 'Disconnected';
 
   //2 second socket timeout
   Timeout := 2000;
@@ -143,6 +143,8 @@ procedure THGDClient.Disconnect();
 begin
   Socket.SendString('bye');
   Socket.CloseSocket;
+  FState := hsDisconnected;
+  FStatusMessage := 'Disconnected';
 end;
 
 function THGDClient.Connect(): boolean;
@@ -152,9 +154,10 @@ begin
   Disconnect();
 
   Result := False;
-  FState := hsNone;
+  FState := hsDisconnected;
 
   Log('Connecting to hgd server (' + FHostAddress + ':' + FHostPort + ')...');
+  FStatusMessage := 'Connecting...';
 
   Socket.Connect(FHostAddress, FHostPort);
   Reply := ReceiveStringAndDeBork();
@@ -182,9 +185,8 @@ begin
         if Socket.LastError <>  0 then //check for success start of SSL
         begin
           FEncrypted := False;
-          FState := hsError;
           Result := False;
-          FErrorMsg := 'Error setting SSL';
+          FStatusMessage := 'Error setting SSL';
         end;
 
         Reply := ReceiveStringAndDeBork();
@@ -210,13 +212,20 @@ begin
 
     if GetProto() <> HGD_PROTO then
     begin
-      FState := hsError;
+      FState := hsDisconnected;
       Result := False;
-      FErrorMsg := 'Protocol Version Mismatch';
+      FStatusMessage := 'Protocol Version Mismatch';
     end;
   end
   else
+  begin
     FState := hsConnected;
+    FStatusMessage := 'Connected (';
+    if FEncrypted then
+      FStatusMessage := FStatusMessage + 'SSL)'
+    else
+      FStatusMessage := FStatusMessage + 'no SSL)'
+  end;
 end;
 
 function THGDClient.GetProto: string;
@@ -244,8 +253,8 @@ begin
   log('Length of playlist: ' + IntToStr(Length(PList)));
   SetLength(PList, 0);
 
-  //only do this if at least Error...
-  if FState > hsNone then
+  //only do this if at least connected...
+  if FState >= hsConnected then
   begin
     Log('Getting Playlist...');
     Socket.SendString('ls' + ProtoLineEnding);
@@ -322,11 +331,12 @@ begin
     Log('q reply: ' + Reply);
 
     Result := ProcessReply(Reply, Msg);
+    if Result then FStatusMessage := 'Queued';
   end
   else
   begin
     Log('q Failed');
-    FErrorMsg := 'Error queueing track ' + Msg;
+    FStatusMessage := 'Error queueing track ' + Msg;
   end;
 end;
 
@@ -342,15 +352,15 @@ begin
 
   Result := ProcessReply(Reply, Msg);
 
-  //todo think of a way to feed back to the user if the crapping succeeded
   if Result then
   begin
     Log('Vote off Successful');
+    FStatusMessage := 'Vote off succeeded';
   end
   else
   begin
     Log('Vote off Failed');
-    FErrorMsg := 'Vote off failed ' + Msg;
+    FStatusMessage := 'Vote off failed ' + Msg;
   end;
 end;
 
@@ -373,7 +383,6 @@ begin
   else if Pos('err', Reply) > 0 then
   begin
     Result := False;
-    FState := hsError;
     Log('Error Occurred: ' + Msg);
   end
   else
@@ -403,13 +412,15 @@ begin
 
   if Result then
   begin
-    FState := hsUserSet;
+    FState := hsAuthenticated;
     Log('SendUser Successful');
+    FStatusMessage := 'User authenticated';
   end
   else
   begin
     Log('SendUser Failed');
-    FErrorMsg := 'Error Logging In: ' + Msg;
+    FState := hsConnected;
+    FStatusMessage := 'Error Logging In: ' + Msg;
   end;
 end;
 

@@ -171,7 +171,7 @@ object frmMain: TfrmMain
       Height = 23
       Top = 46
       Width = 182
-      TabOrder = 1
+      TabOrder = 2
       Text = '6633'
     end
     object edtPwd: TEdit
@@ -181,7 +181,7 @@ object frmMain: TfrmMain
       Width = 182
       EchoMode = emPassword
       PasswordChar = '*'
-      TabOrder = 2
+      TabOrder = 4
     end
     object edtUser: TEdit
       Left = 112
@@ -232,7 +232,7 @@ object frmMain: TfrmMain
       Caption = 'Apply'
       Default = True
       OnClick = btnHGDApplyClick
-      TabOrder = 4
+      TabOrder = 5
     end
     object chkSSL: TCheckBox
       Left = 6
@@ -244,7 +244,7 @@ object frmMain: TfrmMain
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 5
+      TabOrder = 1
     end
     object imInsecure: TImage
       Left = 278

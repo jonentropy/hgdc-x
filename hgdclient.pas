@@ -29,11 +29,10 @@ uses
 
 const
   HGD_PROTO: string = '7|0';  //todo this is a hack. Deal with proper proto strings
-  //protocol is telnet based, use CRLF as LineEnding
+  //The hgd protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;
 
 type
-  //todo better way of storing/dealing with state
   THGDCState = (hsDisconnected, hsConnected, hsAuthenticated);
 
   TTrackInfo = record
@@ -57,7 +56,7 @@ type
       FHostAddress: string;
       FHostPort: string;
 
-      FSSL: boolean; //SSl is set
+      FSSL: boolean; //SSL is set
       FEncrypted: boolean; //connection has been successfully encrypted
 
       Socket: TTCPBlockSocket;
@@ -141,7 +140,7 @@ end;
 
 procedure THGDClient.Disconnect();
 begin
-  Socket.SendString('bye');
+  Socket.SendString('bye' + ProtoLineEnding);
   Socket.CloseSocket;
   FState := hsDisconnected;
   FStatusMessage := 'Disconnected';
@@ -214,7 +213,7 @@ begin
     begin
       FState := hsDisconnected;
       Result := False;
-      FStatusMessage := 'Protocol Version Mismatch';
+      FStatusMessage := 'Error: Protocol of server does not match client';
     end;
   end
   else
@@ -360,7 +359,7 @@ begin
   else
   begin
     Log('Vote off Failed');
-    FStatusMessage := 'Vote off failed ' + Msg;
+    FStatusMessage := 'Error voting track off ' + Msg;
   end;
 end;
 
@@ -420,7 +419,7 @@ begin
   begin
     Log('SendUser Failed');
     FState := hsConnected;
-    FStatusMessage := 'Error Logging In: ' + Msg;
+    FStatusMessage := 'Error logging in: ' + Msg;
   end;
 end;
 

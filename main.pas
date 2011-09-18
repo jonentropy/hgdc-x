@@ -175,7 +175,6 @@ procedure TfrmMain.tmrPlaylistTimer(Sender: TObject);
 var
   PL: TPlaylist;
   i: integer;
-
 begin
   sgPlaylist.RowCount := 1;
 

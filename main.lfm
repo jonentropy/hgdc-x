@@ -478,23 +478,27 @@ object frmMain: TfrmMain
         Width = 25
       end    
       item
+        Alignment = taCenter
         Title.Alignment = taCenter
         Title.Caption = 'Title'
         Width = 158
       end    
       item
+        Alignment = taCenter
         Title.Alignment = taCenter
         Title.Caption = 'Artist'
         Width = 158
       end    
       item
+        Alignment = taCenter
         Title.Alignment = taCenter
         Title.Caption = 'Album'
         Width = 158
       end    
       item
+        Alignment = taCenter
         Title.Alignment = taCenter
-        Title.Caption = 'Submitted By'
+        Title.Caption = 'User'
         Width = 65
       end>
     FixedCols = 0

@@ -235,6 +235,9 @@ begin
       chkSSL.Font.Style:= [fsStrikeOut]
     else
       chkSSL.Font.Style:= [];
+
+    btnSubmit.Enabled := FClient.State >= hsAuthenticated;
+    btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
   end;
 end;
 

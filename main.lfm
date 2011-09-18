@@ -1,11 +1,11 @@
 object frmMain: TfrmMain
-  Left = 466
+  Left = 257
   Height = 660
-  Top = 70
-  Width = 587
+  Top = 103
+  Width = 585
   Caption = 'hgdc-x'
   ClientHeight = 660
-  ClientWidth = 587
+  ClientWidth = 585
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
     0000400000000100200000000000001000006400000064000000000000000000
@@ -149,6 +149,51 @@ object frmMain: TfrmMain
   Position = poScreenCenter
   SessionProperties = 'chkScrobbling1.Checked;chkScrobbling.Checked;chkSSL.Checked;edtHost.Text;edtLastFMUser.Text;edtPort.Text;edtUser.Text;OpenDialog1.FileName;OpenDialog1.InitialDir'
   LCLVersion = '0.9.30'
+  object sgPlaylist: TStringGrid
+    Left = 6
+    Height = 411
+    Top = 224
+    Width = 574
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Columns = <    
+      item
+        ButtonStyle = cbsButtonColumn
+        Title.Alignment = taCenter
+        Title.Caption = '#'
+        Width = 25
+      end    
+      item
+        Alignment = taCenter
+        Title.Alignment = taCenter
+        Title.Caption = 'Title'
+        Width = 158
+      end    
+      item
+        Alignment = taCenter
+        Title.Alignment = taCenter
+        Title.Caption = 'Artist'
+        Width = 158
+      end    
+      item
+        Alignment = taCenter
+        Title.Alignment = taCenter
+        Title.Caption = 'Album'
+        Width = 158
+      end    
+      item
+        Alignment = taCenter
+        Title.Alignment = taCenter
+        Title.Caption = 'User'
+        Width = 65
+      end>
+    FixedCols = 0
+    MouseWheelOption = mwGrid
+    Options = [goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goColMoving, goThumbTracking, goDblClickAutoSize, goSmoothScroll]
+    RowCount = 1
+    TabOrder = 2
+    TitleStyle = tsNative
+    OnDrawCell = sgPlaylistDrawCell
+  end
   object gbHGDServer: TGroupBox
     Left = 6
     Height = 193
@@ -333,9 +378,9 @@ object frmMain: TfrmMain
     Left = 327
     Height = 161
     Top = 8
-    Width = 249
+    Width = 253
     ClientHeight = 143
-    ClientWidth = 245
+    ClientWidth = 249
     TabOrder = 1
     object imLastFM: TImage
       Left = 6
@@ -464,51 +509,6 @@ object frmMain: TfrmMain
       TabOrder = 3
     end
   end
-  object sgPlaylist: TStringGrid
-    Left = 6
-    Height = 411
-    Top = 224
-    Width = 570
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    Columns = <    
-      item
-        ButtonStyle = cbsButtonColumn
-        Title.Alignment = taCenter
-        Title.Caption = '#'
-        Width = 25
-      end    
-      item
-        Alignment = taCenter
-        Title.Alignment = taCenter
-        Title.Caption = 'Title'
-        Width = 158
-      end    
-      item
-        Alignment = taCenter
-        Title.Alignment = taCenter
-        Title.Caption = 'Artist'
-        Width = 158
-      end    
-      item
-        Alignment = taCenter
-        Title.Alignment = taCenter
-        Title.Caption = 'Album'
-        Width = 158
-      end    
-      item
-        Alignment = taCenter
-        Title.Alignment = taCenter
-        Title.Caption = 'User'
-        Width = 65
-      end>
-    FixedCols = 0
-    MouseWheelOption = mwGrid
-    Options = [goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goColMoving, goThumbTracking, goDblClickAutoSize, goSmoothScroll]
-    RowCount = 1
-    TabOrder = 2
-    TitleStyle = tsNative
-    OnDrawCell = sgPlaylistDrawCell
-  end
   object imDebug: TImage
     Left = 6
     Height = 16
@@ -590,7 +590,7 @@ object frmMain: TfrmMain
     Visible = False
   end
   object btnCrapSong: TBitBtn
-    Left = 455
+    Left = 459
     Height = 30
     Hint = 'Vote to skip the currently playing song.'
     Top = 176
@@ -644,6 +644,17 @@ object frmMain: TfrmMain
     Width = 71
     Caption = 'Now Playing:'
     ParentColor = False
+  end
+  object lblNoPlaylist: TLabel
+    Left = 489
+    Height = 16
+    Top = 639
+    Width = 87
+    Caption = 'Nothing Playing'
+    Font.Color = clHighlight
+    ParentColor = False
+    ParentFont = False
+    Visible = False
   end
   object tmrState: TTimer
     Interval = 500

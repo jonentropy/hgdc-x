@@ -50,6 +50,7 @@ type
     edtLastFMUser: TLabeledEdit;
     imDebug: TImage;
     imSecure: TImage;
+    lblNoPlaylist: TLabel;
     lblNowPlaying: TLabel;
     lblLastFM: TLabel;
     lblError: TLabel;
@@ -182,20 +183,26 @@ begin
   begin
     FClient.GetPlaylist(PL);
 
-    for i := 0 to Length(PL) - 1 do
+    if Length(PL) > 0 then
     begin
-      sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
-      sgPlaylist.Cells[0, sgPlaylist.RowCount -1] := IntToStr(PL[i].Number);
+      for i := 0 to Length(PL) - 1 do
+      begin
+        sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
+        sgPlaylist.Cells[0, sgPlaylist.RowCount -1] := IntToStr(PL[i].Number);
 
-      if PL[i].Title <> '' then
-        sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title
-      else
-        sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Filename;
+        if PL[i].Title <> '' then
+          sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title
+        else
+          sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Filename;
 
-      sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
-      sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].Album;
-      sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
-    end;
+        sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
+        sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].Album;
+        sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
+        lblNoPlaylist.Visible := False;
+      end;
+    end
+    else
+      lblNoPlaylist.Visible := True;
   end;
 end;
 

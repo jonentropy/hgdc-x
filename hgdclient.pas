@@ -140,10 +140,13 @@ end;
 
 procedure THGDClient.Disconnect();
 begin
-  Socket.SendString('bye' + ProtoLineEnding);
-  Socket.CloseSocket;
-  FState := hsDisconnected;
-  FStatusMessage := 'Disconnected';
+  if FState >= hsConnected then
+  begin
+    Socket.SendString('bye' + ProtoLineEnding);
+    Socket.CloseSocket;
+    FState := hsDisconnected;
+    FStatusMessage := 'Not connected';
+  end;
 end;
 
 function THGDClient.Connect(): boolean;
@@ -214,16 +217,21 @@ begin
       FState := hsDisconnected;
       Result := False;
       FStatusMessage := 'Error: Protocol of server does not match client';
+    end
+    else
+    begin
+      FState := hsConnected;
+      FStatusMessage := 'Connected (';
+      if FEncrypted then
+        FStatusMessage := FStatusMessage + 'SSL)'
+      else
+        FStatusMessage := FStatusMessage + 'no SSL)'
     end;
   end
   else
   begin
-    FState := hsConnected;
-    FStatusMessage := 'Connected (';
-    if FEncrypted then
-      FStatusMessage := FStatusMessage + 'SSL)'
-    else
-      FStatusMessage := FStatusMessage + 'no SSL)'
+    FState := hsDisconnected;
+    FStatusMessage := 'Not connected';
   end;
 end;
 

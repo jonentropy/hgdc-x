@@ -179,7 +179,7 @@ var
 begin
   sgPlaylist.RowCount := 1;
 
-  if Assigned(FClient) then
+  if Assigned(FClient) and (FClient.State >= hsConnected) then
   begin
     FClient.GetPlaylist(PL);
 

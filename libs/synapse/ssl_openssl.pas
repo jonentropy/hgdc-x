@@ -1,5 +1,5 @@
 {==============================================================================|
-| Project : Ararat Synapse                                       | 001.001.000 |
+| Project : Ararat Synapse                                       | 001.001.001 |
 |==============================================================================|
 | Content: SSL support by OpenSSL                                              |
 |==============================================================================|
@@ -79,6 +79,11 @@ accepting of new connections!
   {$MODE DELPHI}
 {$ENDIF}
 {$H+}
+
+{$IFDEF UNICODE}
+  {$WARN IMPLICIT_STRING_CAST OFF}
+  {$WARN IMPLICIT_STRING_CAST_LOSS OFF}
+{$ENDIF}
 
 unit ssl_openssl;
 
@@ -496,6 +501,8 @@ begin
       SSLCheck;
       Exit;
     end;
+    if SNIHost<>'' then
+      SSLCtrl(Fssl, SSL_CTRL_SET_TLSEXT_HOSTNAME, TLSEXT_NAMETYPE_host_name, pchar(SNIHost));
     x := sslconnect(FSsl);
     if x < 1 then
     begin
@@ -503,7 +510,7 @@ begin
       Exit;
     end;
   if FverifyCert then
-    if GetVerifyCert <> 0 then
+    if (GetVerifyCert <> 0) or (not DoVerifyCert) then
       Exit;
     FSSLEnabled := True;
     Result := True;
@@ -615,10 +622,9 @@ begin
     err := SslGetError(FSsl, Result);
   until (err <> SSL_ERROR_WANT_READ) and (err <> SSL_ERROR_WANT_WRITE);
   if err = SSL_ERROR_ZERO_RETURN then
-    Result := 0
-  else
-    if (err <> 0) then
-      FLastError := err;
+    Result := 0;
+  if (err <> 0) then
+    FLastError := err;
 end;
 
 function TSSLOpenSSL.WaitingData: Integer;

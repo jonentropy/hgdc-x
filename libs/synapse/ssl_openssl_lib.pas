@@ -1,9 +1,9 @@
 {==============================================================================|
-| Project : Ararat Synapse                                       | 003.005.000 |
+| Project : Ararat Synapse                                       | 003.006.003 |
 |==============================================================================|
 | Content: SSL support by OpenSSL                                              |
 |==============================================================================|
-| Copyright (c)1999-2008, Lukas Gebauer                                        |
+| Copyright (c)1999-2011, Lukas Gebauer                                        |
 | All rights reserved.                                                         |
 |                                                                              |
 | Redistribution and use in source and binary forms, with or without           |
@@ -33,7 +33,7 @@
 | DAMAGE.                                                                      |
 |==============================================================================|
 | The Initial Developer of the Original Code is Lukas Gebauer (Czech Republic).|
-| Portions created by Lukas Gebauer are Copyright (c)2002-2008.                |
+| Portions created by Lukas Gebauer are Copyright (c)2002-2011.                |
 | All Rights Reserved.                                                         |
 |==============================================================================|
 | Contributor(s):                                                              |
@@ -60,6 +60,13 @@ Special thanks to Gregor Ibic <gregor.ibic@intelicom.si>
   (*$HPPEMIT 'namespace ssl_openssl_lib { using System::Shortint; }' *)
 {$ENDIF}
 
+//old Delphi does not have MSWINDOWS define.
+{$IFDEF WIN32}
+  {$IFNDEF MSWINDOWS}
+    {$DEFINE MSWINDOWS}
+  {$ENDIF}
+{$ENDIF}
+
 {:@abstract(OpenSSL support)
 
 This unit is Pascal interface to OpenSSL library (used by @link(ssl_openssl) unit).
@@ -77,8 +84,12 @@ uses
 {$ENDIF}
   Classes,
   synafpc,
-{$IFNDEF WIN32}
-  Libc, SysUtils;
+{$IFNDEF MSWINDOWS}
+  {$IFDEF FPC}
+  BaseUnix, SysUtils;
+  {$ELSE}
+   Libc, SysUtils;
+  {$ENDIF}
 {$ELSE}
   Windows;
 {$ENDIF}
@@ -95,9 +106,14 @@ const
   {$ENDIF}
 {$ELSE}
 var
-  {$IFNDEF WIN32}
-  DLLSSLName: string = 'libssl.so';
-  DLLUtilName: string = 'libcrypto.so';
+  {$IFNDEF MSWINDOWS}
+    {$IFDEF DARWIN}
+    DLLSSLName: string = 'libssl.dylib';
+    DLLUtilName: string = 'libcrypto.dylib';
+    {$ELSE}
+    DLLSSLName: string = 'libssl.so';
+    DLLUtilName: string = 'libcrypto.so';
+    {$ENDIF}
   {$ELSE}
   DLLSSLName: string = 'ssleay32.dll';
   DLLSSLName2: string = 'libssl32.dll';
@@ -201,6 +217,9 @@ const
   SSL_FILETYPE_ASN1	= 2;
   SSL_FILETYPE_PEM = 1;
   EVP_PKEY_RSA = 6;
+
+  SSL_CTRL_SET_TLSEXT_HOSTNAME = 55;
+  TLSEXT_NAMETYPE_host_name = 0;
 
 var
   SSLLibHandle: TLibHandle = 0;
@@ -321,6 +340,11 @@ var
 
   [DllImport(DLLSSLName, CharSet = CharSet.Ansi,
     SetLastError = False, CallingConvention= CallingConvention.cdecl,
+    EntryPoint = 'SSL_CTX_ctrl')]
+    function SslCtxCtrl(ctx: PSSL_CTX; cmd: integer; larg: integer; parg: IntPtr): integer; external;
+
+  [DllImport(DLLSSLName, CharSet = CharSet.Ansi,
+    SetLastError = False, CallingConvention= CallingConvention.cdecl,
     EntryPoint = 'SSL_new')]
     function SslNew(ctx: PSSL_CTX):PSSL;  external;
 
@@ -398,6 +422,11 @@ var
     SetLastError = False, CallingConvention= CallingConvention.cdecl,
     EntryPoint = 'SSL_get_verify_result')]
     function SSLGetVerifyResult(ssl: PSSL):Integer;external;
+
+  [DllImport(DLLSSLName, CharSet = CharSet.Ansi,
+    SetLastError = False, CallingConvention= CallingConvention.cdecl,
+    EntryPoint = 'SSL_ctrl')]
+    function SslCtrl(ssl: PSSL; cmd: integer; larg: integer; parg: IntPtr): integer; external;
 
   [DllImport(DLLUtilName, CharSet = CharSet.Ansi,
     SetLastError = False, CallingConvention= CallingConvention.cdecl,
@@ -674,6 +703,7 @@ var
   procedure SslCtxSetDefaultPasswdCbUserdata(ctx: PSSL_CTX; u: SslPtr);
 //  function SslCtxLoadVerifyLocations(ctx: PSSL_CTX; const CAfile: PChar; const CApath: PChar):Integer;
   function SslCtxLoadVerifyLocations(ctx: PSSL_CTX; const CAfile: AnsiString; const CApath: AnsiString):Integer;
+  function SslCtxCtrl(ctx: PSSL_CTX; cmd: integer; larg: integer; parg: SslPtr): integer;
   function SslNew(ctx: PSSL_CTX):PSSL;
   procedure SslFree(ssl: PSSL);
   function SslAccept(ssl: PSSL):Integer;
@@ -690,6 +720,7 @@ var
   function SSLCipherGetName(c: SslPtr): AnsiString;
   function SSLCipherGetBits(c: SslPtr; var alg_bits: Integer):Integer;
   function SSLGetVerifyResult(ssl: PSSL):Integer;
+  function SSLCtrl(ssl: PSSL; cmd: integer; larg: integer; parg: SslPtr):Integer;
 
 // libeay.dll
   function X509New: PX509;
@@ -782,6 +813,7 @@ type
   TSslCtxSetDefaultPasswdCb = procedure(ctx: PSSL_CTX; cb: SslPtr); cdecl;
   TSslCtxSetDefaultPasswdCbUserdata = procedure(ctx: PSSL_CTX; u: SslPtr); cdecl;
   TSslCtxLoadVerifyLocations = function(ctx: PSSL_CTX; const CAfile: PAnsiChar; const CApath: PAnsiChar):Integer; cdecl;
+  TSslCtxCtrl = function(ctx: PSSL_CTX; cmd: integer; larg: integer; parg: SslPtr): integer; cdecl;
   TSslNew = function(ctx: PSSL_CTX):PSSL; cdecl;
   TSslFree = procedure(ssl: PSSL); cdecl;
   TSslAccept = function(ssl: PSSL):Integer; cdecl;
@@ -798,6 +830,9 @@ type
   TSSLCipherGetName = function(c: Sslptr):PAnsiChar; cdecl;
   TSSLCipherGetBits = function(c: SslPtr; alg_bits: PInteger):Integer; cdecl;
   TSSLGetVerifyResult = function(ssl: PSSL):Integer; cdecl;
+  TSSLCtrl = function(ssl: PSSL; cmd: integer; larg: integer; parg: SslPtr):Integer; cdecl;
+
+  TSSLSetTlsextHostName = function(ssl: PSSL; buf: PAnsiChar):Integer; cdecl;
 
 // libeay.dll
   TX509New = function: PX509; cdecl;
@@ -880,6 +915,7 @@ var
   _SslCtxSetDefaultPasswdCb: TSslCtxSetDefaultPasswdCb = nil;
   _SslCtxSetDefaultPasswdCbUserdata: TSslCtxSetDefaultPasswdCbUserdata = nil;
   _SslCtxLoadVerifyLocations: TSslCtxLoadVerifyLocations = nil;
+  _SslCtxCtrl: TSslCtxCtrl = nil;
   _SslNew: TSslNew = nil;
   _SslFree: TSslFree = nil;
   _SslAccept: TSslAccept = nil;
@@ -896,6 +932,7 @@ var
   _SSLCipherGetName: TSSLCipherGetName = nil;
   _SSLCipherGetBits: TSSLCipherGetBits = nil;
   _SSLGetVerifyResult: TSSLGetVerifyResult = nil;
+  _SSLCtrl: TSSLCtrl = nil;
 
 // libeay.dll
   _X509New: TX509New = nil;
@@ -1135,6 +1172,14 @@ begin
     Result := 0;
 end;
 
+function SslCtxCtrl(ctx: PSSL_CTX; cmd: integer; larg: integer; parg: SslPtr): integer;
+begin
+  if InitSSLInterface and Assigned(_SslCtxCtrl) then
+    Result := _SslCtxCtrl(ctx, cmd, larg, parg)
+  else
+    Result := 0;
+end;
+
 function SslNew(ctx: PSSL_CTX):PSSL;
 begin
   if InitSSLInterface and Assigned(_SslNew) then
@@ -1269,6 +1314,15 @@ begin
     Result := X509_V_ERR_APPLICATION_VERIFICATION;
 end;
 
+
+function SSLCtrl(ssl: PSSL; cmd: integer; larg: integer; parg: SslPtr):Integer;
+begin
+  if InitSSLInterface and Assigned(_SSLCtrl) then
+    Result := _SSLCtrl(ssl, cmd, larg, parg)
+  else
+    Result := X509_V_ERR_APPLICATION_VERIFICATION;
+end;
+
 // libeay.dll
 function X509New: PX509;
 begin
@@ -1352,7 +1406,7 @@ procedure ErrErrorString(e: integer; var buf: Ansistring; len: integer);
 begin
   if InitSSLInterface and Assigned(_ErrErrorString) then
     _ErrErrorString(e, Pointer(buf), len);
-  buf := PChar(Buf);
+  buf := PAnsiChar(Buf);
 end;
 
 function ErrGetError: integer;
@@ -1704,7 +1758,7 @@ begin
 {$ELSE}
       SSLLibHandle := LoadLib(DLLSSLName);
       SSLUtilHandle := LoadLib(DLLUtilName);
-  {$IFNDEF LINUX}
+  {$IFDEF MSWINDOWS}
       if (SSLLibHandle = 0) then
         SSLLibHandle := LoadLib(DLLSSLName2);
   {$ENDIF}
@@ -1736,6 +1790,7 @@ begin
         _SslCtxSetDefaultPasswdCb := GetProcAddr(SSLLibHandle, 'SSL_CTX_set_default_passwd_cb');
         _SslCtxSetDefaultPasswdCbUserdata := GetProcAddr(SSLLibHandle, 'SSL_CTX_set_default_passwd_cb_userdata');
         _SslCtxLoadVerifyLocations := GetProcAddr(SSLLibHandle, 'SSL_CTX_load_verify_locations');
+        _SslCtxCtrl := GetProcAddr(SSLLibHandle, 'SSL_CTX_ctrl');
         _SslNew := GetProcAddr(SSLLibHandle, 'SSL_new');
         _SslFree := GetProcAddr(SSLLibHandle, 'SSL_free');
         _SslAccept := GetProcAddr(SSLLibHandle, 'SSL_accept');
@@ -1752,6 +1807,7 @@ begin
         _SslCipherGetName := GetProcAddr(SSLLibHandle, 'SSL_CIPHER_get_name');
         _SslCipherGetBits := GetProcAddr(SSLLibHandle, 'SSL_CIPHER_get_bits');
         _SslGetVerifyResult := GetProcAddr(SSLLibHandle, 'SSL_get_verify_result');
+        _SslCtrl := GetProcAddr(SSLLibHandle, 'SSL_ctrl');
 
         _X509New := GetProcAddr(SSLUtilHandle, 'X509_new');
         _X509Free := GetProcAddr(SSLUtilHandle, 'X509_free');
@@ -1919,6 +1975,7 @@ begin
     _SslCtxSetDefaultPasswdCb := nil;
     _SslCtxSetDefaultPasswdCbUserdata := nil;
     _SslCtxLoadVerifyLocations := nil;
+    _SslCtxCtrl := nil;
     _SslNew := nil;
     _SslFree := nil;
     _SslAccept := nil;
@@ -1935,6 +1992,7 @@ begin
     _SslCipherGetName := nil;
     _SslCipherGetBits := nil;
     _SslGetVerifyResult := nil;
+    _SslCtrl := nil;
 
     _X509New := nil;
     _X509Free := nil;

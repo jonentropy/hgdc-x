@@ -3,7 +3,7 @@ The official github repository for the server can be found at https://github.com
 
 Tagged releases and pre-compiled binaries are coming soon, and will match versioned releases of the offical server project.
 
-It is a feature complete GUI client, including SSL encryption, written in Lazarus, and is designed to target Linux (GTK or QT) and Windows (Win32 or QT). Other targets, for example Mac OS X and FreeBSD are possible but untested.
+It is a feature complete GUI client, including SSL encryption, written in Lazarus, and is designed to target Linux (GTK or QT), Mac OS X (Carbon) and Windows (Win32 or QT). Other targets, for example FreeBSD are possible but untested.
 
 It will build with no additional libraries (except for synapse, which is statically linked and included in the source tree), with Lazarus 0.9.30 or later.
 

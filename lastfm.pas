@@ -90,42 +90,47 @@ begin
 
     RequestURL := EncodeURL(RequestURL);
 
-    Connection.HTTPMethod('GET', RequestURL);
-    ReadXMLFile(XMLResponse, Connection.Document);
-    Node := XMLResponse.DocumentElement.FindNode('album');
-
-    if Assigned(Node) then
+    if Connection.HTTPMethod('GET', RequestURL) then
     begin
-      Node := Node.FindNode('image');
-      Found := False;
-
-      case Size of
-      szSmall: ImStr := 'small';
-      szLarge: ImStr := 'large';
-      szExtraLarge: ImStr := 'extralarge';
-      else
-        ImStr := 'medium';
+      try
+        ReadXMLFile(XMLResponse, Connection.Document);
+        Node := XMLResponse.DocumentElement.FindNode('album');
+      except
+        Node := nil;
       end;
 
-      while ((not Found) and (Node.Attributes.Item[0].NodeValue <> ImStr)) do
+      if Assigned(Node) then
       begin
-        if Node.NextSibling.NodeName = 'image' then
-          Node := Node.NextSibling
+        Node := Node.FindNode('image');
+        Found := False;
+
+        case Size of
+        szSmall: ImStr := 'small';
+        szLarge: ImStr := 'large';
+        szExtraLarge: ImStr := 'extralarge';
         else
-          Found := True;
+          ImStr := 'medium';
+        end;
+
+        while ((not Found) and (Node.Attributes.Item[0].NodeValue <> ImStr)) do
+        begin
+          if Node.NextSibling.NodeName = 'image' then
+            Node := Node.NextSibling
+          else
+            Found := True;
+        end;
+        if Node.FirstChild <> nil then
+          CoverURL := Node.FirstChild.NodeValue;
       end;
-      if Node.FirstChild <> nil then
-        CoverURL := Node.FirstChild.NodeValue;
-    end;
 
-    if CoverURL <> '' then
-    begin
-      //Get the cover
-      CoverURL := EncodeURL(CoverURL);
-      Connection.HTTPMethod('GET', CoverURL);
-      CoverImage.Picture.LoadFromStream(Connection.Document);
+      if CoverURL <> '' then
+      begin
+        //Get the cover
+        CoverURL := EncodeURL(CoverURL);
+        Connection.HTTPMethod('GET', CoverURL);
+        CoverImage.Picture.LoadFromStream(Connection.Document);
+      end;
     end;
-
   finally
     XMLResponse.Free();
     Connection.Free();

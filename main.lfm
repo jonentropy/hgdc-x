@@ -552,7 +552,7 @@ object frmMain: TfrmMain
       Anchors = [akRight, akBottom]
       AutoSize = False
       Caption = 'Nothing Playing'
-      Font.Color = clHighlight
+      Enabled = False
       ParentColor = False
       ParentFont = False
       Visible = False

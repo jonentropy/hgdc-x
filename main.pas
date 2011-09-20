@@ -237,6 +237,7 @@ begin
             if (PL[i].Artist + ':' + PL[i].Album) <> FCurrentlyPlayingTrack then
             begin
               imNowPlaying.Visible := True;
+              Bevel1.Visible := True;
               //Todo look into why using large or extra large results in black
               //png images. Probably a bug in Lazarus :S
               FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
@@ -253,6 +254,7 @@ begin
           begin
             //No album art
             imNowPlaying.Visible := False;
+            lblNoAlbumArt.Visible := True;
           end;
         end;
       end;
@@ -267,7 +269,9 @@ begin
       FVotedOffId := -1;
       FCurrentlyPlayingTrack := '';
       imNowPlaying.Picture.Clear;
-      imNowPlaying.Visible := True;  //Hides 'no art' label
+      imNowPlaying.Visible := False;
+      Bevel1.Visible := False;
+      lblNoAlbumArt.Visible := False;
     end;
   end;
 end;

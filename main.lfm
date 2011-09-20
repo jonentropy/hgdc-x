@@ -195,16 +195,16 @@ object frmMain: TfrmMain
     Left = 6
     Height = 193
     Top = 8
-    Width = 304
+    Width = 274
     Caption = 'HGD Server'
     ClientHeight = 176
-    ClientWidth = 300
+    ClientWidth = 270
     TabOrder = 0
     object edtHost: TEdit
       Left = 112
       Height = 25
       Top = 6
-      Width = 182
+      Width = 150
       TabOrder = 0
       Text = '127.0.0.1'
     end
@@ -212,7 +212,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 25
       Top = 46
-      Width = 182
+      Width = 150
       TabOrder = 2
       Text = '6633'
     end
@@ -220,7 +220,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 25
       Top = 94
-      Width = 182
+      Width = 150
       EchoMode = emPassword
       PasswordChar = '*'
       TabOrder = 4
@@ -229,7 +229,7 @@ object frmMain: TfrmMain
       Left = 112
       Height = 25
       Top = 70
-      Width = 182
+      Width = 150
       TabOrder = 3
       Text = 'tris'
     end
@@ -271,7 +271,7 @@ object frmMain: TfrmMain
       Height = 25
       Hint = 'Apply changes to the connection settings.'
       Top = 126
-      Width = 288
+      Width = 256
       Caption = 'Apply'
       Default = True
       OnClick = btnHGDApplyClick
@@ -292,7 +292,7 @@ object frmMain: TfrmMain
       TabOrder = 1
     end
     object imInsecure: TImage
-      Left = 278
+      Left = 245
       Height = 16
       Hint = 'Connection is not encrypted.'
       Top = 154
@@ -336,7 +336,7 @@ object frmMain: TfrmMain
       ParentFont = False
     end
     object imSecure: TImage
-      Left = 278
+      Left = 245
       Height = 16
       Hint = 'Connection is encrypted.'
       Top = 154
@@ -523,13 +523,13 @@ object frmMain: TfrmMain
     ParentColor = False
   end
   object gbNowPlaying: TGroupBox
-    Left = 319
+    Left = 288
     Height = 161
     Top = 8
-    Width = 257
+    Width = 288
     Caption = 'Now Playing'
     ClientHeight = 144
-    ClientWidth = 253
+    ClientWidth = 284
     TabOrder = 5
     object lblNoAlbumArt: TLabel
       Left = 7
@@ -544,11 +544,13 @@ object frmMain: TfrmMain
       WordWrap = True
     end
     object lblNoPlaylist: TLabel
-      Left = 152
+      Left = -2
       Height = 16
-      Top = 121
-      Width = 96
+      Top = 65
+      Width = 288
+      Alignment = taCenter
       Anchors = [akRight, akBottom]
+      AutoSize = False
       Caption = 'Nothing Playing'
       Font.Color = clHighlight
       ParentColor = False

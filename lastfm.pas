@@ -49,7 +49,7 @@ type
         var CoverImage: TImage): boolean;
 
       constructor Create; overload;
-      constructor Create(user: string); overload;
+      constructor Create(User: string); overload;
 
       destructor Destroy;
   end;
@@ -138,8 +138,9 @@ begin
 
 end;
 
-constructor TLastFM.Create(user: string);
+constructor TLastFM.Create(User: string);
 begin
+  FUserName := User;
   Create;
 end;
 

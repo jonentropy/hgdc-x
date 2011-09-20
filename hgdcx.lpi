@@ -223,10 +223,11 @@
         <Filename Value="lastfm.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LastFM"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="100" Y="82"/>
+        <TopLine Value="85"/>
+        <CursorPos X="119" Y="86"/>
         <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit21>
@@ -319,7 +320,6 @@
         <ComponentName Value="frmSettings"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Settings"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>

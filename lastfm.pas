@@ -84,9 +84,7 @@ begin
   try
     Connection.Timeout := 1000;
     RequestURL := API_ROOT_URL + '?method=album.getinfo&api_key=' + API_KEY + '&artist=' + Artist + '&album=' + Album;
-
-    //Todo this didn't work with EncodeURLElement, try something else later
-    RequestURL := StringReplace(RequestURL, ' ', '%20', [rfReplaceAll]);
+    RequestURL := EncodeURL(RequestURL);
 
     Connection.HTTPMethod('GET', RequestURL);
     ReadXMLFile(XMLResponse, Connection.Document);
@@ -119,6 +117,7 @@ begin
     if CoverURL <> '' then
     begin
       //Get the cover
+      CoverURL := EncodeURL(CoverURL);
       Connection.HTTPMethod('GET', CoverURL);
       CoverImage.Picture.LoadFromStream(Connection.Document);
     end;

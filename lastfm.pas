@@ -32,6 +32,8 @@ const
   API_SECRET = 'SECRET_HERE';
 type
 
+  TLastFMAlbumSize = (szSmall, szMedium, szLarge, szExtraLarge);
+
   { TLastFM }
 
   TLastFM = class(TObject)
@@ -43,7 +45,7 @@ type
       procedure SaveSettings;
 
     public
-      function GetAlbumArt(Artist, Album: string; var CoverImage: TImage): boolean;
+      function GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize; var CoverImage: TImage): boolean;
       constructor Create; overload;
       constructor Create(user: string); overload;
 
@@ -65,7 +67,7 @@ begin
 
 end;
 
-function TLastFM.GetAlbumArt(Artist, Album: string; var CoverImage: TImage): boolean;
+function TLastFM.GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize; var CoverImage: TImage): boolean;
 var
   Connection: THTTPSend;
   RequestURL: string;
@@ -73,6 +75,7 @@ var
   Node: TDOMNode;
   Found: boolean;
   CoverURL: string;
+  ImStr: string;
 begin
   Connection := THTTPSend.Create();
   XMLResponse := TXMLDocument.Create();
@@ -94,7 +97,15 @@ begin
       Node := Node.FindNode('image');
       Found := False;
 
-      while ((not Found) and (Node.Attributes.Item[0].NodeValue <> 'small')) do
+      case Size of
+      szSmall: ImStr := 'small';
+      szLarge: ImStr := 'large';
+      szExtraLarge: ImStr := 'extralarge';
+      else
+        ImStr := 'medium';
+      end;
+
+      while ((not Found) and (Node.Attributes.Item[0].NodeValue <> ImStr)) do
       begin
         if Node.NextSibling.NodeName = 'image' then
           Node := Node.NextSibling
@@ -108,14 +119,13 @@ begin
     if CoverURL <> '' then
     begin
       //Get the cover
-      //CoverURL := EncodeURLElement(CoverURL); //not working
       Connection.HTTPMethod('GET', CoverURL);
       CoverImage.Picture.LoadFromStream(Connection.Document);
     end;
 
   finally
-    XMLResponse.Free;
-    Connection.Free;
+    XMLResponse.Free();
+    Connection.Free();
   end;
 
 end;

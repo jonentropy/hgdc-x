@@ -1,11 +1,13 @@
 object frmSettings: TfrmSettings
-  Left = 305
+  Left = 440
   Height = 240
-  Top = 152
+  Top = 134
   Width = 320
   Caption = 'Settings'
   ClientHeight = 240
   ClientWidth = 320
+  Color = clForm
+  Position = poMainFormCenter
   LCLVersion = '0.9.30'
   object GroupBox1: TGroupBox
     Left = 8

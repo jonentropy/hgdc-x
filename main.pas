@@ -32,6 +32,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    Bevel1: TBevel;
     btnSubmit: TBitBtn;
     btnHGDApply: TButton;
     btnCrapSong: TBitBtn;
@@ -41,9 +42,15 @@ type
     edtUser: TEdit;
     edtPwd: TEdit;
     gbHGDServer: TGroupBox;
+    gbNowPlaying: TGroupBox;
+    imNowPlaying: TImage;
     imInsecure: TImage;
     imDebug: TImage;
     imSecure: TImage;
+    lblNoAlbumArt: TLabel;
+    lblTitle: TLabel;
+    lblArtist: TLabel;
+    lblAlbum: TLabel;
     lblNoPlaylist: TLabel;
     lblNowPlaying: TLabel;
     lblError: TLabel;
@@ -71,6 +78,8 @@ type
   private
     { private declarations }
     FClient: THGDClient;
+    FLastFM: TLastFM;
+    FCurrentlyPlayingTrack: string;
     procedure ShowStatus(Msg: string; Error: boolean);
 
   public
@@ -133,18 +142,23 @@ end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
+  FLastFM.Free();
   FClient.Free();
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text, edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
+  FCurrentlyPlayingTrack := '';
+
+  //Todo: Pass user details etc when scrobbling is implemented
+  FLastFM := TLastFM.Create();
   tmrPlaylistTimer(Self);
 end;
 
 procedure TfrmMain.imDebugClick(Sender: TObject);
 begin
-  if not frmDebug.Visible then             //todo check on Win/Mac/QT
+  if not frmDebug.Visible then
     frmDebug.Left := Self.Left + Self.Width + 6;
 
   frmDebug.Visible := not frmDebug.Visible;
@@ -192,10 +206,34 @@ begin
         sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].Album;
         sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
         lblNoPlaylist.Visible := False;
+
+        //Display now playing info
+        if (i = 0) and (PL[i].Artist <> '') and (PL[i].Album <> '') then
+        begin
+          if (PL[i].Artist + ':' + PL[i].Album) <> FCurrentlyPlayingTrack then
+          begin
+            imNowPlaying.Visible := True;
+            FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium, imNowPlaying);
+            FCurrentlyPlayingTrack := PL[i].Artist + ':' + PL[i].Album;
+            lblTitle.Caption := PL[i].Title;
+            lblArtist.Caption := PL[i].Artist;
+            lblAlbum.Caption := PL[i].Album;
+            //Todo add all other info from protocol
+          end;
+        end
+        else
+        begin
+          //No album art
+          imNowPlaying.Visible := False;
+        end;
       end;
     end
     else
+    begin
       lblNoPlaylist.Visible := True;
+      imNowPlaying.Picture.Clear;
+      imNowPlaying.Visible := True;  //Hides 'no art' label
+    end;
   end;
 end;
 

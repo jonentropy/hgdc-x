@@ -1,11 +1,12 @@
 object frmMain: TfrmMain
-  Left = 489
+  Left = 302
   Height = 660
-  Top = 95
+  Top = 134
   Width = 583
   Caption = 'hgdc-x'
   ClientHeight = 660
   ClientWidth = 583
+  Color = clForm
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
     0000400000000100200000000000001000006400000064000000000000000000
@@ -153,7 +154,7 @@ object frmMain: TfrmMain
     Left = 6
     Height = 411
     Top = 224
-    Width = 572
+    Width = 570
     Anchors = [akTop, akLeft, akRight, akBottom]
     Columns = <    
       item
@@ -455,7 +456,7 @@ object frmMain: TfrmMain
     Visible = False
   end
   object btnCrapSong: TBitBtn
-    Left = 457
+    Left = 453
     Height = 30
     Hint = 'Vote to skip the currently playing song.'
     Top = 176
@@ -510,17 +511,79 @@ object frmMain: TfrmMain
     Caption = 'Now Playing:'
     ParentColor = False
   end
-  object lblNoPlaylist: TLabel
-    Left = 503
-    Height = 14
-    Top = 641
-    Width = 75
-    Anchors = [akRight, akBottom]
-    Caption = 'Nothing Playing'
-    Font.Color = clHighlight
-    ParentColor = False
-    ParentFont = False
-    Visible = False
+  object gbNowPlaying: TGroupBox
+    Left = 319
+    Height = 161
+    Top = 8
+    Width = 257
+    Caption = 'Now Playing'
+    ClientHeight = 141
+    ClientWidth = 253
+    TabOrder = 5
+    object lblNoAlbumArt: TLabel
+      Left = 7
+      Height = 38
+      Top = 20
+      Width = 66
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'No album art'
+      Enabled = False
+      ParentColor = False
+      WordWrap = True
+    end
+    object lblNoPlaylist: TLabel
+      Left = 173
+      Height = 14
+      Top = 120
+      Width = 75
+      Anchors = [akRight, akBottom]
+      Caption = 'Nothing Playing'
+      Font.Color = clHighlight
+      ParentColor = False
+      ParentFont = False
+      Visible = False
+    end
+    object lblTitle: TLabel
+      Left = 90
+      Height = 1
+      Top = 6
+      Width = 1
+      Font.Color = clBlue
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblArtist: TLabel
+      Left = 90
+      Height = 1
+      Top = 22
+      Width = 1
+      Font.Color = clBlue
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblAlbum: TLabel
+      Left = 90
+      Height = 1
+      Top = 38
+      Width = 1
+      Font.Color = clBlue
+      ParentColor = False
+      ParentFont = False
+    end
+    object Bevel1: TBevel
+      Left = 7
+      Height = 66
+      Top = 6
+      Width = 66
+      Shape = bsFrame
+    end
+    object imNowPlaying: TImage
+      Left = 8
+      Height = 64
+      Top = 7
+      Width = 64
+    end
   end
   object tmrState: TTimer
     Interval = 500

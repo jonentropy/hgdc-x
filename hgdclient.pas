@@ -28,7 +28,7 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
 
 const
-  HGD_PROTO: string = '7|0';  //todo this is a hack. Deal with proper proto strings
+  HGD_PROTO: string = '7|0'; //Todo this is a hack. Deal with proper proto
   //The hgd protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;
 
@@ -81,8 +81,12 @@ type
     public
       Timeout: integer;
 
-      constructor Create(HostAddress, HostPort, UserName, Password: string; SSL: boolean); overload;
-      constructor Create(HostAddress, HostPort, UserName, Password: string; SSL: boolean; DebugMemo: TMemo); overload;
+      constructor Create(HostAddress, HostPort, UserName, Password: string;
+        SSL: boolean); overload;
+
+      constructor Create(HostAddress, HostPort, UserName, Password: string;
+        SSL: boolean; DebugMemo: TMemo); overload;
+
       destructor Destroy(); override;
 
       procedure ApplyChanges();
@@ -92,7 +96,6 @@ type
 
       property State: THGDCState read FState;
       property StatusMessage: string read FStatusMessage;
-
       property UserName: string read FUsername write SetUsername;
       property Password: string write SetPassword;
       property HostAddress: string read FHostAddress write SetHostAddress;
@@ -284,7 +287,9 @@ begin
         PLStringList.Clear;
         ParseHGDPacket(Reply, PLStringList);
 
-        PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0], 0);
+        PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0],
+          0);
+
         PList[Length(PList) - 1].Filename := PLStringList.Strings[1];
         PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
         PList[Length(PList) - 1].Title := PLStringList.Strings[3];
@@ -309,7 +314,9 @@ begin
   Result := False;
   FileSizeValue := FileSize(Filename);
   Log('Queueing track ' + ExtractFilename(Filename) + '...');
-  Socket.SendString('q|' + ExtractFilename(Filename) + '|' + IntToStr(FileSizeValue) + ProtoLineEnding);
+  Socket.SendString('q|' + ExtractFilename(Filename) + '|' +
+    IntToStr(FileSizeValue) + ProtoLineEnding);
+
   Reply := ReceiveStringAndDeBork();
   Log('q reply: ' + Reply);
 

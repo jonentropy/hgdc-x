@@ -25,8 +25,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient, DebugLog, LastFM,
-  Settings, About;
+  ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient, DebugLog,
+  LastFM, Settings, About;
 
 type
 
@@ -44,6 +44,7 @@ type
     edtPwd: TEdit;
     gbHGDServer: TGroupBox;
     gbNowPlaying: TGroupBox;
+    imVoteOff: TImage;
     imSettings: TImage;
     imNowPlaying: TImage;
     imInsecure: TImage;
@@ -85,6 +86,7 @@ type
     FClient: THGDClient;
     FLastFM: TLastFM;
     FCurrentlyPlayingTrack: string;
+    FVotedOffId: integer;
     procedure ShowStatus(Msg: string; Error: boolean);
 
   public
@@ -119,7 +121,8 @@ end;
 procedure TfrmMain.btnCrapSongClick(Sender: TObject);
 begin
   if sgPlaylist.RowCount > 1 then
-    FClient.VoteOff(StrToIntDef(sgPlaylist.Cells[0,1], -1));
+    if FClient.VoteOff(StrToIntDef(sgPlaylist.Cells[0,1], -1)) then
+      FVotedOffId := StrToInt(sgPlaylist.Cells[0,1]);
 end;
 
 procedure TfrmMain.btnSubmitClick(Sender: TObject);
@@ -153,8 +156,11 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-  FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text, edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
+  FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text,
+    edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
+
   FCurrentlyPlayingTrack := '';
+  FVotedOffId := -1;
 
   //Todo: Pass user details etc when scrobbling is implemented
   FLastFM := TLastFM.Create();
@@ -224,29 +230,42 @@ begin
         lblNoPlaylist.Visible := False;
 
         //Display now playing info
-        if (i = 0) and (PL[i].Artist <> '') and (PL[i].Album <> '') then
+        if (i = 0) then
         begin
-          if (PL[i].Artist + ':' + PL[i].Album) <> FCurrentlyPlayingTrack then
+          if (PL[i].Artist <> '') and (PL[i].Album <> '') then
           begin
-            imNowPlaying.Visible := True;
-            FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium, imNowPlaying);
-            FCurrentlyPlayingTrack := PL[i].Artist + ':' + PL[i].Album;
-            lblTitle.Caption := PL[i].Title;
-            lblArtist.Caption := PL[i].Artist;
-            lblAlbum.Caption := PL[i].Album;
-            //Todo add all other info from protocol
+            if (PL[i].Artist + ':' + PL[i].Album) <> FCurrentlyPlayingTrack then
+            begin
+              imNowPlaying.Visible := True;
+              //Todo look into why using large or extra large results in black
+              //png images. Probably a bug in Lazarus :S
+              FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
+                imNowPlaying);
+
+              FCurrentlyPlayingTrack := PL[i].Artist + ':' + PL[i].Album;
+              lblTitle.Caption := PL[i].Title;
+              lblArtist.Caption := PL[i].Artist;
+              lblAlbum.Caption := PL[i].Album;
+              //Todo add all other info from protocol
+            end;
+          end
+          else
+          begin
+            //No album art
+            imNowPlaying.Visible := False;
           end;
-        end
-        else
-        begin
-          //No album art
-          imNowPlaying.Visible := False;
         end;
       end;
     end
     else
     begin
+      //Nothing playing
+      lblTitle.Caption := '';
+      lblArtist.Caption := '';
+      lblAlbum.Caption := '';
       lblNoPlaylist.Visible := True;
+      FVotedOffId := -1;
+      FCurrentlyPlayingTrack := '';
       imNowPlaying.Picture.Clear;
       imNowPlaying.Visible := True;  //Hides 'no art' label
     end;
@@ -271,13 +290,13 @@ procedure TfrmMain.tmrStateTimer(Sender: TObject);
 begin
   if Assigned(FClient) then
   begin
-
-    ShowStatus(FClient.StatusMessage, Pos('error', LowerCase(FCLient.StatusMessage)) > 0);
+    ShowStatus(FClient.StatusMessage, Pos('error',
+      LowerCase(FCLient.StatusMessage)) > 0);
 
     imSecure.Visible := FClient.Encrypted;
     imInsecure.Visible := not FClient.Encrypted;
 
-    //todo this doesn't display under GTK
+    //Todo this doesn't display under GTK
     if (not FClient.Encrypted) and (chkSSL.Checked) then
       chkSSL.Font.Style:= [fsStrikeOut]
     else
@@ -285,6 +304,12 @@ begin
 
     btnSubmit.Enabled := FClient.State >= hsAuthenticated;
     btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
+
+    if (sgPlaylist.RowCount > 1) and
+      (FVotedOffId = StrToInt(sgPlaylist.Cells[0,1])) then
+        imVoteOff.Visible := True
+    else
+      imVoteoff.Visible := False;
   end;
 end;
 

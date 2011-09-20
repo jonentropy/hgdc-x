@@ -45,12 +45,13 @@ type
       procedure SaveSettings;
 
     public
-      function GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize; var CoverImage: TImage): boolean;
+      function GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize;
+        var CoverImage: TImage): boolean;
+
       constructor Create; overload;
       constructor Create(user: string); overload;
 
       destructor Destroy;
-
   end;
 
 implementation
@@ -67,7 +68,8 @@ begin
 
 end;
 
-function TLastFM.GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize; var CoverImage: TImage): boolean;
+function TLastFM.GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize;
+  var CoverImage: TImage): boolean;
 var
   Connection: THTTPSend;
   RequestURL: string;
@@ -83,7 +85,9 @@ begin
   CoverURL := '';
   try
     Connection.Timeout := 1000;
-    RequestURL := API_ROOT_URL + '?method=album.getinfo&api_key=' + API_KEY + '&artist=' + Artist + '&album=' + Album;
+    RequestURL := API_ROOT_URL + '?method=album.getinfo&api_key=' + API_KEY +
+      '&artist=' + Artist + '&album=' + Album;
+
     RequestURL := EncodeURL(RequestURL);
 
     Connection.HTTPMethod('GET', RequestURL);

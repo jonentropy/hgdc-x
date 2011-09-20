@@ -204,7 +204,7 @@ object frmDebug: TfrmDebug
     OnClick = BitBtn1Click
     TabOrder = 1
   end
-  object btmClose: TBitBtn
+  object btnClose: TBitBtn
     Left = 8
     Height = 30
     Top = 497
@@ -247,7 +247,7 @@ object frmDebug: TfrmDebug
       0000000000003040C4FF3040C4FF000000000000000000000000000000000000
       0000000000003040C4FF3040C4FF0000000000000000FFFFFF00
     }
-    OnClick = btmCloseClick
+    OnClick = btnCloseClick
     TabOrder = 2
   end
 end

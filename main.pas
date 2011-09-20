@@ -26,7 +26,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient, DebugLog, LastFM,
-  Settings;
+  Settings, About;
 
 type
 
@@ -49,6 +49,7 @@ type
     imInsecure: TImage;
     imDebug: TImage;
     imSecure: TImage;
+    imAbout: TImage;
     lblNoAlbumArt: TLabel;
     lblTitle: TLabel;
     lblArtist: TLabel;
@@ -72,6 +73,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure imAboutClick(Sender: TObject);
     procedure imDebugClick(Sender: TObject);
     procedure imSettingsClick(Sender: TObject);
     procedure sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
@@ -157,6 +159,11 @@ begin
   //Todo: Pass user details etc when scrobbling is implemented
   FLastFM := TLastFM.Create();
   tmrPlaylistTimer(Self);
+end;
+
+procedure TfrmMain.imAboutClick(Sender: TObject);
+begin
+  frmAbout.Show();
 end;
 
 procedure TfrmMain.imDebugClick(Sender: TObject);

@@ -26,7 +26,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Main, HGDClient, DebugLog, lastfm, settings
+  Forms, Main, HGDClient, DebugLog, lastfm, settings, About
   { you can add units after this };
 
 {$R *.res}
@@ -37,6 +37,7 @@ begin
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmDebug, frmDebug);
   Application.CreateForm(TfrmSettings, frmSettings);
+  Application.CreateForm(TfrmAbout, frmAbout);
   Application.Run;
 end.
 

@@ -1,7 +1,7 @@
 object frmSettings: TfrmSettings
-  Left = 452
+  Left = 526
   Height = 240
-  Top = 130
+  Top = 201
   Width = 320
   Caption = 'Settings'
   ClientHeight = 240
@@ -145,6 +145,7 @@ object frmSettings: TfrmSettings
     0000
   }
   Position = poMainFormCenter
+  ShowInTaskBar = stNever
   LCLVersion = '0.9.30'
   object GroupBox1: TGroupBox
     Left = 8

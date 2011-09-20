@@ -25,7 +25,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient, DebugLog, LastFM;
+  ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient, DebugLog, LastFM,
+  Settings;
 
 type
 
@@ -43,6 +44,7 @@ type
     edtPwd: TEdit;
     gbHGDServer: TGroupBox;
     gbNowPlaying: TGroupBox;
+    imSettings: TImage;
     imNowPlaying: TImage;
     imInsecure: TImage;
     imDebug: TImage;
@@ -71,6 +73,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure imDebugClick(Sender: TObject);
+    procedure imSettingsClick(Sender: TObject);
     procedure sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
     procedure tmrPlaylistTimer(Sender: TObject);
@@ -162,6 +165,11 @@ begin
     frmDebug.Left := Self.Left + Self.Width + 6;
 
   frmDebug.Visible := not frmDebug.Visible;
+end;
+
+procedure TfrmMain.imSettingsClick(Sender: TObject);
+begin
+  frmSettings.ShowModal();
 end;
 
 procedure TfrmMain.sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;

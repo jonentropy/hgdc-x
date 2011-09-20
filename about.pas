@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Buttons;
+  StdCtrls, Buttons, LCLIntf;
 
 type
 
@@ -33,11 +33,20 @@ type
 
   TfrmAbout = class(TForm)
     btnClose: TBitBtn;
-    Image1: TImage;
+    imCow: TImage;
+    imSynapse: TImage;
+    imSynapse1: TImage;
     Label1: TLabel;
-    StaticText1: TStaticText;
+    Label2: TLabel;
+    lblhgdcx: TLabel;
+    stAbout: TStaticText;
     procedure btnCloseClick(Sender: TObject);
-    procedure StaticText1Click(Sender: TObject);
+    procedure Label1Click(Sender: TObject);
+    procedure Label1MouseEnter(Sender: TObject);
+    procedure Label1MouseLeave(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
+    procedure lblhgdcxClick(Sender: TObject);
+    procedure stAboutClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -53,15 +62,53 @@ implementation
 
 { TfrmAbout }
 
-procedure TfrmAbout.StaticText1Click(Sender: TObject);
-begin
-
-end;
-
 procedure TfrmAbout.btnCloseClick(Sender: TObject);
 begin
   Close();
 end;
 
-end.
+procedure TfrmAbout.Label1Click(Sender: TObject);
+begin
+  Screen.Cursor := crHourglass;
+  OpenURL('http://www.fatcow.com/free-icons');
+  Sleep(300);
+  Screen.Cursor := crDefault;
+end;
 
+procedure TfrmAbout.Label1MouseEnter(Sender: TObject);
+begin
+  TLabel(Sender).Font.Style := [fsUnderline];
+  TLabel(Sender).Font.Color := clBlue;
+  Screen.Cursor := crHandPoint;
+end;
+
+procedure TfrmAbout.Label1MouseLeave(Sender: TObject);
+begin
+  TLabel(Sender).Font.Style := [];
+  TLabel(Sender).Font.Color := clDefault;
+  Screen.Cursor := crDefault;
+end;
+
+procedure TfrmAbout.Label2Click(Sender: TObject);
+begin
+  Screen.Cursor := crHourglass;
+  OpenURL('http://www.ararat.cz/synapse/doku.php/start');
+  Sleep(300);
+  Screen.Cursor := crDefault;
+end;
+
+procedure TfrmAbout.lblhgdcxClick(Sender: TObject);
+begin
+  Screen.Cursor := crHourglass;
+  OpenURL('https://github.com/tristan2468/hgdc-x');
+  Sleep(300);
+  Screen.Cursor := crDefault;
+end;
+
+procedure TfrmAbout.stAboutClick(Sender: TObject);
+begin
+
+end;
+
+end.
+

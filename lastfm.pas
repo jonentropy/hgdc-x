@@ -24,12 +24,12 @@ unit LastFM;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, ExtCtrls, HTTPSend, SynaCode, XMLRead, DOM;
 
 const
   API_ROOT_URL = 'http://ws.audioscrobbler.com/2.0/';
-  API_KEY = 'KEY_HERE';
-  API_SECRET = 'SECRET HERE';
+  API_KEY = 'd73bc1bcce5c08bd73c5f941480845e8';
+  API_SECRET = 'SECRET_HERE';
 type
 
   { TLastFM }
@@ -43,6 +43,7 @@ type
       procedure SaveSettings;
 
     public
+      function GetAlbumArt(Artist, Album: string; var CoverImage: TImage): boolean;
       constructor Create; overload;
       constructor Create(user: string); overload;
 
@@ -64,6 +65,61 @@ begin
 
 end;
 
+function TLastFM.GetAlbumArt(Artist, Album: string; var CoverImage: TImage): boolean;
+var
+  Connection: THTTPSend;
+  RequestURL: string;
+  XMLResponse: TXMLDocument;
+  Node: TDOMNode;
+  Found: boolean;
+  CoverURL: string;
+begin
+  Connection := THTTPSend.Create();
+  XMLResponse := TXMLDocument.Create();
+
+  CoverURL := '';
+  try
+    Connection.Timeout := 1000;
+    RequestURL := API_ROOT_URL + '?method=album.getinfo&api_key=' + API_KEY + '&artist=' + Artist + '&album=' + Album;
+
+    //Todo this didn't work with EncodeURLElement, try something else later
+    RequestURL := StringReplace(RequestURL, ' ', '%20', [rfReplaceAll]);
+
+    Connection.HTTPMethod('GET', RequestURL);
+    ReadXMLFile(XMLResponse, Connection.Document);
+    Node := XMLResponse.DocumentElement.FindNode('album');
+
+    if Assigned(Node) then
+    begin
+      Node := Node.FindNode('image');
+      Found := False;
+
+      while ((not Found) and (Node.Attributes.Item[0].NodeValue <> 'small')) do
+      begin
+        if Node.NextSibling.NodeName = 'image' then
+          Node := Node.NextSibling
+        else
+          Found := True;
+      end;
+      if Node.FirstChild <> nil then
+        CoverURL := Node.FirstChild.NodeValue;
+    end;
+
+    if CoverURL <> '' then
+    begin
+      //Get the cover
+      //CoverURL := EncodeURLElement(CoverURL); //not working
+      Connection.HTTPMethod('GET', CoverURL);
+      CoverImage.Picture.LoadFromStream(Connection.Document);
+    end;
+
+  finally
+    XMLResponse.Free;
+    Connection.Free;
+  end;
+
+end;
+
 constructor TLastFM.Create;
 begin
 
@@ -71,7 +127,7 @@ end;
 
 constructor TLastFM.Create(user: string);
 begin
-
+  Create;
 end;
 
 destructor TLastFM.Destroy;

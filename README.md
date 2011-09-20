@@ -2,7 +2,7 @@ hgdc-x
 ======
 
 hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.
-The official github repository for the server can be found at https://github.com/vext01/hgd
+The official github repository for the server can be found at https://github.com/vext01/hgd.
 
 Tagged releases and pre-compiled binaries are coming soon, and will match versioned releases of the offical server project.
 
@@ -11,6 +11,7 @@ It is a feature complete GUI client, including SSL encryption, written in Lazaru
 It will build with no additional libraries (except for synapse, which is statically linked and included in the source tree), with Lazarus 0.9.30 or later.
 
 Please refer to the COPYING file for licensing details.
+Icons are from the Fat Cow icon set, which is Creative Commons licensed and can be found at http://www.fatcow.com/free-icons.
 
 Copyright Tristan Linnell 2011
 

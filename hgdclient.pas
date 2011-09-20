@@ -469,6 +469,9 @@ begin
   Result := '';
   s := Socket.RecvString(Timeout);
 
+  //Debug::
+  Log('RECEIVED LENGTH: ' + IntToStr(Length(s)));
+
   for i := 1 to Length(s) do
     if s[i] <> #0 then
       Result := Result + s[i];

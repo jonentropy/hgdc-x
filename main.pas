@@ -187,6 +187,7 @@ begin
   if (aRow = 1) and (aCol > 0) then
   begin
     TStringGrid(Sender).Canvas.Brush.Color :=  clHighLight;
+    TStringGrid(Sender).Canvas.Font.Color :=  clHighLightText;
     TStringGrid(Sender).Canvas.FillRect(aRect);
 
     S := TStringGrid(Sender).Cells[aCol, aRow];

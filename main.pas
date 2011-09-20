@@ -33,26 +33,19 @@ type
 
   TfrmMain = class(TForm)
     btnSubmit: TBitBtn;
-    btnLastFMApply: TBitBtn;
     btnHGDApply: TButton;
     btnCrapSong: TBitBtn;
-    chkScrobbling: TCheckBox;
-    chkScrobbling1: TCheckBox;
     chkSSL: TCheckBox;
     edtHost: TEdit;
     edtPort: TEdit;
     edtUser: TEdit;
     edtPwd: TEdit;
     gbHGDServer: TGroupBox;
-    GroupBox1: TGroupBox;
     imInsecure: TImage;
-    imLastFM: TImage;
-    edtLastFMUser: TLabeledEdit;
     imDebug: TImage;
     imSecure: TImage;
     lblNoPlaylist: TLabel;
     lblNowPlaying: TLabel;
-    lblLastFM: TLabel;
     lblError: TLabel;
     lblHost: TLabel;
     lblPort: TLabel;

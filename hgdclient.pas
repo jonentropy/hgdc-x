@@ -138,7 +138,7 @@ end;
 destructor THGDClient.Destroy();
 begin
   Disconnect();
-  Socket.Free;
+  Socket.Free();
 end;
 
 procedure THGDClient.Disconnect();
@@ -146,7 +146,7 @@ begin
   if FState >= hsConnected then
   begin
     Socket.SendString('bye' + ProtoLineEnding);
-    Socket.CloseSocket;
+    Socket.CloseSocket();
     FState := hsDisconnected;
     FStatusMessage := 'Not connected';
   end;
@@ -185,7 +185,7 @@ begin
         Log('Encrypting Socket...');
         Socket.SendString('encrypt' + ProtoLineEnding);
 
-        Socket.SSLDoConnect;
+        Socket.SSLDoConnect();
 
         if Socket.LastError <>  0 then //check for success start of SSL
         begin
@@ -206,7 +206,7 @@ begin
       end
       else
       begin
-        Socket.SSLDoShutdown;
+        Socket.SSLDoShutdown();
         FEncrypted := False;
       end;
     end
@@ -275,7 +275,7 @@ begin
       //Playlist came back OK. Parse it up, d00d...
       Log('Number of playlist items: ' + Msg);
 
-      PLStringList := TStringList.Create;
+      PLStringList := TStringList.Create();
 
       for i := 1 to StrToIntDef(Msg, 0) do
       begin
@@ -284,7 +284,7 @@ begin
 
         SetLength(PList, Length(PList) + 1);
 
-        PLStringList.Clear;
+        PLStringList.Clear();
         ParseHGDPacket(Reply, PLStringList);
 
         PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0],
@@ -297,7 +297,7 @@ begin
         PList[Length(PList) - 1].Album := PLStringList.Strings[5];
       end;
 
-      PLStringList.Free;
+      PLStringList.Free();
       Result := True;
     end;
   end;

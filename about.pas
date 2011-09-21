@@ -33,20 +33,23 @@ type
 
   TfrmAbout = class(TForm)
     btnClose: TBitBtn;
+    imCatchThatMouse: TImage;
     imCow: TImage;
-    imSynapse: TImage;
-    imSynapse1: TImage;
-    Label1: TLabel;
-    Label2: TLabel;
+    imSynapseCon: TImage;
+    imNote: TImage;
+    imSynapseDis: TImage;
+    lblCow: TLabel;
+    lblSynapse: TLabel;
     lblhgdcx: TLabel;
     stAbout: TStaticText;
     procedure btnCloseClick(Sender: TObject);
-    procedure Label1Click(Sender: TObject);
-    procedure Label1MouseEnter(Sender: TObject);
-    procedure Label1MouseLeave(Sender: TObject);
-    procedure Label2Click(Sender: TObject);
+    procedure imCatchThatMouseMouseEnter(Sender: TObject);
+    procedure imCatchThatMouseMouseLeave(Sender: TObject);
+    procedure lblCowClick(Sender: TObject);
+    procedure lblCowMouseEnter(Sender: TObject);
+    procedure lblCowMouseLeave(Sender: TObject);
+    procedure lblSynapseClick(Sender: TObject);
     procedure lblhgdcxClick(Sender: TObject);
-    procedure stAboutClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -67,7 +70,19 @@ begin
   Close();
 end;
 
-procedure TfrmAbout.Label1Click(Sender: TObject);
+procedure TfrmAbout.imCatchThatMouseMouseEnter(Sender: TObject);
+begin
+  imSynapseCon.Visible := True;
+  imSynapseDis.Visible := False;
+end;
+
+procedure TfrmAbout.imCatchThatMouseMouseLeave(Sender: TObject);
+begin
+  imSynapseCon.Visible := False;
+  imSynapseDis.Visible := True;
+end;
+
+procedure TfrmAbout.lblCowClick(Sender: TObject);
 begin
   Screen.Cursor := crHourglass;
   OpenURL('http://www.fatcow.com/free-icons');
@@ -75,21 +90,21 @@ begin
   Screen.Cursor := crDefault;
 end;
 
-procedure TfrmAbout.Label1MouseEnter(Sender: TObject);
+procedure TfrmAbout.lblCowMouseEnter(Sender: TObject);
 begin
   TLabel(Sender).Font.Style := [fsUnderline];
   TLabel(Sender).Font.Color := clBlue;
   Screen.Cursor := crHandPoint;
 end;
 
-procedure TfrmAbout.Label1MouseLeave(Sender: TObject);
+procedure TfrmAbout.lblCowMouseLeave(Sender: TObject);
 begin
   TLabel(Sender).Font.Style := [];
   TLabel(Sender).Font.Color := clDefault;
   Screen.Cursor := crDefault;
 end;
 
-procedure TfrmAbout.Label2Click(Sender: TObject);
+procedure TfrmAbout.lblSynapseClick(Sender: TObject);
 begin
   Screen.Cursor := crHourglass;
   OpenURL('http://www.ararat.cz/synapse/doku.php/start');
@@ -105,10 +120,4 @@ begin
   Screen.Cursor := crDefault;
 end;
 
-procedure TfrmAbout.stAboutClick(Sender: TObject);
-begin
-
-end;
-
 end.
-

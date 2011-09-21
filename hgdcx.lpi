@@ -49,7 +49,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="75" Y="22"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="80"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -57,11 +57,12 @@
         <ComponentName Value="frmMain"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="222"/>
-        <CursorPos X="1" Y="244"/>
-        <UsageCount Value="77"/>
+        <TopLine Value="47"/>
+        <CursorPos X="85" Y="72"/>
+        <UsageCount Value="80"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -79,9 +80,9 @@
         <UnitName Value="HGDClient"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="77" Y="17"/>
-        <UsageCount Value="77"/>
+        <TopLine Value="157"/>
+        <CursorPos X="26" Y="300"/>
+        <UsageCount Value="80"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -130,9 +131,9 @@
         <UnitName Value="DebugLog"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
+        <TopLine Value="28"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="62"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit9>
@@ -226,12 +227,11 @@
         <Filename Value="lastfm.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LastFM"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="33" Y="30"/>
-        <UsageCount Value="35"/>
+        <TopLine Value="13"/>
+        <CursorPos X="11" Y="151"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit21>
       <Unit22>
@@ -256,7 +256,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="62" Y="10"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit24>
@@ -266,7 +266,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="17"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit25>
@@ -327,7 +327,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="23" Y="24"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit32>
@@ -368,9 +368,9 @@
         <UnitName Value="About"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="55"/>
-        <CursorPos X="81" Y="65"/>
-        <UsageCount Value="24"/>
+        <TopLine Value="25"/>
+        <CursorPos X="32" Y="33"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit37>
@@ -394,123 +394,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="88" Column="1" TopLine="65"/>
+        <Caret Line="93" Column="1" TopLine="65"/>
       </Position1>
       <Position2>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="89" Column="1" TopLine="65"/>
+        <Caret Line="95" Column="1" TopLine="65"/>
       </Position2>
       <Position3>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="91" Column="1" TopLine="65"/>
+        <Caret Line="131" Column="1" TopLine="109"/>
       </Position3>
       <Position4>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="93" Column="1" TopLine="65"/>
+        <Caret Line="132" Column="1" TopLine="109"/>
       </Position4>
       <Position5>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="95" Column="1" TopLine="65"/>
+        <Caret Line="135" Column="1" TopLine="109"/>
       </Position5>
       <Position6>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="131" Column="1" TopLine="109"/>
+        <Caret Line="87" Column="1" TopLine="65"/>
       </Position6>
       <Position7>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="132" Column="1" TopLine="109"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="167" Column="1" TopLine="145"/>
       </Position7>
       <Position8>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="135" Column="1" TopLine="109"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="244" Column="1" TopLine="222"/>
       </Position8>
       <Position9>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="87" Column="1" TopLine="65"/>
+        <Caret Line="101" Column="1" TopLine="68"/>
       </Position9>
       <Position10>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="88" Column="1" TopLine="65"/>
+        <Caret Line="87" Column="1" TopLine="68"/>
       </Position10>
       <Position11>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="89" Column="1" TopLine="65"/>
+        <Caret Line="88" Column="1" TopLine="68"/>
       </Position11>
       <Position12>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="91" Column="1" TopLine="65"/>
+        <Caret Line="89" Column="1" TopLine="68"/>
       </Position12>
       <Position13>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="93" Column="1" TopLine="65"/>
+        <Caret Line="91" Column="1" TopLine="68"/>
       </Position13>
       <Position14>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="95" Column="1" TopLine="65"/>
+        <Caret Line="93" Column="1" TopLine="68"/>
       </Position14>
       <Position15>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="131" Column="1" TopLine="109"/>
+        <Caret Line="95" Column="1" TopLine="68"/>
       </Position15>
       <Position16>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="132" Column="1" TopLine="109"/>
+        <Caret Line="96" Column="1" TopLine="68"/>
       </Position16>
       <Position17>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="135" Column="1" TopLine="109"/>
+        <Caret Line="135" Column="1" TopLine="113"/>
       </Position17>
       <Position18>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="87" Column="1" TopLine="65"/>
+        <Caret Line="136" Column="1" TopLine="113"/>
       </Position18>
       <Position19>
-        <Filename Value="main.pas"/>
-        <Caret Line="167" Column="1" TopLine="145"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="65" Column="81" TopLine="55"/>
       </Position19>
       <Position20>
-        <Filename Value="main.pas"/>
-        <Caret Line="244" Column="1" TopLine="222"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="67" Column="81" TopLine="57"/>
       </Position20>
       <Position21>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="101" Column="1" TopLine="68"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="75" Column="1" TopLine="73"/>
       </Position21>
       <Position22>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="87" Column="1" TopLine="68"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="82" Column="31" TopLine="79"/>
       </Position22>
       <Position23>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="88" Column="1" TopLine="68"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="81" Column="76" TopLine="52"/>
       </Position23>
       <Position24>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="89" Column="1" TopLine="68"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="83" Column="5" TopLine="53"/>
       </Position24>
       <Position25>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="91" Column="1" TopLine="68"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="126" Column="1" TopLine="90"/>
       </Position25>
       <Position26>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="93" Column="1" TopLine="68"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="45" Column="46" TopLine="30"/>
       </Position26>
       <Position27>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="95" Column="1" TopLine="68"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="114" Column="3" TopLine="85"/>
       </Position27>
       <Position28>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="96" Column="1" TopLine="68"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="113" Column="3" TopLine="84"/>
       </Position28>
       <Position29>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="135" Column="1" TopLine="113"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="120" Column="3" TopLine="91"/>
       </Position29>
       <Position30>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="136" Column="1" TopLine="113"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="79" Column="34" TopLine="64"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

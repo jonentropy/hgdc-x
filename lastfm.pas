@@ -15,7 +15,8 @@
 }
 
 // hgdc-x Cross Platform hgd client written in Lazarus/Freepascal
-// lastfm.pas - Last.fm scrobbling client
+// lastfm.pas - Last.fm web service client for scrobbling and album
+//              art fetching.
 
 unit LastFM;
 
@@ -32,7 +33,7 @@ const
   API_SECRET = 'SECRET_HERE';
 type
 
-  TLastFMAlbumSize = (szSmall, szMedium, szLarge, szExtraLarge);
+  TLastFMAlbumSize = (szSmall, szMedium, szLarge, szExtraLarge, szMega);
 
   { TLastFM }
 
@@ -86,7 +87,7 @@ begin
   try
     Connection.Timeout := 1000;
     RequestURL := API_ROOT_URL + '?method=album.getinfo&api_key=' + API_KEY +
-      '&artist=' + Artist + '&album=' + Album;
+      '&artist=' + Artist + '&album=' + Album + '&autocorrect=1';
 
     RequestURL := EncodeURL(RequestURL);
 
@@ -108,6 +109,7 @@ begin
         szSmall: ImStr := 'small';
         szLarge: ImStr := 'large';
         szExtraLarge: ImStr := 'extralarge';
+        szMega: ImStr := 'mega';
         else
           ImStr := 'medium';
         end;

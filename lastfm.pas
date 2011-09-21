@@ -148,7 +148,7 @@ end;
 constructor TLastFM.Create(User: string);
 begin
   FUserName := User;
-  Create;
+  Create();
 end;
 
 destructor TLastFM.Destroy;

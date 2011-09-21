@@ -13,6 +13,6 @@ It will build with no additional libraries (except for synapse, which is statica
 Please refer to the COPYING file for licensing details.
 Icons are from the Fat Cow icon set, which is Creative Commons licensed and can be found at http://www.fatcow.com/free-icons.
 
-Copyright Tristan Linnell 2011
+Copyright (C) Tristan Linnell 2011
 
 [![Buy me a beer, Flattr hgdc-x](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=tristan_2468&url=https://github.com/tristan2468/hgdc-x&title=hgdc-x&language=en_GB&tags=github&category=software)

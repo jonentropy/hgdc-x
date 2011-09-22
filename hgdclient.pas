@@ -187,7 +187,9 @@ begin
       if ProcessReply(Reply, Msg) and (Msg <> 'nocrypto') then
       begin
         if Msg = 'tlsv1' then
-          Socket.SSL.SSLType:= LT_TLSv1;
+          Socket.SSL.SSLType:= LT_TLSv1
+        else
+          Socket.SSL.SSLType := LT_all;
         //Todo, maybe add other encryption types here
 
         Log('Encrypting Socket...');

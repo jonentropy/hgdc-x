@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 431
+  Left = 594
   Height = 660
-  Top = 97
+  Top = 110
   Width = 583
   Caption = 'hgdc-x'
   ClientHeight = 660
@@ -193,16 +193,16 @@ object frmMain: TfrmMain
   end
   object gbHGDServer: TGroupBox
     Left = 6
-    Height = 193
+    Height = 208
     Top = 8
     Width = 274
     Caption = 'HGD Server'
-    ClientHeight = 176
+    ClientHeight = 188
     ClientWidth = 270
     TabOrder = 0
     object edtHost: TEdit
       Left = 112
-      Height = 25
+      Height = 21
       Top = 6
       Width = 150
       TabOrder = 0
@@ -210,7 +210,7 @@ object frmMain: TfrmMain
     end
     object edtPort: TEdit
       Left = 112
-      Height = 25
+      Height = 21
       Top = 46
       Width = 150
       TabOrder = 2
@@ -218,7 +218,7 @@ object frmMain: TfrmMain
     end
     object edtPwd: TEdit
       Left = 112
-      Height = 25
+      Height = 21
       Top = 94
       Width = 150
       EchoMode = emPassword
@@ -227,7 +227,7 @@ object frmMain: TfrmMain
     end
     object edtUser: TEdit
       Left = 112
-      Height = 25
+      Height = 21
       Top = 70
       Width = 150
       TabOrder = 3
@@ -235,33 +235,33 @@ object frmMain: TfrmMain
     end
     object lblPassword: TLabel
       Left = 8
-      Height = 16
+      Height = 14
       Top = 98
-      Width = 60
+      Width = 51
       Caption = 'Password:'
       ParentColor = False
     end
     object lblUser: TLabel
       Left = 8
-      Height = 16
+      Height = 14
       Top = 74
-      Width = 32
+      Width = 27
       Caption = 'User:'
       ParentColor = False
     end
     object lblPort: TLabel
       Left = 8
-      Height = 16
+      Height = 14
       Top = 50
-      Width = 29
+      Width = 25
       Caption = 'Port:'
       ParentColor = False
     end
     object lblHost: TLabel
       Left = 8
-      Height = 16
+      Height = 14
       Top = 10
-      Width = 32
+      Width = 27
       Caption = 'Host:'
       Layout = tlBottom
       ParentColor = False
@@ -281,10 +281,10 @@ object frmMain: TfrmMain
     end
     object chkSSL: TCheckBox
       Left = 6
-      Height = 24
+      Height = 17
       Hint = 'Encrypt connection to server (if server supports it).'
       Top = 29
-      Width = 49
+      Width = 35
       Caption = 'SSL'
       ParentFont = False
       ParentShowHint = False
@@ -295,51 +295,52 @@ object frmMain: TfrmMain
       Left = 245
       Height = 16
       Hint = 'Connection is not encrypted.'
-      Top = 154
+      Top = 166
       Width = 16
       ParentShowHint = False
       Picture.Data = {
-        1754506F727461626C654E6574776F726B47726170686963DB02000089504E47
+        1754506F727461626C654E6574776F726B47726170686963AF02000089504E47
         0D0A1A0A0000000D49484452000000100000001008060000001FF3FF61000000
         1974455874536F6674776172650041646F626520496D616765526561647971C9
-        653C0000027D4944415478DA8C92CF4B545114C7BFF7FD18922C320B8A218622
-        334D9E952E32A26022090A8ADC8785486A49BF1641B5096A216E2AD1C410FB03
-        82440AC974619B7434EA4DE68C5992D00F111D2AAD71EEBBEF76DE0F65CC5974
-        E0F2EE3D3F3EE7BC730E03898C944B4C7E39C42A46FAE1CBC3F647CDF4A921AB
-        AF61CE69A93A7BBA76D1474AE96A1D29911DA12156F9D97DDF6B6E4B14EECC5B
-        B7236F3B745D771D38E7F830FE11B158FC6B5D4D75F05F8007B98021761FEC71
-        E7D3DED09660386A46319B48B8C6F53939308A0D4C4F4D213636D672B1FE7CAD
-        0350D200C3145CEA5C2A4E1CABEEE9E935DF8DC6DAAF5CAA2F75CE5BD36C1A18
-        88400B04A81A51B31425474FBE947D07A46CD820B15CF2E904D3DE9B6EDE6A90
-        DD2FFA65E3DD0772F1173456F0A48AEED98B5ED7EEB4CA53C7CBD1D9F50CB7AF
-        D7A5FFE2F71F49059C65E1E742604999EE806863A857B3E7C352707A29B05900
-        92A94E2EE70545925E0A305587AD66F5155C9E3CACA50352DC0A179D6B02F455
-        1E9B518B143F874D554BDBB9906312AF5BAF861DF53200E7369233E38877DEA0
-        588D46A862E29BE5DAB66ED69CE6C1B62CEC3ED3019E125801B0086ECF4DA370
-        CF41A85A0013F161B43DF7C6D858BD16F9460904654732012E64068020AA98C7
-        7B3342001DABB30208E67A364551493F08C11750BCED0825CB5001B7889AFA85
-        5DC56550540D9FA8829C359E4D500F0A8D7D10568A2A9885C59101E094C5A982
-        E8809B51D335541EDDE8C30555F00A364DC8C80D216567F805E1EC36018C92FD
-        EE04E2EF22D47CCF91D1308AF6965193A891BF67E0B7603960EE8F34BBBBDE18
-        7E0C05296EA0B7750C232383EE4E30522E5830572C92BFBED9F83F99A3558EFF
-        156000962C1B2CDAB9C3C70000000049454E44AE426082
+        653C000002514944415478DA8C53CF6B1341187DB3D92C167F901A148D488C45
+        535ABB69CDC556F026F84F08554A4A8E2A9E2C5E3C49A594D256AAA2E2D18B88
+        972201C183B409A2445B4CD2582FFEAAA4A16D6C92DD9D5DBFD9ECD68DC9C10F
+        86D9FDBE796FDEBC6F86599605118C31B8F1E0E19359C04AD27032A2C69E4A12
+        1BB93C7C714B647670FF12CCDCBDF7B5BB3B1A3A79A28B1631F8FD320C5D477E
+        A5887C3E2F564692A3235F5C9C0C4F4C4E4DCF76458E8502810052A9572895CB
+        763ED8B91FB17E15E1A361148A8534A50EBA9826827A5D4BCA8A8285C50C72F9
+        C2CCD4C4ED47227FE5FA8DC4FAC666C2E4267EAEAD3DF362ECB3B8726EDE1AB7
+        E653AFADF1C9399138E45916A2117746C88B6B52B05193A0B30E6C6A7EF1FBC3
+        53FAE68C96D831F1D34438CBF8761FB80E8B49E05068F6D97D60F612A723920F
+        CCA7BCE9BD5A3CDBE44155E77D03A3D3807F57A36D4402C969AD6909CD3689A5
+        55F16EEEDA508B899A66A2565A41EEF91861656A9F0FABDF0DBB16392C43D739
+        4CC340FFA5C7D0358E1602C3A48D2ABFD033700E3E59C16AEE2DEEBF6CB4F14E
+        621FA26A1C5CAB01B532746EB521E0C4CA7F63399B21023F7677283812748E4D
+        E75ECEA6C99E3A62C7CFD3666D14E806B16A5BE88D0D924F323E9382CEBD8D1A
+        270F7AD433E086460AD6E966A20D8190A593820F8BF68E325DE1E10B071C724E
+        0A16605287D460189AD9E6089C5C6644A0C687EC0EE43E66C87CF79D00A74E0F
+        924964E476091E0BFE1254AA5676FEC57BD5C1104882FB40C5A35A5A4ADB6D14
+        8FAE6E20DB7291A810A5690FFE2F2A84CB898F3F020C0005AF0E9D70479E4300
+        00000049454E44AE426082
       }
       ShowHint = True
     end
-    object lblError: TLabel
+    object lblStatus: TLabel
       Left = 8
-      Height = 1
+      Height = 37
       Top = 153
-      Width = 1
+      Width = 232
+      AutoSize = False
       Font.Color = clRed
       ParentColor = False
       ParentFont = False
+      WordWrap = True
     end
     object imSecure: TImage
       Left = 245
       Height = 16
       Hint = 'Connection is encrypted.'
-      Top = 154
+      Top = 166
       Width = 16
       ParentShowHint = False
       Picture.Data = {
@@ -411,12 +412,13 @@ object frmMain: TfrmMain
     ShowHint = True
   end
   object btnSubmit: TBitBtn
-    Left = 327
+    Left = 304
     Height = 30
     Hint = 'Submit a song to the hgd server.'
-    Top = 176
+    Top = 181
     Width = 123
     Caption = 'Queue Song'
+    Enabled = False
     Glyph.Data = {
       36040000424D3604000000000000360000002800000010000000100000000100
       2000000000000004000064000000640000000000000000000000FFFFFF000000
@@ -463,16 +465,18 @@ object frmMain: TfrmMain
     Height = 20
     Top = 181
     Width = 128
+    Enabled = False
     TabOrder = 3
     Visible = False
   end
   object btnCrapSong: TBitBtn
-    Left = 453
+    Left = 440
     Height = 30
     Hint = 'Vote to skip the currently playing song.'
-    Top = 176
+    Top = 181
     Width = 123
     Caption = 'Vote Off!'
+    Enabled = False
     Glyph.Data = {
       36040000424D3604000000000000360000002800000010000000100000000100
       2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
@@ -514,21 +518,13 @@ object frmMain: TfrmMain
     ShowHint = True
     TabOrder = 4
   end
-  object lblNowPlaying: TLabel
-    Left = 8
-    Height = 16
-    Top = 207
-    Width = 78
-    Caption = 'Now Playing:'
-    ParentColor = False
-  end
   object gbNowPlaying: TGroupBox
     Left = 288
     Height = 161
     Top = 8
     Width = 288
     Caption = 'Now Playing'
-    ClientHeight = 144
+    ClientHeight = 141
     ClientWidth = 284
     TabOrder = 5
     object lblNoAlbumArt: TLabel
@@ -546,7 +542,7 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 65
+      Top = 62
       Width = 288
       Alignment = taCenter
       Anchors = [akRight, akBottom]

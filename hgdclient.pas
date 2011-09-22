@@ -138,7 +138,6 @@ end;
 destructor THGDClient.Destroy();
 begin
   Disconnect();
-  Socket.Free();
 end;
 
 procedure THGDClient.Disconnect();
@@ -150,6 +149,9 @@ begin
     FState := hsDisconnected;
     FStatusMessage := 'Not connected';
   end;
+
+  if Assigned(Socket) then
+    FreeAndNil(Socket);
 end;
 
 function THGDClient.Connect(): boolean;
@@ -157,6 +159,9 @@ var
   Reply, Msg: string;
 begin
   Disconnect();
+
+  if not Assigned(Socket) then
+    Socket := TTCPBlockSocket.Create();
 
   Result := False;
   FState := hsDisconnected;
@@ -187,11 +192,12 @@ begin
 
         Socket.SSLDoConnect();
 
-        if Socket.LastError <>  0 then //check for success start of SSL
+        if Socket.LastError <> 0 then //check for success start of SSL
         begin
+          FStatusMessage := 'Error setting SSL ' + IntToStr(Socket.LastError) + ' ' + Socket.LastErrorDesc;
           FEncrypted := False;
-          Result := False;
-          FStatusMessage := 'Error setting SSL';
+          Socket.SSLDoShutdown();
+          Exit(False);
         end;
 
         Reply := ReceiveStringAndDeBork();
@@ -474,14 +480,17 @@ var
 begin
   //Strip nulls out of string, in case of SSL padding
   Result := '';
-  s := Socket.RecvString(Timeout);
+  s := Socket.RecvPacket(Timeout);
 
   //Debug::
   Log('RECEIVED LENGTH: ' + IntToStr(Length(s)));
 
   for i := 1 to Length(s) do
     if s[i] <> #0 then
+    begin
+      if s[i] = CR then Break;
       Result := Result + s[i];
+    end;
 end;
 
 end.

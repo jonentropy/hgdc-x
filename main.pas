@@ -56,8 +56,7 @@ type
     lblArtist: TLabel;
     lblAlbum: TLabel;
     lblNoPlaylist: TLabel;
-    lblNowPlaying: TLabel;
-    lblError: TLabel;
+    lblStatus: TLabel;
     lblHost: TLabel;
     lblPort: TLabel;
     lblUser: TLabel;
@@ -280,14 +279,14 @@ procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);
 begin
   if Error then
   begin
-    lblError.Font.Color := clRed;
+    lblStatus.Font.Color := clRed;
   end
   else
   begin
-    lblError.Font.Color := clBlue;
+    lblStatus.Font.Color := clBlue;
   end;
 
-  lblError.Caption := Msg;
+  lblStatus.Caption := Msg;
 end;
 
 procedure TfrmMain.tmrStateTimer(Sender: TObject);

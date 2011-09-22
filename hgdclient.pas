@@ -71,7 +71,7 @@ type
       procedure Log(Message: string);
       procedure ParseHGDPacket(Packet: string; List: TStringList);
       function ProcessReply(Reply: string; var Msg: string): boolean;
-      function ReceiveStringAndDeBork: string;
+      function ReceiveString: string;
       procedure SetHostAddress(const AValue: string);
       procedure SetHostPort(const AValue: string);
       procedure SetPassword(const AValue: string);
@@ -170,7 +170,7 @@ begin
   FStatusMessage := 'Connecting...';
 
   Socket.Connect(FHostAddress, FHostPort);
-  Reply := ReceiveStringAndDeBork();
+  Reply := ReceiveString();
   Log('connect reply: ' + Reply);
 
   Result := ProcessReply(Reply, Msg);
@@ -181,15 +181,17 @@ begin
     begin
       Log('Checking if server supprts encryption...');
       Socket.SendString('encrypt?' + ProtoLineEnding);
-      Reply := ReceiveStringAndDeBork();
+      Reply := ReceiveString();
       Log('encrypt? reply: ' + Reply);
 
       if ProcessReply(Reply, Msg) and (Msg <> 'nocrypto') then
       begin
+        if Msg = 'tlsv1' then
+          Socket.SSL.SSLType:= LT_TLSv1;
+        //Todo, maybe add other encryption types here
 
         Log('Encrypting Socket...');
         Socket.SendString('encrypt' + ProtoLineEnding);
-
         Socket.SSLDoConnect();
 
         if Socket.LastError <> 0 then //check for success start of SSL
@@ -200,7 +202,7 @@ begin
           Exit(False);
         end;
 
-        Reply := ReceiveStringAndDeBork();
+        Reply := ReceiveString();
 
         Log('encrypt reply: ' + Reply);
         if ProcessReply(Reply, Msg) then
@@ -251,7 +253,7 @@ begin
   Result := '';
   Log('Getting Proto...');
   Socket.SendString('proto' + ProtoLineEnding);
-  Reply := ReceiveStringAndDeBork();
+  Reply := ReceiveString();
   Log('proto reply: ' + Reply);
   if not ProcessReply(Reply, Result) then
     Result := '';
@@ -274,7 +276,7 @@ begin
   begin
     Log('Getting Playlist...');
     Socket.SendString('ls' + ProtoLineEnding);
-    Reply := ReceiveStringAndDeBork();
+    Reply := ReceiveString();
     Log('ls reply: ' + Reply);
     if ProcessReply(Reply, Msg) then
     begin
@@ -285,7 +287,7 @@ begin
 
       for i := 1 to StrToIntDef(Msg, 0) do
       begin
-        Reply := ReceiveStringAndDeBork();
+        Reply := ReceiveString();
         Log('Playlist item ' + IntToStr(i) + ': ' + Reply);
 
         SetLength(PList, Length(PList) + 1);
@@ -323,7 +325,7 @@ begin
   Socket.SendString('q|' + ExtractFilename(Filename) + '|' +
     IntToStr(FileSizeValue) + ProtoLineEnding);
 
-  Reply := ReceiveStringAndDeBork();
+  Reply := ReceiveString();
   Log('q reply: ' + Reply);
 
   Result := ProcessReply(Reply, Msg);
@@ -347,7 +349,7 @@ begin
 
     SetLength(DataArray, 0);
 
-    Reply := ReceiveStringAndDeBork();
+    Reply := ReceiveString();
     Log('q reply: ' + Reply);
 
     Result := ProcessReply(Reply, Msg);
@@ -367,7 +369,7 @@ begin
   Result := False;
   Log('Crapping on song id ' + IntToStr(id) + '...');
   Socket.SendString('vo|' + intToStr(id) + ProtoLineEnding);
-  Reply := ReceiveStringAndDeBork();
+  Reply := ReceiveString();
   Log('vo reply: ' + Reply);
 
   Result := ProcessReply(Reply, Msg);
@@ -425,7 +427,7 @@ begin
   Result := False;
   Log('Sending username...');
   Socket.SendString('user|' + Username + '|' + Password + ProtoLineEnding);
-  Reply := ReceiveStringAndDeBork();
+  Reply := ReceiveString();
   Log('user reply: ' + Reply);
 
   Result := ProcessReply(Reply, Msg);
@@ -473,17 +475,13 @@ begin
   FUsername := AValue;
 end;
 
-function THGDClient.ReceiveStringAndDeBork: string;
+function THGDClient.ReceiveString: string;
 var
   s: string;
   i: integer;
 begin
-  //Strip nulls out of string, in case of SSL padding
   Result := '';
   s := Socket.RecvPacket(Timeout);
-
-  //Debug::
-  Log('RECEIVED LENGTH: ' + IntToStr(Length(s)));
 
   for i := 1 to Length(s) do
     if s[i] <> #0 then

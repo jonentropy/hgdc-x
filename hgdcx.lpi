@@ -46,10 +46,12 @@
         <Filename Value="hgdcx.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="hgdcx1"/>
+        <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="75" Y="22"/>
-        <UsageCount Value="82"/>
+        <CursorPos X="123" Y="9"/>
+        <UsageCount Value="83"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -57,23 +59,22 @@
         <ComponentName Value="frmMain"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <EditorIndex Value="0"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="104"/>
-        <CursorPos X="20" Y="115"/>
-        <UsageCount Value="82"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="11"/>
+        <UsageCount Value="83"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="libs/synapse/blcksock.pas"/>
         <UnitName Value="blcksock"/>
-        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="3873"/>
-        <CursorPos X="1" Y="3896"/>
+        <TopLine Value="214"/>
+        <CursorPos X="1" Y="241"/>
         <UsageCount Value="13"/>
-        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="hgdclient.pas"/>
@@ -81,9 +82,9 @@
         <UnitName Value="HGDClient"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="169"/>
-        <CursorPos X="1" Y="199"/>
-        <UsageCount Value="82"/>
+        <TopLine Value="159"/>
+        <CursorPos X="45" Y="190"/>
+        <UsageCount Value="83"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -130,11 +131,11 @@
         <ComponentName Value="frmDebug"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DebugLog"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="26"/>
         <CursorPos X="3" Y="69"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit9>
@@ -164,12 +165,10 @@
       <Unit13>
         <Filename Value="libs/synapse/ssl_openssl_lib.pas"/>
         <UnitName Value="ssl_openssl_lib"/>
-        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="899"/>
         <CursorPos X="3" Y="922"/>
         <UsageCount Value="13"/>
-        <Loaded Value="True"/>
       </Unit13>
       <Unit14>
         <Filename Value="libs/synapse/ssl_cryptlib.pas"/>
@@ -190,13 +189,10 @@
       <Unit16>
         <Filename Value="libs/synapse/ssl_openssl.pas"/>
         <UnitName Value="ssl_openssl"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
         <TopLine Value="440"/>
         <CursorPos X="1" Y="474"/>
         <UsageCount Value="12"/>
-        <Loaded Value="True"/>
       </Unit16>
       <Unit17>
         <Filename Value="libs/synapse/synsock.pas"/>
@@ -233,11 +229,11 @@
         <Filename Value="lastfm.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LastFM"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="13"/>
-        <CursorPos X="11" Y="151"/>
-        <UsageCount Value="40"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit21>
       <Unit22>
@@ -258,7 +254,7 @@
       </Unit23>
       <Unit24>
         <Filename Value="README.md"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="62" Y="10"/>
@@ -268,7 +264,7 @@
       </Unit24>
       <Unit25>
         <Filename Value="COPYING"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
@@ -329,11 +325,11 @@
         <ComponentName Value="frmSettings"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Settings"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="23" Y="24"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit32>
@@ -372,11 +368,11 @@
         <ComponentName Value="frmAbout"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="About"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="25"/>
         <CursorPos X="32" Y="33"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit37>
@@ -397,127 +393,59 @@
         <UsageCount Value="10"/>
       </Unit39>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="13" HistoryIndex="12">
       <Position1>
-        <Filename Value="libs/synapse/ssl_openssl_lib.pas"/>
-        <Caret Line="1054" Column="1" TopLine="1027"/>
-      </Position1>
-      <Position2>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="504" Column="1" TopLine="475"/>
-      </Position2>
-      <Position3>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="506" Column="1" TopLine="475"/>
-      </Position3>
-      <Position4>
-        <Filename Value="libs/synapse/ssl_openssl_lib.pas"/>
-        <Caret Line="1207" Column="1" TopLine="1184"/>
-      </Position4>
-      <Position5>
-        <Filename Value="libs/synapse/ssl_openssl_lib.pas"/>
-        <Caret Line="1208" Column="21" TopLine="1184"/>
-      </Position5>
-      <Position6>
-        <Filename Value="libs/synapse/ssl_openssl_lib.pas"/>
-        <Caret Line="922" Column="3" TopLine="899"/>
-      </Position6>
-      <Position7>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="507" Column="1" TopLine="475"/>
-      </Position7>
-      <Position8>
         <Filename Value="hgdclient.pas"/>
         <Caret Line="193" Column="1" TopLine="169"/>
+      </Position1>
+      <Position2>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="195" Column="1" TopLine="169"/>
+      </Position2>
+      <Position3>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="197" Column="1" TopLine="169"/>
+      </Position3>
+      <Position4>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="198" Column="1" TopLine="169"/>
+      </Position4>
+      <Position5>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="199" Column="1" TopLine="169"/>
+      </Position5>
+      <Position6>
+        <Filename Value="hgdcx.lpr"/>
+        <Caret Line="29" Column="61" TopLine="1"/>
+      </Position6>
+      <Position7>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="191" Column="35" TopLine="169"/>
+      </Position7>
+      <Position8>
+        <Filename Value="main.pas"/>
+        <Caret Line="29" Column="5" TopLine="1"/>
       </Position8>
       <Position9>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="195" Column="1" TopLine="169"/>
+        <Caret Line="478" Column="34" TopLine="449"/>
       </Position9>
       <Position10>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="197" Column="1" TopLine="169"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position10>
       <Position11>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="198" Column="1" TopLine="169"/>
+        <Caret Line="190" Column="37" TopLine="165"/>
       </Position11>
       <Position12>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="199" Column="1" TopLine="169"/>
+        <Caret Line="173" Column="34" TopLine="150"/>
       </Position12>
       <Position13>
-        <Filename Value="libs/synapse/blcksock.pas"/>
-        <Caret Line="3895" Column="1" TopLine="3864"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="430" Column="25" TopLine="392"/>
       </Position13>
-      <Position14>
-        <Filename Value="libs/synapse/blcksock.pas"/>
-        <Caret Line="2569" Column="1" TopLine="2546"/>
-      </Position14>
-      <Position15>
-        <Filename Value="libs/synapse/blcksock.pas"/>
-        <Caret Line="2570" Column="1" TopLine="2546"/>
-      </Position15>
-      <Position16>
-        <Filename Value="libs/synapse/blcksock.pas"/>
-        <Caret Line="2571" Column="1" TopLine="2546"/>
-      </Position16>
-      <Position17>
-        <Filename Value="libs/synapse/blcksock.pas"/>
-        <Caret Line="3896" Column="1" TopLine="3873"/>
-      </Position17>
-      <Position18>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="561" Column="1" TopLine="538"/>
-      </Position18>
-      <Position19>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="563" Column="1" TopLine="538"/>
-      </Position19>
-      <Position20>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="564" Column="1" TopLine="538"/>
-      </Position20>
-      <Position21>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="570" Column="1" TopLine="538"/>
-      </Position21>
-      <Position22>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="463" Column="1" TopLine="440"/>
-      </Position22>
-      <Position23>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="464" Column="1" TopLine="440"/>
-      </Position23>
-      <Position24>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="465" Column="1" TopLine="440"/>
-      </Position24>
-      <Position25>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="466" Column="1" TopLine="440"/>
-      </Position25>
-      <Position26>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="467" Column="1" TopLine="440"/>
-      </Position26>
-      <Position27>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="469" Column="1" TopLine="440"/>
-      </Position27>
-      <Position28>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="470" Column="1" TopLine="440"/>
-      </Position28>
-      <Position29>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="471" Column="1" TopLine="440"/>
-      </Position29>
-      <Position30>
-        <Filename Value="libs/synapse/ssl_openssl.pas"/>
-        <Caret Line="473" Column="1" TopLine="440"/>
-      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -554,16 +482,6 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="2">
-      <Item1>
-        <Source Value="main.pas"/>
-        <Line Value="256"/>
-      </Item1>
-      <Item2>
-        <Source Value="hgdclient.pas"/>
-        <Line Value="193"/>
-      </Item2>
-    </BreakPoints>
     <Exceptions Count="4">
       <Item1>
         <Name Value="EAbort"/>

@@ -51,7 +51,7 @@
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="5" Y="42"/>
+        <CursorPos X="101" Y="25"/>
         <UsageCount Value="83"/>
         <Loaded Value="True"/>
       </Unit0>
@@ -452,7 +452,7 @@
   <CompilerOptions>
     <Version Value="9"/>
     <Target>
-      <Filename Value="hgdcx"/>
+      <Filename Value="build/$(TargetCPU)-$(TargetOS)/hgdcx"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

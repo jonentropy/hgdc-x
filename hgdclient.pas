@@ -297,6 +297,8 @@ begin
         PLStringList.Clear();
         ParseHGDPacket(Reply, PLStringList);
 
+        if PLStringList.Count >= 5 then
+        begin
         PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0],
           0);
 
@@ -305,6 +307,7 @@ begin
         PList[Length(PList) - 1].Title := PLStringList.Strings[3];
         PList[Length(PList) - 1].User := PLStringList.Strings[4];
         PList[Length(PList) - 1].Album := PLStringList.Strings[5];
+        end;
       end;
 
       PLStringList.Free();
@@ -483,12 +486,12 @@ var
   i: integer;
 begin
   Result := '';
-  s := Socket.RecvPacket(Timeout);
+  s := Socket.RecvString(Timeout);
 
   for i := 1 to Length(s) do
     if s[i] <> #0 then
     begin
-      if s[i] = CR then Break;
+     // if s[i] = CR then Break;
       Result := Result + s[i];
     end;
 end;

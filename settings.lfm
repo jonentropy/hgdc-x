@@ -144,6 +144,8 @@ object frmSettings: TfrmSettings
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
   Position = poMainFormCenter
   ShowInTaskBar = stNever
   LCLVersion = '0.9.30'

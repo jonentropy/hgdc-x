@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
-  StdCtrls, Buttons, LCLIntf;
+  StdCtrls, Buttons, LCLIntf, LCLType;
 
 type
 
@@ -43,6 +43,7 @@ type
     lblhgdcx: TLabel;
     stAbout: TStaticText;
     procedure btnCloseClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure imCatchThatMouseMouseEnter(Sender: TObject);
     procedure imCatchThatMouseMouseLeave(Sender: TObject);
     procedure lblCowClick(Sender: TObject);
@@ -68,6 +69,13 @@ implementation
 procedure TfrmAbout.btnCloseClick(Sender: TObject);
 begin
   Close();
+end;
+
+procedure TfrmAbout.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_ESCAPE then
+    Close();
 end;
 
 procedure TfrmAbout.imCatchThatMouseMouseEnter(Sender: TObject);

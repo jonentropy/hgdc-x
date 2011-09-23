@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  Buttons;
+  Buttons, LCLType;
 
 type
 
@@ -37,6 +37,7 @@ type
     Memo1: TMemo;
     procedure BitBtn1Click(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Memo1Change(Sender: TObject);
   private
     { private declarations }
@@ -67,6 +68,13 @@ end;
 procedure TfrmDebug.btnCloseClick(Sender: TObject);
 begin
   Close();
+end;
+
+procedure TfrmDebug.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_ESCAPE then
+    Close();
 end;
 
 end.

@@ -51,7 +51,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="15" Y="14"/>
-        <UsageCount Value="89"/>
+        <UsageCount Value="93"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -60,12 +60,11 @@
         <ComponentName Value="frmMain"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="119"/>
-        <CursorPos X="7" Y="130"/>
-        <UsageCount Value="89"/>
+        <TopLine Value="127"/>
+        <CursorPos X="66" Y="147"/>
+        <UsageCount Value="93"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -75,7 +74,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="214"/>
         <CursorPos X="1" Y="241"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit2>
       <Unit3>
         <Filename Value="hgdclient.pas"/>
@@ -83,9 +82,9 @@
         <UnitName Value="HGDClient"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="422"/>
-        <CursorPos X="22" Y="454"/>
-        <UsageCount Value="89"/>
+        <TopLine Value="409"/>
+        <CursorPos X="63" Y="424"/>
+        <UsageCount Value="93"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -94,14 +93,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="880"/>
         <CursorPos X="3" Y="902"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit4>
       <Unit5>
         <Filename Value="/usr/share/fpcsrc/2.4.2/rtl/unix/sysunixh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="6"/>
         <CursorPos X="2" Y="28"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit5>
       <Unit6>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/customtimer.pas"/>
@@ -109,14 +108,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="159"/>
         <CursorPos X="1" Y="181"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit6>
       <Unit7>
         <Filename Value="/usr/share/fpcsrc/2.4.2/rtl/objpas/classes/classesh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="603"/>
         <CursorPos X="14" Y="625"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit7>
       <Unit8>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/grids.pas"/>
@@ -124,7 +123,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="9193"/>
         <CursorPos X="1" Y="9215"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit8>
       <Unit9>
         <Filename Value="debuglog.pas"/>
@@ -132,11 +131,11 @@
         <ComponentName Value="frmDebug"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DebugLog"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="31"/>
-        <CursorPos X="3" Y="69"/>
-        <UsageCount Value="71"/>
+        <TopLine Value="16"/>
+        <CursorPos X="19" Y="28"/>
+        <UsageCount Value="75"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit9>
@@ -146,14 +145,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="30" Y="17"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit10>
       <Unit11>
         <Filename Value="backup/hgdclient.pas.bak.sectional"/>
         <WindowIndex Value="0"/>
         <TopLine Value="237"/>
         <CursorPos X="41" Y="249"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit11>
       <Unit12>
@@ -161,7 +160,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="2266"/>
         <CursorPos X="1" Y="2289"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="13"/>
       </Unit12>
       <Unit13>
         <Filename Value="libs/synapse/ssl_openssl_lib.pas"/>
@@ -169,7 +168,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="899"/>
         <CursorPos X="3" Y="922"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="12"/>
       </Unit13>
       <Unit14>
         <Filename Value="libs/synapse/ssl_cryptlib.pas"/>
@@ -177,7 +176,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="67"/>
         <CursorPos X="3" Y="89"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit14>
       <Unit15>
         <Filename Value="libs/synapse/ssl_sbb.pas"/>
@@ -185,7 +184,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="45"/>
         <CursorPos X="22" Y="67"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit15>
       <Unit16>
         <Filename Value="libs/synapse/ssl_openssl.pas"/>
@@ -193,7 +192,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="440"/>
         <CursorPos X="1" Y="474"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit16>
       <Unit17>
         <Filename Value="libs/synapse/synsock.pas"/>
@@ -201,14 +200,14 @@
         <WindowIndex Value="0"/>
         <TopLine Value="24"/>
         <CursorPos X="15" Y="61"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit17>
       <Unit18>
         <Filename Value="/usr/share/fpcsrc/2.4.2/rtl/inc/systemh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="756"/>
         <CursorPos X="23" Y="778"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit18>
       <Unit19>
         <Filename Value="libs/synapse/ssfpc.pas"/>
@@ -216,7 +215,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="72"/>
         <CursorPos X="3" Y="94"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit19>
       <Unit20>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/lresources.pp"/>
@@ -224,7 +223,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="3541"/>
         <CursorPos X="1" Y="3563"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit20>
       <Unit21>
         <Filename Value="lastfm.pas"/>
@@ -232,9 +231,9 @@
         <UnitName Value="LastFM"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="119"/>
-        <CursorPos X="72" Y="129"/>
-        <UsageCount Value="47"/>
+        <TopLine Value="78"/>
+        <CursorPos X="25" Y="93"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit21>
       <Unit22>
@@ -243,7 +242,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="694"/>
         <CursorPos X="18" Y="716"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit22>
       <Unit23>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/controls.pp"/>
@@ -251,25 +250,25 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1416"/>
         <CursorPos X="3" Y="1438"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit23>
       <Unit24>
         <Filename Value="README.md"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="62" Y="10"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit24>
       <Unit25>
         <Filename Value="COPYING"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit25>
@@ -279,7 +278,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="35"/>
         <CursorPos X="3" Y="57"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit26>
       <Unit27>
         <Filename Value="libs/synapse/httpsend.pas"/>
@@ -287,7 +286,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="114"/>
         <CursorPos X="27" Y="117"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit27>
       <Unit28>
         <Filename Value="../../../../lazarus/fpc/2.4.2/source/packages/fcl-xml/src/dom.pp"/>
@@ -295,22 +294,25 @@
         <WindowIndex Value="0"/>
         <TopLine Value="94"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit28>
       <Unit29>
         <Filename Value="../../../../lazarus/fpc/2.4.2/source/rtl/objpas/sysutils/sysstrh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="10"/>
         <CursorPos X="40" Y="33"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit29>
       <Unit30>
         <Filename Value="libs/synapse/synacode.pas"/>
         <UnitName Value="synacode"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="121"/>
-        <CursorPos X="10" Y="144"/>
+        <TopLine Value="129"/>
+        <CursorPos X="26" Y="144"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit30>
       <Unit31>
         <Filename Value="../../../../lazarus/lcl/extctrls.pp"/>
@@ -318,7 +320,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="758"/>
         <CursorPos X="84" Y="774"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit31>
       <Unit32>
         <Filename Value="settings.pas"/>
@@ -326,11 +328,11 @@
         <ComponentName Value="frmSettings"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Settings"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="23" Y="24"/>
-        <UsageCount Value="39"/>
+        <TopLine Value="10"/>
+        <CursorPos X="29" Y="28"/>
+        <UsageCount Value="43"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit32>
@@ -340,28 +342,28 @@
         <WindowIndex Value="0"/>
         <TopLine Value="921"/>
         <CursorPos X="14" Y="944"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit33>
       <Unit34>
         <Filename Value="../../../../lazarus/lcl/include/picture.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="515"/>
         <CursorPos X="1" Y="538"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit34>
       <Unit35>
         <Filename Value="../../../../lazarus/lcl/include/fpimagebitmap.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="123"/>
         <CursorPos X="1" Y="146"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit35>
       <Unit36>
         <Filename Value="../../../../lazarus/lcl/include/control.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="3166"/>
         <CursorPos X="1" Y="3189"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit36>
       <Unit37>
         <Filename Value="about.pas"/>
@@ -369,11 +371,11 @@
         <ComponentName Value="frmAbout"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="About"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="25"/>
-        <CursorPos X="32" Y="33"/>
-        <UsageCount Value="36"/>
+        <TopLine Value="49"/>
+        <CursorPos X="3" Y="77"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit37>
@@ -383,7 +385,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="485"/>
         <CursorPos X="1" Y="508"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit38>
       <Unit39>
         <Filename Value="/usr/share/fpcsrc/2.4.2/packages/fcl-xml/src/xmlread.pp"/>
@@ -391,129 +393,129 @@
         <WindowIndex Value="0"/>
         <TopLine Value="144"/>
         <CursorPos X="11" Y="46"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit39>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="main.pas"/>
-        <Caret Line="250" Column="1" TopLine="218"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="317" Column="1" TopLine="287"/>
       </Position1>
       <Position2>
-        <Filename Value="main.pas"/>
-        <Caret Line="251" Column="1" TopLine="219"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="318" Column="1" TopLine="287"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="252" Column="1" TopLine="220"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="319" Column="1" TopLine="287"/>
       </Position3>
       <Position4>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="82" Column="1" TopLine="74"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="320" Column="1" TopLine="288"/>
       </Position4>
       <Position5>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="83" Column="1" TopLine="74"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="321" Column="1" TopLine="289"/>
       </Position5>
       <Position6>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="84" Column="1" TopLine="74"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="298" Column="1" TopLine="289"/>
       </Position6>
       <Position7>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="85" Column="1" TopLine="74"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="509" Column="1" TopLine="473"/>
       </Position7>
       <Position8>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="87" Column="1" TopLine="74"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="298" Column="1" TopLine="279"/>
       </Position8>
       <Position9>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="88" Column="1" TopLine="74"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="260" Column="39" TopLine="127"/>
       </Position9>
       <Position10>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="89" Column="1" TopLine="74"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="33" Column="32" TopLine="25"/>
       </Position10>
       <Position11>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="90" Column="1" TopLine="74"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="78" Column="13" TopLine="74"/>
       </Position11>
       <Position12>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="91" Column="1" TopLine="74"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="28" Column="29" TopLine="13"/>
       </Position12>
       <Position13>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="93" Column="1" TopLine="74"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="131" Column="1" TopLine="93"/>
       </Position13>
       <Position14>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="95" Column="1" TopLine="74"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="77" Column="16" TopLine="58"/>
       </Position14>
       <Position15>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="97" Column="1" TopLine="74"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="28" Column="38" TopLine="1"/>
       </Position15>
       <Position16>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="98" Column="1" TopLine="74"/>
+        <Filename Value="about.pas"/>
+        <Caret Line="77" Column="16" TopLine="58"/>
       </Position16>
       <Position17>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="99" Column="1" TopLine="74"/>
+        <Filename Value="debuglog.pas"/>
+        <Caret Line="47" Column="6" TopLine="31"/>
       </Position17>
       <Position18>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="104" Column="1" TopLine="74"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="24" Column="23" TopLine="1"/>
       </Position18>
       <Position19>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="106" Column="1" TopLine="80"/>
+        <Filename Value="debuglog.pas"/>
+        <Caret Line="77" Column="15" TopLine="42"/>
       </Position19>
       <Position20>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="107" Column="1" TopLine="80"/>
+        <Filename Value="settings.pas"/>
+        <Caret Line="62" Column="15" TopLine="27"/>
       </Position20>
       <Position21>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="109" Column="1" TopLine="80"/>
+        <Caret Line="129" Column="72" TopLine="62"/>
       </Position21>
       <Position22>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="115" Column="1" TopLine="83"/>
+        <Caret Line="83" Column="1" TopLine="62"/>
       </Position22>
       <Position23>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="118" Column="1" TopLine="86"/>
+        <Caret Line="84" Column="1" TopLine="62"/>
       </Position23>
       <Position24>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="120" Column="1" TopLine="88"/>
+        <Caret Line="85" Column="1" TopLine="62"/>
       </Position24>
       <Position25>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="121" Column="1" TopLine="89"/>
+        <Caret Line="87" Column="1" TopLine="62"/>
       </Position25>
       <Position26>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="125" Column="1" TopLine="93"/>
+        <Caret Line="88" Column="1" TopLine="62"/>
       </Position26>
       <Position27>
         <Filename Value="lastfm.pas"/>
-        <Caret Line="129" Column="72" TopLine="119"/>
+        <Caret Line="89" Column="1" TopLine="62"/>
       </Position27>
       <Position28>
-        <Filename Value="main.pas"/>
-        <Caret Line="231" Column="41" TopLine="220"/>
+        <Filename Value="lastfm.pas"/>
+        <Caret Line="90" Column="1" TopLine="62"/>
       </Position28>
       <Position29>
-        <Filename Value="main.pas"/>
-        <Caret Line="139" Column="45" TopLine="125"/>
+        <Filename Value="lastfm.pas"/>
+        <Caret Line="91" Column="1" TopLine="62"/>
       </Position29>
       <Position30>
-        <Filename Value="main.pas"/>
-        <Caret Line="140" Column="10" TopLine="119"/>
+        <Filename Value="lastfm.pas"/>
+        <Caret Line="93" Column="25" TopLine="78"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -546,6 +548,12 @@
     </Other>
   </CompilerOptions>
   <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Source Value="lastfm.pas"/>
+        <Line Value="83"/>
+      </Item1>
+    </BreakPoints>
     <Exceptions Count="4">
       <Item1>
         <Name Value="EAbort"/>

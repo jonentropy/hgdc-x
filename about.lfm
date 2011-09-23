@@ -1,7 +1,7 @@
 object frmAbout: TfrmAbout
-  Left = 712
+  Left = 795
   Height = 455
-  Top = 99
+  Top = 98
   Width = 514
   Caption = 'About hgdc-x'
   ClientHeight = 455
@@ -144,6 +144,8 @@ object frmAbout: TfrmAbout
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
   Position = poMainFormCenter
   ShowInTaskBar = stNever
   LCLVersion = '0.9.30'

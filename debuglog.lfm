@@ -144,6 +144,8 @@ object frmDebug: TfrmDebug
     0000000000000000000000000000000000000000000000000000000000000000
     0000
   }
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
   ShowInTaskBar = stNever
   LCLVersion = '0.9.30'
   object Memo1: TMemo

@@ -25,7 +25,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Buttons;
+  ExtCtrls, Buttons, LCLType;
 
 type
 
@@ -39,6 +39,7 @@ type
     GroupBox1: TGroupBox;
     imLastFM: TImage;
     lblLastFM: TLabel;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { private declarations }
   public
@@ -51,6 +52,15 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TfrmSettings }
+
+procedure TfrmSettings.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_ESCAPE then
+    Close();
+end;
 
 end.
 

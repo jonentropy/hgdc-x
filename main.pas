@@ -252,11 +252,18 @@ begin
                 imNowPlaying) then
               begin
                 FCurrentlyDisplayedArtwork := PL[i].Artist + ':' + PL[i].Album;
+              end
+              else
+              begin
+                //Couldn't get artwork, so hide it
+                imNowPlaying.Visible := False;
+                lblNoAlbumArt.Visible := True;
               end;
             end;
           end
           else
           begin
+            //Todo maybe stick this show/hide stuff in another function
             //No album information to get art with
             imNowPlaying.Visible := False;
             lblNoAlbumArt.Visible := True;

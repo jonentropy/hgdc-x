@@ -260,9 +260,9 @@ object frmAbout: TfrmAbout
   end
   object lblCow: TLabel
     Left = 56
-    Height = 14
-    Top = 418
-    Width = 158
+    Height = 16
+    Top = 416
+    Width = 171
     Anchors = [akLeft, akBottom]
     Caption = 'Icons from the Fat Cow icon set.'
     ParentColor = False
@@ -272,7 +272,7 @@ object frmAbout: TfrmAbout
   end
   object lblhgdcx: TLabel
     Left = 0
-    Height = 54
+    Height = 64
     Top = 0
     Width = 507
     Alignment = taCenter
@@ -288,9 +288,9 @@ object frmAbout: TfrmAbout
   end
   object lblSynapse: TLabel
     Left = 56
-    Height = 14
-    Top = 370
-    Width = 272
+    Height = 16
+    Top = 368
+    Width = 288
     Anchors = [akLeft, akBottom]
     Caption = 'Ararat Synapse Copyright (c)1999-2011, Lukas Gebauer'
     ParentColor = False

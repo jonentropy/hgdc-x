@@ -88,9 +88,8 @@ begin
   try
     Connection.Timeout := 1000;
     RequestURL := API_ROOT_URL + '?method=album.getinfo&api_key=' + API_KEY +
-      '&artist=' + Artist + '&album=' + Album + '&autocorrect=1';
-
-    RequestURL := EncodeURL(RequestURL);
+      '&artist=' + EncodeURLElement(Artist) + '&album=' +
+      EncodeURLElement(Album) + '&autocorrect=1';
 
     if Connection.HTTPMethod('GET', RequestURL) then
     begin

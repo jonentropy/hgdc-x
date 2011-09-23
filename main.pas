@@ -84,7 +84,7 @@ type
     { private declarations }
     FClient: THGDClient;
     FLastFM: TLastFM;
-    FCurrentlyPlayingTrack: string;
+    FCurrentlyDisplayedArtwork: string;
     FVotedOffId: integer;
     procedure ShowStatus(Msg: string; Error: boolean);
 
@@ -158,7 +158,7 @@ begin
   FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text,
     edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
 
-  FCurrentlyPlayingTrack := '';
+  FCurrentlyDisplayedArtwork := '';
   FVotedOffId := -1;
 
   //Todo: Pass user details etc when scrobbling is implemented
@@ -233,25 +233,29 @@ begin
         begin
           if (PL[i].Artist <> '') and (PL[i].Album <> '') then
           begin
-            if (PL[i].Artist + ':' + PL[i].Album) <> FCurrentlyPlayingTrack then
+            lblTitle.Caption := PL[i].Title;
+            lblArtist.Caption := PL[i].Artist;
+            lblAlbum.Caption := PL[i].Album;
+            //Todo add all other info from protocol
+
+            if (PL[i].Artist + ':' + PL[i].Album) <> FCurrentlyDisplayedArtwork then
             begin
+              //Playing track has changed, get artwork
               imNowPlaying.Visible := True;
               Bevel1.Visible := True;
               //Todo look into why using large or extra large results in black
               //png images. Probably a bug in Lazarus :S
-              FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
-                imNowPlaying);
 
-              FCurrentlyPlayingTrack := PL[i].Artist + ':' + PL[i].Album;
-              lblTitle.Caption := PL[i].Title;
-              lblArtist.Caption := PL[i].Artist;
-              lblAlbum.Caption := PL[i].Album;
-              //Todo add all other info from protocol
+              if FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
+                imNowPlaying) then
+              begin
+                FCurrentlyDisplayedArtwork := PL[i].Artist + ':' + PL[i].Album;
+              end;
             end;
           end
           else
           begin
-            //No album art
+            //No album information to get art with
             imNowPlaying.Visible := False;
             lblNoAlbumArt.Visible := True;
           end;
@@ -266,7 +270,7 @@ begin
       lblAlbum.Caption := '';
       lblNoPlaylist.Visible := True;
       FVotedOffId := -1;
-      FCurrentlyPlayingTrack := '';
+      FCurrentlyDisplayedArtwork := '';
       imNowPlaying.Picture.Clear;
       imNowPlaying.Visible := False;
       Bevel1.Visible := False;

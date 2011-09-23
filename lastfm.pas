@@ -80,6 +80,7 @@ var
   CoverURL: string;
   ImStr: string;
 begin
+  Result := False;
   Connection := THTTPSend.Create();
   XMLResponse := TXMLDocument.Create();
 
@@ -129,8 +130,11 @@ begin
       begin
         //Get the cover
         CoverURL := EncodeURL(CoverURL);
-        Connection.HTTPMethod('GET', CoverURL);
-        CoverImage.Picture.LoadFromStream(Connection.Document);
+        if Connection.HTTPMethod('GET', CoverURL) then
+        begin
+          CoverImage.Picture.LoadFromStream(Connection.Document);
+          Result := True;
+        end;
       end;
     end;
   finally

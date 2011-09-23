@@ -1,7 +1,7 @@
 object frmSettings: TfrmSettings
-  Left = 526
+  Left = 803
   Height = 240
-  Top = 201
+  Top = 138
   Width = 320
   Caption = 'Settings'
   ClientHeight = 240
@@ -153,7 +153,7 @@ object frmSettings: TfrmSettings
     Top = 0
     Width = 304
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ClientHeight = 212
+    ClientHeight = 214
     ClientWidth = 300
     TabOrder = 0
     object imLastFM: TImage
@@ -228,9 +228,9 @@ object frmSettings: TfrmSettings
     end
     object lblLastFM: TLabel
       Left = 46
-      Height = 14
+      Height = 16
       Top = 6
-      Width = 43
+      Width = 42
       HelpType = htKeyword
       Caption = 'Last.fm'
       Enabled = False
@@ -241,33 +241,33 @@ object frmSettings: TfrmSettings
     end
     object chkScrobbling: TCheckBox
       Left = 6
-      Height = 17
+      Height = 19
       Top = 38
-      Width = 102
+      Width = 115
       Caption = 'Enable Scrobbling'
       Enabled = False
       TabOrder = 0
     end
     object chkScrobbling1: TCheckBox
       Left = 6
-      Height = 17
+      Height = 19
       Top = 54
-      Width = 107
+      Width = 120
       Caption = 'Scrobble All Tracks'
       Enabled = False
       TabOrder = 1
     end
     object edtLastFMUser: TLabeledEdit
       Left = 6
-      Height = 21
+      Height = 23
       Top = 102
       Width = 144
       EditLabel.AnchorSideLeft.Control = edtLastFMUser
       EditLabel.AnchorSideBottom.Control = edtLastFMUser
       EditLabel.Left = 6
-      EditLabel.Height = 14
-      EditLabel.Top = 85
-      EditLabel.Width = 53
+      EditLabel.Height = 16
+      EditLabel.Top = 83
+      EditLabel.Width = 57
       EditLabel.Caption = 'Username:'
       EditLabel.ParentColor = False
       Enabled = False

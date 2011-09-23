@@ -1,7 +1,7 @@
 object frmAbout: TfrmAbout
-  Left = 481
+  Left = 712
   Height = 455
-  Top = 84
+  Top = 99
   Width = 514
   Caption = 'About hgdc-x'
   ClientHeight = 455

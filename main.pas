@@ -126,6 +126,8 @@ begin
 end;
 
 procedure TfrmMain.btnSubmitClick(Sender: TObject);
+var
+  i: integer;
 begin
   TBitBtn(Sender).Enabled := False;
 
@@ -134,7 +136,10 @@ begin
     tmrPlayList.Enabled := False;
     Screen.Cursor := crHourglass;
     Application.ProcessMessages;
-    FClient.QueueSong(OpenDialog1.FileName);
+
+    for i := 0 to OpenDialog1.Files.Count - 1 do
+      FClient.QueueSong(OpenDialog1.Files[i]);
+
     tmrPlayList.Enabled := True;
     tmrPlayListTimer(Self);
     Screen.Cursor := crDefault;

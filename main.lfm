@@ -414,10 +414,10 @@ object frmMain: TfrmMain
   object btnSubmit: TBitBtn
     Left = 304
     Height = 30
-    Hint = 'Submit a song to the hgd server.'
+    Hint = 'Submit songs to the hgd server.'
     Top = 181
     Width = 123
-    Caption = 'Queue Song'
+    Caption = 'Queue Songs'
     Enabled = False
     Glyph.Data = {
       36040000424D3604000000000000360000002800000010000000100000000100
@@ -558,7 +558,6 @@ object frmMain: TfrmMain
       Height = 1
       Top = 6
       Width = 1
-      Font.Color = clBlue
       ParentColor = False
       ParentFont = False
     end
@@ -567,7 +566,6 @@ object frmMain: TfrmMain
       Height = 1
       Top = 22
       Width = 1
-      Font.Color = clBlue
       ParentColor = False
       ParentFont = False
     end
@@ -576,7 +574,6 @@ object frmMain: TfrmMain
       Height = 1
       Top = 38
       Width = 1
-      Font.Color = clBlue
       ParentColor = False
       ParentFont = False
     end
@@ -743,6 +740,8 @@ object frmMain: TfrmMain
     top = 248
   end
   object OpenDialog1: TOpenDialog
+    Title = 'Queue songs'
+    Options = [ofAllowMultiSelect, ofEnableSizing, ofViewDetail]
     left = 320
     top = 248
   end

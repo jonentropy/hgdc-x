@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 711
+  Left = 831
   Height = 660
-  Top = 111
+  Top = 97
   Width = 583
   Caption = 'hgdc-x'
   ClientHeight = 660
@@ -636,6 +636,46 @@ object frmMain: TfrmMain
       }
       Stretch = True
       Visible = False
+    end
+    object lblGenre: TLabel
+      Left = 90
+      Height = 1
+      Top = 55
+      Width = 1
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblDuration: TLabel
+      Left = 166
+      Height = 1
+      Top = 112
+      Width = 1
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblBitrate: TLabel
+      Left = 8
+      Height = 1
+      Top = 112
+      Width = 1
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblSampleRate: TLabel
+      Left = 90
+      Height = 1
+      Top = 112
+      Width = 1
+      ParentColor = False
+      ParentFont = False
+    end
+    object lblYear: TLabel
+      Left = 90
+      Height = 1
+      Top = 72
+      Width = 1
+      ParentColor = False
+      ParentFont = False
     end
   end
   object imSettings: TImage

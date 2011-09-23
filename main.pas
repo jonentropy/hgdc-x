@@ -51,7 +51,12 @@ type
     imDebug: TImage;
     imSecure: TImage;
     imAbout: TImage;
+    lblSampleRate: TLabel;
+    lblGenre: TLabel;
+    lblDuration: TLabel;
+    lblBitrate: TLabel;
     lblNoAlbumArt: TLabel;
+    lblYear: TLabel;
     lblTitle: TLabel;
     lblArtist: TLabel;
     lblAlbum: TLabel;
@@ -242,7 +247,14 @@ begin
             lblTitle.Caption := PL[i].Title;
             lblArtist.Caption := PL[i].Artist;
             lblAlbum.Caption := PL[i].Album;
-            //Todo add all other info from protocol
+            lblGenre.Caption := PL[i].Genre;
+            lblYear.Caption := IntToStr(PL[i].Year);
+            {
+            These look a bit silly...
+            lblBitrate.Caption := IntToStr(PL[i].Bitrate);
+            lblSampleRate.Caption := IntToStr(PL[i].SampleRate);
+            lblDuration.Caption := IntToStr(PL[i].Duration);
+            }
 
             if (PL[i].Artist + ':' + PL[i].Album) <> FCurrentlyDisplayedArtwork then
             begin
@@ -282,6 +294,11 @@ begin
       lblTitle.Caption := '';
       lblArtist.Caption := '';
       lblAlbum.Caption := '';
+      lblGenre.Caption := '';
+      lblBitrate.Caption := '';
+      lblYear.Caption := '';
+      lblSampleRate.Caption := '';
+      lblDuration.Caption := '';
       lblNoPlaylist.Visible := True;
       FVotedOffId := -1;
       FCurrentlyDisplayedArtwork := '';

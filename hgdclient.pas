@@ -42,6 +42,12 @@ type
     Title: string;
     Album: string;
     User: string;
+    Genre: string;
+    Duration: integer;
+    Bitrate: integer;
+    SampleRate: integer;
+    Channels: integer;
+    Year: integer;
   end;
 
   TPlaylist = array of TTrackInfo;
@@ -297,16 +303,22 @@ begin
         PLStringList.Clear();
         ParseHGDPacket(Reply, PLStringList);
 
-        if PLStringList.Count >= 5 then
+        if PLStringList.Count >= 11 then
         begin
-        PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0],
-          0);
+          PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0],
+            0);
 
-        PList[Length(PList) - 1].Filename := PLStringList.Strings[1];
-        PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
-        PList[Length(PList) - 1].Title := PLStringList.Strings[3];
-        PList[Length(PList) - 1].User := PLStringList.Strings[4];
-        PList[Length(PList) - 1].Album := PLStringList.Strings[5];
+          PList[Length(PList) - 1].Filename := PLStringList.Strings[1];
+          PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
+          PList[Length(PList) - 1].Title := PLStringList.Strings[3];
+          PList[Length(PList) - 1].User := PLStringList.Strings[4];
+          PList[Length(PList) - 1].Album := PLStringList.Strings[5];
+          PList[Length(PList) - 1].Genre := PLStringList.Strings[6];
+          PList[Length(PList) - 1].Duration := StrToIntDef(PLStringList.Strings[7], 0);
+          PList[Length(PList) - 1].Bitrate := StrToIntDef(PLStringList.Strings[8], 0);
+          PList[Length(PList) - 1].SampleRate := StrToIntDef(PLStringList.Strings[9], 0);
+          PList[Length(PList) - 1].Channels := StrToIntDef(PLStringList.Strings[10], 0);
+          PList[Length(PList) - 1].Year := StrToIntDef(PLStringList.Strings[11], 0);
         end;
       end;
 
@@ -416,6 +428,8 @@ begin
   begin
     Result := False;
     Log('"ok" or "err" not found in packet.');
+    //Something has gone wrong, so read all remaining bytes in the packet.
+    Socket.RecvPacket(Timeout);
   end;
 end;
 
@@ -491,7 +505,6 @@ begin
   for i := 1 to Length(s) do
     if s[i] <> #0 then
     begin
-     // if s[i] = CR then Break;
       Result := Result + s[i];
     end;
 end;

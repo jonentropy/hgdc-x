@@ -86,6 +86,7 @@ type
     FLastFM: TLastFM;
     FCurrentlyDisplayedArtwork: string;
     FVotedOffId: integer;
+    procedure Log(Message: string);
     procedure ShowStatus(Msg: string; Error: boolean);
 
   public
@@ -246,6 +247,7 @@ begin
               //Todo look into why using large or extra large results in black
               //png images. Probably a bug in Lazarus :S
 
+              Log('ATTEMPTING TO GET ARTWORK FROM LAST.FM');
               if FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
                 imNowPlaying) then
               begin
@@ -318,6 +320,11 @@ begin
     else
       imVoteoff.Visible := False;
   end;
+end;
+
+procedure TfrmMain.Log(Message: string);
+begin
+  frmDebug.Memo1.Lines.Add(Message);
 end;
 
 end.

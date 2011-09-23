@@ -560,6 +560,7 @@ object frmMain: TfrmMain
       Width = 1
       ParentColor = False
       ParentFont = False
+      ShowAccelChar = False
     end
     object lblArtist: TLabel
       Left = 90
@@ -568,6 +569,7 @@ object frmMain: TfrmMain
       Width = 1
       ParentColor = False
       ParentFont = False
+      ShowAccelChar = False
     end
     object lblAlbum: TLabel
       Left = 90
@@ -576,6 +578,7 @@ object frmMain: TfrmMain
       Width = 1
       ParentColor = False
       ParentFont = False
+      ShowAccelChar = False
     end
     object Bevel1: TBevel
       Left = 7
@@ -644,6 +647,7 @@ object frmMain: TfrmMain
       Width = 1
       ParentColor = False
       ParentFont = False
+      ShowAccelChar = False
     end
     object lblDuration: TLabel
       Left = 166

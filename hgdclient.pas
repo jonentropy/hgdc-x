@@ -29,7 +29,7 @@ uses
 
 const
   HGD_PROTO_MAJOR: integer = 8;
-  HGD_PROTO_MINOR: integer = 0;
+  HGD_PROTO_MINOR: integer = 1;
 
   //The hgd protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;
@@ -434,15 +434,8 @@ begin
   begin
     Result := False;
     Log('Error Occurred: ' + Msg);
-  end
-  else
-  begin
-    Result := False;
-    Log('"ok" or "err" not found in packet. Reading all remaining bytes...');
-    //Something has gone wrong, so read all remaining bytes in the packet.
-    Socket.RecvPacket(Timeout);
-    //check if the server is booting us
 
+    //check if the server is booting us
     if Pos('Catch you later d00d!', Reply) > 0 then
     begin
       Log('We got booted, Catch you later d00d!');
@@ -450,6 +443,13 @@ begin
       FState := hsDisconnected;
       FStatusMessage := 'Not connected';
     end;
+  end
+  else
+  begin
+    Result := False;
+    Log('"ok" or "err" not found in packet. Reading all remaining bytes...');
+    //Something has gone wrong, so read all remaining bytes in the packet.
+    Socket.RecvPacket(Timeout);
   end;
 end;
 

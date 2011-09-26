@@ -143,7 +143,12 @@ begin
     Application.ProcessMessages;
 
     for i := 0 to OpenDialog1.Files.Count - 1 do
+    begin
+      if FCLient.State < hsAuthenticated then
+        Break;
+
       FClient.QueueSong(OpenDialog1.Files[i]);
+    end;
 
     tmrPlayList.Enabled := True;
     tmrPlayListTimer(Self);
@@ -172,8 +177,7 @@ begin
   FCurrentlyDisplayedArtwork := '';
   FVotedOffId := -1;
 
-  //Todo: Pass user details etc when scrobbling is implemented
-  FLastFM := TLastFM.Create();
+  FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text);
   tmrPlaylistTimer(Self);
 end;
 

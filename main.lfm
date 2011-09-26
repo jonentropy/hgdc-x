@@ -522,6 +522,7 @@ object frmMain: TfrmMain
     Height = 161
     Top = 8
     Width = 288
+    Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
     ClientHeight = 144
     ClientWidth = 284
@@ -544,7 +545,7 @@ object frmMain: TfrmMain
       Top = 65
       Width = 288
       Alignment = taCenter
-      Anchors = [akRight, akBottom]
+      Anchors = [akLeft, akRight, akBottom]
       AutoSize = False
       Caption = 'Nothing Playing'
       Enabled = False
@@ -598,7 +599,7 @@ object frmMain: TfrmMain
     object imVoteOff: TImage
       Left = 8
       Height = 64
-      Top = 7
+      Top = 9
       Width = 64
       Picture.Data = {
         1754506F727461626C654E6574776F726B477261706869631904000089504E47

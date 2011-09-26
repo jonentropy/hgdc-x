@@ -276,7 +276,6 @@ var
   D: Integer;
 begin
   Result := False;
-  log('Length of playlist: ' + IntToStr(Length(PList)));
   SetLength(PList, 0);
 
   //only do this if at least connected...
@@ -367,10 +366,11 @@ begin
     SetLength(DataArray, 0);
 
     Reply := ReceiveString();
-    Log('q reply: ' + Reply);
+    Log('q data send reply: ' + Reply);
 
     Result := ProcessReply(Reply, Msg);
-    if Result then FStatusMessage := 'Queued';
+    if Result then
+      FStatusMessage := 'Queued';
   end
   else
   begin
@@ -427,7 +427,7 @@ begin
   else
   begin
     Result := False;
-    Log('"ok" or "err" not found in packet.');
+    Log('"ok" or "err" not found in packet. Reading all remaining bytes...');
     //Something has gone wrong, so read all remaining bytes in the packet.
     Socket.RecvPacket(Timeout);
   end;

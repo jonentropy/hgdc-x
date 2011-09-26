@@ -28,7 +28,9 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
 
 const
-  HGD_PROTO: string = '7|0'; //Todo this is a hack. Deal with proper proto
+  HGD_PROTO_MAJOR: integer = 8;
+  HGD_PROTO_MINOR: integer = 0;
+
   //The hgd protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;
 
@@ -73,7 +75,7 @@ type
 
       function Connect: boolean;
       procedure Disconnect;
-      function GetProto: string;
+      function CheckProto: boolean;
       procedure Log(Message: string);
       procedure ParseHGDPacket(Packet: string; List: TStringList);
       function ProcessReply(Reply: string; var Msg: string): boolean;
@@ -231,13 +233,7 @@ begin
       FEncrypted := False;
     end;
 
-    if GetProto() <> HGD_PROTO then
-    begin
-      FState := hsDisconnected;
-      Result := False;
-      FStatusMessage := 'Error: Protocol of server does not match client';
-    end
-    else
+    if CheckProto() then
     begin
       FState := hsConnected;
       FStatusMessage := 'Connected (';
@@ -245,6 +241,12 @@ begin
         FStatusMessage := FStatusMessage + 'SSL)'
       else
         FStatusMessage := FStatusMessage + 'no SSL)'
+    end
+    else
+    begin
+      FState := hsDisconnected;
+      Result := False;
+      FStatusMessage := 'Error: Protocol of server does not match client';
     end;
   end
   else
@@ -254,17 +256,26 @@ begin
   end;
 end;
 
-function THGDClient.GetProto: string;
+function THGDClient.CheckProto(): boolean;
 var
-  Reply: ansistring;
+  Reply: string;
+  Msg: string;
+  Minor, Major: integer;
 begin
-  Result := '';
+  Result := False;
   Log('Getting Proto...');
   Socket.SendString('proto' + ProtoLineEnding);
   Reply := ReceiveString();
   Log('proto reply: ' + Reply);
-  if not ProcessReply(Reply, Result) then
-    Result := '';
+  if ProcessReply(Reply, Msg) then
+  begin
+    Major := StrToIntDef(Copy(Msg, 1, Pos('|', Msg) - 1), - 1);
+    Minor := StrToIntDef(Copy(Msg, Pos('|', Msg) + 1, Length(Msg)), - 1);
+
+    if (HGD_PROTO_MAJOR = Major) and
+      (HGD_PROTO_MINOR <= Minor) then
+        Result := True;
+  end;
 end;
 
 function THGDClient.GetPlaylist(var PList: TPlaylist): boolean;

@@ -439,7 +439,12 @@ begin
     if Pos('Catch you later d00d!', Reply) > 0 then
     begin
       Log('We got booted, Catch you later d00d!');
-      Socket.CloseSocket();
+      try
+        FreeAndNil(Socket);
+      except
+        //Keep SSL errors from appearing
+      end;
+
       FState := hsDisconnected;
       FStatusMessage := 'Not connected';
     end;

@@ -527,6 +527,7 @@ object frmMain: TfrmMain
     ClientHeight = 144
     ClientWidth = 284
     TabOrder = 5
+    Visible = False
     object lblNoAlbumArt: TLabel
       Left = 7
       Height = 38

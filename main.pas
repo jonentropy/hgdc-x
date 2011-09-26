@@ -92,6 +92,7 @@ type
     FCurrentlyDisplayedArtwork: string;
     FVotedOffId: integer;
     procedure Log(Message: string);
+    procedure ShowNowPlaying(b: boolean);
     procedure ShowStatus(Msg: string; Error: boolean);
 
   public
@@ -346,6 +347,7 @@ begin
 
     btnSubmit.Enabled := FClient.State >= hsAuthenticated;
     btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
+    ShowNowPlaying(FClient.State >= hsConnected);
 
     if (sgPlaylist.RowCount > 1) and
       (FVotedOffId = StrToInt(sgPlaylist.Cells[0,1])) then
@@ -353,6 +355,12 @@ begin
     else
       imVoteoff.Visible := False;
   end;
+end;
+
+procedure TfrmMain.ShowNowPlaying(b: boolean);
+begin
+  //Todo: this could be more complex
+  gbNowPlaying.Visible := b;
 end;
 
 procedure TfrmMain.Log(Message: string);

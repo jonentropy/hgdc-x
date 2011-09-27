@@ -29,7 +29,7 @@ uses
 
 const
   HGD_PROTO_MAJOR: integer = 8;
-  HGD_PROTO_MINOR: integer = 1;
+  HGD_PROTO_MINOR: integer = 2;
 
   //The hgd protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;

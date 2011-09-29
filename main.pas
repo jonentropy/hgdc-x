@@ -251,7 +251,7 @@ begin
     begin
       //There are some items in the playlist
       btnSkip.Enabled := FClient.State >= hsAuthenticated;
-      btnCrapSong.Enabled := True;
+      btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
 
       for i := 0 to Length(PL) - 1 do
       begin

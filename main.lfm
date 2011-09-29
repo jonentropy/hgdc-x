@@ -1020,6 +1020,7 @@ object frmMain: TfrmMain
       008D3AB9CA969F4A8C0000000049454E44AE426082
     }
     ShowHint = True
+    Visible = False
   end
   object imAbout: TImage
     Left = 560

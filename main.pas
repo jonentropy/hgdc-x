@@ -91,6 +91,7 @@ type
     FLastFM: TLastFM;
     FCurrentlyDisplayedArtwork: string;
     FVotedOffId: integer;
+    FArtworkAttempts: integer;
     procedure Log(Message: string);
     procedure ShowNowPlaying(b: boolean);
     procedure ShowStatus(Msg: string; Error: boolean);
@@ -101,6 +102,9 @@ type
 
 var
   frmMain: TfrmMain;
+
+const
+  MAX_ARTWORK_ATTEMPTS = 3;
 
 implementation
 
@@ -161,7 +165,9 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-
+  FArtworkAttempts := 0;
+  FCurrentlyDisplayedArtwork := '';
+  FVotedOffId := -1;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -174,9 +180,6 @@ procedure TfrmMain.FormShow(Sender: TObject);
 begin
   FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text,
     edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
-
-  FCurrentlyDisplayedArtwork := '';
-  FVotedOffId := -1;
 
   FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text);
   tmrPlaylistTimer(Self);
@@ -261,31 +264,40 @@ begin
             lblDuration.Caption := IntToStr(PL[i].Duration);
             }
 
-            if (PL[i].Artist + ':' + PL[i].Album) <> FCurrentlyDisplayedArtwork then
+            if ((PL[i].Artist + ':' + PL[i].Album) <>
+              FCurrentlyDisplayedArtwork) then
             begin
               //Playing track has changed, get artwork
               imNowPlaying.Visible := True;
               Bevel1.Visible := True;
-              //Todo look into why using large or extra large results in black
-              //png images. Probably a bug in Lazarus :S
 
-              Log('ATTEMPTING TO GET ARTWORK FROM LAST.FM');
+              Log('ATTEMPT ' + IntToStr(FArtworkAttempts + 1) +
+                ' TO GET ARTWORK FROM LAST.FM');
+
               if FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
-                imNowPlaying) then
+                  imNowPlaying) then
               begin
+                Log('LAST.FM ARTWORK OBTAINED!');
                 FCurrentlyDisplayedArtwork := PL[i].Artist + ':' + PL[i].Album;
+                FArtworkAttempts := 0;
               end
               else
               begin
                 //Couldn't get artwork, so hide it
+                Inc(FArtworkAttempts);
                 imNowPlaying.Visible := False;
                 lblNoAlbumArt.Visible := True;
+              end;
+
+              if (FArtworkAttempts = MAX_ARTWORK_ATTEMPTS) then
+              begin
+                FCurrentlyDisplayedArtwork := PL[i].Artist + ':' + PL[i].Album;
+                FArtworkAttempts := 0;
               end;
             end;
           end
           else
           begin
-            //Todo maybe stick this show/hide stuff in another function
             //No album information to get art with
             imNowPlaying.Visible := False;
             lblNoAlbumArt.Visible := True;

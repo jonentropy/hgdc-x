@@ -44,6 +44,11 @@ type
     edtPwd: TEdit;
     gbHGDServer: TGroupBox;
     gbNowPlaying: TGroupBox;
+    imServer: TImage;
+    imPort: TImage;
+    imUserNormal: TImage;
+    imPassword: TImage;
+    imUserAdmin: TImage;
     imVoteOff: TImage;
     imSettings: TImage;
     imNowPlaying: TImage;
@@ -365,6 +370,9 @@ begin
         imVoteOff.Visible := True
     else
       imVoteoff.Visible := False;
+
+    imUserAdmin.Visible := FClient.UserIsAdmin;
+    imUserNormal.Visible := not FClient.UserIsAdmin;
   end;
 end;
 

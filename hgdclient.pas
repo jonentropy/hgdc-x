@@ -112,6 +112,7 @@ type
       property HostPort: string read FHostPort write SetHostPort;
       property SSL: boolean read FSSL write FSSL;
       property Encrypted: boolean read FEncrypted;
+      property UserIsAdmin: boolean read FUserIsAdmin;
   end;
 
 implementation
@@ -163,6 +164,8 @@ begin
 
   if Assigned(Socket) then
     FreeAndNil(Socket);
+
+  FUserIsAdmin := False;
 end;
 
 function THGDClient.Connect(): boolean;
@@ -463,6 +466,7 @@ end;
 
 procedure THGDClient.ApplyChanges;
 begin
+  FUserIsAdmin := False;
   if Connect() then
     if SendUser(FUsername, FPassword) then
       FUserIsAdmin := IsAdmin();
@@ -516,7 +520,10 @@ begin
     Log('User is admin.');
   end
   else
+  begin
+    Result := False;
     Log('User is not admin.');
+  end;
 
   Packets.Free();
 end;

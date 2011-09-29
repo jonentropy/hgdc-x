@@ -34,6 +34,7 @@ type
 
   TfrmMain = class(TForm)
     Bevel1: TBevel;
+    btnSkip: TBitBtn;
     btnSubmit: TBitBtn;
     btnHGDApply: TButton;
     btnCrapSong: TBitBtn;
@@ -56,6 +57,7 @@ type
     imDebug: TImage;
     imSecure: TImage;
     imAbout: TImage;
+    imSkip: TImage;
     lblSampleRate: TLabel;
     lblGenre: TLabel;
     lblDuration: TLabel;
@@ -79,6 +81,7 @@ type
     XMLPropStorage1: TXMLPropStorage;
     procedure btnCrapSongClick(Sender: TObject);
     procedure btnHGDApplyClick(Sender: TObject);
+    procedure btnSkipClick(Sender: TObject);
     procedure btnSubmitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -96,6 +99,7 @@ type
     FLastFM: TLastFM;
     FCurrentlyDisplayedArtwork: string;
     FVotedOffId: integer;
+    FSkippedID: integer;
     FArtworkAttempts: integer;
     procedure Log(Message: string);
     procedure ShowNowPlaying(b: boolean);
@@ -131,6 +135,13 @@ begin
   FClient.ApplyChanges();
   tmrPlaylist.Enabled := True;
   tmrPlayListTimer(Self);
+end;
+
+procedure TfrmMain.btnSkipClick(Sender: TObject);
+begin
+  if sgPlaylist.RowCount > 1 then
+    if FClient.SkipTrack() then
+      FSkippedID := StrToInt(sgPlaylist.Cells[0,1]);
 end;
 
 procedure TfrmMain.btnCrapSongClick(Sender: TObject);
@@ -173,6 +184,7 @@ begin
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';
   FVotedOffId := -1;
+  FSkippedID := -1;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -237,6 +249,10 @@ begin
 
     if Length(PL) > 0 then
     begin
+      //There are some items in the playlist
+      btnSkip.Enabled := FClient.State >= hsAuthenticated;
+      btnCrapSong.Enabled := True;
+
       for i := 0 to Length(PL) - 1 do
       begin
         sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
@@ -322,7 +338,10 @@ begin
       lblSampleRate.Caption := '';
       lblDuration.Caption := '';
       lblNoPlaylist.Visible := True;
+      btnSkip.Enabled := False;
+      btnCrapSong.Enabled := False;
       FVotedOffId := -1;
+      FSkippedID := -1;
       FCurrentlyDisplayedArtwork := '';
       imNowPlaying.Picture.Clear;
       imNowPlaying.Visible := False;
@@ -362,7 +381,8 @@ begin
       chkSSL.Font.Style:= [];
 
     btnSubmit.Enabled := FClient.State >= hsAuthenticated;
-    btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
+  //  btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
+   // btnSkip.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);
 
     if (sgPlaylist.RowCount > 1) and
@@ -371,8 +391,15 @@ begin
     else
       imVoteoff.Visible := False;
 
+    if (sgPlaylist.RowCount > 1) and
+      (FSkippedID = StrToInt(sgPlaylist.Cells[0,1])) then
+        imSkip.Visible := True
+    else
+      imSkip.Visible := False;
+
     imUserAdmin.Visible := FClient.UserIsAdmin;
     imUserNormal.Visible := not FClient.UserIsAdmin;
+    btnSkip.Visible := FClient.UserIsAdmin;
   end;
 end;
 

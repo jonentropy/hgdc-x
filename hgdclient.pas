@@ -103,6 +103,7 @@ type
       function GetPlaylist(var PList: TPlaylist): boolean;
       function QueueSong(Filename: string): boolean;
       function VoteOff(id: integer): boolean;
+      function SkipTrack: boolean;
 
       property State: THGDCState read FState;
       property StatusMessage: string read FStatusMessage;
@@ -418,6 +419,35 @@ begin
     Log('Vote off Failed');
     FStatusMessage := 'Error voting track off ' + Msg;
   end;
+end;
+
+function THGDClient.SkipTrack: boolean;
+var
+  Reply, Msg: string;
+begin
+  Result := False;
+  if FUserIsAdmin then
+  begin
+    Log('Skipping song...');
+    Socket.SendString('skip' + ProtoLineEnding);
+    Reply := ReceiveString();
+    Log('skip reply: ' + Reply);
+
+    Result := ProcessReply(Reply, Msg);
+
+    if Result then
+    begin
+      Log('Skip Successful');
+      FStatusMessage := 'Skipped';
+    end
+    else
+    begin
+      Log('Skip Failed');
+      FStatusMessage := 'Error skipping song ' + Msg;
+    end;
+  end
+  else
+    Log('User is not admin, not skipping.');
 end;
 
 procedure THGDClient.ParseHGDPacket(Packet: string; List: TStringList);

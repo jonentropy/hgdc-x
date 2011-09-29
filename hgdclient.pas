@@ -72,10 +72,12 @@ type
       FState: THGDCState;
       FStatusMessage: string;
       FDebugMemo: TMemo;
+      FUserIsAdmin: boolean;
 
       function Connect: boolean;
       procedure Disconnect;
       function CheckProto: boolean;
+      function IsAdmin: boolean;
       procedure Log(Message: string);
       procedure ParseHGDPacket(Packet: string; List: TStringList);
       function ProcessReply(Reply: string; var Msg: string): boolean;
@@ -121,6 +123,7 @@ constructor THGDClient.Create(HostAddress, HostPort, UserName,
 begin
   FState := hsDisconnected;
   FStatusMessage := 'Disconnected';
+  FUserIsAdmin := False;
 
   //2 second socket timeout
   Timeout := 2000;
@@ -461,7 +464,8 @@ end;
 procedure THGDClient.ApplyChanges;
 begin
   if Connect() then
-    SendUser(FUsername, FPassword);
+    if SendUser(FUsername, FPassword) then
+      FUserIsAdmin := IsAdmin();
 end;
 
 function THGDClient.SendUser(Username, Password: string): boolean;
@@ -488,6 +492,33 @@ begin
     FState := hsConnected;
     FStatusMessage := 'Error logging in: ' + Msg;
   end;
+end;
+
+function THGDClient.IsAdmin: boolean;
+var
+  Reply, Msg: string;
+  Packets: TStringList;
+begin
+  Result := False;
+  Log('Checking admin status...');
+  Socket.SendString('id' + ProtoLineEnding);
+  Reply := ReceiveString();
+  Log('id reply: ' + Reply);
+
+  Result := ProcessReply(Reply, Msg);
+  Packets := TStringList.Create();
+  Packets.Clear();
+  ParseHGDPacket(Reply, Packets);
+
+  if Result and (Packets[2] = '1') then
+  begin
+    Result := True;
+    Log('User is admin.');
+  end
+  else
+    Log('User is not admin.');
+
+  Packets.Free();
 end;
 
 procedure THGDClient.Log(Message: string);

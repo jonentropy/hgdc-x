@@ -351,7 +351,6 @@ begin
     imSecure.Visible := FClient.Encrypted;
     imInsecure.Visible := not FClient.Encrypted;
 
-    //Todo this doesn't display under GTK
     if (not FClient.Encrypted) and (chkSSL.Checked) then
       chkSSL.Font.Style:= [fsStrikeOut]
     else

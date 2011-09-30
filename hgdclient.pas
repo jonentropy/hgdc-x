@@ -470,20 +470,6 @@ begin
   begin
     Result := False;
     Log('Error Occurred: ' + Msg);
-
-    //check if the server is booting us
-    if Pos('Catch you later d00d!', Reply) > 0 then
-    begin
-      Log('We got booted, Catch you later d00d!');
-      try
-        FreeAndNil(Socket);
-      except
-        //Keep SSL errors from appearing
-      end;
-
-      FState := hsDisconnected;
-      FStatusMessage := 'Not connected';
-    end;
   end
   else
   begin
@@ -491,6 +477,19 @@ begin
     Log('"ok" or "err" not found in packet. Reading all remaining bytes...');
     //Something has gone wrong, so read all remaining bytes in the packet.
     Socket.RecvPacket(Timeout);
+  end;
+  //check if the server is booting us
+  if Pos('Catch you later d00d!', Reply) > 0 then
+  begin
+    Log('We got booted, Catch you later d00d!');
+    try
+      FreeAndNil(Socket);
+    except
+      //Keep SSL errors from appearing
+    end;
+
+    FState := hsDisconnected;
+    FStatusMessage := 'Not connected';
   end;
 end;
 

@@ -15,6 +15,10 @@ Icons are from the Fat Cow icon set, which is Creative Commons licensed and can 
 
 There is an IRC room at #hgdcx on irc.freenode.net. I can be found in there for any questions or conversation about hgdc-x. Commits are also posted there as they happen.
 
+Thanks to the hgd developers for such a great music daemon, and hence opportunity for this client to exist.
+Thanks to Hannah for "GUI consultancy" and Ed for Mac OS X testing.
+
 Copyright (C) Tristan Linnell 2011
+http://canthack.org
 
 [![Buy me a beer, Flattr hgdc-x](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/401840/hgdc-x)

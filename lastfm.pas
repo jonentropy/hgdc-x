@@ -25,7 +25,7 @@ unit LastFM;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls, HTTPSend, SynaCode, XMLRead, DOM;
+  Classes, SysUtils, ExtCtrls, HTTPSend, SynaCode, XMLRead, DOM, FileUtil;
 
 const
   API_ROOT_URL = 'http://ws.audioscrobbler.com/2.0/';
@@ -41,6 +41,7 @@ type
     private
       FUserName: string;
       FSessionKey: string;
+      FCacheDirectory: string;
 
       function ReadSettings: boolean;
       procedure SaveSettings;
@@ -51,6 +52,7 @@ type
 
       constructor Create; overload;
       constructor Create(User: string); overload;
+      constructor Create(User: string; CacheDirectory: string); overload;
 
       destructor Destroy;
   end;
@@ -79,8 +81,20 @@ var
   Found: boolean;
   CoverURL: string;
   ImStr: string;
+  CacheName: string;
 begin
   Result := False;
+
+  //Todo: sanitise this
+  CacheName := FCacheDirectory + DirectorySeparator + Artist + '-' + Album + '.png';
+
+  if (FCacheDirectory <> '') and
+    (FileExistsUTF8(CacheName)) then
+  begin
+    CoverImage.Picture.LoadFromFile(CacheName);
+    Exit(True);
+  end;
+
   Connection := THTTPSend.Create();
   XMLResponse := TXMLDocument.Create();
 
@@ -132,6 +146,8 @@ begin
         if Connection.HTTPMethod('GET', CoverURL) then
         begin
           CoverImage.Picture.LoadFromStream(Connection.Document);
+          //cache that shit
+          CoverImage.Picture.SaveToFile(CacheName, 'png');
           Result := True;
         end;
       end;
@@ -152,6 +168,16 @@ constructor TLastFM.Create(User: string);
 begin
   FUserName := User;
   Create();
+end;
+
+constructor TLastFM.Create(User: string; CacheDirectory: string);
+begin
+  if ForceDirectoriesUTF8(CacheDirectory) then
+    FCacheDirectory := CacheDirectory
+  else
+    FCacheDirectory := '';
+
+  Create(User);
 end;
 
 destructor TLastFM.Destroy;

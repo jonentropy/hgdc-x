@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 429
+  Left = 301
   Height = 660
-  Top = 77
+  Top = 48
   Width = 583
   Caption = 'hgdc-x'
   ClientHeight = 660
@@ -713,6 +713,7 @@ object frmMain: TfrmMain
       Width = 64
       ParentShowHint = False
       ShowHint = True
+      Stretch = True
     end
     object imVoteOff: TImage
       Left = 8

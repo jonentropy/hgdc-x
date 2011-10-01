@@ -198,7 +198,7 @@ begin
   FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text,
     edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
 
-  FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text);
+  FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text, GetAppConfigDirUTF8(False));
   tmrPlaylistTimer(Self);
 end;
 

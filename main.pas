@@ -292,13 +292,9 @@ begin
               imNowPlaying.Visible := True;
               Bevel1.Visible := True;
 
-              Log('ATTEMPT ' + IntToStr(FArtworkAttempts + 1) +
-                ' TO GET ARTWORK FROM LAST.FM');
-
               if FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
                   imNowPlaying) then
               begin
-                Log('LAST.FM ARTWORK OBTAINED!');
                 FCurrentlyDisplayedArtwork := PL[i].Artist + ':' + PL[i].Album;
                 FArtworkAttempts := 0;
               end

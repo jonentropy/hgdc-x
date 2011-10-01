@@ -44,6 +44,7 @@ type
       FCacheDirectory: string;
 
       function ReadSettings: boolean;
+      function ReplaceIllegalFilenameChars(Input: string): string;
       procedure SaveSettings;
 
     public
@@ -85,8 +86,8 @@ var
 begin
   Result := False;
 
-  //Todo: sanitise this
-  CacheName := FCacheDirectory + DirectorySeparator + Artist + '-' + Album + '.png';
+  CacheName := FCacheDirectory + DirectorySeparator
+    + ReplaceIllegalFilenameChars(Artist + '-' + Album) + '.png';
 
   if (FCacheDirectory <> '') and
     (FileExistsUTF8(CacheName)) then
@@ -128,7 +129,7 @@ begin
           ImStr := 'medium';
         end;
 
-        while ((not Found) and (Node.Attributes.Item[0].NodeValue <> ImStr)) do
+        while (not Found) and (Node.Attributes.Item[0].NodeValue <> ImStr) do
         begin
           if Node.NextSibling.NodeName = 'image' then
             Node := Node.NextSibling
@@ -146,8 +147,12 @@ begin
         if Connection.HTTPMethod('GET', CoverURL) then
         begin
           CoverImage.Picture.LoadFromStream(Connection.Document);
-          //cache that shit
-          CoverImage.Picture.SaveToFile(CacheName, 'png');
+
+          //Cache album art...
+          if (FCacheDirectory <> '') and
+            DirectoryIsWritable(FCacheDirectory) then
+              CoverImage.Picture.SaveToFile(CacheName, 'png');
+
           Result := True;
         end;
       end;
@@ -156,7 +161,6 @@ begin
     XMLResponse.Free();
     Connection.Free();
   end;
-
 end;
 
 constructor TLastFM.Create;
@@ -183,6 +187,19 @@ end;
 destructor TLastFM.Destroy;
 begin
 
+end;
+
+function TLastFM.ReplaceIllegalFilenameChars(Input: string): string;
+begin
+  Result := StringReplace(Input, '/', '-', [rfReplaceAll]);
+  Result := StringReplace(Result, '\', '-', [rfReplaceAll]);
+  Result := StringReplace(Result, ':', '-', [rfReplaceAll]);
+  Result := StringReplace(Result, '*', '-', [rfReplaceAll]);
+  Result := StringReplace(Result, '<', '-', [rfReplaceAll]);
+  Result := StringReplace(Result, '>', '-', [rfReplaceAll]);
+  Result := StringReplace(Result, '?', '-', [rfReplaceAll]);
+  Result := StringReplace(Result, '"', '-', [rfReplaceAll]);
+  Result := StringReplace(Result, '|', '-', [rfReplaceAll]);
 end;
 
 end.

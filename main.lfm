@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 301
+  Left = 531
   Height = 660
-  Top = 48
+  Top = 51
   Width = 583
   Caption = 'hgdc-x'
   ClientHeight = 660
@@ -197,12 +197,12 @@ object frmMain: TfrmMain
     Top = 8
     Width = 274
     Caption = 'HGD Server'
-    ClientHeight = 191
+    ClientHeight = 189
     ClientWidth = 270
     TabOrder = 0
     object edtHost: TEdit
       Left = 112
-      Height = 25
+      Height = 27
       Top = 6
       Width = 150
       TabOrder = 0
@@ -210,15 +210,15 @@ object frmMain: TfrmMain
     end
     object edtPort: TEdit
       Left = 112
-      Height = 25
-      Top = 46
+      Height = 27
+      Top = 40
       Width = 150
       TabOrder = 2
       Text = '6633'
     end
     object edtPwd: TEdit
       Left = 112
-      Height = 25
+      Height = 27
       Top = 94
       Width = 150
       EchoMode = emPassword
@@ -227,40 +227,40 @@ object frmMain: TfrmMain
     end
     object edtUser: TEdit
       Left = 112
-      Height = 25
-      Top = 70
+      Height = 27
+      Top = 67
       Width = 150
       TabOrder = 3
     end
     object lblPassword: TLabel
       Left = 34
-      Height = 16
-      Top = 98
-      Width = 60
+      Height = 18
+      Top = 103
+      Width = 64
       Caption = 'Password:'
       ParentColor = False
     end
     object lblUser: TLabel
       Left = 34
-      Height = 16
-      Top = 74
-      Width = 32
+      Height = 18
+      Top = 76
+      Width = 35
       Caption = 'User:'
       ParentColor = False
     end
     object lblPort: TLabel
       Left = 34
-      Height = 16
-      Top = 50
-      Width = 29
+      Height = 18
+      Top = 49
+      Width = 31
       Caption = 'Port:'
       ParentColor = False
     end
     object lblHost: TLabel
       Left = 34
-      Height = 16
+      Height = 18
       Top = 10
-      Width = 32
+      Width = 35
       Caption = 'Host:'
       Layout = tlBottom
       ParentColor = False
@@ -269,7 +269,7 @@ object frmMain: TfrmMain
       Left = 6
       Height = 25
       Hint = 'Apply changes to the connection settings.'
-      Top = 126
+      Top = 128
       Width = 256
       Caption = 'Apply'
       Default = True
@@ -280,9 +280,9 @@ object frmMain: TfrmMain
     end
     object chkSSL: TCheckBox
       Left = 32
-      Height = 24
+      Height = 22
       Hint = 'Encrypt connection to server (if server supports it).'
-      Top = 29
+      Top = 25
       Width = 49
       Caption = 'SSL'
       ParentFont = False
@@ -371,7 +371,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object imServer: TImage
-      Left = 6
+      Left = 8
       Height = 16
       Top = 10
       Width = 16
@@ -397,9 +397,9 @@ object frmMain: TfrmMain
       }
     end
     object imPort: TImage
-      Left = 6
+      Left = 8
       Height = 16
-      Top = 50
+      Top = 49
       Width = 16
       ParentShowHint = False
       Picture.Data = {
@@ -463,9 +463,9 @@ object frmMain: TfrmMain
       Visible = False
     end
     object imPassword: TImage
-      Left = 6
+      Left = 8
       Height = 16
-      Top = 98
+      Top = 103
       Width = 16
       ParentShowHint = False
       Picture.Data = {
@@ -502,10 +502,10 @@ object frmMain: TfrmMain
       }
     end
     object imUserAdmin: TImage
-      Left = 6
+      Left = 8
       Height = 16
       Hint = 'User is an administrator.'
-      Top = 74
+      Top = 76
       Width = 16
       ParentShowHint = False
       Picture.Data = {
@@ -641,7 +641,7 @@ object frmMain: TfrmMain
     Width = 288
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 144
+    ClientHeight = 142
     ClientWidth = 284
     TabOrder = 4
     Visible = False
@@ -660,7 +660,7 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 49
+      Top = 47
       Width = 288
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]

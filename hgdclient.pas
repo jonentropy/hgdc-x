@@ -82,6 +82,7 @@ type
       procedure ParseHGDPacket(Packet: string; List: TStringList);
       function ProcessReply(Reply: string; var Msg: string): boolean;
       function ReceiveString: string;
+      procedure SendString(St: string);
       procedure SetHostAddress(const AValue: string);
       procedure SetHostPort(const AValue: string);
       procedure SetPassword(const AValue: string);
@@ -157,7 +158,7 @@ procedure THGDClient.Disconnect();
 begin
   if FState >= hsConnected then
   begin
-    Socket.SendString('bye' + ProtoLineEnding);
+    SendString('bye');
     Socket.CloseSocket();
     FState := hsDisconnected;
     FStatusMessage := 'Not connected';
@@ -195,7 +196,7 @@ begin
     if FSSL then
     begin
       Log('Checking if server supprts encryption...');
-      Socket.SendString('encrypt?' + ProtoLineEnding);
+      SendString('encrypt?');
       Reply := ReceiveString();
       Log('encrypt? reply: ' + Reply);
 
@@ -208,12 +209,14 @@ begin
         //Todo, maybe add other encryption types here
 
         Log('Encrypting Socket...');
-        Socket.SendString('encrypt' + ProtoLineEnding);
+        SendString('encrypt');
         Socket.SSLDoConnect();
 
         if Socket.LastError <> 0 then //check for success start of SSL
         begin
-          FStatusMessage := 'Error setting SSL ' + IntToStr(Socket.LastError) + ' ' + Socket.LastErrorDesc;
+          FStatusMessage := 'Error setting SSL ' + IntToStr(Socket.LastError) +
+            ' ' + Socket.LastErrorDesc;
+
           FEncrypted := False;
           Socket.SSLDoShutdown();
           Exit(False);
@@ -271,7 +274,7 @@ var
 begin
   Result := False;
   Log('Getting Proto...');
-  Socket.SendString('proto' + ProtoLineEnding);
+  SendString('proto');
   Reply := ReceiveString();
   Log('proto reply: ' + Reply);
   if ProcessReply(Reply, Msg) then
@@ -300,7 +303,7 @@ begin
   if FState >= hsConnected then
   begin
     Log('Getting Playlist...');
-    Socket.SendString('ls' + ProtoLineEnding);
+    SendString('ls');
     Reply := ReceiveString();
     Log('ls reply: ' + Reply);
     if ProcessReply(Reply, Msg) then
@@ -356,8 +359,8 @@ begin
   Result := False;
   FileSizeValue := FileSize(Filename);
   Log('Queueing track ' + ExtractFilename(Filename) + '...');
-  Socket.SendString('q|' + ExtractFilename(Filename) + '|' +
-    IntToStr(FileSizeValue) + ProtoLineEnding);
+  SendString('q|' + ExtractFilename(Filename) + '|' +
+    IntToStr(FileSizeValue));
 
   Reply := ReceiveString();
   Log('q reply: ' + Reply);
@@ -403,7 +406,7 @@ var
 begin
   Result := False;
   Log('Crapping on song id ' + IntToStr(id) + '...');
-  Socket.SendString('vo|' + intToStr(id) + ProtoLineEnding);
+  SendString('vo|' + intToStr(id));
   Reply := ReceiveString();
   Log('vo reply: ' + Reply);
 
@@ -429,7 +432,7 @@ begin
   if FUserIsAdmin then
   begin
     Log('Skipping song...');
-    Socket.SendString('skip' + ProtoLineEnding);
+    SendString('skip');
     Reply := ReceiveString();
     Log('skip reply: ' + Reply);
 
@@ -507,7 +510,7 @@ var
 begin
   Result := False;
   Log('Sending username...');
-  Socket.SendString('user|' + Username + '|' + Password + ProtoLineEnding);
+  SendString('user|' + Username + '|' + Password);
   Reply := ReceiveString();
   Log('user reply: ' + Reply);
 
@@ -534,7 +537,7 @@ var
 begin
   Result := False;
   Log('Checking admin status...');
-  Socket.SendString('id' + ProtoLineEnding);
+  SendString('id');
   Reply := ReceiveString();
   Log('id reply: ' + Reply);
 
@@ -584,6 +587,11 @@ procedure THGDClient.SetUsername(const AValue: string);
 begin
   if FUsername = AValue then Exit;
   FUsername := AValue;
+end;
+
+procedure THGDClient.SendString(St: string);
+begin
+  Socket.SendString(St + ProtoLineEnding);
 end;
 
 function THGDClient.ReceiveString: string;

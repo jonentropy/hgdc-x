@@ -47,11 +47,12 @@
         <Filename Value="hgdcx.lpr"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="hgdcx1"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="15" Y="14"/>
-        <UsageCount Value="115"/>
+        <UsageCount Value="119"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -62,9 +63,9 @@
         <UnitName Value="Main"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="275"/>
-        <CursorPos X="30" Y="286"/>
-        <UsageCount Value="115"/>
+        <TopLine Value="381"/>
+        <CursorPos X="45" Y="407"/>
+        <UsageCount Value="119"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -80,12 +81,11 @@
         <Filename Value="hgdclient.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="HGDClient"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="558"/>
-        <CursorPos X="32" Y="592"/>
-        <UsageCount Value="115"/>
+        <TopLine Value="457"/>
+        <CursorPos X="31" Y="472"/>
+        <UsageCount Value="119"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -136,7 +136,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="71" Y="37"/>
-        <UsageCount Value="97"/>
+        <UsageCount Value="101"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit9>
@@ -167,8 +167,8 @@
         <Filename Value="libs/synapse/ssl_openssl_lib.pas"/>
         <UnitName Value="ssl_openssl_lib"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1224"/>
-        <CursorPos X="71" Y="1243"/>
+        <TopLine Value="1195"/>
+        <CursorPos X="36" Y="1210"/>
         <UsageCount Value="11"/>
       </Unit13>
       <Unit14>
@@ -234,7 +234,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="25"/>
         <CursorPos X="28" Y="153"/>
-        <UsageCount Value="73"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit21>
       <Unit22>
@@ -259,7 +259,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="62" Y="10"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit24>
@@ -269,7 +269,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="32"/>
+        <UsageCount Value="34"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit25>
@@ -330,7 +330,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="10"/>
         <CursorPos X="29" Y="28"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="69"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit32>
@@ -373,7 +373,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="49"/>
         <CursorPos X="3" Y="77"/>
-        <UsageCount Value="62"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit37>
@@ -404,124 +404,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="87" Column="1" TopLine="63"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="170" Column="15" TopLine="136"/>
       </Position1>
       <Position2>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="89" Column="1" TopLine="63"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="430" Column="18" TopLine="396"/>
       </Position2>
       <Position3>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="90" Column="5" TopLine="73"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="499" Column="15" TopLine="465"/>
       </Position3>
       <Position4>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="87" Column="1" TopLine="73"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="502" Column="30" TopLine="468"/>
       </Position4>
       <Position5>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="90" Column="1" TopLine="73"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="85" Column="28" TopLine="571"/>
       </Position5>
       <Position6>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="86" Column="96" TopLine="73"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="16" Column="36" TopLine="1"/>
       </Position6>
       <Position7>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="99" Column="20" TopLine="87"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="85" Column="27" TopLine="51"/>
       </Position7>
       <Position8>
-        <Filename Value="lastfm.pas"/>
-        <Caret Line="153" Column="28" TopLine="135"/>
+        <Filename Value="hgdclient.pas"/>
+        <Caret Line="161" Column="21" TopLine="127"/>
       </Position8>
       <Position9>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="81" Column="22" TopLine="49"/>
+        <Caret Line="199" Column="28" TopLine="165"/>
       </Position9>
       <Position10>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="531" Column="26" TopLine="504"/>
+        <Caret Line="212" Column="29" TopLine="178"/>
       </Position10>
       <Position11>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="81" Column="23" TopLine="60"/>
+        <Caret Line="277" Column="21" TopLine="243"/>
       </Position11>
       <Position12>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="117" Column="54" TopLine="83"/>
+        <Caret Line="306" Column="20" TopLine="272"/>
       </Position12>
       <Position13>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="129" Column="15" TopLine="95"/>
+        <Caret Line="363" Column="28" TopLine="328"/>
       </Position13>
       <Position14>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="170" Column="15" TopLine="136"/>
+        <Caret Line="409" Column="34" TopLine="375"/>
       </Position14>
       <Position15>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="430" Column="18" TopLine="396"/>
+        <Caret Line="435" Column="22" TopLine="401"/>
       </Position15>
       <Position16>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="499" Column="15" TopLine="465"/>
+        <Caret Line="513" Column="49" TopLine="479"/>
       </Position16>
       <Position17>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="502" Column="30" TopLine="468"/>
+        <Caret Line="540" Column="18" TopLine="506"/>
       </Position17>
       <Position18>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="85" Column="28" TopLine="571"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="286" Column="30" TopLine="275"/>
       </Position18>
       <Position19>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="16" Column="36" TopLine="1"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="293" Column="30" TopLine="282"/>
       </Position19>
       <Position20>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="85" Column="27" TopLine="51"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="145" Column="25" TopLine="118"/>
       </Position20>
       <Position21>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="161" Column="21" TopLine="127"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="13" Column="50" TopLine="1"/>
       </Position21>
       <Position22>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="199" Column="28" TopLine="165"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="262" Column="60" TopLine="227"/>
       </Position22>
       <Position23>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="212" Column="29" TopLine="178"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="347" Column="36" TopLine="312"/>
       </Position23>
       <Position24>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="277" Column="21" TopLine="243"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="16" Column="25" TopLine="1"/>
       </Position24>
       <Position25>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="306" Column="20" TopLine="272"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="37" Column="12" TopLine="3"/>
       </Position25>
       <Position26>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="363" Column="28" TopLine="328"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="86" Column="22" TopLine="52"/>
       </Position26>
       <Position27>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="409" Column="34" TopLine="375"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="148" Column="27" TopLine="114"/>
       </Position27>
       <Position28>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="435" Column="22" TopLine="401"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="261" Column="14" TopLine="227"/>
       </Position28>
       <Position29>
-        <Filename Value="hgdclient.pas"/>
-        <Caret Line="513" Column="49" TopLine="479"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="346" Column="14" TopLine="312"/>
       </Position29>
       <Position30>
         <Filename Value="hgdclient.pas"/>
-        <Caret Line="540" Column="18" TopLine="506"/>
+        <Caret Line="472" Column="31" TopLine="457"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

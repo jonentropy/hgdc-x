@@ -35,6 +35,7 @@ type
   TfrmMain = class(TForm)
     Bevel1: TBevel;
     btnSkip: TBitBtn;
+    btnPause: TBitBtn;
     btnSubmit: TBitBtn;
     btnHGDApply: TButton;
     btnCrapSong: TBitBtn;
@@ -81,6 +82,7 @@ type
     XMLPropStorage1: TXMLPropStorage;
     procedure btnCrapSongClick(Sender: TObject);
     procedure btnHGDApplyClick(Sender: TObject);
+    procedure btnPauseClick(Sender: TObject);
     procedure btnSkipClick(Sender: TObject);
     procedure btnSubmitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -135,6 +137,12 @@ begin
   FClient.ApplyChanges();
   tmrPlaylist.Enabled := True;
   tmrPlayListTimer(Self);
+end;
+
+procedure TfrmMain.btnPauseClick(Sender: TObject);
+begin
+  if sgPlaylist.RowCount > 1 then
+    FClient.Pause();
 end;
 
 procedure TfrmMain.btnSkipClick(Sender: TObject);
@@ -251,6 +259,7 @@ begin
     begin
       //There are some items in the playlist
       btnSkip.Enabled := FClient.State >= hsAuthenticated;
+      btnPause.Enabled := FClient.State >= hsAuthenticated;
       btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
 
       for i := 0 to Length(PL) - 1 do
@@ -335,6 +344,7 @@ begin
       lblDuration.Caption := '';
       lblNoPlaylist.Visible := True;
       btnSkip.Enabled := False;
+      btnPause.Enabled := False;
       btnCrapSong.Enabled := False;
       FVotedOffId := -1;
       FSkippedID := -1;
@@ -377,8 +387,6 @@ begin
       chkSSL.Font.Style:= [];
 
     btnSubmit.Enabled := FClient.State >= hsAuthenticated;
-  //  btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
-   // btnSkip.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);
 
     if (sgPlaylist.RowCount > 1) and
@@ -396,6 +404,7 @@ begin
     imUserAdmin.Visible := FClient.UserIsAdmin;
     imUserNormal.Visible := not FClient.UserIsAdmin;
     btnSkip.Visible := FClient.UserIsAdmin;
+    btnPause.Visible := FClient.UserIsAdmin;
   end;
 end;
 

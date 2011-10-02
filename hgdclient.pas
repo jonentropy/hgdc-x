@@ -105,7 +105,7 @@ type
       function QueueSong(Filename: string): boolean;
       function VoteOff(id: integer): boolean;
       function SkipTrack: boolean;
-
+      function Pause: boolean;
       property State: THGDCState read FState;
       property StatusMessage: string read FStatusMessage;
       property UserName: string read FUsername write SetUsername;
@@ -451,6 +451,34 @@ begin
   end
   else
     Log('User is not admin, not skipping.');
+end;
+
+function THGDClient.Pause: boolean;
+var
+  Reply, Msg: string;
+begin
+  Result := False;
+  if FUserIsAdmin then
+  begin
+    Log('Pausing...');
+    SendString('pause');
+    Reply := ReceiveString();
+    Log('pause reply: ' + Reply);
+
+    Result := ProcessReply(Reply, Msg);
+
+    if Result then
+    begin
+      Log('Pause Successful');
+    end
+    else
+    begin
+      Log('Pause Failed');
+      FStatusMessage := 'Error pausing ' + Msg;
+    end;
+  end
+  else
+    Log('User is not admin, not pausing.');
 end;
 
 procedure THGDClient.ParseHGDPacket(Packet: string; List: TStringList);

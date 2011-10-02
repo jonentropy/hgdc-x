@@ -60,11 +60,10 @@
         <ComponentName Value="frmMain"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="381"/>
-        <CursorPos X="45" Y="407"/>
+        <TopLine Value="1"/>
+        <CursorPos X="66" Y="305"/>
         <UsageCount Value="124"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -81,9 +80,10 @@
         <Filename Value="hgdclient.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="HGDClient"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="457"/>
+        <TopLine Value="1"/>
         <CursorPos X="31" Y="472"/>
         <UsageCount Value="124"/>
         <Loaded Value="True"/>
@@ -375,7 +375,6 @@
         <CursorPos X="3" Y="77"/>
         <UsageCount Value="71"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit37>
       <Unit38>
         <Filename Value="/lazarus/lcl/interfaces/win32/win32wsbuttons.pp"/>
@@ -402,7 +401,7 @@
         <UsageCount Value="10"/>
       </Unit40>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="hgdclient.pas"/>
         <Caret Line="170" Column="15" TopLine="136"/>
@@ -519,6 +518,10 @@
         <Filename Value="hgdclient.pas"/>
         <Caret Line="472" Column="31" TopLine="457"/>
       </Position29>
+      <Position30>
+        <Filename Value="main.pas"/>
+        <Caret Line="407" Column="45" TopLine="381"/>
+      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

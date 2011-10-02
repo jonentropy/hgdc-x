@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 531
+  Left = 387
   Height = 660
-  Top = 51
+  Top = 126
   Width = 583
   Caption = 'hgdc-x'
   ClientHeight = 660

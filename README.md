@@ -21,4 +21,4 @@ Thanks to Hannah for "GUI consultancy" and Ed for Mac OS X testing.
 Copyright (C) Tristan Linnell 2011
 http://canthack.org
 
-[![Buy me a beer, Flattr hgdc-x](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/401840/hgdc-x)
+If you find hgdc-x useful, please buy me a beer! :), [![Buy me a beer, Flattr hgdc-x](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/401840/hgdc-x)

@@ -25,6 +25,9 @@ unit HGDClient;
 interface
 
 uses
+  {$IFDEF UNIX}
+  Resolver,
+  {$ENDIF UNIX}
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
 
 const
@@ -176,6 +179,9 @@ end;
 function THGDClient.Connect(): boolean;
 var
   Reply, Msg: string;
+  {$IFDEF UNIX}
+    IP: string;
+  {$ENDIF UNIX}
 begin
   Disconnect();
 
@@ -188,7 +194,13 @@ begin
   Log('Connecting to hgd server (' + FHostAddress + ':' + FHostPort + ')...');
   FStatusMessage := 'Connecting...';
 
-  Socket.Connect(FHostAddress, FHostPort);
+  {$IFDEF UNIX}
+  if NameLookup(FHostAddress, IP) then
+    Socket.Connect(IP, FHostPort)
+    else
+  {$ENDIF UNIX}
+    Socket.Connect(FHostAddress, FHostPort);
+
   Reply := ReceiveString();
   Log('connect reply: ' + Reply);
 

@@ -26,7 +26,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Main, HGDClient, DebugLog, lastfm, settings, About
+  Forms, Main, HGDClient, DebugLog, lastfm, settings, About, Resolver
   { you can add units after this };
 
 {$R *.res}

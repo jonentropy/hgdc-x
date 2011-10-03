@@ -58,7 +58,6 @@ type
     imDebug: TImage;
     imSecure: TImage;
     imAbout: TImage;
-    imSkip: TImage;
     lblSampleRate: TLabel;
     lblGenre: TLabel;
     lblDuration: TLabel;
@@ -103,7 +102,10 @@ type
     FVotedOffId: integer;
     FSkippedID: integer;
     FArtworkAttempts: integer;
+    procedure DisableAllGUI;
+    procedure EnableAllGUI;
     procedure Log(Message: string);
+    procedure ProgressCallback(Percentage: integer);
     procedure ShowNowPlaying(b: boolean);
     procedure ShowStatus(Msg: string; Error: boolean);
 
@@ -163,28 +165,52 @@ procedure TfrmMain.btnSubmitClick(Sender: TObject);
 var
   i: integer;
 begin
-  TBitBtn(Sender).Enabled := False;
+  EnableAllGUI();
 
   if OpenDialog1.Execute() then
   begin
-    tmrPlayList.Enabled := False;
+
     Screen.Cursor := crHourglass;
-    Application.ProcessMessages;
 
     for i := 0 to OpenDialog1.Files.Count - 1 do
     begin
       if FCLient.State < hsAuthenticated then
         Break;
 
+      pbarUpload.Position := pbarUpload.Min;
+      pbarUpload.Visible := True;
       FClient.QueueSong(OpenDialog1.Files[i]);
+      pbarUpload.Visible := False;
     end;
 
-    tmrPlayList.Enabled := True;
-    tmrPlayListTimer(Self);
     Screen.Cursor := crDefault;
   end;
 
-  TBitBtn(Sender).Enabled := True;
+  DisableAllGUI();
+end;
+
+procedure TfrmMain.EnableAllGUI;
+begin
+  tmrPlayList.Enabled := False;
+  tmrState.Enabled := False;
+  btnSubmit.Enabled := False;
+  btnCrapSong.Enabled := False;
+  btnSkip.Enabled := False;
+  btnPause.Enabled := False;
+  btnHGDApply.Enabled := False;
+end;
+
+procedure TfrmMain.DisableAllGUI;
+begin
+  tmrPlayList.Enabled := True;
+  tmrPlayListTimer(Self);
+  btnSubmit.Enabled := True;
+  btnCrapSong.Enabled := True;
+  btnSkip.Enabled := True;
+  btnPause.Enabled := True;
+  tmrState.Enabled := True;
+  btnHGDApply.Enabled := True;
+  Self.SetFocus;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
@@ -206,8 +232,11 @@ begin
   FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text,
     edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
 
+  FClient.ProgressCallBack := @ProgressCallback;
+
   FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text, GetAppConfigDirUTF8(False));
   tmrPlaylistTimer(Self);
+  edtPwd.SetFocus;
 end;
 
 procedure TfrmMain.imAboutClick(Sender: TObject);
@@ -242,6 +271,12 @@ begin
     S := TStringGrid(Sender).Cells[aCol, aRow];
     TStringGrid(Sender).Canvas.TextOut(aRect.Left + 2, aRect.Top + 2, S);
   end;
+end;
+
+procedure TfrmMain.ProgressCallback(Percentage: integer);
+begin
+  pBarUpload.Position := Percentage;
+  Application.ProcessMessages;
 end;
 
 procedure TfrmMain.tmrPlaylistTimer(Sender: TObject);
@@ -395,12 +430,6 @@ begin
     else
       imVoteoff.Visible := False;
 
-    if (sgPlaylist.RowCount > 1) and
-      (FSkippedID = StrToInt(sgPlaylist.Cells[0,1])) then
-        imSkip.Visible := True
-    else
-      imSkip.Visible := False;
-
     imUserAdmin.Visible := FClient.UserIsAdmin;
     imUserNormal.Visible := not FClient.UserIsAdmin;
     btnSkip.Visible := FClient.UserIsAdmin;
@@ -410,7 +439,6 @@ end;
 
 procedure TfrmMain.ShowNowPlaying(b: boolean);
 begin
-  //Todo: this could be more complex
   gbNowPlaying.Visible := b;
 end;
 

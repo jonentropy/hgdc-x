@@ -55,6 +55,8 @@ type
 
   TPlaylist = array of TTrackInfo;
 
+  TProgressCallBack = procedure(Percentage: integer) of Object;
+
   { THGDClient }
 
   THGDClient = class
@@ -92,7 +94,7 @@ type
 
     public
       Timeout: integer;
-
+      ProgressCallBack: TProgressCallback;
       constructor Create(HostAddress, HostPort, UserName, Password: string;
         SSL: boolean); overload;
 
@@ -391,8 +393,8 @@ begin
         BlockRead(Fin, DataArray[0], SizeToSend);
         Socket.SendBuffer(@DataArray[0], SizeToSend);
 
-       // if Assigned(ProgressCallBack) then
-       //   ProgressCallBack();
+        if Assigned(ProgressCallBack) then
+          ProgressCallBack(Round((i * BLOCK_SIZE / FileSizeValue) * 100));
 
       end;
 

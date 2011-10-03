@@ -30,6 +30,7 @@ uses
 const
   HGD_PROTO_MAJOR: integer = 8;
   HGD_PROTO_MINOR: integer = 2;
+  BLOCK_SIZE: Int64 = 512 * 1024;
 
   //The hgd protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;
@@ -354,6 +355,8 @@ var
   Fin: File;
   DataArray: array of byte;
   FileSizeValue: Int64;
+  SizeToSend: Int64;
+  i: integer;
 begin
   //todo send track piece by piece, not all at same time
   Result := False;
@@ -371,18 +374,31 @@ begin
   begin
     Log('q successful, sending data...');
 
-    SetLength(DataArray, FileSizeValue);
+    SetLength(DataArray, BLOCK_SIZE);
     AssignFile(Fin, Filename);
 
     try
       FileMode := fmOpenRead;
       Reset(Fin, 1);
-      BlockRead(Fin, DataArray[0], FileSizeValue);
+
+      for i := 0 to (FileSizeValue div BLOCK_SIZE) do
+      begin
+        if (FileSizeValue - i * BLOCK_SIZE) > BLOCK_SIZE then
+          SizeToSend :=  BLOCK_SIZE
+        else
+          SizeToSend := FileSizeValue - i * BLOCK_SIZE;
+
+        BlockRead(Fin, DataArray[0], SizeToSend);
+        Socket.SendBuffer(@DataArray[0], SizeToSend);
+
+       // if Assigned(ProgressCallBack) then
+       //   ProgressCallBack();
+
+      end;
+
     finally
       CloseFile(fin);
     end;
-
-    Socket.SendBuffer(@DataArray[0], FileSizeValue);
 
     SetLength(DataArray, 0);
 

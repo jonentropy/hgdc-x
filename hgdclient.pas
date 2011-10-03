@@ -221,7 +221,7 @@ begin
           Socket.SSL.SSLType:= LT_TLSv1
         else
           Socket.SSL.SSLType := LT_all;
-        //Todo, maybe add other encryption types here
+        //Todo: maybe add other encryption types here
 
         Log('Encrypting Socket...');
         SendString('encrypt');
@@ -372,7 +372,6 @@ var
   SizeToSend: Int64;
   i: integer;
 begin
-  //todo send track piece by piece, not all at same time
   Result := False;
   FileSizeValue := FileSize(Filename);
   Log('Queueing track ' + ExtractFilename(Filename) + '...');

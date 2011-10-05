@@ -315,9 +315,13 @@ begin
         //Display now playing info
         if (i = 0) then
         begin
+          if PL[i].Title <> '' then
+            lblTitle.Caption := PL[i].Title
+          else
+            lblTitle.Caption := PL[i].Filename;
+
           if (PL[i].Artist <> '') and (PL[i].Album <> '') then
           begin
-            lblTitle.Caption := PL[i].Title;
             lblArtist.Caption := PL[i].Artist;
             lblAlbum.Caption := PL[i].Album;
             lblGenre.Caption := PL[i].Genre;

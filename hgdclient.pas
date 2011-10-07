@@ -31,8 +31,9 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
 
 const
-  HGD_PROTO_MAJOR: integer = 8;
-  HGD_PROTO_MINOR: integer = 2;
+  HGD_PROTO_MAJOR: integer = 9;
+  HGD_PROTO_MINOR: integer = 0;
+  HGD_NUM_TRACK_FIELDS: integer = 13;
   BLOCK_SIZE: Int64 = 512 * 1024;
 
   //The hgd protocol is telnet based, use CRLF as LineEnding
@@ -54,6 +55,7 @@ type
     SampleRate: integer;
     Channels: integer;
     Year: integer;
+    VoteCount: integer;
   end;
 
   TPlaylist = array of TTrackInfo;
@@ -338,7 +340,7 @@ begin
         PLStringList.Clear();
         ParseHGDPacket(Reply, PLStringList);
 
-        if PLStringList.Count >= 11 then
+        if PLStringList.Count >= (HGD_NUM_TRACK_FIELDS - 1) then
         begin
           PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0],
             0);
@@ -354,6 +356,7 @@ begin
           PList[Length(PList) - 1].SampleRate := StrToIntDef(PLStringList.Strings[9], 0);
           PList[Length(PList) - 1].Channels := StrToIntDef(PLStringList.Strings[10], 0);
           PList[Length(PList) - 1].Year := StrToIntDef(PLStringList.Strings[11], 0);
+          PList[Length(PList) - 1].VoteCount := StrToIntDef(PLStringList.Strings[12], -1);
         end;
       end;
 

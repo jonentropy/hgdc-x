@@ -128,6 +128,8 @@ implementation
 procedure TfrmMain.btnHGDApplyClick(Sender: TObject);
 begin
   tmrPlaylist.Enabled := False;
+  tmrStatus.Enabled := False;
+
   ShowStatus('Applying...', False);
 
   FClient.HostAddress := edtHost.Text;
@@ -137,6 +139,8 @@ begin
   FClient.SSL := chkSSL.Checked;
 
   FClient.ApplyChanges();
+
+  tmrStatus.Enabled := True;
   tmrPlaylist.Enabled := True;
   tmrPlayListTimer(Self);
 end;

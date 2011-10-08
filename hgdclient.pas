@@ -31,9 +31,9 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
 
 const
-  HGD_PROTO_MAJOR: integer = 9;
+  HGD_PROTO_MAJOR: integer = 10;
   HGD_PROTO_MINOR: integer = 0;
-  HGD_NUM_TRACK_FIELDS: integer = 13;
+  HGD_NUM_TRACK_FIELDS: integer = 14;
   BLOCK_SIZE: Int64 = 512 * 1024;
 
   //The hgd protocol is telnet based, use CRLF as LineEnding
@@ -56,6 +56,7 @@ type
     Channels: integer;
     Year: integer;
     VoteCount: integer;
+    Voted: boolean;
   end;
 
   TPlaylist = array of TTrackInfo;
@@ -357,6 +358,7 @@ begin
           PList[Length(PList) - 1].Channels := StrToIntDef(PLStringList.Strings[10], 0);
           PList[Length(PList) - 1].Year := StrToIntDef(PLStringList.Strings[11], 0);
           PList[Length(PList) - 1].VoteCount := StrToIntDef(PLStringList.Strings[12], -1);
+          PList[Length(PList) - 1].Voted := (PLStringList.Strings[13] = '1');
         end;
       end;
 

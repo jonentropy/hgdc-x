@@ -99,8 +99,6 @@ type
     FClient: THGDClient;
     FLastFM: TLastFM;
     FCurrentlyDisplayedArtwork: string;
-    FVotedOffId: integer;
-    FSkippedID: integer;
     FArtworkAttempts: integer;
     procedure DisableAllGUI;
     procedure EnableAllGUI;
@@ -154,15 +152,14 @@ end;
 procedure TfrmMain.btnSkipClick(Sender: TObject);
 begin
   if sgPlaylist.RowCount > 1 then
-    if FClient.SkipTrack() then
-      FSkippedID := StrToInt(sgPlaylist.Cells[0,1]);
+    FClient.SkipTrack();
 end;
 
 procedure TfrmMain.btnCrapSongClick(Sender: TObject);
 begin
   if sgPlaylist.RowCount > 1 then
     if FClient.VoteOff(StrToIntDef(sgPlaylist.Cells[0,1], -1)) then
-      FVotedOffId := StrToInt(sgPlaylist.Cells[0,1]);
+      imVoteOff.Visible := True;
 end;
 
 procedure TfrmMain.btnSubmitClick(Sender: TObject);
@@ -221,8 +218,6 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';
-  FVotedOffId := -1;
-  FSkippedID := -1;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -319,6 +314,8 @@ begin
         //Display now playing info
         if (i = 0) then
         begin
+          imVoteOff.Visible := PL[i].Voted;
+
           if PL[i].Title <> '' then
             lblTitle.Caption := PL[i].Title
           else
@@ -389,13 +386,12 @@ begin
       btnSkip.Enabled := False;
       btnPause.Enabled := False;
       btnCrapSong.Enabled := False;
-      FVotedOffId := -1;
-      FSkippedID := -1;
       FCurrentlyDisplayedArtwork := '';
       imNowPlaying.Picture.Clear;
       imNowPlaying.Visible := False;
       Bevel1.Visible := False;
       lblNoAlbumArt.Visible := False;
+      imVoteOff.Visible := False;
     end;
   end;
 end;
@@ -431,12 +427,6 @@ begin
 
     btnSubmit.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);
-
-    if (sgPlaylist.RowCount > 1) and
-      (FVotedOffId = StrToInt(sgPlaylist.Cells[0,1])) then
-        imVoteOff.Visible := True
-    else
-      imVoteoff.Visible := False;
 
     imUserAdmin.Visible := FClient.UserIsAdmin;
     imUserNormal.Visible := not FClient.UserIsAdmin;

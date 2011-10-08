@@ -128,7 +128,7 @@ implementation
 procedure TfrmMain.btnHGDApplyClick(Sender: TObject);
 begin
   tmrPlaylist.Enabled := False;
-  tmrStatus.Enabled := False;
+  tmrState.Enabled := False;
 
   ShowStatus('Applying...', False);
 
@@ -140,7 +140,7 @@ begin
 
   FClient.ApplyChanges();
 
-  tmrStatus.Enabled := True;
+  tmrState.Enabled := True;
   tmrPlaylist.Enabled := True;
   tmrPlayListTimer(Self);
 end;

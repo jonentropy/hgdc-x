@@ -608,7 +608,7 @@ begin
   Packets.Clear();
   ParseHGDPacket(Reply, Packets);
 
-  if Result and (Packets[2] = '1') then
+  if Result and ((Byte(StrToIntDef(Packets[2], 0)) and $01) = $01) then
   begin
     Result := True;
     Log('User is admin.');

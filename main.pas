@@ -33,6 +33,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    ApplicationProperties1: TApplicationProperties;
     Bevel1: TBevel;
     btnSkip: TBitBtn;
     btnPause: TBitBtn;
@@ -116,6 +117,7 @@ var
 
 const
   MAX_ARTWORK_ATTEMPTS = 3;
+  VERSION = '0.5.0';
 
 implementation
 
@@ -216,6 +218,7 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  Self.Caption := Self.Caption + ' ' +  VERSION;
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';
 end;

@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 504
+  Left = 493
   Height = 660
-  Top = 181
+  Top = 151
   Width = 583
   Caption = 'hgdc-x'
   ClientHeight = 660
@@ -845,6 +845,7 @@ object frmMain: TfrmMain
         0000000000003040C4FF3040C4FF000000000000000000000000000000000000
         0000000000003040C4FF3040C4FF0000000000000000FFFFFF00
       }
+      GlyphShowMode = gsmSystem
       OnClick = btnCrapSongClick
       ParentShowHint = False
       ShowHint = True
@@ -894,6 +895,7 @@ object frmMain: TfrmMain
         00000000000000000000B7813E95B57E39F7B47C37FFB47C37FFB47C37FFB57E
         39F7B7813E9500000000000000000000000000000000FFFFFF00
       }
+      GlyphShowMode = gsmSystem
       OnClick = btnSkipClick
       ParentShowHint = False
       ShowHint = True
@@ -944,6 +946,7 @@ object frmMain: TfrmMain
         00000000000000000000B7813E95B57E39F7B47C37FFB47C37FFB47C37FFB57E
         39F7B7813E9500000000000000000000000000000000FFFFFF00
       }
+      GlyphShowMode = gsmSystem
       OnClick = btnPauseClick
       ParentShowHint = False
       ShowHint = True

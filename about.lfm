@@ -257,14 +257,15 @@ object frmAbout: TfrmAbout
       0000000000003040C4FF3040C4FF000000000000000000000000000000000000
       0000000000003040C4FF3040C4FF0000000000000000FFFFFF00
     }
+    GlyphShowMode = gsmSystem
     OnClick = btnCloseClick
     TabOrder = 1
   end
   object lblCow: TLabel
     Left = 56
-    Height = 16
-    Top = 416
-    Width = 171
+    Height = 18
+    Top = 414
+    Width = 204
     Anchors = [akLeft, akBottom]
     Caption = 'Icons from the Fat Cow icon set.'
     ParentColor = False
@@ -290,9 +291,9 @@ object frmAbout: TfrmAbout
   end
   object lblSynapse: TLabel
     Left = 56
-    Height = 16
-    Top = 368
-    Width = 288
+    Height = 18
+    Top = 366
+    Width = 359
     Anchors = [akLeft, akBottom]
     Caption = 'Ararat Synapse Copyright (c)1999-2011, Lukas Gebauer'
     ParentColor = False
@@ -471,4 +472,4 @@ object frmAbout: TfrmAbout
     OnMouseEnter = imCatchThatMouseMouseEnter
     OnMouseLeave = imCatchThatMouseMouseLeave
   end
-end
+end

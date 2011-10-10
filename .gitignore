@@ -3,4 +3,4 @@ backup/
 hgdcx
 hgdcx.exe
 hgdcx.xml
-
+*.lps

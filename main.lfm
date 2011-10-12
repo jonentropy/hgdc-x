@@ -3,6 +3,7 @@ object frmMain: TfrmMain
   Height = 660
   Top = 151
   Width = 583
+  AllowDropFiles = True
   Caption = 'hgdc-x'
   ClientHeight = 660
   ClientWidth = 583
@@ -146,6 +147,7 @@ object frmMain: TfrmMain
   }
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnDropFiles = FormDropFiles
   OnShow = FormShow
   Position = poScreenCenter
   SessionProperties = 'chkScrobbling1.Checked;chkScrobbling.Checked;chkSSL.Checked;edtHost.Text;edtLastFMUser.Text;edtPort.Text;edtUser.Text;OpenDialog1.FileName;OpenDialog1.InitialDir'
@@ -192,7 +194,7 @@ object frmMain: TfrmMain
     OnDrawCell = sgPlaylistDrawCell
   end
   object gbHGDServer: TGroupBox
-    Left = 6
+    Left = 8
     Height = 208
     Top = 8
     Width = 274

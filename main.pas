@@ -87,6 +87,7 @@ type
     procedure btnSubmitClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
     procedure FormShow(Sender: TObject);
     procedure imAboutClick(Sender: TObject);
     procedure imDebugClick(Sender: TObject);
@@ -168,7 +169,7 @@ procedure TfrmMain.btnSubmitClick(Sender: TObject);
 var
   i: integer;
 begin
-  EnableAllGUI();
+  DisableAllGUI();
 
   if OpenDialog1.Execute() then
   begin
@@ -177,7 +178,7 @@ begin
 
     for i := 0 to OpenDialog1.Files.Count - 1 do
     begin
-      if FCLient.State < hsAuthenticated then
+      if FClient.State < hsAuthenticated then
         Break;
 
       pbarUpload.Position := pbarUpload.Min;
@@ -189,10 +190,10 @@ begin
     Screen.Cursor := crDefault;
   end;
 
-  DisableAllGUI();
+  EnableAllGUI();
 end;
 
-procedure TfrmMain.EnableAllGUI;
+procedure TfrmMain.DisableAllGUI;
 begin
   tmrPlayList.Enabled := False;
   tmrState.Enabled := False;
@@ -203,7 +204,7 @@ begin
   btnHGDApply.Enabled := False;
 end;
 
-procedure TfrmMain.DisableAllGUI;
+procedure TfrmMain.EnableAllGUI;
 begin
   tmrPlayList.Enabled := True;
   tmrPlayListTimer(Self);
@@ -227,6 +228,32 @@ procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   FLastFM.Free();
   FClient.Free();
+end;
+
+procedure TfrmMain.FormDropFiles(Sender: TObject;
+  const FileNames: array of String);
+var
+  i: integer;
+begin
+  if FClient.State >= hsAuthenticated then
+  begin
+    DisableAllGUI();
+    Screen.Cursor := crHourglass;
+
+    for i := Low(Filenames) to High(Filenames) do
+    begin
+      if FClient.State < hsAuthenticated then
+        Break;
+
+      pbarUpload.Position := pbarUpload.Min;
+      pbarUpload.Visible := True;
+      FClient.QueueSong(Filenames[i]);
+      pbarUpload.Visible := False;
+    end;
+
+    Screen.Cursor := crDefault;
+    EnableAllGUI();
+  end;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);

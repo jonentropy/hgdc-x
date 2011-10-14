@@ -132,6 +132,7 @@ begin
   tmrState.Enabled := False;
 
   ShowStatus('Applying...', False);
+  XMLPropStorage1.Save;
 
   FClient.HostAddress := edtHost.Text;
   FClient.HostPort := edtPort.Text;

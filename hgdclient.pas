@@ -28,7 +28,7 @@ uses
   {$IFDEF UNIX}
   Resolver,
   {$ENDIF UNIX}
-  Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
+  Classes, SysUtils, BlckSock, StdCtrls, FileUtil, LCLProc, ssl_openssl;
 
 const
   HGD_PROTO_MAJOR: integer = 11;
@@ -336,13 +336,12 @@ begin
         Reply := ReceiveString();
         Log('Playlist item ' + IntToStr(i) + ': ' + Reply);
 
-        SetLength(PList, Length(PList) + 1);
-
         PLStringList.Clear();
         ParseHGDPacket(Reply, PLStringList);
 
-        if PLStringList.Count >= (HGD_NUM_TRACK_FIELDS - 1) then
+        if PLStringList.Count >= HGD_NUM_TRACK_FIELDS then
         begin
+          SetLength(PList, Length(PList) + 1);
           PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0],
             0);
 

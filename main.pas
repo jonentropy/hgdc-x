@@ -313,6 +313,8 @@ var
   PL: TPlaylist;
   i: integer;
 begin
+  PL := nil;
+
   if Assigned(FClient) and (FClient.State >= hsConnected) then
   begin
     FClient.GetPlaylist(PL);
@@ -351,19 +353,17 @@ begin
           else
             lblTitle.Caption := PL[i].Filename;
 
+          lblArtist.Caption := PL[i].Artist;
+          lblAlbum.Caption := PL[i].Album;
+          lblGenre.Caption := PL[i].Genre;
+
+          if PL[i].Year > 0 then
+            lblYear.Caption := IntToStr(PL[i].Year)
+          else
+            lblYear.Caption := '';
+
           if (PL[i].Artist <> '') and (PL[i].Album <> '') then
           begin
-            lblArtist.Caption := PL[i].Artist;
-            lblAlbum.Caption := PL[i].Album;
-            lblGenre.Caption := PL[i].Genre;
-            lblYear.Caption := IntToStr(PL[i].Year);
-            {
-            These look a bit silly...
-            lblBitrate.Caption := IntToStr(PL[i].Bitrate);
-            lblSampleRate.Caption := IntToStr(PL[i].SampleRate);
-            lblDuration.Caption := IntToStr(PL[i].Duration);
-            }
-
             if ((PL[i].Artist + ':' + PL[i].Album) <>
               FCurrentlyDisplayedArtwork) then
             begin

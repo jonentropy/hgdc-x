@@ -132,7 +132,7 @@ begin
   tmrState.Enabled := False;
 
   ShowStatus('Applying...', False);
-  XMLPropStorage1.Save;
+  XMLPropStorage1.Save();
 
   FClient.HostAddress := edtHost.Text;
   FClient.HostPort := edtPort.Text;
@@ -174,7 +174,6 @@ begin
 
   if OpenDialog1.Execute() then
   begin
-
     Screen.Cursor := crHourglass;
 
     for i := 0 to OpenDialog1.Files.Count - 1 do
@@ -314,8 +313,6 @@ var
   PL: TPlaylist;
   i: integer;
 begin
-  sgPlaylist.RowCount := 1;
-
   if Assigned(FClient) and (FClient.State >= hsConnected) then
   begin
     FClient.GetPlaylist(PL);
@@ -326,6 +323,8 @@ begin
       btnSkip.Enabled := FClient.State >= hsAuthenticated;
       btnPause.Enabled := FClient.State >= hsAuthenticated;
       btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
+
+      sgPlaylist.RowCount := 1;
 
       for i := 0 to Length(PL) - 1 do
       begin
@@ -405,6 +404,7 @@ begin
     else
     begin
       //Nothing playing
+      sgPlaylist.RowCount := 1;
       lblTitle.Caption := '';
       lblArtist.Caption := '';
       lblAlbum.Caption := '';
@@ -424,7 +424,9 @@ begin
       lblNoAlbumArt.Visible := False;
       imVoteOff.Visible := False;
     end;
-  end;
+  end
+  else
+    sgPlaylist.RowCount := 1;
 end;
 
 procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);

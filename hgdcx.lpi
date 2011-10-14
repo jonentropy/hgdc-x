@@ -148,6 +148,7 @@
       <Debugging>
         <GenerateDebugInfo Value="True"/>
         <UseLineInfoUnit Value="False"/>
+        <UseHeaptrc Value="True"/>
       </Debugging>
       <Options>
         <Win32>

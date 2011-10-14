@@ -31,7 +31,7 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, ssl_openssl, LCLProc;
 
 const
-  HGD_PROTO_MAJOR: integer = 10;
+  HGD_PROTO_MAJOR: integer = 11;
   HGD_PROTO_MINOR: integer = 0;
   HGD_NUM_TRACK_FIELDS: integer = 14;
   BLOCK_SIZE: Int64 = 512 * 1024;

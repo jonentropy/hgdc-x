@@ -4149,7 +4149,7 @@ end;
 procedure TCustomSSL.ReturnError;
 begin
   FLastError := -1;
-  FLastErrorDesc := 'SSL/TLS support is not compiled!';
+  FLastErrorDesc := 'SSL/TLS support is not installed!';
 end;
 
 function TCustomSSL.LibVersion: String;

@@ -50,20 +50,20 @@ implementation
 
 function GetHGDCErrorMessage(ServerResp: string): string;
 begin
-  if ServerResp = HGD_RESP_E_INT then Result := 'Internal error'
-  else if ServerResp = HGD_RESP_E_DENY then Result := 'Access denied'
-  else if ServerResp = HGD_RESP_E_FLSIZE then Result := 'File size is invalid'
+  if ServerResp = HGD_RESP_E_INT then Result := 'Internal error.'
+  else if ServerResp = HGD_RESP_E_DENY then Result := 'Access denied.'
+  else if ServerResp = HGD_RESP_E_FLSIZE then Result := 'File size is invalid.'
   else if ServerResp = HGD_RESP_E_FLOOD then Result := 'Slow down, d00d!'
-  else if ServerResp = HGD_RESP_E_NOPLAY then Result := 'Nothing is playing'
-  else if ServerResp = HGD_RESP_E_WRTRK then Result := 'Wrong track'
-  else if ServerResp = HGD_RESP_E_DUPVOTE then Result := 'You have already voted'
-  else if ServerResp = HGD_RESP_E_SSLAGN then Result := 'Duplicate SSL Negotiation'
-  else if ServerResp = HGD_RESP_E_SSLNOAVAIL then Result := 'SSl in not available'
-  else if ServerResp = HGD_RESP_E_INVCMD then Result := 'Invalid command'
-  else if ServerResp = HGD_RESP_E_SSLREQ then result := 'SSL is required'
-  else if ServerResp = HGD_RESP_E_SHTDWN then result := 'Server is shutting down'
+  else if ServerResp = HGD_RESP_E_NOPLAY then Result := 'Nothing is playing.'
+  else if ServerResp = HGD_RESP_E_WRTRK then Result := 'Wrong track.'
+  else if ServerResp = HGD_RESP_E_DUPVOTE then Result := 'You have already voted.'
+  else if ServerResp = HGD_RESP_E_SSLAGN then Result := 'Duplicate SSL Negotiation.'
+  else if ServerResp = HGD_RESP_E_SSLNOAVAIL then Result := 'SSL in not available.'
+  else if ServerResp = HGD_RESP_E_INVCMD then Result := 'Invalid command.'
+  else if ServerResp = HGD_RESP_E_SSLREQ then result := 'SSL is required.'
+  else if ServerResp = HGD_RESP_E_SHTDWN then result := 'Server is shutting down.'
   else if ServerResp = HGD_RESP_E_KICK then Result := 'Stop misbehaving, d00d!'
-  else if ServerResp = HGD_RESP_E_PERMNOCHG then Result := 'Permissions already set'
+  else if ServerResp = HGD_RESP_E_PERMNOCHG then Result := 'Permissions have already been set.'
   else
     Result := 'Unknown Error Code';
 end;

@@ -135,7 +135,7 @@ constructor THGDClient.Create(HostAddress, HostPort, UserName,
   Password: string; SSL: boolean);
 begin
   FState := hsDisconnected;
-  FStatusMessage := 'Not connected';
+  FStatusMessage := 'Not connected.';
   FUserIsAdmin := False;
 
   //2 second socket timeout
@@ -270,21 +270,21 @@ begin
       FState := hsConnected;
       FStatusMessage := 'Connected (';
       if FEncrypted then
-        FStatusMessage := FStatusMessage + 'SSL)'
+        FStatusMessage := FStatusMessage + 'SSL).'
       else
-        FStatusMessage := FStatusMessage + 'no SSL)'
+        FStatusMessage := FStatusMessage + 'no SSL).'
     end
     else
     begin
       FState := hsDisconnected;
       Result := False;
-      FStatusMessage := 'Error: Protocol of server does not match client';
+      FStatusMessage := 'Error: Protocol of server does not match client.';
     end;
   end
   else
   begin
     FState := hsDisconnected;
-    FStatusMessage := 'Not connected';
+    FStatusMessage := 'Not connected.';
   end;
 end;
 
@@ -431,12 +431,12 @@ begin
 
     Result := ProcessReply(Reply, Msg);
     if Result then
-      FStatusMessage := 'Queued';
+      FStatusMessage := 'Queued.';
   end
   else
   begin
     Log('q Failed');
-    FStatusMessage := 'Error queueing track ' + GetHGDCErrorMessage(Msg);
+    FStatusMessage := 'Error queueing track. ' + GetHGDCErrorMessage(Msg);
   end;
 end;
 
@@ -455,12 +455,12 @@ begin
   if Result then
   begin
     Log('Vote off Successful');
-    FStatusMessage := 'Vote off succeeded';
+    FStatusMessage := 'Vote off succeeded.';
   end
   else
   begin
     Log('Vote off Failed');
-    FStatusMessage := 'Error voting track off ' + GetHGDCErrorMessage(Msg);
+    FStatusMessage := 'Error voting track off. ' + GetHGDCErrorMessage(Msg);
   end;
 end;
 
@@ -486,7 +486,7 @@ begin
     else
     begin
       Log('Skip Failed');
-      FStatusMessage := 'Error skipping song ' + GetHGDCErrorMessage(Msg);
+      FStatusMessage := 'Error skipping song. ' + GetHGDCErrorMessage(Msg);
     end;
   end
   else
@@ -514,7 +514,7 @@ begin
     else
     begin
       Log('Pause Failed');
-      FStatusMessage := 'Error pausing ' + GetHGDCErrorMessage(Msg);
+      FStatusMessage := 'Error pausing. ' + GetHGDCErrorMessage(Msg);
     end;
   end
   else
@@ -548,7 +548,7 @@ begin
     Log('"ok" or "err" not found in packet. Resetting...');
     //Something has gone wrong, so reset
     Disconnect();
-    FStatusMessage := 'Connection lost';
+    FStatusMessage := 'Connection lost.';
   end;
 
   //check if the server is booting us
@@ -562,7 +562,7 @@ begin
     end;
 
     FState := hsDisconnected;
-    FStatusMessage := 'Server closed connection: ' + GetHGDCErrorMessage(Msg);
+    FStatusMessage := 'Server closed connection. ' + GetHGDCErrorMessage(Msg);
     Log(FStatusMessage);
   end;
 end;
@@ -591,13 +591,13 @@ begin
   begin
     FState := hsAuthenticated;
     Log('SendUser Successful');
-    FStatusMessage := 'User authenticated';
+    FStatusMessage := 'User authenticated.';
   end
   else
   begin
     Log('SendUser Failed');
     FState := hsConnected;
-    FStatusMessage := 'Error logging in: ' + GetHGDCErrorMessage(Msg);
+    FStatusMessage := 'Error logging in. ' + GetHGDCErrorMessage(Msg);
   end;
 end;
 

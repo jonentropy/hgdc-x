@@ -154,8 +154,8 @@ object frmMain: TfrmMain
   LCLVersion = '0.9.30'
   object sgPlaylist: TStringGrid
     Left = 6
-    Height = 411
-    Top = 224
+    Height = 403
+    Top = 232
     Width = 570
     Anchors = [akTop, akLeft, akRight, akBottom]
     Columns = <    
@@ -195,11 +195,11 @@ object frmMain: TfrmMain
   end
   object gbHGDServer: TGroupBox
     Left = 8
-    Height = 208
+    Height = 216
     Top = 8
     Width = 274
     Caption = 'HGD Server'
-    ClientHeight = 189
+    ClientHeight = 197
     ClientWidth = 270
     TabOrder = 0
     object edtHost: TEdit
@@ -328,7 +328,7 @@ object frmMain: TfrmMain
     end
     object lblStatus: TLabel
       Left = 8
-      Height = 37
+      Height = 46
       Top = 153
       Width = 232
       AutoSize = False

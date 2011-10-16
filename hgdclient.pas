@@ -31,7 +31,7 @@ uses
   Classes, SysUtils, BlckSock, StdCtrls, FileUtil, LCLProc, ssl_openssl;
 
 const
-  HGD_PROTO_MAJOR: integer = 11;
+  HGD_PROTO_MAJOR: integer = 12;
   HGD_PROTO_MINOR: integer = 0;
   HGD_NUM_TRACK_FIELDS: integer = 14;
   BLOCK_SIZE: Int64 = 512 * 1024;
@@ -134,7 +134,7 @@ constructor THGDClient.Create(HostAddress, HostPort, UserName,
   Password: string; SSL: boolean);
 begin
   FState := hsDisconnected;
-  FStatusMessage := 'Disconnected';
+  FStatusMessage := 'Not connected';
   FUserIsAdmin := False;
 
   //2 second socket timeout
@@ -170,7 +170,6 @@ begin
     SendString('bye');
     Socket.CloseSocket();
     FState := hsDisconnected;
-    FStatusMessage := 'Not connected';
   end;
 
   if Assigned(Socket) then
@@ -198,9 +197,13 @@ begin
   FStatusMessage := 'Connecting...';
 
   {$IFDEF UNIX}
+  Log('Resolving ' + FHostAddress);
   if NameLookup(FHostAddress, IP) then
+  begin
+    Log('Resolved ' + FHostAddress + ' as ' + IP);
     Socket.Connect(IP, FHostPort)
-    else
+  end
+  else
   {$ENDIF UNIX}
     Socket.Connect(FHostAddress, FHostPort);
 
@@ -230,7 +233,7 @@ begin
         SendString('encrypt');
         Socket.SSLDoConnect();
 
-        if Socket.LastError <> 0 then //check for success start of SSL
+        if Socket.LastError <> 0 then //check for successful start of SSL
         begin
           FStatusMessage := 'Error setting SSL ' + IntToStr(Socket.LastError) +
             ' ' + Socket.LastErrorDesc;
@@ -538,9 +541,10 @@ begin
   else
   begin
     Result := False;
-    Log('"ok" or "err" not found in packet. Reading all remaining bytes...');
-    //Something has gone wrong, so read all remaining bytes in the packet.
-    Socket.RecvPacket(Timeout);
+    Log('"ok" or "err" not found in packet. Resetting...');
+    //Something has gone wrong, so reset
+    Disconnect();
+    FStatusMessage := 'Connection lost';
   end;
   //check if the server is booting us
   if Pos('Catch you later d00d!', Reply) > 0 then

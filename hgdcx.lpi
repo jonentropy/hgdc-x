@@ -87,7 +87,7 @@
       <Unit0>
         <Filename Value="hgdcx.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="hgdcx1"/>
+        <UnitName Value="hgdcx"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>

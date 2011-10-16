@@ -37,12 +37,15 @@ type
     Memo1: TMemo;
     procedure BitBtn1Click(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure Memo1Change(Sender: TObject);
   private
     { private declarations }
+    FUpdate: boolean;
   public
     { public declarations }
+    procedure Log(Message: string);
   end; 
 
 var
@@ -60,6 +63,12 @@ begin
     Memo1.Lines.Delete(0);
 end;
 
+procedure TfrmDebug.Log(Message: string);
+begin
+  if FUpdate then
+    Memo1.Lines.Add(Message);
+end;
+
 procedure TfrmDebug.BitBtn1Click(Sender: TObject);
 begin
   Memo1.Clear();
@@ -68,6 +77,11 @@ end;
 procedure TfrmDebug.btnCloseClick(Sender: TObject);
 begin
   Close();
+end;
+
+procedure TfrmDebug.FormCreate(Sender: TObject);
+begin
+  FUpdate := True;
 end;
 
 procedure TfrmDebug.FormKeyDown(Sender: TObject; var Key: Word;

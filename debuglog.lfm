@@ -145,6 +145,7 @@ object frmDebug: TfrmDebug
     0000
   }
   KeyPreview = True
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   ShowInTaskBar = stNever
   LCLVersion = '0.9.30'

@@ -28,10 +28,11 @@ uses
   {$IFDEF UNIX}
   Resolver,
   {$ENDIF UNIX}
-  Classes, SysUtils, BlckSock, StdCtrls, FileUtil, LCLProc, ssl_openssl;
+  Classes, SysUtils, BlckSock, StdCtrls, FileUtil, LCLProc, HGDConsts,
+  ssl_openssl;
 
 const
-  HGD_PROTO_MAJOR: integer = 12;
+  HGD_PROTO_MAJOR: integer = 13;
   HGD_PROTO_MINOR: integer = 0;
   HGD_NUM_TRACK_FIELDS: integer = 14;
   BLOCK_SIZE: Int64 = 512 * 1024;
@@ -432,7 +433,7 @@ begin
   else
   begin
     Log('q Failed');
-    FStatusMessage := 'Error queueing track ' + Msg;
+    FStatusMessage := 'Error queueing track ' + GetHGDCErrorMessage(Msg);
   end;
 end;
 
@@ -456,7 +457,7 @@ begin
   else
   begin
     Log('Vote off Failed');
-    FStatusMessage := 'Error voting track off ' + Msg;
+    FStatusMessage := 'Error voting track off ' + GetHGDCErrorMessage(Msg);
   end;
 end;
 
@@ -482,7 +483,7 @@ begin
     else
     begin
       Log('Skip Failed');
-      FStatusMessage := 'Error skipping song ' + Msg;
+      FStatusMessage := 'Error skipping song ' + GetHGDCErrorMessage(Msg);
     end;
   end
   else
@@ -510,7 +511,7 @@ begin
     else
     begin
       Log('Pause Failed');
-      FStatusMessage := 'Error pausing ' + Msg;
+      FStatusMessage := 'Error pausing ' + GetHGDCErrorMessage(Msg);
     end;
   end
   else
@@ -536,7 +537,7 @@ begin
   else if Pos('err', Reply) > 0 then
   begin
     Result := False;
-    Log('Error Occurred: ' + Msg);
+    Log('Error Occurred: ' + GetHGDCErrorMessage(Msg));
   end
   else
   begin
@@ -546,10 +547,11 @@ begin
     Disconnect();
     FStatusMessage := 'Connection lost';
   end;
+
   //check if the server is booting us
-  if Pos('Catch you later d00d!', Reply) > 0 then
+
+  if (Msg = HGD_RESP_E_SHTDWN) or (Msg = HGD_RESP_E_KICK) then
   begin
-    Log('We got booted, Catch you later d00d!');
     try
       FreeAndNil(Socket);
     except
@@ -557,7 +559,8 @@ begin
     end;
 
     FState := hsDisconnected;
-    FStatusMessage := 'Not connected';
+    FStatusMessage := 'Server closed connection: ' + GetHGDCErrorMessage(Msg);
+    Log(FStatusMessage);
   end;
 end;
 
@@ -591,7 +594,7 @@ begin
   begin
     Log('SendUser Failed');
     FState := hsConnected;
-    FStatusMessage := 'Error logging in: ' + Msg;
+    FStatusMessage := 'Error logging in: ' + GetHGDCErrorMessage(Msg);
   end;
 end;
 

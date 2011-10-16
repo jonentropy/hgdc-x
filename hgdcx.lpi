@@ -83,7 +83,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="hgdcx.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -132,6 +132,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Resolver"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="hgdconsts.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HGDConsts"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -147,8 +152,7 @@
     <Linking>
       <Debugging>
         <GenerateDebugInfo Value="True"/>
-        <UseLineInfoUnit Value="False"/>
-        <UseHeaptrc Value="True"/>
+        <UseValgrind Value="True"/>
       </Debugging>
       <Options>
         <Win32>

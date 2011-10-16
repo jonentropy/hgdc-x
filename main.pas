@@ -206,14 +206,15 @@ end;
 
 procedure TfrmMain.EnableAllGUI;
 begin
-  tmrPlayList.Enabled := True;
-  tmrPlayListTimer(Self);
   btnSubmit.Enabled := True;
   btnCrapSong.Enabled := True;
   btnSkip.Enabled := True;
   btnPause.Enabled := True;
-  tmrState.Enabled := True;
   btnHGDApply.Enabled := True;
+  tmrPlayList.Enabled := True;
+  tmrPlayListTimer(Self);
+  tmrState.Enabled := True;
+  tmrStateTimer(Self);
   Self.SetFocus;
 end;
 

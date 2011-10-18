@@ -1,11 +1,11 @@
 object frmAbout: TfrmAbout
-  Left = 795
-  Height = 455
-  Top = 98
-  Width = 514
+  Left = 454
+  Height = 531
+  Top = 141
+  Width = 557
   Caption = 'About hgdc-x'
-  ClientHeight = 455
-  ClientWidth = 514
+  ClientHeight = 531
+  ClientWidth = 557
   Color = clForm
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
@@ -152,7 +152,7 @@ object frmAbout: TfrmAbout
   object imCow: TImage
     Left = 12
     Height = 32
-    Top = 408
+    Top = 484
     Width = 32
     Anchors = [akLeft, akBottom]
     Picture.Data = {
@@ -205,19 +205,10 @@ object frmAbout: TfrmAbout
       BA0000000049454E44AE426082
     }
   end
-  object stAbout: TStaticText
-    Left = 56
-    Height = 296
-    Top = 64
-    Width = 448
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    Caption = 'hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2011, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'
-    TabOrder = 0
-  end
   object btnClose: TBitBtn
-    Left = 413
+    Left = 456
     Height = 30
-    Top = 410
+    Top = 486
     Width = 91
     Anchors = [akRight, akBottom]
     Caption = 'Close'
@@ -259,12 +250,12 @@ object frmAbout: TfrmAbout
     }
     GlyphShowMode = gsmSystem
     OnClick = btnCloseClick
-    TabOrder = 1
+    TabOrder = 0
   end
   object lblCow: TLabel
     Left = 56
     Height = 18
-    Top = 414
+    Top = 490
     Width = 204
     Anchors = [akLeft, akBottom]
     Caption = 'Icons from the Fat Cow icon set.'
@@ -277,7 +268,7 @@ object frmAbout: TfrmAbout
     Left = 0
     Height = 64
     Top = 0
-    Width = 507
+    Width = 550
     Alignment = taCenter
     Anchors = [akTop, akLeft, akRight]
     AutoSize = False
@@ -292,7 +283,7 @@ object frmAbout: TfrmAbout
   object lblSynapse: TLabel
     Left = 56
     Height = 18
-    Top = 366
+    Top = 442
     Width = 359
     Anchors = [akLeft, akBottom]
     Caption = 'Ararat Synapse Copyright (c)1999-2011, Lukas Gebauer'
@@ -356,7 +347,7 @@ object frmAbout: TfrmAbout
   object imSynapseCon: TImage
     Left = 12
     Height = 32
-    Top = 360
+    Top = 436
     Width = 32
     Anchors = [akLeft, akBottom]
     Picture.Data = {
@@ -416,7 +407,7 @@ object frmAbout: TfrmAbout
   object imSynapseDis: TImage
     Left = 12
     Height = 32
-    Top = 360
+    Top = 436
     Width = 32
     Anchors = [akLeft, akBottom]
     Picture.Data = {
@@ -466,10 +457,22 @@ object frmAbout: TfrmAbout
   object imCatchThatMouse: TImage
     Left = 12
     Height = 32
-    Top = 360
+    Top = 436
     Width = 32
     Anchors = [akLeft, akBottom]
     OnMouseEnter = imCatchThatMouseMouseEnter
     OnMouseLeave = imCatchThatMouseMouseLeave
+  end
+  object lblAbout: TLabel
+    Left = 56
+    Height = 368
+    Top = 64
+    Width = 491
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoSize = False
+    Caption = 'hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2011, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'
+    ParentColor = False
+    ShowAccelChar = False
+    WordWrap = True
   end
 end

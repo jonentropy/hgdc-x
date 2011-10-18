@@ -38,10 +38,10 @@ type
     imSynapseCon: TImage;
     imNote: TImage;
     imSynapseDis: TImage;
+    lblAbout: TLabel;
     lblCow: TLabel;
     lblSynapse: TLabel;
     lblhgdcx: TLabel;
-    stAbout: TStaticText;
     procedure btnCloseClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure imCatchThatMouseMouseEnter(Sender: TObject);

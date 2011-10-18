@@ -32,7 +32,7 @@ uses
   ssl_openssl;
 
 const
-  HGD_PROTO_MAJOR: integer = 13;
+  HGD_PROTO_MAJOR: integer = 16;
   HGD_PROTO_MINOR: integer = 0;
   HGD_NUM_TRACK_FIELDS: integer = 14;
   BLOCK_SIZE: Int64 = 512 * 1024;
@@ -617,7 +617,7 @@ begin
   Packets.Clear();
   ParseHGDPacket(Reply, Packets);
 
-  if Result and ((Byte(StrToIntDef(Packets[2], 0)) and $01) = $01) then
+  if Result and ((StrToIntDef(Packets[2], 0) and $01) = $01) then
   begin
     Result := True;
     Log('User is admin.');

@@ -343,8 +343,8 @@ begin
           if PLStringList.Count >= HGD_NUM_TRACK_FIELDS then
           begin
             SetLength(PList, Length(PList) + 1);
-            PList[Length(PList) - 1].Number := StrToIntDef(PLStringList.Strings[0],
-              0);
+            PList[Length(PList) - 1].Number :=
+            StrToIntDef(PLStringList.Strings[0], 0);
 
             PList[Length(PList) - 1].Filename := PLStringList.Strings[1];
             PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
@@ -352,12 +352,24 @@ begin
             PList[Length(PList) - 1].User := PLStringList.Strings[4];
             PList[Length(PList) - 1].Album := PLStringList.Strings[5];
             PList[Length(PList) - 1].Genre := PLStringList.Strings[6];
-            PList[Length(PList) - 1].Duration := StrToIntDef(PLStringList.Strings[7], 0);
-            PList[Length(PList) - 1].Bitrate := StrToIntDef(PLStringList.Strings[8], 0);
-            PList[Length(PList) - 1].SampleRate := StrToIntDef(PLStringList.Strings[9], 0);
-            PList[Length(PList) - 1].Channels := StrToIntDef(PLStringList.Strings[10], 0);
-            PList[Length(PList) - 1].Year := StrToIntDef(PLStringList.Strings[11], 0);
-            PList[Length(PList) - 1].VoteCount := StrToIntDef(PLStringList.Strings[12], -1);
+            PList[Length(PList) - 1].Duration :=
+              StrToIntDef(PLStringList.Strings[7], 0);
+
+            PList[Length(PList) - 1].Bitrate :=
+              StrToIntDef(PLStringList.Strings[8], 0);
+
+            PList[Length(PList) - 1].SampleRate :=
+              StrToIntDef(PLStringList.Strings[9], 0);
+
+            PList[Length(PList) - 1].Channels :=
+              StrToIntDef(PLStringList.Strings[10], 0);
+
+            PList[Length(PList) - 1].Year :=
+              StrToIntDef(PLStringList.Strings[11], 0);
+
+            PList[Length(PList) - 1].VoteCount :=
+              StrToIntDef(PLStringList.Strings[12], -1);
+
             PList[Length(PList) - 1].Voted := (PLStringList.Strings[13] = '1');
           end;
         end;

@@ -264,7 +264,9 @@ begin
 
   FClient.ProgressCallBack := @ProgressCallback;
 
-  FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text, GetAppConfigDirUTF8(False));
+  FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text,
+    GetAppConfigDirUTF8(False));
+
   tmrPlaylistTimer(Self);
   edtPwd.SetFocus;
 end;
@@ -462,8 +464,8 @@ begin
     btnSubmit.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);
 
-    imUserAdmin.Visible :=  FClient.State >= hsAdmin;
-    imUserNormal.Visible :=   FClient.State < hsAdmin;
+    imUserAdmin.Visible := FClient.State >= hsAdmin;
+    imUserNormal.Visible := FClient.State < hsAdmin;
     btnSkip.Visible := FClient.State >= hsAdmin;
     btnPause.Visible := FClient.State >= hsAdmin;
   end;

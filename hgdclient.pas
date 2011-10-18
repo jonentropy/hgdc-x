@@ -324,6 +324,7 @@ begin
     SendString('ls');
     Reply := ReceiveString();
     Log('ls reply: ' + Reply);
+
     if ProcessReply(Reply, Msg) then
     begin
       //Playlist came back OK. Parse it up, d00d...
@@ -461,22 +462,24 @@ begin
 
   //only do this if at least authenticated...
   if (FState >= hsAuthenticated) then
-  Log('Crapping on song id ' + IntToStr(id) + '...');
-  SendString('vo|' + intToStr(id));
-  Reply := ReceiveString();
-  Log('vo reply: ' + Reply);
-
-  Result := ProcessReply(Reply, Msg);
-
-  if Result then
   begin
-    Log('Vote off Successful');
-    FStatusMessage := 'Vote off succeeded.';
-  end
-  else
-  begin
-    Log('Vote off Failed');
-    FStatusMessage := 'Error voting track off. ' + GetHGDCErrorMessage(Msg);
+    Log('Crapping on song id ' + IntToStr(id) + '...');
+    SendString('vo|' + intToStr(id));
+    Reply := ReceiveString();
+    Log('vo reply: ' + Reply);
+
+    Result := ProcessReply(Reply, Msg);
+
+    if Result then
+    begin
+      Log('Vote off Successful');
+      FStatusMessage := 'Vote off succeeded.';
+    end
+    else
+    begin
+      Log('Vote off Failed');
+      FStatusMessage := 'Error voting track off. ' + GetHGDCErrorMessage(Msg);
+    end;
   end;
 end;
 

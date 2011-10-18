@@ -384,59 +384,64 @@ var
   i: integer;
 begin
   Result := False;
-  FileSizeValue := FileSize(Filename);
-  Log('Queueing track ' + ExtractFilename(Filename) + '...');
-  SendString('q|' + ExtractFilename(Filename) + '|' +
-    IntToStr(FileSizeValue));
 
-  Reply := ReceiveString();
-  Log('q reply: ' + Reply);
-
-  Result := ProcessReply(Reply, Msg);
-
-  if Result then
+  //only do this if at least authenticated...
+  if FState >= hsAuthenticated then
   begin
-    Log('q successful, sending data...');
-
-    SetLength(DataArray, BLOCK_SIZE);
-    AssignFile(Fin, Filename);
-
-    try
-      FileMode := fmOpenRead;
-      Reset(Fin, 1);
-
-      for i := 0 to (FileSizeValue div BLOCK_SIZE) do
-      begin
-        if (FileSizeValue - i * BLOCK_SIZE) > BLOCK_SIZE then
-          SizeToSend :=  BLOCK_SIZE
-        else
-          SizeToSend := FileSizeValue - i * BLOCK_SIZE;
-
-        BlockRead(Fin, DataArray[0], SizeToSend);
-        Socket.SendBuffer(@DataArray[0], SizeToSend);
-
-        if Assigned(ProgressCallBack) then
-          ProgressCallBack(Round((i * BLOCK_SIZE / FileSizeValue) * 100));
-
-      end;
-
-    finally
-      CloseFile(fin);
-    end;
-
-    SetLength(DataArray, 0);
+    FileSizeValue := FileSize(Filename);
+    Log('Queueing track ' + ExtractFilename(Filename) + '...');
+    SendString('q|' + ExtractFilename(Filename) + '|' +
+      IntToStr(FileSizeValue));
 
     Reply := ReceiveString();
-    Log('q data send reply: ' + Reply);
+    Log('q reply: ' + Reply);
 
     Result := ProcessReply(Reply, Msg);
+
     if Result then
-      FStatusMessage := 'Queued.';
-  end
-  else
-  begin
-    Log('q Failed');
-    FStatusMessage := 'Error queueing track. ' + GetHGDCErrorMessage(Msg);
+    begin
+      Log('q successful, sending data...');
+
+      SetLength(DataArray, BLOCK_SIZE);
+      AssignFile(Fin, Filename);
+
+      try
+        FileMode := fmOpenRead;
+        Reset(Fin, 1);
+
+        for i := 0 to (FileSizeValue div BLOCK_SIZE) do
+        begin
+          if (FileSizeValue - i * BLOCK_SIZE) > BLOCK_SIZE then
+            SizeToSend :=  BLOCK_SIZE
+          else
+            SizeToSend := FileSizeValue - i * BLOCK_SIZE;
+
+          BlockRead(Fin, DataArray[0], SizeToSend);
+          Socket.SendBuffer(@DataArray[0], SizeToSend);
+
+          if Assigned(ProgressCallBack) then
+            ProgressCallBack(Round((i * BLOCK_SIZE / FileSizeValue) * 100));
+
+        end;
+
+      finally
+        CloseFile(fin);
+      end;
+
+      SetLength(DataArray, 0);
+
+      Reply := ReceiveString();
+      Log('q data send reply: ' + Reply);
+
+      Result := ProcessReply(Reply, Msg);
+      if Result then
+        FStatusMessage := 'Queued.';
+    end
+    else
+    begin
+      Log('q Failed');
+      FStatusMessage := 'Error queueing track. ' + GetHGDCErrorMessage(Msg);
+    end;
   end;
 end;
 
@@ -445,6 +450,9 @@ var
   Reply, Msg: string;
 begin
   Result := False;
+
+  //only do this if at least authenticated...
+  if (FState >= hsAuthenticated) then
   Log('Crapping on song id ' + IntToStr(id) + '...');
   SendString('vo|' + intToStr(id));
   Reply := ReceiveString();
@@ -469,7 +477,9 @@ var
   Reply, Msg: string;
 begin
   Result := False;
-  if FUserIsAdmin then
+
+  //only do this if at least authenticated and user is admin...
+  if (FState >= hsAuthenticated) and FUserIsAdmin then
   begin
     Log('Skipping song...');
     SendString('skip');
@@ -498,7 +508,9 @@ var
   Reply, Msg: string;
 begin
   Result := False;
-  if FUserIsAdmin then
+
+  //only do this if at least authenticated and user is admin...
+  if (FState >= hsAuthenticated) and FUserIsAdmin then
   begin
     Log('Pausing...');
     SendString('pause');
@@ -580,24 +592,28 @@ var
   Reply, Msg: string;
 begin
   Result := False;
-  Log('Sending username...');
-  SendString('user|' + Username + '|' + Password);
-  Reply := ReceiveString();
-  Log('user reply: ' + Reply);
-
-  Result := ProcessReply(Reply, Msg);
-
-  if Result then
+  //only do this if at least connected...
+  if FState >= hsConnected then
   begin
-    FState := hsAuthenticated;
-    Log('SendUser Successful');
-    FStatusMessage := 'User authenticated.';
-  end
-  else
-  begin
-    Log('SendUser Failed');
-    FState := hsConnected;
-    FStatusMessage := 'Error logging in. ' + GetHGDCErrorMessage(Msg);
+    Log('Sending username...');
+    SendString('user|' + Username + '|' + Password);
+    Reply := ReceiveString();
+    Log('user reply: ' + Reply);
+
+    Result := ProcessReply(Reply, Msg);
+
+    if Result then
+    begin
+      FState := hsAuthenticated;
+      Log('SendUser Successful');
+      FStatusMessage := 'User authenticated.';
+    end
+    else
+    begin
+      Log('SendUser Failed');
+      FState := hsConnected;
+      FStatusMessage := 'Error logging in. ' + GetHGDCErrorMessage(Msg);
+    end;
   end;
 end;
 

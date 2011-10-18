@@ -333,6 +333,7 @@ object frmMain: TfrmMain
       Width = 232
       AutoSize = False
       Font.Color = clRed
+      Layout = tlCenter
       ParentColor = False
       ParentFont = False
       WordWrap = True
@@ -1059,8 +1060,8 @@ object frmMain: TfrmMain
     top = 248
   end
   object OpenDialog1: TOpenDialog
-    Title = 'Queue songs'
-    Options = [ofAllowMultiSelect, ofEnableSizing, ofViewDetail]
+    Title = 'Select songs to queue'
+    Options = [ofShowHelp, ofAllowMultiSelect, ofShareAware, ofEnableSizing, ofViewDetail]
     left = 320
     top = 248
   end

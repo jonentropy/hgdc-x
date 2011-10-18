@@ -41,7 +41,7 @@ const
   ProtoLineEnding = CRLF;
 
 type
-  THGDCState = (hsDisconnected, hsConnected, hsAuthenticated);
+  THGDCState = (hsDisconnected, hsConnected, hsAuthenticated, hsAdmin);
 
   TTrackInfo = record
     Number: integer;
@@ -82,7 +82,6 @@ type
       FState: THGDCState;
       FStatusMessage: string;
       FDebugMemo: TMemo;
-      FUserIsAdmin: boolean;
 
       function Connect: boolean;
       procedure Disconnect;
@@ -124,7 +123,6 @@ type
       property HostPort: string read FHostPort write SetHostPort;
       property SSL: boolean read FSSL write FSSL;
       property Encrypted: boolean read FEncrypted;
-      property UserIsAdmin: boolean read FUserIsAdmin;
   end;
 
 implementation
@@ -136,7 +134,6 @@ constructor THGDClient.Create(HostAddress, HostPort, UserName,
 begin
   FState := hsDisconnected;
   FStatusMessage := 'Not connected.';
-  FUserIsAdmin := False;
 
   //2 second socket timeout
   Timeout := 2000;
@@ -176,7 +173,6 @@ begin
   if Assigned(Socket) then
     FreeAndNil(Socket);
 
-  FUserIsAdmin := False;
 end;
 
 function THGDClient.Connect(): boolean;
@@ -479,7 +475,7 @@ begin
   Result := False;
 
   //only do this if at least authenticated and user is admin...
-  if (FState >= hsAuthenticated) and FUserIsAdmin then
+  if (FState >= hsAdmin) then
   begin
     Log('Skipping song...');
     SendString('skip');
@@ -510,7 +506,7 @@ begin
   Result := False;
 
   //only do this if at least authenticated and user is admin...
-  if (FState >= hsAuthenticated) and FUserIsAdmin then
+  if (FState >= hsAdmin) then
   begin
     Log('Pausing...');
     SendString('pause');
@@ -581,10 +577,10 @@ end;
 
 procedure THGDClient.ApplyChanges;
 begin
-  FUserIsAdmin := False;
   if Connect() then
     if SendUser(FUsername, FPassword) then
-      FUserIsAdmin := IsAdmin();
+      if IsAdmin() then
+        FState := hsAdmin;
 end;
 
 function THGDClient.SendUser(Username, Password: string): boolean;

@@ -462,10 +462,10 @@ begin
     btnSubmit.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);
 
-    imUserAdmin.Visible := FClient.UserIsAdmin;
-    imUserNormal.Visible := not FClient.UserIsAdmin;
-    btnSkip.Visible := FClient.UserIsAdmin;
-    btnPause.Visible := FClient.UserIsAdmin;
+    imUserAdmin.Visible :=  FClient.State >= hsAdmin;
+    imUserNormal.Visible :=   FClient.State < hsAdmin;
+    btnSkip.Visible := FClient.State >= hsAdmin;
+    btnPause.Visible := FClient.State >= hsAdmin;
   end;
 end;
 

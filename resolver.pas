@@ -40,7 +40,7 @@ type
   PHostAddr = ^THostAddr;
 
 // From libc
-function gethostbyname(Name: Pchar): PHostEntry; cdecl; external 'c';
+function gethostbyname(Name: Pchar): PHostEntry; cdecl; external clib;
 function NameLookup(Name: string; out IP: string): boolean;
 
 implementation

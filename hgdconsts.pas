@@ -45,6 +45,8 @@ const
   HGD_RESP_E_SHTDWN: string = 'E_SHTDWN';          // Server is going down
   HGD_RESP_E_KICK: string = 'E_KICK';              // Client misbehaving
   HGD_RESP_E_PERMNOCHG: string = 'E_PERMNOCHG';    // Perms did not change
+  HGD_RESP_E_USREXIST: string = 'E_USREXIST';      // User already exists
+  HGD_RESP_E_USRNOEXIST: string = 'E_USRNOEXIST';  // User already exists
 
 implementation
 
@@ -64,6 +66,8 @@ begin
   else if ServerResp = HGD_RESP_E_SHTDWN then result := 'Server is shutting down.'
   else if ServerResp = HGD_RESP_E_KICK then Result := 'Stop misbehaving, d00d!'
   else if ServerResp = HGD_RESP_E_PERMNOCHG then Result := 'Permissions have already been set.'
+  else if ServerResp = HGD_RESP_E_USREXIST then Result := 'Username already exists.'
+  else if ServerResp = HGD_RESP_E_USRNOEXIST then Result := 'Username does not exist.'
   else
     Result := 'Unknown Error Code';
 end;

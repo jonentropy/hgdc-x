@@ -32,7 +32,7 @@ uses
   ssl_openssl;
 
 const
-  HGD_PROTO_MAJOR: integer = 16;
+  HGD_PROTO_MAJOR: integer = 17;
   HGD_PROTO_MINOR: integer = 0;
   HGD_NUM_TRACK_FIELDS: integer = 14;
   BLOCK_SIZE: Int64 = 512 * 1024;

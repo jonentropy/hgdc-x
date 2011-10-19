@@ -35,6 +35,7 @@ const
   HGD_PROTO_MAJOR: integer = 17;
   HGD_PROTO_MINOR: integer = 0;
   HGD_NUM_TRACK_FIELDS: integer = 14;
+  HGD_MAX_LINE: integer = 512;
   BLOCK_SIZE: Int64 = 512 * 1024;
 
   //The hgd protocol is telnet based, use CRLF as LineEnding
@@ -167,8 +168,10 @@ begin
   begin
     SendString('bye');
     Socket.CloseSocket();
-    FState := hsDisconnected;
   end;
+
+  FState := hsDisconnected;
+  FEncrypted := False;
 
   if Assigned(Socket) then
     FreeAndNil(Socket);
@@ -238,17 +241,16 @@ begin
           FEncrypted := False;
           Socket.SSLDoShutdown();
           Exit(False);
-        end;
+        end
+        else
+          FEncrypted := True;
 
         Reply := ReceiveString();
 
         Log('encrypt reply: ' + Reply);
-        if ProcessReply(Reply, Msg) then
-        begin
-          FEncrypted := True;
-        end
-        else
+        if not ProcessReply(Reply, Msg) then
           FEncrypted := False;
+
       end
       else
       begin
@@ -696,15 +698,29 @@ function THGDClient.ReceiveString: string;
 var
   s: string;
   i: integer;
+  p: pointer;
 begin
-  Result := '';
-  s := Socket.RecvString(Timeout);
+  if FEncrypted then
+  begin
+    p := GetMem(HGD_MAX_LINE);
+    Socket.RecvBufferEx(p, HGD_MAX_LINE, Timeout);
 
-  for i := 1 to Length(s) do
-    if s[i] <> #0 then
+    s := '';
+    for i := 0 to HGD_MAX_LINE - 1 do
     begin
-      Result := Result + s[i];
+      s := s + Char((p + i * SizeOf(Char))^);
+      if Copy(s, Length(s)-3, 2) = ProtoLineEnding then
+      begin
+        s := Copy(s, 1, Length(s) - 4);
+        Break;
+      end;
     end;
+
+    FreeMem(p);
+    Result := s;
+  end
+  else
+    Result := Socket.RecvString(Timeout);
 end;
 
 end.

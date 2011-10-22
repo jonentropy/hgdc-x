@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 454
+  Left = 265
   Height = 660
-  Top = 151
+  Top = 92
   Width = 583
   AllowDropFiles = True
   Caption = 'hgdc-x'
@@ -238,7 +238,7 @@ object frmMain: TfrmMain
       Left = 34
       Height = 18
       Top = 103
-      Width = 64
+      Width = 66
       Caption = 'Password:'
       ParentColor = False
     end
@@ -285,7 +285,7 @@ object frmMain: TfrmMain
       Height = 22
       Hint = 'Encrypt connection to server (if server supports it).'
       Top = 25
-      Width = 49
+      Width = 47
       Caption = 'SSL'
       ParentFont = False
       ParentShowHint = False

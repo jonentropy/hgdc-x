@@ -155,6 +155,7 @@ object frmAbout: TfrmAbout
     Top = 484
     Width = 32
     Anchors = [akLeft, akBottom]
+    OnClick = lblCowClick
     Picture.Data = {
       1754506F727461626C654E6574776F726B47726170686963B105000089504E47
       0D0A1A0A0000000D4948445200000020000000200806000000737A7AF4000000
@@ -256,7 +257,7 @@ object frmAbout: TfrmAbout
     Left = 56
     Height = 18
     Top = 490
-    Width = 204
+    Width = 210
     Anchors = [akLeft, akBottom]
     Caption = 'Icons from the Fat Cow icon set.'
     ParentColor = False
@@ -284,7 +285,7 @@ object frmAbout: TfrmAbout
     Left = 56
     Height = 18
     Top = 442
-    Width = 359
+    Width = 362
     Anchors = [akLeft, akBottom]
     Caption = 'Ararat Synapse Copyright (c)1999-2011, Lukas Gebauer'
     ParentColor = False
@@ -460,6 +461,7 @@ object frmAbout: TfrmAbout
     Top = 436
     Width = 32
     Anchors = [akLeft, akBottom]
+    OnClick = lblSynapseClick
     OnMouseEnter = imCatchThatMouseMouseEnter
     OnMouseLeave = imCatchThatMouseMouseLeave
   end

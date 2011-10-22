@@ -36,7 +36,7 @@ const
   HGD_PROTO_MINOR: integer = 0;
   HGD_NUM_TRACK_FIELDS: integer = 14;
   HGD_MAX_LINE: integer = 512;
-  BLOCK_SIZE: Int64 = 512 * 1024;
+  BLOCK_SIZE: int64 = 512 * 1024;
 
   //The hgd protocol is telnet based, use CRLF as LineEnding
   ProtoLineEnding = CRLF;
@@ -390,8 +390,8 @@ var
   Reply, Msg: string;
   Fin: File;
   DataArray: array of byte;
-  FileSizeValue: Int64;
-  SizeToSend: Int64;
+  FileSizeValue: int64;
+  SizeToSend: int64;
   i: integer;
 begin
   Result := False;

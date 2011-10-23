@@ -316,6 +316,7 @@ var
   PL: TPlaylist;
   i: integer;
 begin
+  tmrPlaylist.Enabled := False;
   PL := nil;
 
   if Assigned(FClient) and (FClient.State >= hsConnected) then
@@ -430,6 +431,8 @@ begin
   end
   else
     sgPlaylist.RowCount := 1;
+
+  tmrPlaylist.Enabled := True;
 end;
 
 procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);

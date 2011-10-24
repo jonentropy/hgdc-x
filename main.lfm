@@ -267,7 +267,7 @@ object frmMain: TfrmMain
       Layout = tlBottom
       ParentColor = False
     end
-    object btnHGDApply: TButton
+    object btnHGDApply: TBitBtn
       Left = 6
       Height = 25
       Hint = 'Apply changes to the connection settings.'

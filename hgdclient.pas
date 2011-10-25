@@ -82,7 +82,7 @@ type
 
       FState: THGDCState;
       FStatusMessage: string;
-      FDebugMemo: TMemo;
+      FDebug: boolean;
 
       function Connect: boolean;
       procedure Disconnect;
@@ -102,11 +102,9 @@ type
     public
       Timeout: integer;
       ProgressCallBack: TProgressCallback;
-      constructor Create(HostAddress, HostPort, UserName, Password: string;
-        SSL: boolean); overload;
 
       constructor Create(HostAddress, HostPort, UserName, Password: string;
-        SSL: boolean; DebugMemo: TMemo); overload;
+        SSL: boolean; Debug: boolean);
 
       destructor Destroy(); override;
 
@@ -131,10 +129,11 @@ implementation
 { THGDClient }
 
 constructor THGDClient.Create(HostAddress, HostPort, UserName,
-  Password: string; SSL: boolean);
+  Password: string; SSL: boolean; Debug: boolean);
 begin
   FState := hsDisconnected;
   FStatusMessage := 'Not connected.';
+  FDebug := Debug;
 
   //2 second socket timeout
   Timeout := 2000;
@@ -148,13 +147,6 @@ begin
   FEncrypted := False;
 
   ApplyChanges();
-end;
-
-constructor THGDClient.Create(HostAddress, HostPort, UserName,
-  Password: string; SSL: boolean; DebugMemo: TMemo);
-begin
-  FDebugMemo := DebugMemo;
-  Create(HostAddress, HostPort, UserName, Password, SSL);
 end;
 
 destructor THGDClient.Destroy();
@@ -430,6 +422,9 @@ begin
           BlockRead(Fin, DataArray[0], SizeToSend);
           Socket.SendBuffer(@DataArray[0], SizeToSend);
 
+          Log('Uploaded ' +
+            FloatToStr(Round((i * BLOCK_SIZE / FileSizeValue) * 100)) + '%');
+
           if Assigned(ProgressCallBack) then
             ProgressCallBack(Round((i * BLOCK_SIZE / FileSizeValue) * 100));
 
@@ -662,7 +657,8 @@ end;
 
 procedure THGDClient.Log(Message: string);
 begin
-  FDebugMemo.Lines.Add(Message);
+  if FDebug then
+    DebugLn('HGDClient.pas' + #9 + Message);
 end;
 
 procedure THGDClient.SetHostAddress(const AValue: string);

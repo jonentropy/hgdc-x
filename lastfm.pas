@@ -25,7 +25,8 @@ unit LastFM;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls, HTTPSend, SynaCode, XMLRead, DOM, FileUtil;
+  Classes, SysUtils, ExtCtrls, HTTPSend, SynaCode, XMLRead, DOM, FileUtil,
+  LCLProc;
 
 const
   API_ROOT_URL = 'http://ws.audioscrobbler.com/2.0/';
@@ -42,7 +43,9 @@ type
       FUserName: string;
       FSessionKey: string;
       FCacheDirectory: string;
+      FDebug: boolean;
 
+      procedure Log(Message: String);
       function ReadSettings: boolean;
       function ReplaceIllegalFilenameChars(Input: string): string;
       procedure SaveSettings;
@@ -53,7 +56,8 @@ type
 
       constructor Create; overload;
       constructor Create(User: string); overload;
-      constructor Create(User: string; CacheDirectory: string); overload;
+      constructor Create(User: string; CacheDirectory: string;
+        Debug: boolean); overload;
 
       destructor Destroy;
   end;
@@ -92,10 +96,12 @@ begin
   if (FCacheDirectory <> '') and
     (FileExistsUTF8(CacheName)) then
   begin
+    Log('Album art is cached (' + CacheName + ')');
     CoverImage.Picture.LoadFromFile(CacheName);
     Exit(True);
   end;
 
+  Log('Attempting to get artwork from Last.fm');
   Connection := THTTPSend.Create();
   XMLResponse := TXMLDocument.Create();
 
@@ -109,6 +115,7 @@ begin
     if Connection.HTTPMethod('GET', RequestURL) then
     begin
       try
+        Log('Got XML response for album ' + Album + ' by ' + Artist);
         ReadXMLFile(XMLResponse, Connection.Document);
         Node := XMLResponse.DocumentElement.FindNode('album');
       except
@@ -142,16 +149,20 @@ begin
 
       if CoverURL <> '' then
       begin
+        Log('Fetching the album cover image');
         //Get the cover
         CoverURL := EncodeURL(CoverURL);
         if Connection.HTTPMethod('GET', CoverURL) then
         begin
+          Log('Album art downloaded, caching...');
           CoverImage.Picture.LoadFromStream(Connection.Document);
 
           //Cache album art...
           if (FCacheDirectory <> '') and
             DirectoryIsWritable(FCacheDirectory) then
-              CoverImage.Picture.SaveToFile(CacheName, 'png');
+              CoverImage.Picture.SaveToFile(CacheName, 'png')
+          else
+            Log('there was a problem caching the album art.');
 
           Result := True;
         end;
@@ -174,19 +185,27 @@ begin
   Create();
 end;
 
-constructor TLastFM.Create(User: string; CacheDirectory: string);
+constructor TLastFM.Create(User: string; CacheDirectory: string;
+    Debug: boolean);
 begin
   if ForceDirectoriesUTF8(CacheDirectory) then
     FCacheDirectory := CacheDirectory
   else
     FCacheDirectory := '';
 
+  FDebug := Debug;
   Create(User);
 end;
 
 destructor TLastFM.Destroy;
 begin
 
+end;
+
+procedure TLastFM.Log(Message: string);
+begin
+  if FDebug then
+    DebugLn('LastFM.pas' + #9 + Message);
 end;
 
 function TLastFM.ReplaceIllegalFilenameChars(Input: string): string;

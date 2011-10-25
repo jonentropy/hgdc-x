@@ -122,7 +122,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="9">
+    <Units Count="8">
       <Unit0>
         <Filename Value="hgdcx.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -141,41 +141,34 @@
         <UnitName Value="HGDClient"/>
       </Unit2>
       <Unit3>
-        <Filename Value="debuglog.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frmDebug"/>
-        <ResourceBaseClass Value="Form"/>
-        <UnitName Value="DebugLog"/>
-      </Unit3>
-      <Unit4>
         <Filename Value="lastfm.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="LastFM"/>
-      </Unit4>
-      <Unit5>
+      </Unit3>
+      <Unit4>
         <Filename Value="settings.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmSettings"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Settings"/>
-      </Unit5>
-      <Unit6>
+      </Unit4>
+      <Unit5>
         <Filename Value="about.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmAbout"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="About"/>
-      </Unit6>
-      <Unit7>
+      </Unit5>
+      <Unit6>
         <Filename Value="resolver.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Resolver"/>
-      </Unit7>
-      <Unit8>
+      </Unit6>
+      <Unit7>
         <Filename Value="hgdconsts.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="HGDConsts"/>
-      </Unit8>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

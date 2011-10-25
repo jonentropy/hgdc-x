@@ -25,8 +25,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient, DebugLog,
-  LastFM, Settings, About;
+  ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient,
+  LastFM, Settings, About, LCLProc;
 
 type
 
@@ -56,7 +56,6 @@ type
     imSettings: TImage;
     imNowPlaying: TImage;
     imInsecure: TImage;
-    imDebug: TImage;
     imSecure: TImage;
     imAbout: TImage;
     lblSampleRate: TLabel;
@@ -90,7 +89,6 @@ type
     procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
     procedure FormShow(Sender: TObject);
     procedure imAboutClick(Sender: TObject);
-    procedure imDebugClick(Sender: TObject);
     procedure imSettingsClick(Sender: TObject);
     procedure sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
@@ -102,6 +100,7 @@ type
     FLastFM: TLastFM;
     FCurrentlyDisplayedArtwork: string;
     FArtworkAttempts: integer;
+    FDebug: boolean;
     procedure DisableAllGUI;
     procedure EnableAllGUI;
     procedure Log(Message: string);
@@ -225,6 +224,7 @@ begin
   Self.Caption := Self.Caption + ' ' +  VERSION;
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';
+  FDebug := Application.HasOption('d', 'debug');
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -262,12 +262,12 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text,
-    edtPwd.Text, chkSSL.Checked, frmDebug.Memo1);
+    edtPwd.Text, chkSSL.Checked, FDebug);
 
   FClient.ProgressCallBack := @ProgressCallback;
 
   FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text,
-    GetAppConfigDirUTF8(False));
+    GetAppConfigDirUTF8(False), FDebug);
 
   tmrPlaylistTimer(Self);
   edtPwd.SetFocus;
@@ -276,14 +276,6 @@ end;
 procedure TfrmMain.imAboutClick(Sender: TObject);
 begin
   frmAbout.Show();
-end;
-
-procedure TfrmMain.imDebugClick(Sender: TObject);
-begin
-  if not frmDebug.Visible then
-    frmDebug.Left := Self.Left + Self.Width + 6;
-
-  frmDebug.Visible := not frmDebug.Visible;
 end;
 
 procedure TfrmMain.imSettingsClick(Sender: TObject);
@@ -483,7 +475,8 @@ end;
 
 procedure TfrmMain.Log(Message: string);
 begin
-  frmDebug.Memo1.Lines.Add(Message);
+  if FDebug then
+    DebugLn('Main.pas ' + #9 + Message);
 end;
 
 end.

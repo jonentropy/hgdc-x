@@ -158,7 +158,9 @@ procedure THGDClient.Disconnect();
 begin
   if FState >= hsConnected then
   begin
+    Log('Disconnecting... bye! o/');
     SendString('bye');
+    Log(ReceiveString());
     Socket.CloseSocket();
   end;
 

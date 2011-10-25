@@ -183,8 +183,10 @@ begin
 
       pbarUpload.Position := pbarUpload.Min;
       pbarUpload.Visible := True;
+      btnSubmit.Visible := False;
       FClient.QueueSong(OpenDialog1.Files[i]);
       pbarUpload.Visible := False;
+      btnSubmit.Visible := True;
     end;
 
     Screen.Cursor := crDefault;

@@ -633,7 +633,7 @@ object frmMain: TfrmMain
     Height = 30
     Top = 181
     Width = 258
-    Enabled = False
+    Enabled = True
     Smooth = True
     TabOrder = 3
     Visible = False

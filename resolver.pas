@@ -15,7 +15,7 @@
 }
 
 // hgdc-x Cross Platform hgd client written in Lazarus/Freepascal
-// resolver.pas - Patch to FPC's name resolution. Uses libc calls.
+// resolver.pas - Patch to FPC's name resolution under Unix. Uses libc calls.
 
 unit Resolver;
 

@@ -22,11 +22,14 @@ program hgdcx;
 {$mode objfpc}{$H+}
 
 uses
-  {$IFDEF UNIX}{$IFDEF UseCThreads}
-  cthreads,
-  {$ENDIF}{$ENDIF}
+  {$IFDEF UNIX}
+    Resolver,
+    {$IFDEF UseCThreads}
+      cthreads,
+    {$ENDIF}
+  {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Main, HGDClient, lastfm, settings, About, Resolver, HGDConsts
+  Forms, Main, HGDClient, lastfm, settings, About, HGDConsts
   { you can add units after this };
 
 {$R *.res}

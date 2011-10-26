@@ -221,6 +221,12 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  {$IFDEF WINDOWS}
+  if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
+    XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml'
+  else
+    XMLPropStorage1.Active := False;
+  {$ENDIF WINDOWS}
   Self.Caption := Self.Caption + ' ' +  VERSION;
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';

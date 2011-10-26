@@ -90,8 +90,8 @@ var
 begin
   Result := False;
 
-  CacheName := FCacheDirectory + DirectorySeparator
-    + ReplaceIllegalFilenameChars(Artist + '-' + Album) + '.png';
+  CacheName := FCacheDirectory + ReplaceIllegalFilenameChars(Artist +
+    '-' + Album) + '.png';
 
   if (FCacheDirectory <> '') and
     (FileExistsUTF8(CacheName)) then
@@ -205,7 +205,7 @@ end;
 procedure TLastFM.Log(Message: string);
 begin
   if FDebug then
-    DebugLn('LastFM.pas' + #9 + Message);
+    DebugLn(Self.ClassName + #9#9 + Message);
 end;
 
 function TLastFM.ReplaceIllegalFilenameChars(Input: string): string;

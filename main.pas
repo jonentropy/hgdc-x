@@ -476,7 +476,7 @@ end;
 procedure TfrmMain.Log(Message: string);
 begin
   if FDebug then
-    DebugLn('Main.pas ' + #9 + Message);
+    DebugLn(Self.ClassName + #9 + Message);
 end;
 
 end.

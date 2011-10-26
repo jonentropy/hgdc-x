@@ -660,7 +660,7 @@ end;
 procedure THGDClient.Log(Message: string);
 begin
   if FDebug then
-    DebugLn('HGDClient.pas' + #9 + Message);
+    DebugLn(Self.ClassName + #9 + Message);
 end;
 
 procedure THGDClient.SetHostAddress(const AValue: string);

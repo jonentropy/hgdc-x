@@ -132,7 +132,9 @@ begin
         end;
         if Node.FirstChild <> nil then
           CoverURL := Node.FirstChild.NodeValue;
-      end;
+      end
+      else
+        Log('Last.fm didn''t respond with album art.');
 
       if CoverURL <> '' then
       begin
@@ -153,7 +155,9 @@ begin
 
           Result := True;
         end;
-      end;
+      end
+      else
+        log('No URL found for album art.');
     end;
   finally
     XMLResponse.Free();

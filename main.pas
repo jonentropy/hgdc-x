@@ -369,6 +369,9 @@ begin
               imNowPlaying.Visible := True;
               Bevel1.Visible := True;
 
+              Log('Attempt ' + IntToStr(FArtworkAttempts + 1) +
+                ' at album art fetching.');
+
               if FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
                   imNowPlaying) then
               begin
@@ -385,6 +388,7 @@ begin
 
               if (FArtworkAttempts = MAX_ARTWORK_ATTEMPTS) then
               begin
+                Log('Too many artwork attempts, not trying again.');
                 FCurrentlyDisplayedArtwork := PL[i].Artist + ':' + PL[i].Album;
                 FArtworkAttempts := 0;
               end;
@@ -393,6 +397,7 @@ begin
           else
           begin
             //No album information to get art with
+            Log('No album information to get art with.');
             imNowPlaying.Visible := False;
             lblNoAlbumArt.Visible := True;
           end;
@@ -402,6 +407,7 @@ begin
     else
     begin
       //Nothing playing
+      Log('Nothing is playing.');
       sgPlaylist.RowCount := 1;
       lblTitle.Caption := '';
       lblArtist.Caption := '';

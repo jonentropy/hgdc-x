@@ -28,7 +28,7 @@ uses
   {$IFDEF UNIX}
   Resolver,
   {$ENDIF UNIX}
-  Classes, SysUtils, BlckSock, StdCtrls, FileUtil, LCLProc, HGDConsts,
+  Classes, SysUtils, BlckSock, FileUtil, LCLProc, HGDConsts,
   ssl_openssl;
 
 const
@@ -131,6 +131,8 @@ implementation
 constructor THGDClient.Create(HostAddress, HostPort, UserName,
   Password: string; SSL: boolean; Debug: boolean);
 begin
+  inherited Create();
+
   FState := hsDisconnected;
   FStatusMessage := 'Not connected.';
   FDebug := Debug;
@@ -152,6 +154,8 @@ end;
 destructor THGDClient.Destroy();
 begin
   Disconnect();
+
+  inherited Destroy();
 end;
 
 procedure THGDClient.Disconnect();
@@ -204,6 +208,7 @@ begin
   Reply := ReceiveString();
   Log('connect reply: ' + Reply);
 
+  Msg := '';
   Result := ProcessReply(Reply, Msg);
 
   if Result then
@@ -291,6 +296,8 @@ begin
   SendString('proto');
   Reply := ReceiveString();
   Log('proto reply: ' + Reply);
+
+  Msg := '';
   if ProcessReply(Reply, Msg) then
   begin
     Major := StrToIntDef(Copy(Msg, 1, Pos('|', Msg) - 1), - 1);
@@ -308,7 +315,6 @@ var
   Msg: string;
   i: integer;
   PLStringList: TStringList;
-  D: Integer;
 begin
   Result := False;
   SetLength(PList, 0);
@@ -321,6 +327,7 @@ begin
     Reply := ReceiveString();
     Log('ls reply: ' + Reply);
 
+    Msg := '';
     if ProcessReply(Reply, Msg) then
     begin
       //Playlist came back OK. Parse it up, d00d...
@@ -401,6 +408,7 @@ begin
     Reply := ReceiveString();
     Log('q reply: ' + Reply);
 
+    Msg := '';
     Result := ProcessReply(Reply, Msg);
 
     if Result then
@@ -467,6 +475,7 @@ begin
     Reply := ReceiveString();
     Log('vo reply: ' + Reply);
 
+    Msg := '';
     Result := ProcessReply(Reply, Msg);
 
     if Result then
@@ -496,6 +505,7 @@ begin
     Reply := ReceiveString();
     Log('skip reply: ' + Reply);
 
+    Msg := '';
     Result := ProcessReply(Reply, Msg);
 
     if Result then
@@ -527,6 +537,7 @@ begin
     Reply := ReceiveString();
     Log('pause reply: ' + Reply);
 
+    Msg := '';
     Result := ProcessReply(Reply, Msg);
 
     if Result then
@@ -610,6 +621,7 @@ begin
     Reply := ReceiveString();
     Log('user reply: ' + Reply);
 
+    Msg := '';
     Result := ProcessReply(Reply, Msg);
 
     if Result then
@@ -638,7 +650,9 @@ begin
   Reply := ReceiveString();
   Log('id reply: ' + Reply);
 
+  Msg := '';
   Result := ProcessReply(Reply, Msg);
+
   Packets := TStringList.Create();
   Packets.Clear();
   ParseHGDPacket(Reply, Packets);

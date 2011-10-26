@@ -41,14 +41,11 @@ type
   TLastFM = class(TObject)
     private
       FUserName: string;
-      FSessionKey: string;
       FCacheDirectory: string;
       FDebug: boolean;
 
       procedure Log(Message: String);
-      function ReadSettings: boolean;
       function ReplaceIllegalFilenameChars(Input: string): string;
-      procedure SaveSettings;
 
     public
       function GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize;
@@ -59,22 +56,12 @@ type
       constructor Create(User: string; CacheDirectory: string;
         Debug: boolean); overload;
 
-      destructor Destroy;
+      destructor Destroy; override;
   end;
 
 implementation
 
 { TLastFM }
-
-function TLastFM.ReadSettings: boolean;
-begin
-
-end;
-
-procedure TLastFM.SaveSettings;
-begin
-
-end;
 
 function TLastFM.GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize;
   var CoverImage: TImage): boolean;
@@ -176,7 +163,7 @@ end;
 
 constructor TLastFM.Create;
 begin
-
+  inherited Create();
 end;
 
 constructor TLastFM.Create(User: string);
@@ -199,7 +186,7 @@ end;
 
 destructor TLastFM.Destroy;
 begin
-
+  inherited Destroy();
 end;
 
 procedure TLastFM.Log(Message: string);

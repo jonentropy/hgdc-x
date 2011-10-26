@@ -4,3 +4,5 @@ hgdcx
 hgdcx.exe
 hgdcx.xml
 *.lps
+build/debug/
+installers/win32/Output/

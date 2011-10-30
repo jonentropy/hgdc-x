@@ -348,7 +348,7 @@ begin
           begin
             SetLength(PList, Length(PList) + 1);
             PList[Length(PList) - 1].Number :=
-            StrToIntDef(PLStringList.Strings[0], 0);
+              StrToIntDef(PLStringList.Strings[0], 0);
 
             PList[Length(PList) - 1].Filename := PLStringList.Strings[1];
             PList[Length(PList) - 1].Artist := PLStringList.Strings[2];
@@ -394,6 +394,7 @@ var
   FileSizeValue: int64;
   SizeToSend: int64;
   i: integer;
+  Percentage: integer;
 begin
   Result := False;
 
@@ -432,14 +433,12 @@ begin
           BlockRead(Fin, DataArray[0], SizeToSend);
           Socket.SendBuffer(@DataArray[0], SizeToSend);
 
-          Log('Uploaded ' +
-            FloatToStr(Round((i * BLOCK_SIZE / FileSizeValue) * 100)) + '%');
+          Percentage := Round((i * BLOCK_SIZE / FileSizeValue) * 100);
 
-          if Assigned(ProgressCallBack) then
-            ProgressCallBack(Round((i * BLOCK_SIZE / FileSizeValue) * 100));
+          Log('Uploaded ' +  FloatToStr(Percentage) + '%');
 
+          if Assigned(ProgressCallBack) then ProgressCallBack(Percentage);
         end;
-
       finally
         CloseFile(fin);
       end;

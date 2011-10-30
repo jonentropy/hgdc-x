@@ -23,6 +23,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="5"/>
+      <BuildNr Value="1"/>
       <Language Value="0809"/>
       <StringTable CompanyName="Tristan Linnell" FileDescription="GUI client for the Hackathon Gunther Daemon" LegalCopyright="2011 Tristan Linnell" ProductName="hgdc-x" ProductVersion="0.5.0"/>
     </VersionInfo>

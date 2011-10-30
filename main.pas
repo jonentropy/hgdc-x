@@ -459,6 +459,8 @@ procedure TfrmMain.tmrStateTimer(Sender: TObject);
 begin
   if Assigned(FClient) then
   begin
+    tmrState.Enabled := False;
+
     ShowStatus(FClient.StatusMessage, Pos('error',
       LowerCase(FCLient.StatusMessage)) > 0);
 
@@ -477,6 +479,8 @@ begin
     imUserNormal.Visible := FClient.State < hsAdmin;
     btnSkip.Visible := FClient.State >= hsAdmin;
     btnPause.Visible := FClient.State >= hsAdmin;
+
+    tmrState.Enabled := True;
   end;
 end;
 

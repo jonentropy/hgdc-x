@@ -107,6 +107,7 @@ type
     procedure ProgressCallback(Percentage: integer);
     procedure ShowNowPlaying(b: boolean);
     procedure ShowStatus(Msg: string; Error: boolean);
+    procedure Trollsav(Filename: String);
 
   public
     { public declarations }
@@ -183,7 +184,15 @@ begin
       pbarUpload.Position := pbarUpload.Min;
       pbarUpload.Visible := True;
       btnSubmit.Visible := False;
-      FClient.QueueSong(OpenDialog1.Files[i]);
+
+      //Alright let's have some fun with Sav...
+      if (i = 0) and ((FClient.UserName = 'sav') or
+                         //'castor' In case he insists on that name change...
+        (FClient.UserName = 'castor')) and (Random(10) = 1) then
+          TrollSav(OpenDialog1.Files[i])
+      else
+        FClient.QueueSong(OpenDialog1.Files[i]);
+
       pbarUpload.Visible := False;
       btnSubmit.Visible := True;
     end;
@@ -192,6 +201,29 @@ begin
   end;
 
   EnableAllGUI();
+end;
+
+procedure TfrmMain.TrollSav(FileName: string);
+var
+  TrollFile: string;
+begin
+  //lalala
+  try
+    TrollFile := '/tmp/' + ExtractFileName(FileName);
+
+    //Assumes a hell of a lot, it's a quick troll remember!
+    SysUtils.ExecuteProcess('/usr/bin/espeak', ' -a 200 -g 3 -s 120 -w "' +
+      TrollFile + '" "Oi Sav, no one wants to listen to shit like that.' +
+      ' Get some decent music and queue another track you cunt!"', []);
+
+    if FileExistsUTF8(TrollFile) then
+    begin
+      FClient.QueueSong(TrollFile);
+      DeleteFileUTF8(TrollFile);  //he'll never know!
+    end;
+  except
+    //Fail silently, we don't want Sav to find out!
+  end;
 end;
 
 procedure TfrmMain.DisableAllGUI;
@@ -231,6 +263,7 @@ begin
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';
   FDebug := Application.HasOption('d', 'debug');
+  Randomize(); //For the Sav trolling
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);

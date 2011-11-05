@@ -46,7 +46,7 @@ const
   HGD_RESP_E_KICK: string = 'E_KICK';              // Client misbehaving
   HGD_RESP_E_PERMNOCHG: string = 'E_PERMNOCHG';    // Perms did not change
   HGD_RESP_E_USREXIST: string = 'E_USREXIST';      // User already exists
-  HGD_RESP_E_USRNOEXIST: string = 'E_USRNOEXIST';  // User already exists
+  HGD_RESP_E_USRNOEXIST: string = 'E_USRNOEXIST';  // User doesn't exist
 
 implementation
 

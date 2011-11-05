@@ -1200,7 +1200,7 @@ object frmMain: TfrmMain
   end
   object OpenDialog1: TOpenDialog
     Title = 'Select songs to queue'
-    Options = [ofShowHelp, ofAllowMultiSelect, ofShareAware, ofEnableSizing, ofViewDetail]
+    Options = [ofAllowMultiSelect, ofShareAware, ofEnableSizing, ofViewDetail]
     left = 320
     top = 248
   end

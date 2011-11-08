@@ -213,8 +213,9 @@ begin
 
     //Assumes a hell of a lot, it's a quick troll remember!
     SysUtils.ExecuteProcess('/usr/bin/espeak', ' -a 200 -g 3 -s 120 -w "' +
-      TrollFile + '" "Oi Sav, no one wants to listen to shit like that.' +
-      ' Get some decent music and queue another track you cunt!"', []);
+      TrollFile + '" "Oi ' + FClient.UserName + ', no one wants to listen to' +
+      'shit like that. Get some decent music and queue another track you ' +
+      'cunt!"', []);
 
     if FileExistsUTF8(TrollFile) then
     begin

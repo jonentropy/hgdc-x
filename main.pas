@@ -296,8 +296,8 @@ var
 begin
   if (aRow = 1) and (aCol > 0) then
   begin
-    TStringGrid(Sender).Canvas.Brush.Color :=  clHighLight;
-    TStringGrid(Sender).Canvas.Font.Color :=  clHighLightText;
+    TStringGrid(Sender).Canvas.Brush.Color := clHighlight;
+    TStringGrid(Sender).Canvas.Font.Color := clHighlightText;
     TStringGrid(Sender).Canvas.FillRect(aRect);
 
     S := TStringGrid(Sender).Cells[aCol, aRow];
@@ -308,7 +308,7 @@ end;
 procedure TfrmMain.ProgressCallback(Percentage: integer);
 begin
   pBarUpload.Position := Percentage;
-  Application.ProcessMessages;
+  Application.ProcessMessages();
 end;
 
 procedure TfrmMain.tmrPlaylistTimer(Sender: TObject);

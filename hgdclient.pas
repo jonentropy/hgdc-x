@@ -426,7 +426,7 @@ begin
         for i := 0 to (FileSizeValue div BLOCK_SIZE) do
         begin
           if (FileSizeValue - i * BLOCK_SIZE) > BLOCK_SIZE then
-            SizeToSend :=  BLOCK_SIZE
+            SizeToSend := BLOCK_SIZE
           else
             SizeToSend := FileSizeValue - i * BLOCK_SIZE;
 

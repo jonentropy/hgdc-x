@@ -37,8 +37,11 @@ uses
 begin
   Application.Title:='hgdc-x';
   Application.Initialize;
-  Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmSettings, frmSettings);
+  //todo close app when settings form is initially dismissed
+  //when starting the app.
+
+  Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmAbout, frmAbout);
   Application.Run;
 end.

@@ -38,41 +38,25 @@ type
     btnSkip: TBitBtn;
     btnPause: TBitBtn;
     btnSubmit: TBitBtn;
-    btnHGDApply: TButton;
     btnCrapSong: TBitBtn;
-    chkSSL: TCheckBox;
-    edtHost: TEdit;
-    edtPort: TEdit;
-    edtUser: TEdit;
-    edtPwd: TEdit;
-    gbHGDServer: TGroupBox;
     gbNowPlaying: TGroupBox;
-    imServer: TImage;
-    imPort: TImage;
-    imUserNormal: TImage;
-    imPassword: TImage;
-    imUserAdmin: TImage;
+    imInsecure: TImage;
+    imSecure: TImage;
     imVoteOff: TImage;
     imSettings: TImage;
     imNowPlaying: TImage;
-    imInsecure: TImage;
-    imSecure: TImage;
     imAbout: TImage;
     lblSampleRate: TLabel;
     lblGenre: TLabel;
     lblDuration: TLabel;
     lblBitrate: TLabel;
     lblNoAlbumArt: TLabel;
+    lblStatus: TLabel;
     lblYear: TLabel;
     lblTitle: TLabel;
     lblArtist: TLabel;
     lblAlbum: TLabel;
     lblNoPlaylist: TLabel;
-    lblStatus: TLabel;
-    lblHost: TLabel;
-    lblPort: TLabel;
-    lblUser: TLabel;
-    lblPassword: TLabel;
     OpenDialog1: TOpenDialog;
     pbarUpload: TProgressBar;
     sgPlaylist: TStringGrid;
@@ -117,7 +101,7 @@ var
 
 const
   MAX_ARTWORK_ATTEMPTS = 3;
-  VERSION = '0.5.0';
+  VERSION = '0.5.dev';
 
 implementation
 
@@ -133,11 +117,11 @@ begin
   ShowStatus('Applying...', False);
   XMLPropStorage1.Save();
 
-  FClient.HostAddress := edtHost.Text;
-  FClient.HostPort := edtPort.Text;
-  FClient.UserName := edtUser.Text;
-  FClient.Password := edtPwd.Text;
-  FClient.SSL := chkSSL.Checked;
+  FClient.HostAddress := frmSettings.edtHost.Text;
+  FClient.HostPort := frmSettings.edtPort.Text;
+  FClient.UserName := frmSettings.edtUser.Text;
+  FClient.Password := frmSettings.edtPwd.Text;
+  FClient.SSL := frmSettings.chkSSL.Checked;
 
   FClient.ApplyChanges();
 
@@ -202,7 +186,9 @@ begin
   btnCrapSong.Enabled := False;
   btnSkip.Enabled := False;
   btnPause.Enabled := False;
-  btnHGDApply.Enabled := False;
+  frmSettings.btnHGDApply.Enabled := False;  //todo disable settings button here too
+                                 //and stop timers when settings form is
+                                 //being displayed
 end;
 
 procedure TfrmMain.EnableAllGUI;
@@ -211,7 +197,7 @@ begin
   btnCrapSong.Enabled := True;
   btnSkip.Enabled := True;
   btnPause.Enabled := True;
-  btnHGDApply.Enabled := True;
+  frmSettings.btnHGDApply.Enabled := True;
   tmrPlayList.Enabled := True;
   tmrPlayListTimer(Self);
   tmrState.Enabled := True;
@@ -267,8 +253,9 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-  FClient := THGDClient.Create(edtHost.Text, edtPort.Text, edtUser.Text,
-    edtPwd.Text, chkSSL.Checked, FDebug);
+  FClient := THGDClient.Create(frmSettings.edtHost.Text,
+    frmSettings.edtPort.Text, frmSettings.edtUser.Text, frmSettings.edtPwd.Text,
+    frmSettings.chkSSL.Checked, FDebug);
 
   FClient.ProgressCallBack := @ProgressCallback;
 
@@ -276,7 +263,6 @@ begin
     GetAppConfigDirUTF8(False), FDebug);
 
   tmrPlaylistTimer(Self);
-  edtPwd.SetFocus;
 end;
 
 procedure TfrmMain.imAboutClick(Sender: TObject);
@@ -286,7 +272,7 @@ end;
 
 procedure TfrmMain.imSettingsClick(Sender: TObject);
 begin
-  frmSettings.ShowModal();
+  frmSettings.Show();
 end;
 
 procedure TfrmMain.sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
@@ -467,16 +453,16 @@ begin
     imSecure.Visible := FClient.Encrypted;
     imInsecure.Visible := not FClient.Encrypted;
 
-    if (not FClient.Encrypted) and (chkSSL.Checked) then
-      chkSSL.Font.Style:= [fsStrikeOut]
+    if (not FClient.Encrypted) and (frmSettings.chkSSL.Checked) then
+      frmSettings.chkSSL.Font.Style:= [fsStrikeOut]
     else
-      chkSSL.Font.Style:= [];
+      frmSettings.chkSSL.Font.Style:= [];
 
     btnSubmit.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);
 
-    imUserAdmin.Visible := FClient.State >= hsAdmin;
-    imUserNormal.Visible := FClient.State < hsAdmin;
+    frmSettings.imUserAdmin.Visible := FClient.State >= hsAdmin;
+    frmSettings.imUserNormal.Visible := FClient.State < hsAdmin;
     btnSkip.Visible := FClient.State >= hsAdmin;
     btnPause.Visible := FClient.State >= hsAdmin;
 

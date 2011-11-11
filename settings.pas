@@ -32,14 +32,31 @@ type
   { TfrmSettings }
 
   TfrmSettings = class(TForm)
+    btnHGDApply: TBitBtn;
     btnLastFMApply: TBitBtn;
     chkScrobbling: TCheckBox;
     chkScrobbling1: TCheckBox;
+    chkSSL: TCheckBox;
+    edtHost: TEdit;
     edtLastFMUser: TLabeledEdit;
+    edtPort: TEdit;
+    edtPwd: TEdit;
+    edtUser: TEdit;
+    gbHGDServer: TGroupBox;
     GroupBox1: TGroupBox;
     imLastFM: TImage;
+    imPassword: TImage;
+    imPort: TImage;
+    imServer: TImage;
+    imUserAdmin: TImage;
+    imUserNormal: TImage;
+    lblHost: TLabel;
     lblLastFM: TLabel;
+    lblPassword: TLabel;
+    lblPort: TLabel;
+    lblUser: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
   private
     { private declarations }
   public
@@ -62,5 +79,10 @@ begin
     Close();
 end;
 
-end.
+procedure TfrmSettings.FormShow(Sender: TObject);
+begin
+  edtPwd.SetFocus;
+end;
 
+end.
+

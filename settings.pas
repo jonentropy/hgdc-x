@@ -25,14 +25,14 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Buttons, LCLType;
+  ExtCtrls, Buttons, LCLType, XMLPropStorage;
 
 type
 
   { TfrmSettings }
 
   TfrmSettings = class(TForm)
-    btnHGDApply: TBitBtn;
+    btnHGDLogin: TBitBtn;
     btnLastFMApply: TBitBtn;
     chkScrobbling: TCheckBox;
     chkScrobbling1: TCheckBox;
@@ -43,18 +43,18 @@ type
     edtPwd: TEdit;
     edtUser: TEdit;
     gbHGDServer: TGroupBox;
-    GroupBox1: TGroupBox;
+    gbLastFM: TGroupBox;
     imLastFM: TImage;
     imPassword: TImage;
     imPort: TImage;
     imServer: TImage;
-    imUserAdmin: TImage;
-    imUserNormal: TImage;
+    imUser: TImage;
     lblHost: TLabel;
     lblLastFM: TLabel;
     lblPassword: TLabel;
     lblPort: TLabel;
     lblUser: TLabel;
+    XMLPropStorage1: TXMLPropStorage;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
   private

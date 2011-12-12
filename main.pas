@@ -37,13 +37,13 @@ type
     Bevel1: TBevel;
     btnSkip: TBitBtn;
     btnPause: TBitBtn;
-    btnSubmit: TBitBtn;
+    btnQueue: TBitBtn;
     btnCrapSong: TBitBtn;
     gbNowPlaying: TGroupBox;
     imInsecure: TImage;
     imSecure: TImage;
     imVoteOff: TImage;
-    imSettings: TImage;
+    imLogin: TImage;
     imNowPlaying: TImage;
     imAbout: TImage;
     lblSampleRate: TLabel;
@@ -64,16 +64,16 @@ type
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
     procedure btnCrapSongClick(Sender: TObject);
-    procedure btnHGDApplyClick(Sender: TObject);
+    procedure ApplyChanges;
     procedure btnPauseClick(Sender: TObject);
     procedure btnSkipClick(Sender: TObject);
-    procedure btnSubmitClick(Sender: TObject);
+    procedure btnQueueClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
     procedure FormShow(Sender: TObject);
     procedure imAboutClick(Sender: TObject);
-    procedure imSettingsClick(Sender: TObject);
+    procedure imLoginClick(Sender: TObject);
     procedure sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
       aRect: TRect; aState: TGridDrawState);
     procedure tmrPlaylistTimer(Sender: TObject);
@@ -85,6 +85,7 @@ type
     FCurrentlyDisplayedArtwork: string;
     FArtworkAttempts: integer;
     FDebug: boolean;
+    frmSettings: TFrmSettings;
     procedure DisableAllGUI;
     procedure EnableAllGUI;
     procedure Log(Message: string);
@@ -109,13 +110,13 @@ implementation
 
 { TfrmMain }
 
-procedure TfrmMain.btnHGDApplyClick(Sender: TObject);
+procedure TfrmMain.ApplyChanges;
 begin
   tmrPlaylist.Enabled := False;
   tmrState.Enabled := False;
 
   ShowStatus('Applying...', False);
-  XMLPropStorage1.Save();
+  frmSettings.XMLPropStorage1.Save();
 
   FClient.HostAddress := frmSettings.edtHost.Text;
   FClient.HostPort := frmSettings.edtPort.Text;
@@ -149,7 +150,7 @@ begin
       imVoteOff.Visible := True;
 end;
 
-procedure TfrmMain.btnSubmitClick(Sender: TObject);
+procedure TfrmMain.btnQueueClick(Sender: TObject);
 var
   i: integer;
 begin
@@ -166,10 +167,10 @@ begin
 
       pbarUpload.Position := pbarUpload.Min;
       pbarUpload.Visible := True;
-      btnSubmit.Visible := False;
+      btnQueue.Visible := False;
       FClient.QueueSong(OpenDialog1.Files[i]);
       pbarUpload.Visible := False;
-      btnSubmit.Visible := True;
+      btnQueue.Visible := True;
     end;
 
     Screen.Cursor := crDefault;
@@ -182,22 +183,22 @@ procedure TfrmMain.DisableAllGUI;
 begin
   tmrPlayList.Enabled := False;
   tmrState.Enabled := False;
-  btnSubmit.Enabled := False;
+  btnQueue.Enabled := False;
   btnCrapSong.Enabled := False;
   btnSkip.Enabled := False;
   btnPause.Enabled := False;
-  frmSettings.btnHGDApply.Enabled := False;  //todo disable settings button here too
-                                 //and stop timers when settings form is
-                                 //being displayed
+  imLogin.Enabled := False;
+  frmSettings.btnHGDLogin.Enabled := False;
 end;
 
 procedure TfrmMain.EnableAllGUI;
 begin
-  btnSubmit.Enabled := True;
+  btnQueue.Enabled := True;
   btnCrapSong.Enabled := True;
   btnSkip.Enabled := True;
   btnPause.Enabled := True;
-  frmSettings.btnHGDApply.Enabled := True;
+  imLogin.Enabled := True;
+  frmSettings.btnHGDLogin.Enabled := True;
   tmrPlayList.Enabled := True;
   tmrPlayListTimer(Self);
   tmrState.Enabled := True;
@@ -209,9 +210,15 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   {$IFDEF WINDOWS}
   if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
+  begin
+    frmSettings.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml'
     XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml'
+  end
   else
+  begin
     XMLPropStorage1.Active := False;
+    frmSettings.XMLPropStorage1.Active := False;
+  end;
   {$ENDIF WINDOWS}
   Self.Caption := Self.Caption + ' ' +  VERSION;
   FArtworkAttempts := 0;
@@ -223,6 +230,7 @@ procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   FLastFM.Free();
   FClient.Free();
+  frmSettings.Free();
 end;
 
 procedure TfrmMain.FormDropFiles(Sender: TObject;
@@ -253,6 +261,9 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
+  frmSettings := TFrmSettings.Create(Self);
+  frmSettings.ShowModal();
+
   FClient := THGDClient.Create(frmSettings.edtHost.Text,
     frmSettings.edtPort.Text, frmSettings.edtUser.Text, frmSettings.edtPwd.Text,
     frmSettings.chkSSL.Checked, FDebug);
@@ -263,6 +274,7 @@ begin
     GetAppConfigDirUTF8(False), FDebug);
 
   tmrPlaylistTimer(Self);
+
 end;
 
 procedure TfrmMain.imAboutClick(Sender: TObject);
@@ -270,9 +282,10 @@ begin
   frmAbout.Show();
 end;
 
-procedure TfrmMain.imSettingsClick(Sender: TObject);
+procedure TfrmMain.imLoginClick(Sender: TObject);
 begin
-  frmSettings.Show();
+  if mrOK = frmSettings.ShowModal() then
+    ApplyChanges();
 end;
 
 procedure TfrmMain.sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
@@ -442,13 +455,23 @@ begin
 end;
 
 procedure TfrmMain.tmrStateTimer(Sender: TObject);
+var
+  ErrorState: boolean;
 begin
   if Assigned(FClient) then
   begin
     tmrState.Enabled := False;
+    ErrorState := Pos('error',
+      LowerCase(FClient.StatusMessage)) > 0;
 
-    ShowStatus(FClient.StatusMessage, Pos('error',
-      LowerCase(FCLient.StatusMessage)) > 0);
+    ShowStatus(FClient.StatusMessage, ErrorState);
+
+    if (FClient.State < hsConnected) and (not frmSettings.Visible) and
+      (mrOK = frmSettings.ShowModal()) then
+    begin
+      ApplyChanges();
+      Exit();
+    end;
 
     imSecure.Visible := FClient.Encrypted;
     imInsecure.Visible := not FClient.Encrypted;
@@ -458,11 +481,9 @@ begin
     else
       frmSettings.chkSSL.Font.Style:= [];
 
-    btnSubmit.Enabled := FClient.State >= hsAuthenticated;
+    btnQueue.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);
 
-    frmSettings.imUserAdmin.Visible := FClient.State >= hsAdmin;
-    frmSettings.imUserNormal.Visible := FClient.State < hsAdmin;
     btnSkip.Visible := FClient.State >= hsAdmin;
     btnPause.Visible := FClient.State >= hsAdmin;
 

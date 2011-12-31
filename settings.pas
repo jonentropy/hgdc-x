@@ -82,6 +82,7 @@ end;
 procedure TfrmSettings.FormShow(Sender: TObject);
 begin
   edtPwd.SetFocus;
+  edtPwd.SelectAll;
 end;
 
 end.

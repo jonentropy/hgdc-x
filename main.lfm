@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 348
+  Left = 220
   Height = 660
-  Top = 41
+  Top = 54
   Width = 583
   AllowDropFiles = True
   Caption = 'hgdc-x'

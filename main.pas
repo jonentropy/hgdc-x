@@ -26,7 +26,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient,
-  LastFM, Settings, About, LCLProc;
+  LastFM, Login, About, LCLProc;
 
 type
 
@@ -85,7 +85,7 @@ type
     FCurrentlyDisplayedArtwork: string;
     FArtworkAttempts: integer;
     FDebug: boolean;
-    frmSettings: TFrmSettings;
+    frmLogin: TFrmLogin;
     procedure DisableAllGUI;
     procedure EnableAllGUI;
     procedure Log(Message: string);
@@ -116,13 +116,13 @@ begin
   tmrState.Enabled := False;
 
   ShowStatus('Applying...', False);
-  frmSettings.XMLPropStorage1.Save();
+  frmLogin.XMLPropStorage1.Save();
 
-  FClient.HostAddress := frmSettings.edtHost.Text;
-  FClient.HostPort := frmSettings.edtPort.Text;
-  FClient.UserName := frmSettings.edtUser.Text;
-  FClient.Password := frmSettings.edtPwd.Text;
-  FClient.SSL := frmSettings.chkSSL.Checked;
+  FClient.HostAddress := frmLogin.edtHost.Text;
+  FClient.HostPort := frmLogin.edtPort.Text;
+  FClient.UserName := frmLogin.edtUser.Text;
+  FClient.Password := frmLogin.edtPwd.Text;
+  FClient.SSL := frmLogin.chkSSL.Checked;
 
   FClient.ApplyChanges();
 
@@ -188,7 +188,7 @@ begin
   btnSkip.Enabled := False;
   btnPause.Enabled := False;
   imLogin.Enabled := False;
-  frmSettings.btnHGDLogin.Enabled := False;
+  frmLogin.btnHGDLogin.Enabled := False;
 end;
 
 procedure TfrmMain.EnableAllGUI;
@@ -198,7 +198,7 @@ begin
   btnSkip.Enabled := True;
   btnPause.Enabled := True;
   imLogin.Enabled := True;
-  frmSettings.btnHGDLogin.Enabled := True;
+  frmLogin.btnHGDLogin.Enabled := True;
   tmrPlayList.Enabled := True;
   tmrPlayListTimer(Self);
   tmrState.Enabled := True;
@@ -211,13 +211,13 @@ begin
   {$IFDEF WINDOWS}
   if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
   begin
-    frmSettings.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml'
+    frmLogin.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml'
     XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml'
   end
   else
   begin
     XMLPropStorage1.Active := False;
-    frmSettings.XMLPropStorage1.Active := False;
+    frmLogin.XMLPropStorage1.Active := False;
   end;
   {$ENDIF WINDOWS}
   Self.Caption := Self.Caption + ' ' +  VERSION;
@@ -230,7 +230,7 @@ procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   FLastFM.Free();
   FClient.Free();
-  frmSettings.Free();
+  frmLogin.Free();
 end;
 
 procedure TfrmMain.FormDropFiles(Sender: TObject;
@@ -261,16 +261,16 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-  frmSettings := TFrmSettings.Create(Self);
-  frmSettings.ShowModal();
+  frmLogin := TFrmLogin.Create(Self);
+  frmLogin.ShowModal();
 
-  FClient := THGDClient.Create(frmSettings.edtHost.Text,
-    frmSettings.edtPort.Text, frmSettings.edtUser.Text, frmSettings.edtPwd.Text,
-    frmSettings.chkSSL.Checked, FDebug);
+  FClient := THGDClient.Create(frmLogin.edtHost.Text,
+    frmLogin.edtPort.Text, frmLogin.edtUser.Text, frmLogin.edtPwd.Text,
+    frmLogin.chkSSL.Checked, FDebug);
 
   FClient.ProgressCallBack := @ProgressCallback;
 
-  FLastFM := TLastFM.Create(frmSettings.edtLastFMUser.Text,
+  FLastFM := TLastFM.Create(frmLogin.edtLastFMUser.Text,
     GetAppConfigDirUTF8(False), FDebug);
 
   tmrPlaylistTimer(Self);
@@ -284,7 +284,7 @@ end;
 
 procedure TfrmMain.imLoginClick(Sender: TObject);
 begin
-  if mrOK = frmSettings.ShowModal() then
+  if mrOK = frmLogin.ShowModal() then
     ApplyChanges();
 end;
 
@@ -466,8 +466,8 @@ begin
 
     ShowStatus(FClient.StatusMessage, ErrorState);
 
-    if (FClient.State < hsConnected) and (not frmSettings.Visible) and
-      (mrOK = frmSettings.ShowModal()) then
+    if (FClient.State < hsConnected) and (not frmLogin.Visible) and
+      (mrOK = frmLogin.ShowModal()) then
     begin
       ApplyChanges();
       Exit();
@@ -476,10 +476,10 @@ begin
     imSecure.Visible := FClient.Encrypted;
     imInsecure.Visible := not FClient.Encrypted;
 
-    if (not FClient.Encrypted) and (frmSettings.chkSSL.Checked) then
-      frmSettings.chkSSL.Font.Style:= [fsStrikeOut]
+    if (not FClient.Encrypted) and (frmLogin.chkSSL.Checked) then
+      frmLogin.chkSSL.Font.Style:= [fsStrikeOut]
     else
-      frmSettings.chkSSL.Font.Style:= [];
+      frmLogin.chkSSL.Font.Style:= [];
 
     btnQueue.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);

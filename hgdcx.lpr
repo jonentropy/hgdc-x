@@ -29,7 +29,7 @@ uses
     {$ENDIF}
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Main, HGDClient, lastfm, settings, About, HGDConsts
+  Forms, Main, HGDClient, LastFM, login, About, HGDConsts
   { you can add units after this };
 
 {$R *.res}

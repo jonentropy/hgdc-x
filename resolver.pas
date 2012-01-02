@@ -1,5 +1,5 @@
 {
- * Copyright (c) 2011, Tristan Linnell <tris@canthack.org>
+ * Copyright (c) 2012, Tristan Linnell <tris@canthack.org>
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 }
 
-// hgdc-x Cross Platform hgd client written in Lazarus/Freepascal
+// hgdc-x Cross Platform hgd client written in Lazarus/Freepascal unfortunately
 // resolver.pas - Patch to FPC's name resolution under Unix. Uses libc calls.
 
 unit Resolver;

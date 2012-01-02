@@ -1,7 +1,7 @@
 object frmAbout: TfrmAbout
-  Left = 454
+  Left = 406
   Height = 531
-  Top = 141
+  Top = 118
   Width = 557
   Caption = 'About hgdc-x'
   ClientHeight = 531
@@ -255,9 +255,9 @@ object frmAbout: TfrmAbout
   end
   object lblCow: TLabel
     Left = 56
-    Height = 18
-    Top = 490
-    Width = 210
+    Height = 14
+    Top = 494
+    Width = 156
     Anchors = [akLeft, akBottom]
     Caption = 'Icons from the Fat Cow icon set.'
     ParentColor = False
@@ -283,9 +283,9 @@ object frmAbout: TfrmAbout
   end
   object lblSynapse: TLabel
     Left = 56
-    Height = 18
-    Top = 442
-    Width = 362
+    Height = 14
+    Top = 446
+    Width = 272
     Anchors = [akLeft, akBottom]
     Caption = 'Ararat Synapse Copyright (c)1999-2011, Lukas Gebauer'
     ParentColor = False
@@ -472,7 +472,7 @@ object frmAbout: TfrmAbout
     Width = 491
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoSize = False
-    Caption = 'hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2011, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'
+    Caption = 'hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2012, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'
     ParentColor = False
     ShowAccelChar = False
     WordWrap = True

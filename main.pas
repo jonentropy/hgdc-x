@@ -274,7 +274,6 @@ begin
     GetAppConfigDirUTF8(False), FDebug);
 
   tmrPlaylistTimer(Self);
-
 end;
 
 procedure TfrmMain.imAboutClick(Sender: TObject);
@@ -284,6 +283,7 @@ end;
 
 procedure TfrmMain.imLoginClick(Sender: TObject);
 begin
+  frmLogin.Position := poMainFormCenter;
   if mrOK = frmLogin.ShowModal() then
     ApplyChanges();
 end;

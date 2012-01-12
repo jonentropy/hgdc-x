@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 262
+  Left = 311
   Height = 516
-  Top = 102
+  Top = 68
   Width = 578
   AllowDropFiles = True
   Caption = 'hgdc-x'
@@ -279,7 +279,7 @@ object frmMain: TfrmMain
     object imVoteOff: TImage
       Left = 8
       Height = 64
-      Top = 9
+      Top = 7
       Width = 64
       Picture.Data = {
         1754506F727461626C654E6574776F726B477261706869637D1A000089504E47
@@ -584,7 +584,7 @@ object frmMain: TfrmMain
         0000000000003040C4FF3040C4FF000000000000000000000000000000000000
         0000000000003040C4FF3040C4FF0000000000000000FFFFFF00
       }
-      GlyphShowMode = gsmSystem
+      GlyphShowMode = gsmAlways
       OnClick = btnCrapSongClick
       ParentShowHint = False
       ShowHint = True
@@ -634,7 +634,7 @@ object frmMain: TfrmMain
         00000000000000000000B7813E95B57E39F7B47C37FFB47C37FFB47C37FFB57E
         39F7B7813E9500000000000000000000000000000000FFFFFF00
       }
-      GlyphShowMode = gsmSystem
+      GlyphShowMode = gsmAlways
       OnClick = btnSkipClick
       ParentShowHint = False
       ShowHint = True
@@ -685,7 +685,7 @@ object frmMain: TfrmMain
         00000000000000000000B7813E95B57E39F7B47C37FFB47C37FFB47C37FFB57E
         39F7B7813E9500000000000000000000000000000000FFFFFF00
       }
-      GlyphShowMode = gsmSystem
+      GlyphShowMode = gsmAlways
       OnClick = btnPauseClick
       ParentShowHint = False
       ShowHint = True
@@ -747,6 +747,7 @@ object frmMain: TfrmMain
         0000000000000000000000000000000000000000000000000000000000000000
         0000A47A420BA379415AA2784092A77E49E4A67B43FFFFFFFF00
       }
+      GlyphShowMode = gsmAlways
       OnClick = btnQueueClick
       ParentShowHint = False
       ShowHint = True
@@ -757,7 +758,7 @@ object frmMain: TfrmMain
     Left = 32
     Height = 16
     Hint = 'Log in to an hgd server.'
-    Top = 496
+    Top = 499
     Width = 16
     Anchors = [akLeft, akBottom]
     OnClick = imLoginClick
@@ -801,7 +802,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 16
     Hint = 'About.'
-    Top = 496
+    Top = 499
     Width = 16
     Anchors = [akLeft, akBottom]
     OnClick = imAboutClick
@@ -839,7 +840,7 @@ object frmMain: TfrmMain
     Left = 555
     Height = 16
     Hint = 'Connection is encrypted.'
-    Top = 496
+    Top = 499
     Width = 16
     Anchors = [akRight, akBottom]
     ParentShowHint = False
@@ -875,7 +876,7 @@ object frmMain: TfrmMain
     Left = 555
     Height = 16
     Hint = 'Connection is not encrypted.'
-    Top = 496
+    Top = 499
     Width = 16
     Anchors = [akRight, akBottom]
     ParentShowHint = False
@@ -930,7 +931,7 @@ object frmMain: TfrmMain
   object OpenDialog1: TOpenDialog
     Title = 'Select songs to queue'
     Options = [ofAllowMultiSelect, ofShareAware, ofEnableSizing, ofViewDetail]
-    left = 320
+    left = 296
     top = 248
   end
   object ApplicationProperties1: TApplicationProperties

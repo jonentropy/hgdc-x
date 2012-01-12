@@ -584,7 +584,6 @@ begin
   end;
 
   //check if the server is booting us
-
   if (Msg = HGD_RESP_E_SHTDWN) or (Msg = HGD_RESP_E_KICK) then
   begin
     try

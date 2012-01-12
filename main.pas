@@ -51,7 +51,6 @@ type
     lblDuration: TLabel;
     lblBitrate: TLabel;
     lblNoAlbumArt: TLabel;
-    lblStatus: TLabel;
     lblYear: TLabel;
     lblTitle: TLabel;
     lblArtist: TLabel;
@@ -60,6 +59,7 @@ type
     OpenDialog1: TOpenDialog;
     pbarUpload: TProgressBar;
     sgPlaylist: TStringGrid;
+    stStatus: TStaticText;
     tmrPlaylist: TTimer;
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
@@ -444,14 +444,14 @@ procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);
 begin
   if Error then
   begin
-    lblStatus.Font.Color := clRed;
+    stStatus.Font.Color := clRed;
   end
   else
   begin
-    lblStatus.Font.Color := clBlue;
+    stStatus.Font.Color := clBlue;
   end;
 
-  lblStatus.Caption := Msg;
+  stStatus.Caption := Msg;
 end;
 
 procedure TfrmMain.tmrStateTimer(Sender: TObject);

@@ -49,7 +49,7 @@ object frmLogin: TfrmLogin
   KeyPreview = True
   OnKeyDown = FormKeyDown
   OnShow = FormShow
-  Position = poScreenCenter
+  Position = poMainFormCenter
   SessionProperties = 'edtHost.Text;edtLastFMUser.Text;edtPort.Text;edtUser.Text;chkSSL.Checked'
   ShowInTaskBar = stNever
   LCLVersion = '0.9.30'

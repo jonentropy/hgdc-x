@@ -238,6 +238,7 @@ procedure TfrmMain.FormDropFiles(Sender: TObject;
 var
   i: integer;
 begin
+  Log(IntToStr(Length(FileNames)) + ' files dropped');
   if FClient.State >= hsAuthenticated then
   begin
     DisableAllGUI();
@@ -261,15 +262,18 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
+  Log('Creating login GUI...');
   frmLogin := TFrmLogin.Create(Self);
   frmLogin.ShowModal();
 
+  Log('Creating hgd client...');
   FClient := THGDClient.Create(frmLogin.edtHost.Text,
     frmLogin.edtPort.Text, frmLogin.edtUser.Text, frmLogin.edtPwd.Text,
     frmLogin.chkSSL.Checked, FDebug);
 
   FClient.ProgressCallBack := @ProgressCallback;
 
+  Log('Creating LastFM webservices client...');
   FLastFM := TLastFM.Create(frmLogin.edtLastFMUser.Text,
     GetAppConfigDirUTF8(False), FDebug);
 
@@ -283,7 +287,6 @@ end;
 
 procedure TfrmMain.imLoginClick(Sender: TObject);
 begin
-  frmLogin.Position := poMainFormCenter;
   if mrOK = frmLogin.ShowModal() then
     ApplyChanges();
 end;

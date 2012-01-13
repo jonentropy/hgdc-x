@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 311
+  Left = 361
   Height = 516
-  Top = 68
+  Top = 97
   Width = 578
   AllowDropFiles = True
   Caption = 'hgdc-x'
@@ -935,8 +935,6 @@ object frmMain: TfrmMain
     top = 248
   end
   object ApplicationProperties1: TApplicationProperties
-    ShowButtonGlyphs = sbgSystem
-    ShowMenuGlyphs = sbgSystem
     left = 488
     top = 584
   end

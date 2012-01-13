@@ -81,8 +81,15 @@ end;
 
 procedure TfrmLogin.FormShow(Sender: TObject);
 begin
-  edtPwd.SetFocus;
-  edtPwd.SelectAll;
+  if edtUser.Text = '' then
+  begin
+    edtUser.SetFocus();
+  end
+  else
+  begin
+    edtPwd.SetFocus();
+    edtPwd.SelectAll();
+  end;
 end;
 
 end.

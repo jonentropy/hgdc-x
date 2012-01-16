@@ -203,8 +203,8 @@ begin
   end
   else
   {$ENDIF UNIX}
-    Socket.Connect(FHostAddress, FHostPort);
 
+  Socket.Connect(FHostAddress, FHostPort);
   Reply := ReceiveString();
   Log('connect reply: ' + Reply);
 
@@ -470,7 +470,7 @@ begin
   if (FState >= hsAuthenticated) then
   begin
     Log('Crapping on song id ' + IntToStr(id) + '...');
-    SendString('vo|' + intToStr(id));
+    SendString('vo|' + IntToStr(id));
     Reply := ReceiveString();
     Log('vo reply: ' + Reply);
 
@@ -719,7 +719,7 @@ begin
     for i := 0 to HGD_MAX_LINE - 1 do
     begin
       s := s + Char((p + i * SizeOf(Char))^);
-      if Copy(s, Length(s)-3, 2) = ProtoLineEnding then
+      if Copy(s, Length(s) - 3, 2) = ProtoLineEnding then
       begin
         s := Copy(s, 1, Length(s) - 4);
         Break;

@@ -189,7 +189,7 @@
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmLogin"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="login"/>
+        <UnitName Value="Login"/>
       </Unit4>
       <Unit5>
         <Filename Value="about.pas"/>

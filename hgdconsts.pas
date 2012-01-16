@@ -30,7 +30,6 @@ uses
   function GetHGDCErrorMessage(ServerResp: string): string;
 
 const
-
   HGD_RESP_E_INT: string = 'E_INT';                // Internal error
   HGD_RESP_E_DENY: string =  'E_DENY';             // Access denied
   HGD_RESP_E_FLSIZE: string = 'E_FLSIZE';          // File size invalid

@@ -17,7 +17,7 @@
 // hgdc-x Cross Platform hgd client written in Lazarus/Freepascal
 // login.pas - GUI for logging ino the hgd server
 
-unit login;
+unit Login;
 
 {$mode objfpc}{$H+}
 

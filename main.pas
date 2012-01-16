@@ -211,8 +211,10 @@ begin
   {$IFDEF WINDOWS}
   if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
   begin
-    frmLogin.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml'
-    XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml'
+    frmLogin.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) +
+      'settings.xml';
+
+    XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml';
   end
   else
   begin
@@ -267,9 +269,9 @@ begin
   frmLogin.ShowModal();
 
   Log('Creating hgd client...');
-  FClient := THGDClient.Create(frmLogin.edtHost.Text,
-    frmLogin.edtPort.Text, frmLogin.edtUser.Text, frmLogin.edtPwd.Text,
-    frmLogin.chkSSL.Checked, FDebug);
+  FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
+    frmLogin.edtUser.Text, frmLogin.edtPwd.Text, frmLogin.chkSSL.Checked,
+    FDebug);
 
   FClient.ProgressCallBack := @ProgressCallback;
 

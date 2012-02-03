@@ -208,20 +208,6 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-  {$IFDEF WINDOWS}
-  if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
-  begin
-    frmLogin.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) +
-      'settings.xml';
-
-    XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml';
-  end
-  else
-  begin
-    XMLPropStorage1.Active := False;
-    frmLogin.XMLPropStorage1.Active := False;
-  end;
-  {$ENDIF WINDOWS}
   Self.Caption := Self.Caption + ' ' +  VERSION;
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';
@@ -256,7 +242,7 @@ begin
       FClient.QueueSong(Filenames[i]);
       pbarUpload.Visible := False;
     end;
-
+    //todo move queueing into common function
     Screen.Cursor := crDefault;
     EnableAllGUI();
   end;
@@ -279,6 +265,22 @@ begin
   FLastFM := TLastFM.Create(frmLogin.edtLastFMUser.Text,
     GetAppConfigDirUTF8(False), FDebug);
 
+  //Todo: Check this still works in Windows.
+  {$IFDEF WINDOWS}
+  if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
+  begin
+    frmLogin.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) +
+      'settings.xml';
+
+    XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml';
+  end
+  else
+  begin
+    XMLPropStorage1.Active := False;
+    frmLogin.XMLPropStorage1.Active := False;
+  end;
+
+  {$ENDIF WINDOWS}
   tmrPlaylistTimer(Self);
 end;
 

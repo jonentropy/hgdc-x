@@ -33,6 +33,7 @@ type
 
   TfrmLogin = class(TForm)
     btnHGDLogin: TBitBtn;
+    btnCancel: TBitBtn;
     btnLastFMApply: TBitBtn;
     chkScrobbling: TCheckBox;
     chkScrobbling1: TCheckBox;
@@ -76,7 +77,10 @@ procedure TfrmLogin.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if Key = VK_ESCAPE then
+  begin
+    ModalResult := mrCancel;
     Close();
+  end;
 end;
 
 procedure TfrmLogin.FormShow(Sender: TObject);

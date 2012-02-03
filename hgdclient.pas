@@ -402,7 +402,7 @@ begin
   if FState >= hsAuthenticated then
   begin
     FileSizeValue := FileSize(Filename);
-    Log('Queueing track ' + ExtractFilename(Filename) + '...');
+    Log('Queueing song ' + ExtractFilename(Filename) + '...');
     SendString('q|' + ExtractFilename(Filename) + '|' +
       IntToStr(FileSizeValue));
 
@@ -455,7 +455,7 @@ begin
     else
     begin
       Log('q Failed');
-      FStatusMessage := 'Error queueing track. ' + GetHGDCErrorMessage(Msg);
+      FStatusMessage := 'Error queueing song. ' + GetHGDCErrorMessage(Msg);
     end;
   end;
 end;
@@ -485,7 +485,7 @@ begin
     else
     begin
       Log('Vote off Failed');
-      FStatusMessage := 'Error voting track off. ' + GetHGDCErrorMessage(Msg);
+      FStatusMessage := 'Error voting off song. ' + GetHGDCErrorMessage(Msg);
     end;
   end;
 end;

@@ -70,7 +70,7 @@ type
     procedure btnQueueClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
+    procedure FormDropFiles(Sender: TObject; const Filenames: array of String);
     procedure FormShow(Sender: TObject);
     procedure imAboutClick(Sender: TObject);
     procedure imLoginClick(Sender: TObject);
@@ -90,6 +90,7 @@ type
     procedure EnableAllGUI;
     procedure Log(Message: string);
     procedure ProgressCallback(Percentage: integer);
+    function QueueSong(Filename: string): boolean;
     procedure ShowNowPlaying(b: boolean);
     procedure ShowStatus(Msg: string; Error: boolean);
 
@@ -162,15 +163,8 @@ begin
 
     for i := 0 to OpenDialog1.Files.Count - 1 do
     begin
-      if FClient.State < hsAuthenticated then
+      if not QueueSong(OpenDialog1.Files[i]) then
         Break;
-
-      pbarUpload.Position := pbarUpload.Min;
-      pbarUpload.Visible := True;
-      btnQueue.Visible := False;
-      FClient.QueueSong(OpenDialog1.Files[i]);
-      pbarUpload.Visible := False;
-      btnQueue.Visible := True;
     end;
 
     Screen.Cursor := crDefault;
@@ -221,12 +215,30 @@ begin
   frmLogin.Free();
 end;
 
+function TfrmMain.QueueSong(Filename: string): boolean;
+begin
+  Result := False;
+  if FClient.State < hsAuthenticated then
+    Exit;
+
+  pbarUpload.Position := pbarUpload.Min;
+  pbarUpload.Visible := True;
+  btnQueue.Enabled := False;
+
+  FClient.QueueSong(Filename);
+
+  btnQueue.Enabled = True;
+  pbarUpload.Visible := False;
+
+  Result := True;
+end;
+
 procedure TfrmMain.FormDropFiles(Sender: TObject;
-  const FileNames: array of String);
+  const Filenames: array of String);
 var
   i: integer;
 begin
-  Log(IntToStr(Length(FileNames)) + ' files dropped');
+  Log(IntToStr(Length(Filenames)) + ' files dropped');
   if FClient.State >= hsAuthenticated then
   begin
     DisableAllGUI();
@@ -234,15 +246,10 @@ begin
 
     for i := Low(Filenames) to High(Filenames) do
     begin
-      if FClient.State < hsAuthenticated then
+      if not QueueSong(Filenames[i]) then
         Break;
-
-      pbarUpload.Position := pbarUpload.Min;
-      pbarUpload.Visible := True;
-      FClient.QueueSong(Filenames[i]);
-      pbarUpload.Visible := False;
     end;
-    //todo move queueing into common function
+
     Screen.Cursor := crDefault;
     EnableAllGUI();
   end;
@@ -461,6 +468,8 @@ begin
   stStatus.Caption := Msg;
 end;
 
+//todo make fn to popo upp login window?
+
 procedure TfrmMain.tmrStateTimer(Sender: TObject);
 var
   ErrorState: boolean;
@@ -468,18 +477,17 @@ begin
   if Assigned(FClient) then
   begin
     tmrState.Enabled := False;
-    ErrorState := Pos('error',
-      LowerCase(FClient.StatusMessage)) > 0;
-
+    ErrorState := Pos('error', LowerCase(FClient.StatusMessage)) > 0;
     ShowStatus(FClient.StatusMessage, ErrorState);
 
-    if (FClient.State < hsConnected) and (not frmLogin.Visible) and
+    //todo stop window keep on appearing if cancel is pressed...
+  {  if (FClient.State < hsConnected) and (not frmLogin.Visible) and
       (mrOK = frmLogin.ShowModal()) then
     begin
       ApplyChanges();
       Exit();
     end;
-
+   }
     imSecure.Visible := FClient.Encrypted;
     imInsecure.Visible := not FClient.Encrypted;
 

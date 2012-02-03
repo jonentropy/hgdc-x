@@ -259,12 +259,20 @@ procedure TfrmMain.FormShow(Sender: TObject);
 begin
   Log('Creating login GUI...');
   frmLogin := TFrmLogin.Create(Self);
-  frmLogin.ShowModal();
 
-  Log('Creating hgd client...');
-  FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
-    frmLogin.edtUser.Text, frmLogin.edtPwd.Text, frmLogin.chkSSL.Checked,
-    FDebug);
+  //todo make connect when no usr name added
+  if mrOK = frmLogin.ShowModal() then
+  begin
+    FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
+      frmLogin.edtUser.Text, frmLogin.edtPwd.Text, frmLogin.chkSSL.Checked,
+      FDebug);
+  end
+  else
+  begin
+    FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
+      '', '', frmLogin.chkSSL.Checked,
+      FDebug);
+  end;
 
   FClient.ProgressCallBack := @ProgressCallback;
 
@@ -389,7 +397,7 @@ begin
               Bevel1.Visible := True;
 
               Log('Attempt ' + IntToStr(FArtworkAttempts + 1) +
-                ' at album art fetching.');
+                ' at fetching album art.');
 
               if FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
                   imNowPlaying) then

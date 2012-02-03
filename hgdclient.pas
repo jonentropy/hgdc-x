@@ -104,7 +104,9 @@ type
       ProgressCallBack: TProgressCallback;
 
       constructor Create(HostAddress, HostPort, UserName, Password: string;
-        SSL: boolean; Debug: boolean);
+        SSL: boolean; Debug: boolean); overload;
+
+      constructor Create(Debug: boolean); overload;
 
       destructor Destroy(); override;
 
@@ -131,8 +133,20 @@ implementation
 constructor THGDClient.Create(HostAddress, HostPort, UserName,
   Password: string; SSL: boolean; Debug: boolean);
 begin
-  inherited Create();
+  Create(Debug);
 
+  FUsername := UserName;
+  FPassword := Password;
+  FHostAddress := HostAddress;
+  FHostPort := HostPort;
+  FSSL := SSL;
+
+  ApplyChanges();
+end;
+
+constructor THGDClient.Create(Debug: boolean);
+begin
+  inherited Create();
   FState := hsDisconnected;
   FStatusMessage := 'Not connected.';
   FDebug := Debug;
@@ -140,15 +154,7 @@ begin
   //2 second socket timeout
   Timeout := 2000;
   Socket := TTCPBlockSocket.Create();
-
-  FUsername := UserName;
-  FPassword := Password;
-  FHostAddress := HostAddress;
-  FHostPort := HostPort;
-  FSSL := SSL;
   FEncrypted := False;
-
-  ApplyChanges();
 end;
 
 destructor THGDClient.Destroy();
@@ -265,11 +271,11 @@ begin
     if CheckProto() then
     begin
       FState := hsConnected;
-      FStatusMessage := 'Connected (';
+      FStatusMessage := 'Connected to the HGD server';
       if FEncrypted then
-        FStatusMessage := FStatusMessage + 'SSL).'
+        FStatusMessage := FStatusMessage + ' (Encrypted).'
       else
-        FStatusMessage := FStatusMessage + 'no SSL).'
+        FStatusMessage := FStatusMessage + ' (Not Encrypted).'
     end
     else
     begin
@@ -600,7 +606,7 @@ end;
 
 procedure THGDClient.ApplyChanges;
 begin
-  if Connect() then
+  if Connect() and (FUsername <> '') and (FPassword <> '') then
     if SendUser(FUsername, FPassword) then
       if IsAdmin() then
         FState := hsAdmin;

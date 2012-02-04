@@ -79,7 +79,6 @@ begin
   if Key = VK_ESCAPE then
   begin
     ModalResult := mrCancel;
-  //  Close();
   end;
 end;
 

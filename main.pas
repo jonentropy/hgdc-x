@@ -260,7 +260,6 @@ begin
   Log('Creating login GUI...');
   frmLogin := TFrmLogin.Create(Self);
 
-  //todo make connect when no usr name added
   if mrOK = frmLogin.ShowModal() then
   begin
     FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
@@ -476,11 +475,12 @@ begin
   stStatus.Caption := Msg;
 end;
 
-//todo make fn to popo upp login window?
+//todo make fn to pop up login window?
 
 procedure TfrmMain.tmrStateTimer(Sender: TObject);
 var
   ErrorState: boolean;
+  MR: integer;
 begin
   if Assigned(FClient) then
   begin
@@ -488,14 +488,6 @@ begin
     ErrorState := Pos('error', LowerCase(FClient.StatusMessage)) > 0;
     ShowStatus(FClient.StatusMessage, ErrorState);
 
-    //todo stop window keep on appearing if cancel is pressed...
-  {  if (FClient.State < hsConnected) and (not frmLogin.Visible) and
-      (mrOK = frmLogin.ShowModal()) then
-    begin
-      ApplyChanges();
-      Exit();
-    end;
-   }
     imSecure.Visible := FClient.Encrypted;
     imInsecure.Visible := not FClient.Encrypted;
 
@@ -506,9 +498,19 @@ begin
 
     btnQueue.Enabled := FClient.State >= hsAuthenticated;
     ShowNowPlaying(FClient.State >= hsConnected);
-
     btnSkip.Visible := FClient.State >= hsAdmin;
     btnPause.Visible := FClient.State >= hsAdmin;
+
+    if (FClient.State < hsConnected) and (not frmLogin.Visible) then
+    begin
+      if mrCancel = frmLogin.ShowModal() then
+        Exit()
+      else
+      begin
+        ApplyChanges();
+        Exit();
+      end;
+    end;
 
     tmrState.Enabled := True;
   end;

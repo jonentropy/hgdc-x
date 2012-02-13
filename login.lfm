@@ -59,8 +59,8 @@ object frmLogin: TfrmLogin
     Top = 216
     Width = 274
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ClientHeight = 185
-    ClientWidth = 272
+    ClientHeight = 180
+    ClientWidth = 266
     TabOrder = 0
     Visible = False
     object imLastFM: TImage
@@ -135,9 +135,9 @@ object frmLogin: TfrmLogin
     end
     object lblLastFM: TLabel
       Left = 46
-      Height = 14
+      Height = 17
       Top = 6
-      Width = 46
+      Width = 50
       HelpType = htKeyword
       Caption = 'Last.fm'
       Enabled = False
@@ -148,33 +148,33 @@ object frmLogin: TfrmLogin
     end
     object chkScrobbling: TCheckBox
       Left = 6
-      Height = 20
+      Height = 18
       Top = 38
-      Width = 109
+      Width = 133
       Caption = 'Enable Scrobbling'
       Enabled = False
       TabOrder = 0
     end
     object chkScrobbling1: TCheckBox
       Left = 6
-      Height = 20
+      Height = 18
       Top = 54
-      Width = 113
+      Width = 141
       Caption = 'Scrobble All Tracks'
       Enabled = False
       TabOrder = 1
     end
     object edtLastFMUser: TLabeledEdit
       Left = 6
-      Height = 19
+      Height = 22
       Top = 102
       Width = 144
       EditLabel.AnchorSideLeft.Control = edtLastFMUser
       EditLabel.AnchorSideBottom.Control = edtLastFMUser
       EditLabel.Left = 6
-      EditLabel.Height = 14
-      EditLabel.Top = 85
-      EditLabel.Width = 53
+      EditLabel.Height = 17
+      EditLabel.Top = 82
+      EditLabel.Width = 68
       EditLabel.Caption = 'Username:'
       EditLabel.ParentColor = False
       Enabled = False
@@ -197,32 +197,32 @@ object frmLogin: TfrmLogin
     Width = 280
     Anchors = [akTop, akLeft, akRight, akBottom]
     Caption = 'HGD Server'
-    ClientHeight = 171
-    ClientWidth = 278
+    ClientHeight = 163
+    ClientWidth = 272
     TabOrder = 1
     object edtHost: TEdit
       Left = 112
-      Height = 19
+      Height = 22
       Top = 6
-      Width = 156
+      Width = 150
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 0
       Text = '127.0.0.1'
     end
     object edtPort: TEdit
       Left = 112
-      Height = 19
+      Height = 22
       Top = 40
-      Width = 156
+      Width = 150
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 2
       Text = '6633'
     end
     object edtPwd: TEdit
       Left = 112
-      Height = 19
+      Height = 22
       Top = 94
-      Width = 156
+      Width = 150
       Anchors = [akTop, akLeft, akRight]
       EchoMode = emPassword
       PasswordChar = '*'
@@ -230,52 +230,52 @@ object frmLogin: TfrmLogin
     end
     object edtUser: TEdit
       Left = 112
-      Height = 19
+      Height = 22
       Top = 67
-      Width = 156
+      Width = 150
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 3
     end
     object lblPassword: TLabel
       Left = 34
-      Height = 14
+      Height = 17
       Top = 103
-      Width = 50
+      Width = 64
       Caption = 'Password:'
       ParentColor = False
     end
     object lblUser: TLabel
       Left = 34
-      Height = 14
+      Height = 17
       Top = 76
-      Width = 26
+      Width = 33
       Caption = 'User:'
       ParentColor = False
     end
     object lblPort: TLabel
       Left = 34
-      Height = 14
+      Height = 17
       Top = 49
-      Width = 24
+      Width = 30
       Caption = 'Port:'
       ParentColor = False
     end
     object lblHost: TLabel
       Left = 34
-      Height = 14
+      Height = 17
       Top = 10
-      Width = 26
+      Width = 34
       Caption = 'Host:'
       Layout = tlBottom
       ParentColor = False
     end
     object btnHGDLogin: TBitBtn
-      Left = 152
+      Left = 143
       Height = 26
       Hint = 'Apply changes to the connection settings.'
-      Top = 129
-      Width = 116
-      Anchors = [akLeft, akRight, akBottom]
+      Top = 126
+      Width = 110
+      Anchors = [akLeft, akBottom]
       Caption = 'Log in'
       Default = True
       Glyph.Data = {
@@ -322,10 +322,10 @@ object frmLogin: TfrmLogin
     end
     object chkSSL: TCheckBox
       Left = 32
-      Height = 20
+      Height = 18
       Hint = 'Encrypt connection to server (if server supports it).'
       Top = 25
-      Width = 39
+      Width = 41
       Caption = 'SSL'
       ParentFont = False
       ParentShowHint = False
@@ -462,12 +462,12 @@ object frmLogin: TfrmLogin
       }
     end
     object btnCancel: TBitBtn
-      Left = 8
+      Left = 23
       Height = 26
       Hint = 'Apply changes to the connection settings.'
-      Top = 129
-      Width = 116
-      Anchors = [akLeft, akRight, akBottom]
+      Top = 126
+      Width = 110
+      Anchors = [akLeft, akBottom]
       Caption = 'Cancel'
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100

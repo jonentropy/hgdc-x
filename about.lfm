@@ -1,11 +1,11 @@
 object frmAbout: TfrmAbout
-  Left = 402
+  Left = 233
   Height = 449
-  Top = 125
-  Width = 468
+  Top = 22
+  Width = 510
   Caption = 'About hgdc-x'
   ClientHeight = 449
-  ClientWidth = 468
+  ClientWidth = 510
   Color = clForm
   Icon.Data = {
     BE1000000000010001002020000001002000A810000016000000280000002000
@@ -207,7 +207,7 @@ object frmAbout: TfrmAbout
     }
   end
   object btnClose: TBitBtn
-    Left = 368
+    Left = 410
     Height = 30
     Top = 411
     Width = 91
@@ -255,9 +255,9 @@ object frmAbout: TfrmAbout
   end
   object lblCow: TLabel
     Left = 56
-    Height = 14
-    Top = 427
-    Width = 156
+    Height = 17
+    Top = 424
+    Width = 204
     Anchors = [akLeft, akBottom]
     Caption = 'Icons from the Fat Cow icon set.'
     ParentColor = False
@@ -269,7 +269,7 @@ object frmAbout: TfrmAbout
     Left = 0
     Height = 64
     Top = 0
-    Width = 461
+    Width = 503
     Alignment = taCenter
     Anchors = [akTop, akLeft, akRight]
     AutoSize = False
@@ -283,9 +283,9 @@ object frmAbout: TfrmAbout
   end
   object lblSynapse: TLabel
     Left = 56
-    Height = 14
-    Top = 387
-    Width = 272
+    Height = 17
+    Top = 384
+    Width = 355
     Anchors = [akLeft, akBottom]
     Caption = 'Ararat Synapse Copyright (c)1999-2011, Lukas Gebauer'
     ParentColor = False
@@ -469,7 +469,7 @@ object frmAbout: TfrmAbout
     Left = 56
     Height = 311
     Top = 64
-    Width = 402
+    Width = 444
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoSize = False
     Caption = 'hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2012, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'

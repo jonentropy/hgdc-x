@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 223
+  Left = 111
   Height = 516
-  Top = 126
+  Top = 22
   Width = 578
   AllowDropFiles = True
   Caption = 'hgdc-x'
@@ -202,8 +202,8 @@ object frmMain: TfrmMain
     Width = 567
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 147
-    ClientWidth = 565
+    ClientHeight = 139
+    ClientWidth = 559
     TabOrder = 1
     Visible = False
     object lblNoAlbumArt: TLabel
@@ -221,8 +221,8 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 52
-      Width = 569
+      Top = 44
+      Width = 563
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
       AutoSize = False
@@ -693,7 +693,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object pbarUpload: TProgressBar
-      Left = 299
+      Left = 293
       Height = 30
       Top = 105
       Width = 258
@@ -703,7 +703,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object btnQueue: TBitBtn
-      Left = 299
+      Left = 293
       Height = 30
       Hint = 'Submit songs to the hgd server.'
       Top = 105

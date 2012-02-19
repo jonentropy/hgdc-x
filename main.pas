@@ -279,7 +279,6 @@ begin
   FLastFM := TLastFM.Create(frmLogin.edtLastFMUser.Text,
     GetAppConfigDirUTF8(False), FDebug);
 
-  //Todo: Check this still works in Windows.
   {$IFDEF WINDOWS}
   if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
   begin
@@ -480,7 +479,6 @@ end;
 procedure TfrmMain.tmrStateTimer(Sender: TObject);
 var
   ErrorState: boolean;
-  MR: integer;
 begin
   if Assigned(FClient) then
   begin

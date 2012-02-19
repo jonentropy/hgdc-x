@@ -1,12 +1,12 @@
 object frmMain: TfrmMain
-  Left = 111
+  Left = 511
   Height = 516
-  Top = 22
-  Width = 578
+  Top = 192
+  Width = 579
   AllowDropFiles = True
   Caption = 'hgdc-x'
   ClientHeight = 516
-  ClientWidth = 578
+  ClientWidth = 579
   Color = clForm
   Constraints.MinWidth = 554
   Icon.Data = {
@@ -158,7 +158,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 278
     Top = 216
-    Width = 567
+    Width = 568
     Anchors = [akTop, akLeft, akRight, akBottom]
     Columns = <    
       item
@@ -199,11 +199,11 @@ object frmMain: TfrmMain
     Left = 4
     Height = 161
     Top = 8
-    Width = 567
+    Width = 568
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 139
-    ClientWidth = 559
+    ClientHeight = 143
+    ClientWidth = 564
     TabOrder = 1
     Visible = False
     object lblNoAlbumArt: TLabel
@@ -221,8 +221,8 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 44
-      Width = 563
+      Top = 48
+      Width = 568
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
       AutoSize = False
@@ -693,7 +693,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object pbarUpload: TProgressBar
-      Left = 293
+      Left = 298
       Height = 30
       Top = 105
       Width = 258
@@ -703,7 +703,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object btnQueue: TBitBtn
-      Left = 293
+      Left = 298
       Height = 30
       Hint = 'Submit songs to the hgd server.'
       Top = 105
@@ -758,7 +758,7 @@ object frmMain: TfrmMain
     Left = 32
     Height = 16
     Hint = 'Log in to an hgd server.'
-    Top = 499
+    Top = 497
     Width = 16
     Anchors = [akLeft, akBottom]
     OnClick = imLoginClick
@@ -802,7 +802,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 16
     Hint = 'About.'
-    Top = 499
+    Top = 497
     Width = 16
     Anchors = [akLeft, akBottom]
     OnClick = imAboutClick
@@ -837,10 +837,10 @@ object frmMain: TfrmMain
     ShowHint = True
   end
   object imSecure: TImage
-    Left = 555
+    Left = 556
     Height = 16
     Hint = 'Connection is encrypted.'
-    Top = 499
+    Top = 497
     Width = 16
     Anchors = [akRight, akBottom]
     ParentShowHint = False
@@ -873,10 +873,10 @@ object frmMain: TfrmMain
     Visible = False
   end
   object imInsecure: TImage
-    Left = 555
+    Left = 556
     Height = 16
     Hint = 'Connection is not encrypted.'
-    Top = 499
+    Top = 497
     Width = 16
     Anchors = [akRight, akBottom]
     ParentShowHint = False
@@ -911,7 +911,7 @@ object frmMain: TfrmMain
     Left = 8
     Height = 32
     Top = 176
-    Width = 564
+    Width = 565
     Anchors = [akTop, akLeft, akRight]
     ShowAccelChar = False
     TabOrder = 2

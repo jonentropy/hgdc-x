@@ -91,8 +91,8 @@ type
     procedure Log(Message: string);
     procedure ProgressCallback(Percentage: integer);
     function QueueSong(Filename: string): boolean;
-    procedure ShowNowPlaying(b: boolean);
     procedure ShowStatus(Msg: string; Error: boolean);
+    function Updatestate: boolean;
 
   public
     { public declarations }
@@ -260,18 +260,10 @@ begin
   Log('Creating login GUI...');
   frmLogin := TFrmLogin.Create(Self);
 
-  if mrOK = frmLogin.ShowModal() then
-  begin
-    FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
-      frmLogin.edtUser.Text, frmLogin.edtPwd.Text, frmLogin.chkSSL.Checked,
-      FDebug);
-  end
-  else
-  begin
-    FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
-      '', '', frmLogin.chkSSL.Checked,
-      FDebug);
-  end;
+  Log('Creating HGD client...');
+  FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
+    frmLogin.edtUser.Text, frmLogin.edtPwd.Text, frmLogin.chkSSL.Checked,
+    FDebug);
 
   FClient.ProgressCallBack := @ProgressCallback;
 
@@ -292,8 +284,9 @@ begin
     XMLPropStorage1.Active := False;
     frmLogin.XMLPropStorage1.Active := False;
   end;
-
   {$ENDIF WINDOWS}
+
+  UpdateState();
   tmrPlaylistTimer(Self);
 end;
 
@@ -477,12 +470,20 @@ end;
 //todo make fn to pop up login window?
 
 procedure TfrmMain.tmrStateTimer(Sender: TObject);
+begin
+  tmrState.Enabled := False;
+  if UpdateState() then
+    tmrState.Enabled := True;
+end;
+
+function TfrmMain.UpdateState: boolean;
 var
   ErrorState: boolean;
 begin
+  Result := True;
   if Assigned(FClient) then
   begin
-    tmrState.Enabled := False;
+
     ErrorState := Pos('error', LowerCase(FClient.StatusMessage)) > 0;
     ShowStatus(FClient.StatusMessage, ErrorState);
 
@@ -495,28 +496,17 @@ begin
       frmLogin.chkSSL.Font.Style:= [];
 
     btnQueue.Enabled := FClient.State >= hsAuthenticated;
-    ShowNowPlaying(FClient.State >= hsConnected);
     btnSkip.Visible := FClient.State >= hsAdmin;
     btnPause.Visible := FClient.State >= hsAdmin;
 
-    if (FClient.State < hsConnected) and (not frmLogin.Visible) then
+    if (FClient.State < hsAuthenticated) and (not frmLogin.Visible) then
     begin
       if mrCancel = frmLogin.ShowModal() then
-        Exit()
+        Result := False
       else
-      begin
         ApplyChanges();
-        Exit();
-      end;
     end;
-
-    tmrState.Enabled := True;
   end;
-end;
-
-procedure TfrmMain.ShowNowPlaying(b: boolean);
-begin
-  gbNowPlaying.Visible := b;
 end;
 
 procedure TfrmMain.Log(Message: string);

@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 511
+  Left = 431
   Height = 516
-  Top = 192
+  Top = 144
   Width = 579
   AllowDropFiles = True
   Caption = 'hgdc-x'
@@ -198,14 +198,13 @@ object frmMain: TfrmMain
   object gbNowPlaying: TGroupBox
     Left = 4
     Height = 161
-    Top = 8
+    Top = 0
     Width = 568
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 143
+    ClientHeight = 142
     ClientWidth = 564
     TabOrder = 1
-    Visible = False
     object lblNoAlbumArt: TLabel
       Left = 7
       Height = 38
@@ -221,7 +220,7 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 48
+      Top = 47
       Width = 568
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
@@ -917,6 +916,7 @@ object frmMain: TfrmMain
     TabOrder = 2
   end
   object tmrState: TTimer
+    Enabled = False
     Interval = 500
     OnTimer = tmrStateTimer
     left = 32

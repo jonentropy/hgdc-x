@@ -123,7 +123,7 @@ end;
 procedure TfrmAbout.lblhgdcxClick(Sender: TObject);
 begin
   Screen.Cursor := crHourglass;
-  OpenURL('https://github.com/tristan2468/hgdc-x');
+  OpenURL('http://hgdcx.canthack.org');
   Sleep(300);
   Screen.Cursor := crDefault;
 end;

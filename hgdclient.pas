@@ -209,8 +209,8 @@ begin
   end
   else
   {$ENDIF UNIX}
+    Socket.Connect(FHostAddress, FHostPort);
 
-  Socket.Connect(FHostAddress, FHostPort);
   Reply := ReceiveString();
   Log('connect reply: ' + Reply);
 

@@ -1,5 +1,5 @@
 object frmMain: TfrmMain
-  Left = 431
+  Left = 480
   Height = 516
   Top = 144
   Width = 579
@@ -215,6 +215,7 @@ object frmMain: TfrmMain
       Caption = 'No album art'
       Enabled = False
       ParentColor = False
+      Visible = False
       WordWrap = True
     end
     object lblNoPlaylist: TLabel
@@ -264,6 +265,7 @@ object frmMain: TfrmMain
       Top = 6
       Width = 66
       Shape = bsFrame
+      Visible = False
     end
     object imNowPlaying: TImage
       Left = 8
@@ -274,6 +276,7 @@ object frmMain: TfrmMain
       ParentShowHint = False
       ShowHint = True
       Stretch = True
+      Visible = False
     end
     object imVoteOff: TImage
       Left = 8

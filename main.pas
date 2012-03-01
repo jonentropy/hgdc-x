@@ -342,7 +342,7 @@ begin
       btnPause.Enabled := FClient.State >= hsAuthenticated;
       btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
 
-      sgPlaylist.RowCount := 1;
+      sgPlaylist.RowCount := sgPlaylist.FixedRows;
 
       for i := 0 to Length(PL) - 1 do
       begin

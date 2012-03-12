@@ -50,4 +50,5 @@ http://canthack.org
 Donate
 ======
 
-If you find hgdc-x useful, please buy me a beer! :), [![Buy me a beer, Flattr hgdc-x](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/401840/hgdc-x)
+If you find hgdc-x useful, please buy me a beer! :)
+[![Buy me a beer, Flattr hgdc-x](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/401840/hgdc-x)

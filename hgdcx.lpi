@@ -23,7 +23,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MinorVersionNr Value="5"/>
-      <BuildNr Value="1"/>
+      <BuildNr Value="3"/>
       <Language Value="0809"/>
       <StringTable CompanyName="Tristan Linnell" FileDescription="GUI client for the Hackathon Gunther Daemon" LegalCopyright="2011 Tristan Linnell" ProductName="hgdc-x" ProductVersion="0.5.0"/>
     </VersionInfo>
@@ -234,6 +234,7 @@
     </Linking>
     <Other>
       <CompilerMessages>
+        <IgnoredMessages idx5024="True" idx5036="True" idx5037="True" idx5057="True" idx5058="True"/>
         <UseMsgFile Value="True"/>
       </CompilerMessages>
       <CompilerPath Value="$(CompPath)"/>

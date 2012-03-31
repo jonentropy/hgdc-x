@@ -34,6 +34,13 @@ const
   API_SECRET = 'SECRET_HERE';
 type
 
+  TLastFMSong = record
+    Artist: string;
+    Album: string;
+    Duration: integer;
+    TimeListened: TDateTime;
+  end;
+
   TLastFMAlbumSize = (szSmall, szMedium, szLarge, szExtraLarge, szMega);
 
   { TLastFM }
@@ -43,9 +50,14 @@ type
       FUserName: string;
       FCacheDirectory: string;
       FDebug: boolean;
+      FScrobbleTimer: TTimer;
+      FNowPlayingSong: TLastFMSong;
+      FScrobbleList: TList;
 
       procedure Log(Message: String);
       function ReplaceIllegalFilenameChars(Input: string): string;
+      procedure ScrobbleTimer(Sender: TObject);
+      procedure SetPlayingSong(Song: TLastFMSong);
 
     public
       function GetAlbumArt(Artist, Album: string; Size: TLastFMAlbumSize;
@@ -168,6 +180,13 @@ end;
 constructor TLastFM.Create;
 begin
   inherited Create();
+
+  FScrobbleList := TList.Create;
+
+  FScrobbleTimer := TTimer.Create(nil);
+  FScrobbleTimer.Interval := 2000;
+  FScrobbleTimer.Enabled := False;
+  FScrobbleTimer.OnTimer := @ScrobbleTimer;
 end;
 
 constructor TLastFM.Create(User: string);
@@ -188,8 +207,32 @@ begin
   Create(User);
 end;
 
+procedure TLastFM.SetPlayingSong(Song: TLastFMSong);
+begin
+  FNowPlayingSong := Song;
+end;
+
+procedure TLastFM.ScrobbleTimer(Sender: TObject);
+begin
+  //if song has been set
+  //  set now playing
+
+  //inc time
+
+  //if time > duration/2 then add to scrobble list
+
+  //for all in scrobble list,
+    //try and scrobble
+    //if succesul remve from list
+
+  //
+end;
+
 destructor TLastFM.Destroy;
 begin
+  //save scobble list...
+  FScrobbleList.Free();
+  FScrobbleTimer.Free();
   inherited Destroy();
 end;
 

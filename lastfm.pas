@@ -156,16 +156,23 @@ begin
         if Connection.HTTPMethod('GET', CoverURL) then
         begin
           Log('Album art downloaded, caching...');
-          CoverImage.Picture.LoadFromStream(Connection.Document);
 
-          //Cache album art...
-          if (FCacheDirectory <> '') and
-            DirectoryIsWritable(FCacheDirectory) then
-              CoverImage.Picture.SaveToFile(CacheName, 'png')
-          else
-            Log('there was a problem caching the album art.');
+          try
+            CoverImage.Picture.LoadFromStream(Connection.Document);
 
-          Result := True;
+            //Cache album art...
+            if (FCacheDirectory <> '') and
+              DirectoryIsWritable(FCacheDirectory) then
+            begin
+              CoverImage.Picture.SaveToFile(CacheName, 'png');
+              Result := True;
+            end
+            else
+              Log('There was a problem caching the album art.');
+
+          except
+            Log('Exception when loading image from stream.');
+          end;
         end;
       end
       else

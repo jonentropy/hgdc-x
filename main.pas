@@ -227,7 +227,7 @@ begin
 
   FClient.QueueSong(Filename);
 
-  btnQueue.Enabled = True;
+  btnQueue.Enabled := True;
   pbarUpload.Visible := False;
 
   Result := True;

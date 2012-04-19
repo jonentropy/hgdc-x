@@ -107,11 +107,13 @@ begin
   CoverURL := '';
   try
     Connection.Timeout := 1000;
+
     RequestURL := API_ROOT_URL + '?method=album.getinfo&api_key=' + API_KEY +
       '&artist=' + EncodeURLElement(Artist) + '&album=' +
       EncodeURLElement(Album) + '&autocorrect=1';
 
-    if Connection.HTTPMethod('GET', RequestURL) then
+    Connection.Headers.Clear;
+    if Connection.HTTPMethod('GET', RequestURL) and (Connection.ResultCode = 200) then
     begin
       try
         Log('Got XML response for album ' + Album + ' by ' + Artist);
@@ -152,9 +154,12 @@ begin
       begin
         Log('Fetching the album cover image');
         //Get the cover
+
         CoverURL := EncodeURL(CoverURL);
-        if Connection.HTTPMethod('GET', CoverURL) then
+        Connection.Headers.Clear;
+        if Connection.HTTPMethod('GET', CoverURL) and (Connection.ResultCode = 200) then
         begin
+
           Log('Album art downloaded, caching...');
 
           try

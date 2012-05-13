@@ -17,7 +17,8 @@ Binaries
 ========
 
 Pre-compiled binaries and a Windows installer for each release are available from the "Downloads" tab above.
-To use SSL you will need openSSL libraries installed, and if using the QT version you will need libQT4pas.
+To use SSL you will need OpenSSL libraries installed, and if using the QT version you will need libQT4pas.
+On Windows, you can download the installer package which includes the OpenSSL libraries.
 
 The offical website is at http://hgdcx.canthack.org, where an Ubuntu PPA for hgdc-x as well as the main hgd server project can be found.
 

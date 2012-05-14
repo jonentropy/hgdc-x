@@ -2,7 +2,7 @@ About hgdc-x
 ============
 
 hgdc-x is a cross-platform desktop client for the Hackathon Gunther Daemon music player project.
-The official github repository for the server can be found at https://github.com/vext01/hgd.
+It requires you to be running an hgd server on your local network. The official github repository for the server can be found at https://github.com/vext01/hgd.
 
 hgdc-x is a feature complete GUI client for hgd, including SSL encryption and administrative commands. It is written in cross-platform Lazarus/Freepascal and is designed to target Linux (GTK or QT), Mac OS X (Carbon) and Windows (Win32 or QT). Other targets, for example FreeBSD are possible but untested.
 

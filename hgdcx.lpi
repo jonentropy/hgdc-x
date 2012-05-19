@@ -27,7 +27,7 @@
       <Language Value="0809"/>
       <StringTable CompanyName="Tristan Linnell" FileDescription="GUI client for the Hackathon Gunther Daemon" LegalCopyright="2011 Tristan Linnell" ProductName="hgdc-x" ProductVersion="0.5.0"/>
     </VersionInfo>
-    <BuildModes Count="4">
+    <BuildModes Count="5">
       <Item1 Name="Debug" Default="True"/>
       <Item2 Name="Release Default">
         <CompilerOptions>
@@ -144,6 +144,46 @@
           </Other>
         </CompilerOptions>
       </Item4>
+      <Item5 Name="Release Mac OS X">
+        <CompilerOptions>
+          <Version Value="9"/>
+          <Target>
+            <Filename Value="build/release/$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)/hgdcx"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="libs/synapse"/>
+            <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+          </SearchPaths>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <Optimizations>
+              <VariablesInRegisters Value="True"/>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <UseLineInfoUnit Value="False"/>
+              <StripSymbols Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <Win32>
+                <GraphicApplication Value="True"/>
+              </Win32>
+            </Options>
+          </Linking>
+          <Other>
+            <CompilerMessages>
+              <UseMsgFile Value="True"/>
+            </CompilerMessages>
+            <CustomOptions Value="-k-macosx_version_min -k10.6
+-XR/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.6.sdk"/>
+            <CompilerPath Value="$(CompPath)"/>
+          </Other>
+        </CompilerOptions>
+      </Item5>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>

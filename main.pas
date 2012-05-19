@@ -46,6 +46,7 @@ type
     imLogin: TImage;
     imNowPlaying: TImage;
     imAbout: TImage;
+    lblStatus: TLabel;
     lblSampleRate: TLabel;
     lblGenre: TLabel;
     lblDuration: TLabel;
@@ -59,7 +60,6 @@ type
     OpenDialog1: TOpenDialog;
     pbarUpload: TProgressBar;
     sgPlaylist: TStringGrid;
-    stStatus: TStaticText;
     tmrPlaylist: TTimer;
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
@@ -74,8 +74,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure imAboutClick(Sender: TObject);
     procedure imLoginClick(Sender: TObject);
-    procedure sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
-      aRect: TRect; aState: TGridDrawState);
     procedure tmrPlaylistTimer(Sender: TObject);
     procedure tmrStateTimer(Sender: TObject);
   private
@@ -159,6 +157,7 @@ begin
 
   if OpenDialog1.Execute() then
   begin
+    btnQueue.Visible := False;
     Screen.Cursor := crHourglass;
 
     for i := 0 to OpenDialog1.Files.Count - 1 do
@@ -168,6 +167,7 @@ begin
     end;
 
     Screen.Cursor := crDefault;
+    btnQueue.Visible := True;
   end;
 
   EnableAllGUI();
@@ -299,22 +299,6 @@ procedure TfrmMain.imLoginClick(Sender: TObject);
 begin
   if mrOK = frmLogin.ShowModal() then
     ApplyChanges();
-end;
-
-procedure TfrmMain.sgPlaylistDrawCell(Sender: TObject; aCol, aRow: Integer;
-  aRect: TRect; aState: TGridDrawState);
-var
-  S: string;
-begin
-  if (aRow = 1) and (aCol > 0) then
-  begin
-    TStringGrid(Sender).Canvas.Brush.Color := clHighlight;
-    TStringGrid(Sender).Canvas.Font.Color := clHighlightText;
-    TStringGrid(Sender).Canvas.FillRect(aRect);
-
-    S := TStringGrid(Sender).Cells[aCol, aRow];
-    TStringGrid(Sender).Canvas.TextOut(aRect.Left + 2, aRect.Top + 2, S);
-  end;
 end;
 
 procedure TfrmMain.ProgressCallback(Percentage: integer);
@@ -457,14 +441,14 @@ procedure TfrmMain.ShowStatus(Msg: string; Error: boolean);
 begin
   if Error then
   begin
-    stStatus.Font.Color := clRed;
+    lblStatus.Font.Color := clRed;
   end
   else
   begin
-    stStatus.Font.Color := clBlue;
+    lblStatus.Font.Color := clBlue;
   end;
 
-  stStatus.Caption := Msg;
+  lblStatus.Caption := Msg;
 end;
 
 //todo make fn to pop up login window?

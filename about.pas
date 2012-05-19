@@ -36,7 +36,7 @@ type
     imCatchThatMouse: TImage;
     imCow: TImage;
     imSynapseCon: TImage;
-    imNote: TImage;
+    imHgdcX: TImage;
     imSynapseDis: TImage;
     lblAbout: TLabel;
     lblCow: TLabel;

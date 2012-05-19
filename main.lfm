@@ -1,12 +1,12 @@
 object frmMain: TfrmMain
-  Left = 338
-  Height = 516
-  Top = 146
-  Width = 579
+  Left = 350
+  Height = 523
+  Top = 142
+  Width = 578
   AllowDropFiles = True
   Caption = 'hgdc-x'
-  ClientHeight = 516
-  ClientWidth = 579
+  ClientHeight = 523
+  ClientWidth = 578
   Color = clForm
   Constraints.MinWidth = 554
   Icon.Data = {
@@ -8347,13 +8347,13 @@ object frmMain: TfrmMain
   OnShow = FormShow
   Position = poScreenCenter
   SessionProperties = 'chkScrobbling1.Checked;chkScrobbling.Checked;chkSSL.Checked;edtHost.Text;edtLastFMUser.Text;edtPort.Text;edtUser.Text;OpenDialog1.FileName;OpenDialog1.InitialDir'
-  LCLVersion = '0.9.30'
+  LCLVersion = '0.9.30.4'
   Visible = True
   object sgPlaylist: TStringGrid
     Left = 4
-    Height = 278
-    Top = 216
-    Width = 568
+    Height = 303
+    Top = 200
+    Width = 567
     Anchors = [akTop, akLeft, akRight, akBottom]
     Columns = <    
       item
@@ -8384,21 +8384,21 @@ object frmMain: TfrmMain
       end>
     FixedCols = 0
     MouseWheelOption = mwGrid
-    Options = [goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goColMoving, goThumbTracking, goDblClickAutoSize, goSmoothScroll]
+    Options = [goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goColMoving, goRowSelect, goThumbTracking, goDblClickAutoSize, goSmoothScroll]
     RowCount = 1
     TabOrder = 0
     TitleStyle = tsNative
-    OnDrawCell = sgPlaylistDrawCell
+    UseXORFeatures = True
   end
   object gbNowPlaying: TGroupBox
     Left = 4
     Height = 161
     Top = 0
-    Width = 568
+    Width = 567
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 147
-    ClientWidth = 566
+    ClientHeight = 139
+    ClientWidth = 559
     TabOrder = 1
     object lblNoAlbumArt: TLabel
       Left = 7
@@ -8416,8 +8416,8 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 52
-      Width = 570
+      Top = 44
+      Width = 563
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
       AutoSize = False
@@ -8890,7 +8890,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object pbarUpload: TProgressBar
-      Left = 300
+      Left = 293
       Height = 30
       Top = 105
       Width = 258
@@ -8900,7 +8900,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object btnQueue: TBitBtn
-      Left = 300
+      Left = 293
       Height = 30
       Hint = 'Submit songs to the hgd server.'
       Top = 105
@@ -8955,7 +8955,7 @@ object frmMain: TfrmMain
     Left = 32
     Height = 16
     Hint = 'Log in to an hgd server.'
-    Top = 497
+    Top = 504
     Width = 16
     Anchors = [akLeft, akBottom]
     OnClick = imLoginClick
@@ -8999,7 +8999,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 16
     Hint = 'About.'
-    Top = 497
+    Top = 504
     Width = 16
     Anchors = [akLeft, akBottom]
     OnClick = imAboutClick
@@ -9034,10 +9034,10 @@ object frmMain: TfrmMain
     ShowHint = True
   end
   object imSecure: TImage
-    Left = 556
+    Left = 535
     Height = 16
     Hint = 'Connection is encrypted.'
-    Top = 497
+    Top = 504
     Width = 16
     Anchors = [akRight, akBottom]
     ParentShowHint = False
@@ -9070,10 +9070,10 @@ object frmMain: TfrmMain
     Visible = False
   end
   object imInsecure: TImage
-    Left = 556
+    Left = 535
     Height = 16
     Hint = 'Connection is not encrypted.'
-    Top = 497
+    Top = 504
     Width = 16
     Anchors = [akRight, akBottom]
     ParentShowHint = False
@@ -9104,14 +9104,15 @@ object frmMain: TfrmMain
     }
     ShowHint = True
   end
-  object stStatus: TStaticText
-    Left = 8
-    Height = 32
-    Top = 176
-    Width = 565
+  object lblStatus: TLabel
+    Left = 15
+    Height = 40
+    Top = 160
+    Width = 549
     Anchors = [akTop, akLeft, akRight]
-    ShowAccelChar = False
-    TabOrder = 2
+    AutoSize = False
+    Layout = tlCenter
+    ParentColor = False
   end
   object tmrState: TTimer
     Enabled = False

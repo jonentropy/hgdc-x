@@ -35,10 +35,8 @@ type
   TfrmMain = class(TForm)
     ApplicationProperties1: TApplicationProperties;
     Bevel1: TBevel;
-    btnSkip: TBitBtn;
-    btnPause: TBitBtn;
-    btnQueue: TBitBtn;
-    btnCrapSong: TBitBtn;
+    btnPause: TSpeedButton;
+    btnSkip: TSpeedButton;
     gbNowPlaying: TGroupBox;
     imInsecure: TImage;
     imSecure: TImage;
@@ -60,6 +58,8 @@ type
     OpenDialog1: TOpenDialog;
     pbarUpload: TProgressBar;
     sgPlaylist: TStringGrid;
+    btnQueue: TSpeedButton;
+    btnCrapSong: TSpeedButton;
     tmrPlaylist: TTimer;
     tmrState: TTimer;
     XMLPropStorage1: TXMLPropStorage;
@@ -90,7 +90,7 @@ type
     procedure ProgressCallback(Percentage: integer);
     function QueueSong(Filename: string): boolean;
     procedure ShowStatus(Msg: string; Error: boolean);
-    function Updatestate: boolean;
+    function UpdateState: boolean;
 
   public
     { public declarations }
@@ -158,6 +158,8 @@ begin
   if OpenDialog1.Execute() then
   begin
     btnQueue.Visible := False;
+    btnPause.Visible := False;
+    btnSkip.Visible := False;
     Screen.Cursor := crHourglass;
 
     for i := 0 to OpenDialog1.Files.Count - 1 do
@@ -168,6 +170,8 @@ begin
 
     Screen.Cursor := crDefault;
     btnQueue.Visible := True;
+    btnPause.Visible := FClient.State >= hsAdmin;
+    btnSkip.Visible := FClient.State >= hsAdmin;
   end;
 
   EnableAllGUI();
@@ -304,6 +308,7 @@ end;
 procedure TfrmMain.ProgressCallback(Percentage: integer);
 begin
   pBarUpload.Position := Percentage;
+  ShowStatus(FClient.StatusMessage, False);
   Application.ProcessMessages();
 end;
 

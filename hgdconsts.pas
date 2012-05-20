@@ -82,7 +82,7 @@ begin
     'Username does not exist.'
 
   else
-    Result := 'Unknown Error Code';
+    Result := 'Unknown Error Code.';
 end;
 
 end.

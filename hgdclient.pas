@@ -287,7 +287,7 @@ begin
   else
   begin
     FState := hsDisconnected;
-    FStatusMessage := 'Not connected.';
+    FStatusMessage := 'Could not connect to the HGD server.';
   end;
 end;
 
@@ -440,7 +440,7 @@ begin
           Socket.SendBuffer(@DataArray[0], SizeToSend);
 
           Percentage := Round((i * BLOCK_SIZE / FileSizeValue) * 100);
-
+          FStatusMessage := 'Uploaded ' +  FloatToStr(Percentage) + '%';
           Log('Uploaded ' +  FloatToStr(Percentage) + '%');
 
           if Assigned(ProgressCallBack) then ProgressCallBack(Percentage);

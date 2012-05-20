@@ -59,6 +59,7 @@ type
     Year: integer;
     VoteCount: integer;
     Voted: boolean;
+    Playing: boolean;
   end;
 
   TPlaylist = array of TTrackInfo;
@@ -111,6 +112,7 @@ type
       destructor Destroy(); override;
 
       procedure ApplyChanges();
+      function GetNowPlaying(out Song: TTrackInfo): boolean;
       function GetPlaylist(var PList: TPlaylist): boolean;
       function QueueSong(Filename: string): boolean;
       function VoteOff(id: integer): boolean;
@@ -315,6 +317,61 @@ begin
   end;
 end;
 
+function THGDClient.GetNowPlaying(out Song: TTrackInfo): boolean;
+var
+  Reply: string;
+  Msg: string;
+  PLStringList: TStringList;
+begin
+  Result := False;
+
+  //only do this if at least connected...
+  if FState >= hsConnected then
+  begin
+    Log('Getting Now Playing...');
+    SendString('np');
+    Reply := ReceiveString();
+    Log('np reply: ' + Reply);
+
+    Msg := '';
+    if ProcessReply(Reply, Msg) then
+    begin
+      PLStringList := TStringList.Create();
+
+      try
+        ParseHGDPacket(Reply, PLStringList);
+
+        if  PLStringList.Count >= 2 then
+          Song.Playing := PLStringList.Strings[1] = '1';
+
+                                             //+2 due to difference between ls
+                                             //and np reply formats
+        if (PLStringList.Count >= HGD_NUM_TRACK_FIELDS + 2) then
+        begin
+          Song.Number := StrToIntDef(PLStringList.Strings[2], 0);
+          Song.Filename := PLStringList.Strings[3];
+          Song.Artist := PLStringList.Strings[4];
+          Song.Title := PLStringList.Strings[5];
+          Song.User := PLStringList.Strings[6];
+          Song.Album := PLStringList.Strings[7];
+          Song.Genre := PLStringList.Strings[8];
+          Song.Duration := StrToIntDef(PLStringList.Strings[9], 0);
+          Song.Bitrate := StrToIntDef(PLStringList.Strings[10], 0);
+          Song.SampleRate := StrToIntDef(PLStringList.Strings[11], 0);
+          Song.Channels := StrToIntDef(PLStringList.Strings[12], 0);
+          Song.Year := StrToIntDef(PLStringList.Strings[13], 0);
+          Song.VoteCount := StrToIntDef(PLStringList.Strings[14], -1);
+          Song.Voted := (PLStringList.Strings[15] = '1');
+        end;
+      finally
+        PLStringList.Free();
+      end;
+
+      Result := Song.Playing;
+    end;
+  end;
+end;
+
 function THGDClient.GetPlaylist(var PList: TPlaylist): boolean;
 var
   Reply: string;
@@ -381,6 +438,7 @@ begin
               StrToIntDef(PLStringList.Strings[12], -1);
 
             PList[Length(PList) - 1].Voted := (PLStringList.Strings[13] = '1');
+            PList[Length(PList) - 1].Playing := False;
           end;
         end;
       finally

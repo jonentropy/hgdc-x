@@ -316,106 +316,88 @@ procedure TfrmMain.tmrPlaylistTimer(Sender: TObject);
 var
   PL: TPlaylist;
   i: integer;
+  NowPlayingSong: TTrackInfo;
 begin
   tmrPlaylist.Enabled := False;
   PL := nil;
 
   if Assigned(FClient) and (FClient.State >= hsConnected) then
   begin
-    FClient.GetPlaylist(PL);
-
-    if Length(PL) > 0 then
+    //Display now playing info
+    if FClient.GetNowPlaying(NowPlayingSong) then
     begin
-      //There are some items in the playlist
+      //A song is currently playing
+      lblNoPlaylist.Visible := False;
       btnSkip.Enabled := FClient.State >= hsAuthenticated;
       btnPause.Enabled := FClient.State >= hsAuthenticated;
       btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
 
-      sgPlaylist.RowCount := sgPlaylist.FixedRows;
+      imVoteOff.Visible := NowPlayingSong.Voted;
 
-      for i := 0 to Length(PL) - 1 do
+      if NowPlayingSong.Title <> '' then
+        lblTitle.Caption := NowPlayingSong.Title
+      else
+        lblTitle.Caption := NowPlayingSong.Filename;
+
+      lblArtist.Caption := NowPlayingSong.Artist;
+      lblAlbum.Caption := NowPlayingSong.Album;
+      lblGenre.Caption := NowPlayingSong.Genre;
+
+      if NowPlayingSong.Year > 0 then
+        lblYear.Caption := IntToStr(NowPlayingSong.Year)
+      else
+        lblYear.Caption := '';
+
+      if (NowPlayingSong.Artist <> '') and (NowPlayingSong.Album <> '') then
       begin
-        sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
-        sgPlaylist.Cells[0, sgPlaylist.RowCount -1] := IntToStr(PL[i].Number);
-
-        if PL[i].Title <> '' then
-          sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title
-        else
-          sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Filename;
-
-        sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
-        sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].Album;
-        sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
-        lblNoPlaylist.Visible := False;
-
-        //Display now playing info
-        if (i = 0) then
+        if ((NowPlayingSong.Artist + ':' + NowPlayingSong.Album) <>
+          FCurrentlyDisplayedArtwork) then
         begin
-          imVoteOff.Visible := PL[i].Voted;
+          //Playing track has changed, get artwork
+          imNowPlaying.Visible := True;
+          Bevel1.Visible := True;
 
-          if PL[i].Title <> '' then
-            lblTitle.Caption := PL[i].Title
-          else
-            lblTitle.Caption := PL[i].Filename;
+          Log('Attempt ' + IntToStr(FArtworkAttempts + 1) +
+            ' at fetching album art.');
 
-          lblArtist.Caption := PL[i].Artist;
-          lblAlbum.Caption := PL[i].Album;
-          lblGenre.Caption := PL[i].Genre;
-
-          if PL[i].Year > 0 then
-            lblYear.Caption := IntToStr(PL[i].Year)
-          else
-            lblYear.Caption := '';
-
-          if (PL[i].Artist <> '') and (PL[i].Album <> '') then
+          if FLastFM.GetAlbumArt(NowPlayingSong.Artist, NowPlayingSong.Album,
+            szMedium, imNowPlaying) then
           begin
-            if ((PL[i].Artist + ':' + PL[i].Album) <>
-              FCurrentlyDisplayedArtwork) then
-            begin
-              //Playing track has changed, get artwork
-              imNowPlaying.Visible := True;
-              Bevel1.Visible := True;
+            FCurrentlyDisplayedArtwork := NowPlayingSong.Artist + ':' +
+              NowPlayingSong.Album;
 
-              Log('Attempt ' + IntToStr(FArtworkAttempts + 1) +
-                ' at fetching album art.');
-
-              if FLastFM.GetAlbumArt(PL[i].Artist, PL[i].Album, szMedium,
-                  imNowPlaying) then
-              begin
-                FCurrentlyDisplayedArtwork := PL[i].Artist + ':' + PL[i].Album;
-                FArtworkAttempts := 0;
-              end
-              else
-              begin
-                //Couldn't get artwork, so hide it
-                Inc(FArtworkAttempts);
-                imNowPlaying.Visible := False;
-                lblNoAlbumArt.Visible := True;
-              end;
-
-              if (FArtworkAttempts = MAX_ARTWORK_ATTEMPTS) then
-              begin
-                Log('Too many artwork attempts, not trying again.');
-                FCurrentlyDisplayedArtwork := PL[i].Artist + ':' + PL[i].Album;
-                FArtworkAttempts := 0;
-              end;
-            end;
+            FArtworkAttempts := 0;
           end
           else
           begin
-            //No album information to get art with
-            Log('No album information to get art with.');
+            //Couldn't get artwork, so hide it
+            Inc(FArtworkAttempts);
             imNowPlaying.Visible := False;
             lblNoAlbumArt.Visible := True;
           end;
+
+          if (FArtworkAttempts = MAX_ARTWORK_ATTEMPTS) then
+          begin
+            Log('Too many artwork attempts, not trying again.');
+            FCurrentlyDisplayedArtwork := NowPlayingSong.Artist + ':' +
+              NowPlayingSong.Album;
+
+            FArtworkAttempts := 0;
+          end;
         end;
+      end
+      else
+      begin
+        //No album information to get art with
+        Log('No album information to get art with.');
+        imNowPlaying.Visible := False;
+        lblNoAlbumArt.Visible := True;
       end;
     end
     else
     begin
       //Nothing playing
       Log('Nothing is playing.');
-      sgPlaylist.RowCount := 1;
       lblTitle.Caption := '';
       lblArtist.Caption := '';
       lblAlbum.Caption := '';
@@ -434,6 +416,32 @@ begin
       Bevel1.Visible := False;
       lblNoAlbumArt.Visible := False;
       imVoteOff.Visible := False;
+    end;
+
+    //Now get the rest of the playlist for the string grid...
+    FClient.GetPlaylist(PL);
+
+    if Length(PL) > 0 then
+    begin
+      //There are some items in the playlist
+
+      sgPlaylist.RowCount := sgPlaylist.FixedRows;
+
+      for i := 0 to Length(PL) - 1 do
+      begin
+        sgPlaylist.RowCount := sgPlaylist.RowCount + 1;
+        sgPlaylist.Cells[0, sgPlaylist.RowCount -1] := IntToStr(PL[i].Number);
+
+        if PL[i].Title <> '' then
+          sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Title
+        else
+          sgPlaylist.Cells[1, sgPlaylist.RowCount -1] := PL[i].Filename;
+
+        sgPlaylist.Cells[2, sgPlaylist.RowCount -1] := PL[i].Artist;
+        sgPlaylist.Cells[3, sgPlaylist.RowCount -1] := PL[i].Album;
+        sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
+
+      end;
     end;
   end
   else

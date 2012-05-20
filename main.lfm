@@ -8,6 +8,7 @@ object frmMain: TfrmMain
   ClientHeight = 527
   ClientWidth = 578
   Color = clForm
+  Constraints.MinHeight = 200
   Constraints.MinWidth = 554
   Icon.Data = {
     2E1104000000010001000000000001002000181104001600000089504E470D0A
@@ -8351,8 +8352,8 @@ object frmMain: TfrmMain
   Visible = True
   object sgPlaylist: TStringGrid
     Left = 4
-    Height = 315
-    Top = 184
+    Height = 339
+    Top = 160
     Width = 567
     Anchors = [akTop, akLeft, akRight, akBottom]
     Columns = <    
@@ -8384,7 +8385,7 @@ object frmMain: TfrmMain
       end>
     FixedCols = 0
     MouseWheelOption = mwGrid
-    Options = [goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goColMoving, goRowSelect, goThumbTracking, goDblClickAutoSize, goSmoothScroll]
+    Options = [goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goColMoving, goThumbTracking, goDblClickAutoSize, goSmoothScroll]
     RowCount = 1
     TabOrder = 0
     TitleStyle = tsNative
@@ -8392,12 +8393,12 @@ object frmMain: TfrmMain
   end
   object gbNowPlaying: TGroupBox
     Left = 4
-    Height = 145
+    Height = 121
     Top = 0
     Width = 567
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 123
+    ClientHeight = 99
     ClientWidth = 559
     TabOrder = 1
     object lblNoAlbumArt: TLabel
@@ -8416,7 +8417,7 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 54
+      Top = 38
       Width = 563
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
@@ -8738,7 +8739,7 @@ object frmMain: TfrmMain
       ParentFont = False
     end
     object btnCrapSong: TSpeedButton
-      Left = 528
+      Left = 526
       Height = 32
       Hint = 'Vote off current song.'
       Top = 2
@@ -9039,7 +9040,7 @@ object frmMain: TfrmMain
   object lblStatus: TLabel
     Left = 15
     Height = 40
-    Top = 144
+    Top = 120
     Width = 521
     Anchors = [akTop, akLeft, akRight]
     AutoSize = False
@@ -9051,7 +9052,7 @@ object frmMain: TfrmMain
     Left = 537
     Height = 32
     Hint = 'Queue songs.'
-    Top = 147
+    Top = 123
     Width = 32
     Anchors = [akTop, akRight]
     Flat = True
@@ -9195,7 +9196,7 @@ object frmMain: TfrmMain
   object pbarUpload: TProgressBar
     Left = 311
     Height = 14
-    Top = 157
+    Top = 133
     Width = 258
     Anchors = [akTop, akRight]
     Smooth = True
@@ -9206,7 +9207,7 @@ object frmMain: TfrmMain
     Left = 496
     Height = 32
     Hint = 'Pause current song.'
-    Top = 147
+    Top = 123
     Width = 32
     Anchors = [akTop, akRight]
     Flat = True
@@ -9351,7 +9352,7 @@ object frmMain: TfrmMain
     Left = 456
     Height = 32
     Hint = 'Skip current song.'
-    Top = 147
+    Top = 123
     Width = 32
     Anchors = [akTop, akRight]
     Flat = True

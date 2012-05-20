@@ -46,6 +46,7 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure imCatchThatMouseMouseEnter(Sender: TObject);
     procedure imCatchThatMouseMouseLeave(Sender: TObject);
+    procedure imHgdcXClick(Sender: TObject);
     procedure lblCowClick(Sender: TObject);
     procedure lblCowMouseEnter(Sender: TObject);
     procedure lblCowMouseLeave(Sender: TObject);
@@ -88,6 +89,14 @@ procedure TfrmAbout.imCatchThatMouseMouseLeave(Sender: TObject);
 begin
   imSynapseCon.Visible := False;
   imSynapseDis.Visible := True;
+end;
+
+procedure TfrmAbout.imHgdcXClick(Sender: TObject);
+begin
+  Screen.Cursor := crHourglass;
+  OpenURL('http://theartofindigo.com/');
+  Sleep(300);
+  Screen.Cursor := crDefault;
 end;
 
 procedure TfrmAbout.lblCowClick(Sender: TObject);

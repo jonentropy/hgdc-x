@@ -1,10 +1,10 @@
 object frmAbout: TfrmAbout
-  Left = 386
-  Height = 495
-  Top = 143
+  Left = 327
+  Height = 500
+  Top = 127
   Width = 619
   Caption = 'About hgdc-x'
-  ClientHeight = 495
+  ClientHeight = 500
   ClientWidth = 619
   Color = clForm
   Icon.Data = {
@@ -152,7 +152,7 @@ object frmAbout: TfrmAbout
   object imCow: TImage
     Left = 12
     Height = 32
-    Top = 463
+    Top = 461
     Width = 32
     Anchors = [akLeft, akBottom]
     OnClick = lblCowClick
@@ -209,7 +209,7 @@ object frmAbout: TfrmAbout
   object btnClose: TBitBtn
     Left = 519
     Height = 30
-    Top = 457
+    Top = 462
     Width = 91
     Anchors = [akRight, akBottom]
     Caption = 'Close'
@@ -256,7 +256,7 @@ object frmAbout: TfrmAbout
   object lblCow: TLabel
     Left = 56
     Height = 17
-    Top = 470
+    Top = 468
     Width = 204
     Anchors = [akLeft, akBottom]
     Caption = 'Icons from the Fat Cow icon set.'
@@ -284,10 +284,10 @@ object frmAbout: TfrmAbout
   object lblSynapse: TLabel
     Left = 56
     Height = 17
-    Top = 430
-    Width = 355
+    Top = 428
+    Width = 359
     Anchors = [akLeft, akBottom]
-    Caption = 'Ararat Synapse Copyright (c)1999-2012, Lukas Gebauer'
+    Caption = 'Ararat Synapse Copyright (c)1999-2012, Lukas Gebauer.'
     ParentColor = False
     OnClick = lblSynapseClick
     OnMouseEnter = lblCowMouseEnter
@@ -296,8 +296,11 @@ object frmAbout: TfrmAbout
   object imHgdcX: TImage
     Left = 12
     Height = 32
+    Hint = 'Jukebox icon by Lucy Lindsell under CC BY-NC-ND. Click to visit website.'
     Top = 64
     Width = 32
+    OnClick = imHgdcXClick
+    ParentShowHint = False
     Picture.Data = {
       1754506F727461626C654E6574776F726B477261706869630ACC040089504E47
       0D0A1A0A0000000D49484452000002E4000002E4080600000047A42065000003
@@ -10126,12 +10129,13 @@ object frmAbout: TfrmAbout
       344213720D0D0D0D0D0D0D0D0D8D69C4FF03E460CFECA5A824EA000000004945
       4E44AE426082
     }
+    ShowHint = True
     Stretch = True
   end
   object imSynapseCon: TImage
     Left = 12
     Height = 32
-    Top = 423
+    Top = 421
     Width = 32
     Anchors = [akLeft, akBottom]
     Picture.Data = {
@@ -10191,7 +10195,7 @@ object frmAbout: TfrmAbout
   object imSynapseDis: TImage
     Left = 12
     Height = 32
-    Top = 423
+    Top = 421
     Width = 32
     Anchors = [akLeft, akBottom]
     Picture.Data = {
@@ -10241,7 +10245,7 @@ object frmAbout: TfrmAbout
   object imCatchThatMouse: TImage
     Left = 12
     Height = 32
-    Top = 423
+    Top = 421
     Width = 32
     Anchors = [akLeft, akBottom]
     OnClick = lblSynapseClick
@@ -10250,12 +10254,12 @@ object frmAbout: TfrmAbout
   end
   object lblAbout: TLabel
     Left = 56
-    Height = 357
+    Height = 349
     Top = 64
     Width = 553
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoSize = False
-    Caption = 'hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2012, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'
+    Caption = 'hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2012, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'#13#10#13#10'Jukebox icon by Lucy Linsdell of theartofindigo.com, under CC BY-NC-ND. Click the icon on the left for more information.'
     ParentColor = False
     ShowAccelChar = False
     WordWrap = True

@@ -466,7 +466,6 @@ object frmLogin: TfrmLogin
     object btnCancel: TBitBtn
       Left = 23
       Height = 26
-      Hint = 'Apply changes to the connection settings.'
       Top = 132
       Width = 110
       Anchors = [akLeft, akBottom]

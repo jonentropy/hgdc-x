@@ -101,7 +101,7 @@ var
 
 const
   MAX_ARTWORK_ATTEMPTS = 3;
-  VERSION = '0.5.dev';
+  VERSION = '0.5.3';
 
 implementation
 
@@ -264,6 +264,24 @@ begin
   Log('Creating login GUI...');
   frmLogin := TFrmLogin.Create(Self);
 
+  {$IFDEF WINDOWS}
+  if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
+  begin
+    frmLogin.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) +
+      'settings.xml';
+
+    XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml';
+
+    XMLPropStorage1.Restore;
+    frmLogin.XMLPropStorage1.Restore;
+  end
+  else
+  begin
+    XMLPropStorage1.Active := False;
+    frmLogin.XMLPropStorage1.Active := False;
+  end;
+  {$ENDIF WINDOWS}
+
   Log('Creating HGD client...');
   FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
     frmLogin.edtUser.Text, frmLogin.edtPwd.Text, frmLogin.chkSSL.Checked,
@@ -274,21 +292,6 @@ begin
   Log('Creating LastFM webservices client...');
   FLastFM := TLastFM.Create(frmLogin.edtLastFMUser.Text,
     GetAppConfigDirUTF8(False), FDebug);
-
-  {$IFDEF WINDOWS}
-  if ForceDirectoriesUTF8(GetAppConfigDirUTF8(False)) then
-  begin
-    frmLogin.XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) +
-      'settings.xml';
-
-    XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml';
-  end
-  else
-  begin
-    XMLPropStorage1.Active := False;
-    frmLogin.XMLPropStorage1.Active := False;
-  end;
-  {$ENDIF WINDOWS}
 
   UpdateState();
   tmrPlaylistTimer(Self);

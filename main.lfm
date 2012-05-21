@@ -1,12 +1,12 @@
 object frmMain: TfrmMain
-  Left = 359
+  Left = 511
   Height = 527
-  Top = 124
-  Width = 578
+  Top = 186
+  Width = 579
   AllowDropFiles = True
   Caption = 'hgdc-x'
   ClientHeight = 527
-  ClientWidth = 578
+  ClientWidth = 579
   Color = clForm
   Constraints.MinHeight = 200
   Constraints.MinWidth = 554
@@ -8354,7 +8354,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 339
     Top = 160
-    Width = 567
+    Width = 568
     Anchors = [akTop, akLeft, akRight, akBottom]
     Columns = <    
       item
@@ -8395,11 +8395,11 @@ object frmMain: TfrmMain
     Left = 4
     Height = 121
     Top = 0
-    Width = 567
+    Width = 568
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 99
-    ClientWidth = 559
+    ClientHeight = 103
+    ClientWidth = 564
     TabOrder = 1
     object lblNoAlbumArt: TLabel
       Left = 7
@@ -8417,8 +8417,8 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 38
-      Width = 563
+      Top = 42
+      Width = 568
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
       AutoSize = False
@@ -8739,7 +8739,7 @@ object frmMain: TfrmMain
       ParentFont = False
     end
     object btnCrapSong: TSpeedButton
-      Left = 526
+      Left = 531
       Height = 32
       Hint = 'Vote off current song.'
       Top = 2
@@ -8967,7 +8967,7 @@ object frmMain: TfrmMain
     ShowHint = True
   end
   object imSecure: TImage
-    Left = 535
+    Left = 536
     Height = 16
     Hint = 'Connection is encrypted.'
     Top = 504
@@ -9003,7 +9003,7 @@ object frmMain: TfrmMain
     Visible = False
   end
   object imInsecure: TImage
-    Left = 535
+    Left = 536
     Height = 16
     Hint = 'Connection is not encrypted.'
     Top = 504
@@ -9041,7 +9041,7 @@ object frmMain: TfrmMain
     Left = 15
     Height = 40
     Top = 120
-    Width = 521
+    Width = 522
     Anchors = [akTop, akLeft, akRight]
     AutoSize = False
     Layout = tlCenter
@@ -9049,7 +9049,7 @@ object frmMain: TfrmMain
     ShowAccelChar = False
   end
   object btnQueue: TSpeedButton
-    Left = 537
+    Left = 538
     Height = 32
     Hint = 'Queue songs.'
     Top = 123
@@ -9194,7 +9194,7 @@ object frmMain: TfrmMain
     ParentShowHint = False
   end
   object pbarUpload: TProgressBar
-    Left = 311
+    Left = 312
     Height = 14
     Top = 133
     Width = 258
@@ -9204,7 +9204,7 @@ object frmMain: TfrmMain
     Visible = False
   end
   object btnPause: TSpeedButton
-    Left = 496
+    Left = 497
     Height = 32
     Hint = 'Pause current song.'
     Top = 123
@@ -9349,7 +9349,7 @@ object frmMain: TfrmMain
     ParentShowHint = False
   end
   object btnSkip: TSpeedButton
-    Left = 456
+    Left = 457
     Height = 32
     Hint = 'Skip current song.'
     Top = 123

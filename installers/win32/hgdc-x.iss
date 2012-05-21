@@ -7,8 +7,8 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{8CD9F65F-46EC-4E1E-925C-980B347DF657}
 AppName=hgdc-x
-AppVersion=0.5.0
-AppVerName=hgdc-x 0.5.0
+AppVersion=0.5.3
+AppVerName=hgdc-x 0.5.3
 AppPublisher=Tristan Linnell
 AppPublisherURL=https://github.com/tristan2468/hgdc-x
 AppSupportURL=https://github.com/tristan2468/hgdc-x

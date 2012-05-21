@@ -9,3 +9,4 @@ installers/win32/Output/
 build/release/i386-linux-gtk2/
 build/release/i386-linux-qt/
 .DS_Store
+build/release/.DS_Store

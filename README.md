@@ -4,7 +4,7 @@ About hgdc-x
 hgdc-x is a cross-platform desktop client for the Hackathon Gunther Daemon music player project.
 It requires you to be running an hgd server on your local network. The official github repository for the server can be found at https://github.com/vext01/hgd.
 
-hgdc-x is a feature complete GUI client for hgd, including SSL encryption and administrative commands. It is written in cross-platform Lazarus/Freepascal and is designed to target Linux (GTK or QT), Mac OS X (Carbon) and Windows (Win32 or QT). Other targets, for example FreeBSD are possible but untested.
+hgdc-x is a feature complete GUI client for hgd, including SSL encryption and administrative commands. It is written in cross-platform Lazarus/Freepascal and is designed to target Linux (GTK), Mac OS X (Carbon) and Windows (Win32). Other targets and widget sets, for example FreeBSD are possible but untested.
 
 
 Building
@@ -17,7 +17,7 @@ Binaries
 ========
 
 Pre-compiled binaries and a Windows installer for each release are available from the "Downloads" tab above.
-To use SSL you will need OpenSSL libraries installed, and if using the QT version you will need libQT4pas.
+To use SSL you will need OpenSSL libraries installed.
 On Windows, you can download the installer package which includes the OpenSSL libraries.
 
 The offical website is at http://hgdcx.canthack.org, where an Ubuntu PPA for hgdc-x as well as the main hgd server project can be found.
@@ -27,8 +27,8 @@ Licensing
 =========
 
 hgdc-x is licensed with a permissive BSD style licence, please refer to the COPYING file for more details.
-
-Icons are from the Fat Cow icon set, which is Creative Commons licensed and can be found at http://www.fatcow.com/free-icons.
+The main icon is by Lucy Lindsell and it released under Creative Commons CC BY-NC-ND.
+Other icons are from the Fat Cow icon set, which is Creative Commons licensed and can be found at http://www.fatcow.com/free-icons.
 
 
 Support/Develop

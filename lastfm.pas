@@ -112,7 +112,7 @@ begin
       '&artist=' + EncodeURLElement(Artist) + '&album=' +
       EncodeURLElement(Album) + '&autocorrect=1';
 
-    Connection.Headers.Clear;
+    Connection.Clear;
     if Connection.HTTPMethod('GET', RequestURL) and (Connection.ResultCode = 200) then
     begin
       try
@@ -156,7 +156,7 @@ begin
         //Get the cover
 
         CoverURL := EncodeURL(CoverURL);
-        Connection.Headers.Clear;
+        Connection.Clear;
         if Connection.HTTPMethod('GET', CoverURL) and (Connection.ResultCode = 200) then
         begin
 

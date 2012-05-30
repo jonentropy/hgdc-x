@@ -44,7 +44,7 @@
             <SmartLinkUnit Value="True"/>
             <Optimizations>
               <VariablesInRegisters Value="True"/>
-              <OptimizationLevel Value="2"/>
+              <OptimizationLevel Value="3"/>
             </Optimizations>
           </CodeGeneration>
           <Linking>

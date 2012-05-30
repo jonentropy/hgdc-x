@@ -422,13 +422,12 @@ begin
     end;
 
     //Now get the rest of the playlist for the string grid...
+    sgPlaylist.RowCount := sgPlaylist.FixedRows;
     FClient.GetPlaylist(PL);
 
     if Length(PL) > 0 then
     begin
       //There are some items in the playlist
-
-      sgPlaylist.RowCount := sgPlaylist.FixedRows;
 
       for i := 0 to Length(PL) - 1 do
       begin

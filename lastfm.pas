@@ -95,7 +95,7 @@ begin
   if (FCacheDirectory <> '') and
     (FileExistsUTF8(CacheName)) then
   begin
-    Log('Album art is cached (' + CacheName + ')');
+    Log('Album art is cached (' + CacheName + '), not requesting album art.');
     CoverImage.Picture.LoadFromFile(CacheName);
     Exit(True);
   end;
@@ -118,7 +118,21 @@ begin
       try
         Log('Got XML response for album ' + Album + ' by ' + Artist);
         ReadXMLFile(XMLResponse, Connection.Document);
-        Node := XMLResponse.DocumentElement.FindNode('album');
+
+        //Check status code from Last.fm
+        Node := XMLResponse.DocumentElement.FindNode('lfm');
+        if Assigned(Node) and (Node.Attributes.Item[0].NodeName = 'status') and
+          (Node.Attributes.Item[0].NodeValue = 'failed') then
+        begin
+          //Failure...
+          Log('Last.fm API call failed');
+          Node := XMLResponse.DocumentElement.FindNode('error');
+          Log(Node.FirstChild.NodeValue);
+          Node := nil;
+        end
+        else
+          Node := XMLResponse.DocumentElement.FindNode('album');
+
       except
         Node := nil;
       end;
@@ -182,7 +196,12 @@ begin
       end
       else
         log('No URL found for album art.');
+    end
+    else
+    begin
+      Log('Last.fm GET request failed : ' + Connection.ResultString);
     end;
+
   finally
     XMLResponse.Free();
     Connection.Free();
@@ -235,7 +254,7 @@ begin
 
   //for all in scrobble list,
     //try and scrobble
-    //if succesul remve from list
+    //if succesful remove from list
 
   //
 end;

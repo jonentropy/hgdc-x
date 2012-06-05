@@ -101,7 +101,7 @@ var
 
 const
   MAX_ARTWORK_ATTEMPTS = 3;
-  VERSION = '0.5.3';
+  VERSION = '0.5.3+dev';
 
 implementation
 
@@ -174,12 +174,13 @@ begin
     btnSkip.Visible := FClient.State >= hsAdmin;
   end;
 
+  Sleep(800);
   EnableAllGUI();
 end;
 
 procedure TfrmMain.DisableAllGUI;
 begin
-  tmrPlayList.Enabled := False;
+  tmrPlaylist.Enabled := False;
   tmrState.Enabled := False;
   btnQueue.Enabled := False;
   btnCrapSong.Enabled := False;
@@ -197,10 +198,10 @@ begin
   btnPause.Enabled := True;
   imLogin.Enabled := True;
   frmLogin.btnHGDLogin.Enabled := True;
-  tmrPlayList.Enabled := True;
-  tmrPlayListTimer(Self);
   tmrState.Enabled := True;
   tmrStateTimer(Self);
+  tmrPlaylist.Enabled := True;
+  tmrPlaylistTimer(Self);
   Self.SetFocus;
 end;
 
@@ -514,4 +515,4 @@ begin
     DebugLn(Self.ClassName + #9 + Message);
 end;
 
-end.
+end.

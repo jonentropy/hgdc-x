@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 }
 
-// hgdc-x Cross Platform hgd client written in Lazarus/Freepascal unfortunately
+// hgdc-x Cross Platform hgd client written in Lazarus/Freepascal
 // resolver.pas - Patch to FPC's name resolution under Unix. Uses libc calls.
 
 unit Resolver;

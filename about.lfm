@@ -3,7 +3,7 @@ object frmAbout: TfrmAbout
   Height = 500
   Top = 127
   Width = 619
-  Caption = 'About hgdc-x'
+  Caption = 'About Hgdc-X'
   ClientHeight = 500
   ClientWidth = 619
   Color = clForm
@@ -273,7 +273,7 @@ object frmAbout: TfrmAbout
     Alignment = taCenter
     Anchors = [akTop, akLeft, akRight]
     AutoSize = False
-    Caption = 'hgdc-x'
+    Caption = 'Hgdc-X'
     Font.Height = -45
     ParentColor = False
     ParentFont = False
@@ -10259,9 +10259,9 @@ object frmAbout: TfrmAbout
     Width = 553
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoSize = False
-    Caption = 'hgdc-x is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2012, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'#13#10#13#10'Jukebox icon by Lucy Linsdell of theartofindigo.com, under CC BY-NC-ND. Click the icon on the left for more information.'
+    Caption = 'Hgdc-X is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2012, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'#13#10#13#10'Jukebox icon by Lucy Linsdell of theartofindigo.com, under CC BY-NC-ND. Click the icon on the left for more information.'
     ParentColor = False
     ShowAccelChar = False
     WordWrap = True
   end
-end
+end

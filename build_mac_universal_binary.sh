@@ -19,6 +19,6 @@ echo "Stripping binaries" &&
 strip ./build/release/powerpc-darwin-carbon/hgdcx &&
 strip ./build/release/i386-darwin-carbon/hgdcx &&
 echo "Making Universal Binary" &&
-lipo -create ./build/release/powerpc-darwin-carbon/hgdcx ./build/release/i386-darwin-carbon/hgdcx -output ./build/release/universal-darwin-carbon/hgdcx.app/Contents/MacOS/hgdcx &&
+lipo -create ./build/release/powerpc-darwin-carbon/hgdcx ./build/release/i386-darwin-carbon/hgdcx -output ./build/release/universal-darwin-carbon/Hgdc-X.app/Contents/MacOS/hgdcx &&
 echo "Build Succeeded"
 

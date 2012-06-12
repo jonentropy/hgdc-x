@@ -35,10 +35,10 @@ Source: "..\..\build\release\i386-win32-win32\libssl32.dll"; DestDir: "{app}"; F
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\hgdc-x"; Filename: "{app}\hgdcx.exe"
-Name: "{commondesktop}\hgdc-x"; Filename: "{app}\hgdcx.exe"; Tasks: desktopicon
+Name: "{group}\Hgdc-X"; Filename: "{app}\hgdcx.exe"
+Name: "{commondesktop}\Hgdc-X"; Filename: "{app}\hgdcx.exe"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\hgdc-x"; Filename: "{app}\hgdcx.exe"; Tasks: quicklaunchicon
 
 [Run]
-Filename: "{app}\hgdcx.exe"; Description: "{cm:LaunchProgram,hgdc-x}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\hgdcx.exe"; Description: "{cm:LaunchProgram,Hgdc-X}"; Flags: nowait postinstall skipifsilent
 

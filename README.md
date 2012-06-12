@@ -1,16 +1,16 @@
-About hgdc-x
+About Hgdc-X
 ============
 
-hgdc-x is a cross-platform desktop client for the Hackathon Gunther Daemon music player project.
+Hgdc-X is a cross-platform desktop client for the Hackathon Gunther Daemon music player project.
 It requires you to be running an hgd server on your local network. The official github repository for the server can be found at https://github.com/vext01/hgd.
 
-hgdc-x is a feature complete GUI client for hgd, including SSL encryption and administrative commands. It is written in cross-platform Lazarus/Freepascal and is designed to target Linux (GTK), Mac OS X (Carbon) and Windows (Win32). Other targets and widget sets, for example FreeBSD are possible but untested.
+Hgdc-X is a feature complete GUI client for hgd, including SSL encryption and administrative commands. It is written in cross-platform Lazarus/Freepascal and is designed to target Linux (GTK), Mac OS X (Carbon) and Windows (Win32). Other targets and widget sets, for example FreeBSD are possible but untested.
 
 
 Building
 ========
 
-hgdc-x will build with no additional libraries (except for synapse, which is statically linked and included in the source tree), with Lazarus 0.9.30 or later, which can be downloaded from the website at http://lazarus.freepascal.com
+Hgdc-X will build with no additional libraries (except for synapse, which is statically linked and included in the source tree), with Lazarus 0.9.30 or later, which can be downloaded from the website at http://lazarus.freepascal.com
 
 
 Binaries
@@ -20,13 +20,13 @@ Pre-compiled binaries and a Windows installer for each release are available fro
 To use SSL you will need OpenSSL libraries installed.
 On Windows, you can download the installer package which includes the OpenSSL libraries.
 
-The offical website is at http://hgdcx.canthack.org, where an Ubuntu PPA for hgdc-x as well as the main hgd server project can be found.
+The offical website is at http://hgdcx.canthack.org, where links to an Ubuntu PPA for Hgdc-X as well as the main hgd server project can be found.
 
 
 Licensing
 =========
 
-hgdc-x is licensed with a permissive BSD style licence, please refer to the COPYING file for more details.
+Hgdc-X is licensed with a permissive BSD style licence, please refer to the COPYING file for more details.
 The main icon is by Lucy Lindsell and it released under Creative Commons CC BY-NC-ND.
 Other icons are from the Fat Cow icon set, which is Creative Commons licensed and can be found at http://www.fatcow.com/free-icons.
 
@@ -34,14 +34,14 @@ Other icons are from the Fat Cow icon set, which is Creative Commons licensed an
 Support/Develop
 ===============
 
-There is an IRC room at #hgdcx on irc.freenode.net. I can be found in there for any questions or conversation about hgdc-x. Commits are also posted there as they happen.
+There is an IRC room at #hgdcx on irc.freenode.net. I can be found in there for any questions or conversation about Hgdc-X. Commits are also posted there as they happen.
 
 
 Acknowledgements
 ================
 
 Thanks to the hgd developers, Edd and Mex for such a great music daemon, and hence the opportunity for this client to exist.
-Thanks to Hannah for "GUI consultancy" and Ed for Mac OS X testing.
+Thanks to Hannah for "GUI consultancy", Shaun for Debian/Ubuntu packaging and Ed for Mac OS X testing.
 
 Copyright (C) Tristan Linnell 2012
 http://hgdcx.canthack.org

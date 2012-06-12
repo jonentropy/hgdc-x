@@ -153,8 +153,8 @@ begin
   FStatusMessage := 'Not connected.';
   FDebug := Debug;
 
-  //2 second socket timeout
-  Timeout := 2000;
+  //10 second socket timeout
+  Timeout := 10000;
   Socket := TTCPBlockSocket.Create();
   FEncrypted := False;
 end;

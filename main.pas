@@ -305,8 +305,12 @@ end;
 
 procedure TfrmMain.imLoginClick(Sender: TObject);
 begin
+  tmrPlaylist.Enabled := False;
+
   if mrOK = frmLogin.ShowModal() then
     ApplyChanges();
+
+  tmrPlaylist.Enabled := True;
 end;
 
 procedure TfrmMain.ProgressCallback(Percentage: integer);
@@ -378,14 +382,16 @@ begin
             Inc(FArtworkAttempts);
             imNowPlaying.Visible := False;
             lblNoAlbumArt.Visible := True;
+            FCurrentlyDisplayedArtwork := '';
           end;
 
           if (FArtworkAttempts = MAX_ARTWORK_ATTEMPTS) then
           begin
             Log('Too many artwork attempts, not trying again.');
+
+            //Ensure artwork wont fetch again...
             FCurrentlyDisplayedArtwork := NowPlayingSong.Artist + ':' +
               NowPlayingSong.Album;
-
             FArtworkAttempts := 0;
           end;
         end;

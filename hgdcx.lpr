@@ -35,7 +35,7 @@ uses
 {$R *.res}
 
 begin
-  Application.Title := 'hgdc-x';
+  Application.Title:='Hgdc-X';
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TfrmAbout, frmAbout);

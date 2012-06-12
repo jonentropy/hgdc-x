@@ -1,7 +1,7 @@
 object frmMain: TfrmMain
-  Left = 310
+  Left = 350
   Height = 527
-  Top = 106
+  Top = 136
   Width = 579
   AllowDropFiles = True
   Caption = 'Hgdc-X'
@@ -8398,8 +8398,8 @@ object frmMain: TfrmMain
     Width = 568
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 99
-    ClientWidth = 560
+    ClientHeight = 101
+    ClientWidth = 564
     TabOrder = 1
     object lblNoAlbumArt: TLabel
       Left = 7
@@ -8417,8 +8417,8 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 38
-      Width = 566
+      Top = 40
+      Width = 570
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
       AutoSize = False
@@ -8742,7 +8742,7 @@ object frmMain: TfrmMain
       ParentFont = False
     end
     object btnCrapSong: TSpeedButton
-      Left = 526
+      Left = 530
       Height = 32
       Hint = 'Vote off current song.'
       Top = 2

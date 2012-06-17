@@ -325,6 +325,7 @@ var
   PL: TPlaylist;
   i: integer;
   NowPlayingSong: TTrackInfo;
+  ListRow: integer;
 begin
   tmrPlaylist.Enabled := False;
   PL := nil;
@@ -429,6 +430,7 @@ begin
     end;
 
     //Now get the rest of the playlist for the string grid...
+    ListRow := sgPlaylist.Row;
     sgPlaylist.RowCount := sgPlaylist.FixedRows;
     FClient.GetPlaylist(PL);
 
@@ -451,6 +453,8 @@ begin
         sgPlaylist.Cells[4, sgPlaylist.RowCount -1] := PL[i].User;
 
       end;
+
+      sgPlayList.Row := ListRow;
     end;
   end
   else

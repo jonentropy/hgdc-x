@@ -101,7 +101,7 @@ var
 
 const
   MAX_ARTWORK_ATTEMPTS = 3;
-  VERSION = '0.5.3';
+  VERSION = '0.5.4';
 
 implementation
 

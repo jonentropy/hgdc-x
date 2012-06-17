@@ -6,15 +6,15 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{8CD9F65F-46EC-4E1E-925C-980B347DF657}
-AppName=hgdc-x
+AppName=Hgdc-X
 AppVersion=0.5.4
-AppVerName=hgdc-x 0.5.4
+AppVerName=Hgdc-X 0.5.4
 AppPublisher=Tristan Linnell
 AppPublisherURL=https://github.com/tristan2468/hgdc-x
 AppSupportURL=https://github.com/tristan2468/hgdc-x
 AppUpdatesURL=https://github.com/tristan2468/hgdc-x
-DefaultDirName={pf}\hgdc-x
-DefaultGroupName=hgdc-x
+DefaultDirName={pf}\Hgdc-X
+DefaultGroupName=hgdc-X
 DisableProgramGroupPage=yes
 LicenseFile=..\..\..\hgdc-x\COPYING
 OutputBaseFilename=hgdc-x_setup

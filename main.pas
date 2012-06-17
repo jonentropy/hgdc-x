@@ -85,10 +85,12 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const Filenames: array of String);
     procedure FormShow(Sender: TObject);
+    procedure mitmAboutClick(Sender: TObject);
     procedure mitmAboutMacClick(Sender: TObject);
     procedure mitmLoginClick(Sender: TObject);
     procedure mitmPauseClick(Sender: TObject);
     procedure mitmQueueClick(Sender: TObject);
+    procedure mitmQuitClick(Sender: TObject);
     procedure mitmSkipClick(Sender: TObject);
     procedure mitmVoteOffClick(Sender: TObject);
     procedure tmrPlaylistTimer(Sender: TObject);
@@ -373,6 +375,11 @@ begin
   tmrPlaylistTimer(Self);
 end;
 
+procedure TfrmMain.mitmAboutClick(Sender: TObject);
+begin
+  frmAbout.Show();
+end;
+
 procedure TfrmMain.mitmAboutMacClick(Sender: TObject);
 begin
   frmAbout.Show();
@@ -396,6 +403,11 @@ end;
 procedure TfrmMain.mitmQueueClick(Sender: TObject);
 begin
   QueueSongs();
+end;
+
+procedure TfrmMain.mitmQuitClick(Sender: TObject);
+begin
+  Close();
 end;
 
 procedure TfrmMain.mitmSkipClick(Sender: TObject);

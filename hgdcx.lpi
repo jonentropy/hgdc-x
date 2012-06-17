@@ -25,7 +25,7 @@
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="4"/>
       <Language Value="0809"/>
-      <StringTable CompanyName="Tristan Linnell" FileDescription="GUI client for the Hackathon Gunther Daemon" LegalCopyright="2012 Tristan Linnell" ProductName="hgdc-x" ProductVersion="0.5.4"/>
+      <StringTable CompanyName="Tristan Linnell" FileDescription="GUI client for the Hackathon Gunther Daemon" LegalCopyright="2012 Tristan Linnell" ProductName="Hgdc-X" ProductVersion="0.5.4"/>
     </VersionInfo>
     <BuildModes Count="5">
       <Item1 Name="Debug" Default="True"/>

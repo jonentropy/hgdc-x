@@ -26,7 +26,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient,
-  LastFM, Login, About, LCLProc;
+  LastFM, Login, About, LCLProc, Menus, types;
 
 type
 
@@ -41,9 +41,7 @@ type
     imInsecure: TImage;
     imSecure: TImage;
     imVoteOff: TImage;
-    imLogin: TImage;
     imNowPlaying: TImage;
-    imAbout: TImage;
     lblStatus: TLabel;
     lblSampleRate: TLabel;
     lblGenre: TLabel;
@@ -55,6 +53,21 @@ type
     lblArtist: TLabel;
     lblAlbum: TLabel;
     lblNoPlaylist: TLabel;
+    mitmPause: TMenuItem;
+    mitmVoteOff: TMenuItem;
+    mitmSkip: TMenuItem;
+    mitmAdminDivider: TMenuItem;
+    mitmQueue: TMenuItem;
+    mitmSong: TMenuItem;
+    mitmAbout: TMenuItem;
+    mitmHelp: TMenuItem;
+    mitmQuit: TMenuItem;
+    mitmFile: TMenuItem;
+    mitmLogin: TMenuItem;
+    mitmHGD: TMenuItem;
+    mitmAboutMac: TMenuItem;
+    mitmApple: TMenuItem;
+    mnuMain: TMainMenu;
     OpenDialog1: TOpenDialog;
     pbarUpload: TProgressBar;
     sgPlaylist: TStringGrid;
@@ -72,8 +85,12 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const Filenames: array of String);
     procedure FormShow(Sender: TObject);
-    procedure imAboutClick(Sender: TObject);
-    procedure imLoginClick(Sender: TObject);
+    procedure mitmAboutMacClick(Sender: TObject);
+    procedure mitmLoginClick(Sender: TObject);
+    procedure mitmPauseClick(Sender: TObject);
+    procedure mitmQueueClick(Sender: TObject);
+    procedure mitmSkipClick(Sender: TObject);
+    procedure mitmVoteOffClick(Sender: TObject);
     procedure tmrPlaylistTimer(Sender: TObject);
     procedure tmrStateTimer(Sender: TObject);
   private
@@ -84,6 +101,7 @@ type
     FArtworkAttempts: integer;
     FDebug: boolean;
     frmLogin: TFrmLogin;
+    procedure SetGUIForOS;
     procedure DisableAllGUI;
     procedure EnableAllGUI;
     procedure Log(Message: string);
@@ -91,6 +109,10 @@ type
     function QueueSong(Filename: string): boolean;
     procedure ShowStatus(Msg: string; Error: boolean);
     function UpdateState: boolean;
+    procedure QueueSongs;
+    procedure VoteOff;
+    procedure Skip;
+    procedure Pause;
 
   public
     { public declarations }
@@ -132,11 +154,21 @@ end;
 
 procedure TfrmMain.btnPauseClick(Sender: TObject);
 begin
+  Pause();
+end;
+
+procedure TfrmMain.Pause;
+begin
   if sgPlaylist.RowCount > 1 then
     FClient.Pause();
 end;
 
 procedure TfrmMain.btnSkipClick(Sender: TObject);
+begin
+  Skip();
+end;
+
+procedure TfrmMain.Skip;
 begin
   if sgPlaylist.RowCount > 1 then
     FClient.SkipTrack();
@@ -144,12 +176,22 @@ end;
 
 procedure TfrmMain.btnCrapSongClick(Sender: TObject);
 begin
+  VoteOff();
+end;
+
+procedure TfrmMain.VoteOff;
+begin
   if sgPlaylist.RowCount > 1 then
     if FClient.VoteOff(StrToIntDef(sgPlaylist.Cells[0,1], -1)) then
       imVoteOff.Visible := True;
 end;
 
 procedure TfrmMain.btnQueueClick(Sender: TObject);
+begin
+  QueueSongs();
+end;
+
+procedure TfrmMain.QueueSongs;
 var
   i: integer;
 begin
@@ -176,6 +218,7 @@ begin
 
   Sleep(800);
   EnableAllGUI();
+
 end;
 
 procedure TfrmMain.DisableAllGUI;
@@ -186,8 +229,13 @@ begin
   btnCrapSong.Enabled := False;
   btnSkip.Enabled := False;
   btnPause.Enabled := False;
-  imLogin.Enabled := False;
+  mitmLogin.Enabled := False;
   frmLogin.btnHGDLogin.Enabled := False;
+  mitmPause.Enabled := False;
+  mitmSkip.Enabled := False;
+  mitmQueue.Enabled := False;
+  mitmVoteOff.Enabled := False;
+  mitmLogin.Enabled := False;
 end;
 
 procedure TfrmMain.EnableAllGUI;
@@ -196,9 +244,14 @@ begin
   btnCrapSong.Enabled := True;
   btnSkip.Enabled := True;
   btnPause.Enabled := True;
-  imLogin.Enabled := True;
+  mitmLogin.Enabled := True;
   frmLogin.btnHGDLogin.Enabled := True;
   tmrState.Enabled := True;
+  mitmPause.Enabled := True;
+  mitmSkip.Enabled := True;
+  mitmQueue.Enabled := True;
+  mitmVoteOff.Enabled := True;
+  mitmLogin.Enabled := True;
   tmrStateTimer(Self);
   tmrPlaylist.Enabled := True;
   tmrPlaylistTimer(Self);
@@ -207,10 +260,32 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  SetGUIForOS();
   Self.Caption := Self.Caption + ' ' +  VERSION;
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';
   FDebug := Application.HasOption('d', 'debug');
+end;
+
+procedure TfrmMain.SetGUIForOS;
+begin
+  //Sets up platform specifics in the user interface, e.g. Mac about menus etc.
+
+  {$IFDEF DARWIN}
+  //Running on Mac OS X, so remove Help and About and File and Quit.
+  //In the future if other menus are added to these menus, remove the free
+  //of the top level menu (File or Help).
+
+  mitmAbout.Free;
+ // mitmHelp.Free;
+
+  mitmQuit.Free;
+  mitmFile.Free;
+  {$ELSE DARWIN}
+  //Not Mac OS X, so Apple menu not needed
+  mitmApple.Free;
+  {$ENDIF DARWIN}
+
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -298,12 +373,12 @@ begin
   tmrPlaylistTimer(Self);
 end;
 
-procedure TfrmMain.imAboutClick(Sender: TObject);
+procedure TfrmMain.mitmAboutMacClick(Sender: TObject);
 begin
   frmAbout.Show();
 end;
 
-procedure TfrmMain.imLoginClick(Sender: TObject);
+procedure TfrmMain.mitmLoginClick(Sender: TObject);
 begin
   tmrPlaylist.Enabled := False;
 
@@ -311,6 +386,26 @@ begin
     ApplyChanges();
 
   tmrPlaylist.Enabled := True;
+end;
+
+procedure TfrmMain.mitmPauseClick(Sender: TObject);
+begin
+  Pause();
+end;
+
+procedure TfrmMain.mitmQueueClick(Sender: TObject);
+begin
+  QueueSongs();
+end;
+
+procedure TfrmMain.mitmSkipClick(Sender: TObject);
+begin
+  Skip();
+end;
+
+procedure TfrmMain.mitmVoteOffClick(Sender: TObject);
+begin
+  VoteOff();
 end;
 
 procedure TfrmMain.ProgressCallback(Percentage: integer);
@@ -340,6 +435,9 @@ begin
       btnSkip.Enabled := FClient.State >= hsAuthenticated;
       btnPause.Enabled := FClient.State >= hsAuthenticated;
       btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
+      mitmVoteOff.Enabled := FClient.State >= hsAuthenticated;
+      mitmPause.Enabled := FClient.State >= hsAuthenticated;
+      mitmSkip.Enabled := FClient.State >= hsAuthenticated;
 
       imVoteOff.Visible := NowPlayingSong.Voted;
 
@@ -419,8 +517,11 @@ begin
       lblDuration.Caption := '';
       lblNoPlaylist.Visible := True;
       btnSkip.Enabled := False;
+      mitmSkip.Enabled := False;
       btnPause.Enabled := False;
+      mitmPause.Enabled := False;
       btnCrapSong.Enabled := False;
+      mitmVoteOff.Enabled := False;
       FCurrentlyDisplayedArtwork := '';
       imNowPlaying.Picture.Clear;
       imNowPlaying.Visible := False;
@@ -506,8 +607,12 @@ begin
       frmLogin.chkSSL.Font.Style:= [];
 
     btnQueue.Enabled := FClient.State >= hsAuthenticated;
+    mitmQueue.Enabled := FClient.State >= hsAuthenticated;
     btnSkip.Visible := FClient.State >= hsAdmin;
+    mitmSkip.Visible := FClient.State >= hsAdmin;
     btnPause.Visible := FClient.State >= hsAdmin;
+    mitmPause.Visible := FClient.State >= hsAdmin;
+    mitmAdminDivider.Visible := FClient.State >= hsAdmin;
 
     if (FClient.State < hsAuthenticated) and (not frmLogin.Visible) then
     begin

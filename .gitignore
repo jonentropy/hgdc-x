@@ -1,3 +1,5 @@
+*.deb
+*.rpm
 lib/
 backup/
 hgdcx

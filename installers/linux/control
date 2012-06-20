@@ -1,0 +1,12 @@
+Section: Sound
+Installed-Size: 4900
+Priority: optional
+Architecture: i386
+Depends: libpixman-1-0, fontconfig-config, libxdamage1,
+  libpango1.0-0, libxrandr2, libc6, gvfs, libdbus-glib-1-2, 
+  libcroco3, libpcre3, libssl-dev,
+  libatk1.0-0, libx11-6, libgtk2.0-0
+Maintainer: Tris Linnell <tris@canthack.org>
+Description: Hgdc-X
+ Cross-platform GUI client for the Hackathon Gunther Daemon.
+

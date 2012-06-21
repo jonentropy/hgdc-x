@@ -2,6 +2,7 @@ Section: Sound
 Installed-Size: 4900
 Priority: optional
 Architecture: i386
+Homepage: http://hgdcx.canthack.org
 Depends: libpixman-1-0, fontconfig-config, libxdamage1,
   libpango1.0-0, libxrandr2, libc6, gvfs, libdbus-glib-1-2, 
   libcroco3, libpcre3, libssl-dev,

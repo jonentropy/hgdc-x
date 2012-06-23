@@ -10257,6 +10257,7 @@ object frmAbout: TfrmAbout
     Height = 278
     Top = 72
     Width = 560
+    Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
     ClientHeight = 278
     ClientWidth = 544

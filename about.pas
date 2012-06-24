@@ -44,6 +44,7 @@ type
     ScrollBox1: TScrollBox;
     stAbout: TStaticText;
     procedure btnCloseClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure imCatchThatMouseMouseEnter(Sender: TObject);
     procedure imCatchThatMouseMouseLeave(Sender: TObject);
@@ -71,6 +72,13 @@ implementation
 procedure TfrmAbout.btnCloseClick(Sender: TObject);
 begin
   Close();
+end;
+
+procedure TfrmAbout.FormCreate(Sender: TObject);
+begin
+  {$IFDEF DARWIN}
+  btnClose.Free;
+  {$ENDIF DARWIN}
 end;
 
 procedure TfrmAbout.FormKeyDown(Sender: TObject; var Key: Word;

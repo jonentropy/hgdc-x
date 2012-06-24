@@ -138,7 +138,7 @@ begin
   tmrPlaylist.Enabled := False;
   tmrState.Enabled := False;
 
-  ShowStatus('Applying...', False);
+  ShowStatus('Applying…', False);
   frmLogin.XMLPropStorage1.Save();
 
   FClient.HostAddress := frmLogin.edtHost.Text;
@@ -339,7 +339,7 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
-  Log('Creating login GUI...');
+  Log('Creating login GUI…');
   frmLogin := TFrmLogin.Create(Self);
 
   {$IFDEF WINDOWS}
@@ -360,14 +360,14 @@ begin
   end;
   {$ENDIF WINDOWS}
 
-  Log('Creating HGD client...');
+  Log('Creating HGD client…');
   FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
     frmLogin.edtUser.Text, frmLogin.edtPwd.Text, frmLogin.chkSSL.Checked,
     FDebug);
 
   FClient.ProgressCallBack := @ProgressCallback;
 
-  Log('Creating LastFM webservices client...');
+  Log('Creating LastFM webservices client…');
   FLastFM := TLastFM.Create(frmLogin.edtLastFMUser.Text,
     GetAppConfigDirUTF8(False), FDebug);
 
@@ -377,7 +377,7 @@ end;
 
 procedure TfrmMain.mitmAboutClick(Sender: TObject);
 begin
-  frmAbout.Show();
+  frmAbout.ShowModal();
 end;
 
 procedure TfrmMain.mitmAboutMacClick(Sender: TObject);
@@ -500,7 +500,7 @@ begin
           begin
             Log('Too many artwork attempts, not trying again.');
 
-            //Ensure artwork wont fetch again...
+            //Ensure artwork wont fetch again…
             FCurrentlyDisplayedArtwork := NowPlayingSong.Artist + ':' +
               NowPlayingSong.Album;
             FArtworkAttempts := 0;
@@ -542,7 +542,7 @@ begin
       imVoteOff.Visible := False;
     end;
 
-    //Now get the rest of the playlist for the string grid...
+    //Now get the rest of the playlist for the string grid…
     ListRow := sgPlaylist.Row;
     sgPlaylist.RowCount := sgPlaylist.FixedRows;
     FClient.GetPlaylist(PL);
@@ -642,4 +642,4 @@ begin
     DebugLn(Self.ClassName + #9 + Message);
 end;
 
-end.
+end.

@@ -170,7 +170,7 @@ procedure THGDClient.Disconnect();
 begin
   if FState >= hsConnected then
   begin
-    Log('Disconnecting... bye! o/');
+    Log('Disconnecting… bye! o/');
     SendString('bye');
     Log(ReceiveString());
     Socket.CloseSocket();
@@ -199,8 +199,8 @@ begin
   Result := False;
   FState := hsDisconnected;
 
-  Log('Connecting to hgd server (' + FHostAddress + ':' + FHostPort + ')...');
-  FStatusMessage := 'Connecting...';
+  Log('Connecting to hgd server (' + FHostAddress + ':' + FHostPort + ')…');
+  FStatusMessage := 'Connecting…';
 
   {$IFDEF UNIX}
   Log('Resolving ' + FHostAddress);
@@ -223,7 +223,7 @@ begin
   begin
     if FSSL then
     begin
-      Log('Checking if server supprts encryption...');
+      Log('Checking if server supprts encryption…');
       SendString('encrypt?');
       Reply := ReceiveString();
       Log('encrypt? reply: ' + Reply);
@@ -236,7 +236,7 @@ begin
           Socket.SSL.SSLType := LT_all;
         //Todo: maybe add other encryption types here
 
-        Log('Encrypting Socket...');
+        Log('Encrypting Socket…');
         SendString('encrypt');
         Socket.SSLDoConnect();
 
@@ -300,7 +300,7 @@ var
   Minor, Major: integer;
 begin
   Result := False;
-  Log('Getting Proto...');
+  Log('Getting Proto…');
   SendString('proto');
   Reply := ReceiveString();
   Log('proto reply: ' + Reply);
@@ -325,10 +325,10 @@ var
 begin
   Result := False;
 
-  //only do this if at least connected...
+  //only do this if at least connected…
   if FState >= hsConnected then
   begin
-    Log('Getting Now Playing...');
+    Log('Getting Now Playing…');
     SendString('np');
     Reply := ReceiveString();
     Log('np reply: ' + Reply);
@@ -382,10 +382,10 @@ begin
   Result := False;
   SetLength(PList, 0);
 
-  //only do this if at least connected...
+  //only do this if at least connected…
   if FState >= hsConnected then
   begin
-    Log('Getting Playlist...');
+    Log('Getting Playlist…');
     SendString('ls');
     Reply := ReceiveString();
     Log('ls reply: ' + Reply);
@@ -393,7 +393,7 @@ begin
     Msg := '';
     if ProcessReply(Reply, Msg) then
     begin
-      //Playlist came back OK. Parse it up, d00d...
+      //Playlist came back OK. Parse it up, d00d…
       Log('Number of playlist items: ' + Msg);
 
       PLStringList := TStringList.Create();
@@ -462,11 +462,11 @@ var
 begin
   Result := False;
 
-  //only do this if at least authenticated...
+  //only do this if at least authenticated…
   if FState >= hsAuthenticated then
   begin
     FileSizeValue := FileSize(Filename);
-    Log('Queueing song ' + ExtractFilename(Filename) + '...');
+    Log('Queueing song ' + ExtractFilename(Filename) + '…');
     SendString('q|' + ExtractFilename(Filename) + '|' +
       IntToStr(FileSizeValue));
 
@@ -478,7 +478,7 @@ begin
 
     if Result then
     begin
-      Log('q successful, sending data...');
+      Log('q successful, sending data…');
 
       SetLength(DataArray, BLOCK_SIZE);
       AssignFile(Fin, Filename);
@@ -530,10 +530,10 @@ var
 begin
   Result := False;
 
-  //only do this if at least authenticated...
+  //only do this if at least authenticated…
   if (FState >= hsAuthenticated) then
   begin
-    Log('Crapping on song id ' + IntToStr(id) + '...');
+    Log('Crapping on song id ' + IntToStr(id) + '…');
     SendString('vo|' + IntToStr(id));
     Reply := ReceiveString();
     Log('vo reply: ' + Reply);
@@ -560,10 +560,10 @@ var
 begin
   Result := False;
 
-  //only do this if at least authenticated and user is admin...
+  //only do this if at least authenticated and user is admin…
   if (FState >= hsAdmin) then
   begin
-    Log('Skipping song...');
+    Log('Skipping song…');
     SendString('skip');
     Reply := ReceiveString();
     Log('skip reply: ' + Reply);
@@ -592,10 +592,10 @@ var
 begin
   Result := False;
 
-  //only do this if at least authenticated and user is admin...
+  //only do this if at least authenticated and user is admin…
   if (FState >= hsAdmin) then
   begin
-    Log('Pausing...');
+    Log('Pausing…');
     SendString('pause');
     Reply := ReceiveString();
     Log('pause reply: ' + Reply);
@@ -641,7 +641,7 @@ begin
   else
   begin
     Result := False;
-    Log('"ok" or "err" not found in packet. Resetting...');
+    Log('"ok" or "err" not found in packet. Resetting…');
     //Something has gone wrong, so reset
     Disconnect();
     FStatusMessage := 'Connection lost.';
@@ -675,10 +675,10 @@ var
   Reply, Msg: string;
 begin
   Result := False;
-  //only do this if at least connected...
+  //only do this if at least connected…
   if FState >= hsConnected then
   begin
-    Log('Sending username...');
+    Log('Sending username…');
     SendString('user|' + Username + '|' + Password);
     Reply := ReceiveString();
     Log('user reply: ' + Reply);
@@ -707,7 +707,7 @@ var
   Packets: TStringList;
 begin
   Result := False;
-  Log('Checking admin status...');
+  Log('Checking admin status…');
   SendString('id');
   Reply := ReceiveString();
   Log('id reply: ' + Reply);

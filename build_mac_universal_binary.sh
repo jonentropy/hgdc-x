@@ -20,6 +20,6 @@ strip ./build/release/powerpc-darwin-carbon/hgdcx &&
 strip ./build/release/i386-darwin-carbon/hgdcx &&
 echo "Making Universal Binary..." &&
 lipo -create ./build/release/powerpc-darwin-carbon/hgdcx ./build/release/i386-darwin-carbon/hgdcx -output ./build/release/universal-darwin-carbon/Hgdc-X.app/Contents/MacOS/hgdcx &&
-touch ./build/release/release/universal-darwin-carbon/Hgdc-X.app &&
+touch ./build/release/universal-darwin-carbon/Hgdc-X.app &&
 echo "Build Succeeded!"
 

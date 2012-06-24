@@ -145,6 +145,7 @@ object frmAbout: TfrmAbout
     0000
   }
   KeyPreview = True
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   Position = poMainFormCenter
   ShowInTaskBar = stNever
@@ -255,9 +256,9 @@ object frmAbout: TfrmAbout
   end
   object lblCow: TLabel
     Left = 56
-    Height = 19
-    Top = 403
-    Width = 193
+    Height = 17
+    Top = 405
+    Width = 204
     Anchors = [akLeft, akBottom]
     Caption = 'Icons from the Fat Cow icon set.'
     ParentColor = False
@@ -283,9 +284,9 @@ object frmAbout: TfrmAbout
   end
   object lblSynapse: TLabel
     Left = 56
-    Height = 19
-    Top = 363
-    Width = 328
+    Height = 17
+    Top = 365
+    Width = 359
     Anchors = [akLeft, akBottom]
     Caption = 'Ararat Synapse Copyright (c)1999-2012, Lukas Gebauer.'
     ParentColor = False
@@ -10260,17 +10261,17 @@ object frmAbout: TfrmAbout
     Anchors = [akTop, akLeft, akRight, akBottom]
     BorderStyle = bsNone
     ClientHeight = 278
-    ClientWidth = 544
+    ClientWidth = 545
     TabOrder = 1
     object stAbout: TStaticText
       Left = 0
-      Height = 364
+      Height = 2952
       Top = 0
-      Width = 544
-      Align = alClient
-      AutoSize = True
-      Caption = 'Hgdc-X is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2012, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'#13#10#13#10'Jukebox icon by Lucy Linsdell of theartofindigo.com, under CC BY-NC-ND. Click the icon on the left for more information.'
+      Width = 527
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      Caption = 'Hgdc-X is a cross-platform desktop client for the Hackathon Günther Daemon music player project.'#10#13#10'Copyright (c) 2012, Tristan Linnell <tris@canthack.org>'#13#10#13#10'Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.'#13#10#13#10'THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.'#13#10#13#10'Jukebox icon by Lucy Linsdell of theartofindigo.com, under CC BY-NC-ND. Click the icon on the left for more information.'#13#10#13#10
+      ShowAccelChar = False
       TabOrder = 0
     end
   end
-end
+end

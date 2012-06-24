@@ -113,7 +113,8 @@ begin
       EncodeURLElement(Album) + '&autocorrect=1';
 
     Connection.Clear;
-    if Connection.HTTPMethod('GET', RequestURL) and (Connection.ResultCode = 200) then
+    if Connection.HTTPMethod('GET', RequestURL) and
+      (Connection.ResultCode = 200) then
     begin
       try
         Log('Got XML response for album ' + Album + ' by ' + Artist);
@@ -171,7 +172,8 @@ begin
 
         CoverURL := EncodeURL(CoverURL);
         Connection.Clear;
-        if Connection.HTTPMethod('GET', CoverURL) and (Connection.ResultCode = 200) then
+        if Connection.HTTPMethod('GET', CoverURL) and
+          (Connection.ResultCode = 200) then
         begin
 
           Log('Album art downloaded, caching...');

@@ -84,7 +84,7 @@ Type
 implementation
 
 Uses
-  GifInputFileStream ;
+  gifInputfilestream ;
 
 Constructor TGifDecoder.Create ;
   Begin
@@ -671,4 +671,4 @@ Procedure TGifDecoder.callProgressFunction (pass, passcount : Cardinal ; progres
   End ;
 
 
-End.
+End.

@@ -618,6 +618,8 @@ begin
     else
       frmLogin.chkSSL.Font.Style:= [];
 
+    btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
+    mitmVoteOff.Enabled := FClient.State >= hsAuthenticated;
     btnQueue.Enabled := FClient.State >= hsAuthenticated;
     mitmQueue.Enabled := FClient.State >= hsAuthenticated;
     btnSkip.Visible := FClient.State >= hsAdmin;
@@ -642,4 +644,4 @@ begin
     DebugLn(Self.ClassName + #9 + Message);
 end;
 
-end.
+end.

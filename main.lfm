@@ -8359,7 +8359,6 @@ object frmMain: TfrmMain
     Anchors = [akTop, akLeft, akRight, akBottom]
     Columns = <    
       item
-        ButtonStyle = cbsButtonColumn
         Title.Alignment = taCenter
         Title.Caption = '#'
         Width = 25
@@ -8404,8 +8403,8 @@ object frmMain: TfrmMain
     object lblNoAlbumArt: TLabel
       Left = 7
       Height = 38
-      Top = 20
-      Width = 67
+      Top = 32
+      Width = 90
       Alignment = taCenter
       AutoSize = False
       Caption = 'No album art'
@@ -8429,7 +8428,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object lblTitle: TLabel
-      Left = 90
+      Left = 120
       Height = 1
       Top = 6
       Width = 1
@@ -8438,7 +8437,7 @@ object frmMain: TfrmMain
       ShowAccelChar = False
     end
     object lblArtist: TLabel
-      Left = 90
+      Left = 120
       Height = 1
       Top = 22
       Width = 1
@@ -8447,7 +8446,7 @@ object frmMain: TfrmMain
       ShowAccelChar = False
     end
     object lblAlbum: TLabel
-      Left = 90
+      Left = 120
       Height = 1
       Top = 38
       Width = 1
@@ -8457,28 +8456,28 @@ object frmMain: TfrmMain
     end
     object Bevel1: TBevel
       Left = 7
-      Height = 66
+      Height = 92
       Top = 6
-      Width = 66
+      Width = 92
       Shape = bsFrame
       Visible = False
     end
     object imNowPlaying: TImage
       Left = 8
-      Height = 64
+      Height = 90
       Hint = 'Artwork provided by Last.fm.'
       Top = 7
-      Width = 64
+      Width = 90
       ParentShowHint = False
       ShowHint = True
       Stretch = True
       Visible = False
     end
     object imVoteOff: TImage
-      Left = 8
+      Left = 21
       Height = 64
       Hint = 'You have voted this song off.'
-      Top = 7
+      Top = 19
       Width = 64
       ParentShowHint = False
       Picture.Data = {
@@ -8701,7 +8700,7 @@ object frmMain: TfrmMain
       Visible = False
     end
     object lblGenre: TLabel
-      Left = 90
+      Left = 120
       Height = 1
       Top = 55
       Width = 1
@@ -8734,7 +8733,7 @@ object frmMain: TfrmMain
       ParentFont = False
     end
     object lblYear: TLabel
-      Left = 90
+      Left = 120
       Height = 1
       Top = 72
       Width = 1

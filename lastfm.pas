@@ -26,7 +26,7 @@ interface
 
 uses
   Classes, SysUtils, ExtCtrls, HTTPSend, SynaCode, XMLRead, DOM, FileUtil,
-  LCLProc;
+  LCLProc, BitmapImage, ImageType, JpegEncoder;
 
 const
   API_ROOT_URL = 'http://ws.audioscrobbler.com/2.0/';
@@ -86,11 +86,14 @@ var
   CoverURL: string;
   ImStr: string;
   CacheName: string;
+  bmp: TBitmapImage;
+  JPGEncoder: TJpegEncoder;
 begin
   Result := False;
 
+  //We always use created jpgs when we cache
   CacheName := FCacheDirectory + ReplaceIllegalFilenameChars(Artist +
-    '-' + Album) + '.png';
+    '-' + Album) + '.jpg';
 
   if (FCacheDirectory <> '') and
     (FileExistsUTF8(CacheName)) then
@@ -175,21 +178,41 @@ begin
         if Connection.HTTPMethod('GET', CoverURL) and
           (Connection.ResultCode = 200) then
         begin
-
-          Log('Album art downloaded, caching...');
-
           try
-            CoverImage.Picture.LoadFromStream(Connection.Document);
-
-            //Cache album art...
             if (FCacheDirectory <> '') and
               DirectoryIsWritable(FCacheDirectory) then
             begin
-              CoverImage.Picture.SaveToFile(CacheName, 'png');
-              Result := True;
+              //The cache directory is present, so utilise it to create a jpg
+              //and use that (works around black image issue at
+              //http://bugs.freepascal.org/view.php?id=20361
+
+              Log('Creating jpg for album art caching');
+
+              Connection.Document.SaveToFile(FCacheDirectory + '.tempimage');
+              JPGEncoder := TJpegEncoder.Create;
+              bmp := Tbitmapimage.Create;
+
+              try
+                ImageType.ReadImage(FCacheDirectory + '.tempimage', bmp, nil, nil);
+
+                JPGEncoder.Grayscale := False;
+                JPGEncoder.Quality := 8;
+                JPGEncoder.writeImageFile(CacheName, bmp);
+
+                CoverImage.Picture.LoadFromFile(CacheName);
+
+                Result := True;
+              finally
+                bmp.Free;
+                JPGEncoder.Free;
+              end;
             end
             else
+            begin
               Log('There was a problem caching the album art.');
+              //Try and load it directly if we can't write to the cache
+              CoverImage.Picture.LoadFromStream(Connection.Document);
+            end;
 
           except
             Log('Exception when loading image from stream.');

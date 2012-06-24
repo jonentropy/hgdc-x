@@ -26,7 +26,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient,
-  LastFM, Login, About, LCLProc, Menus, types;
+  LastFM, Login, About, LCLProc, Menus;
 
 type
 
@@ -220,7 +220,6 @@ begin
 
   Sleep(800);
   EnableAllGUI();
-
 end;
 
 procedure TfrmMain.DisableAllGUI;
@@ -262,11 +261,11 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  FDebug := Application.HasOption('d', 'debug');
   SetGUIForOS();
   Self.Caption := Self.Caption + ' ' +  VERSION;
   FArtworkAttempts := 0;
   FCurrentlyDisplayedArtwork := '';
-  FDebug := Application.HasOption('d', 'debug');
 end;
 
 procedure TfrmMain.SetGUIForOS;
@@ -274,20 +273,17 @@ begin
   //Sets up platform specifics in the user interface, e.g. Mac about menus etc.
 
   {$IFDEF DARWIN}
-  //Running on Mac OS X, so remove Help and About and File and Quit.
+  //Running on Mac OS X, so remove About and File and Quit.
   //In the future if other menus are added to these menus, remove the free
-  //of the top level menu (File or Help).
+  //of the top level menu (File).
 
   mitmAbout.Free;
- // mitmHelp.Free;
-
   mitmQuit.Free;
   mitmFile.Free;
   {$ELSE DARWIN}
   //Not Mac OS X, so Apple menu not needed
   mitmApple.Free;
   {$ENDIF DARWIN}
-
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -349,7 +345,6 @@ begin
       'settings.xml';
 
     XMLPropStorage1.FileName := GetAppConfigDirUTF8(False) + 'settings.xml';
-
     XMLPropStorage1.Restore;
     frmLogin.XMLPropStorage1.Restore;
   end
@@ -444,12 +439,12 @@ begin
     begin
       //A song is currently playing
       lblNoPlaylist.Visible := False;
-      btnSkip.Enabled := FClient.State >= hsAuthenticated;
-      btnPause.Enabled := FClient.State >= hsAuthenticated;
+      btnSkip.Enabled := FClient.State >= hsAdmin;
+      btnPause.Enabled := FClient.State >= hsAdmin;
       btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
       mitmVoteOff.Enabled := FClient.State >= hsAuthenticated;
-      mitmPause.Enabled := FClient.State >= hsAuthenticated;
-      mitmSkip.Enabled := FClient.State >= hsAuthenticated;
+      mitmPause.Enabled := FClient.State >= hsAdmin;
+      mitmSkip.Enabled := FClient.State >= hsAdmin;
 
       imVoteOff.Visible := NowPlayingSong.Voted;
 
@@ -480,7 +475,7 @@ begin
             ' at fetching album art.');
 
           if FLastFM.GetAlbumArt(NowPlayingSong.Artist, NowPlayingSong.Album,
-            szMedium, imNowPlaying) then
+            szLarge, imNowPlaying) then
           begin
             FCurrentlyDisplayedArtwork := NowPlayingSong.Artist + ':' +
               NowPlayingSong.Album;
@@ -618,8 +613,12 @@ begin
     else
       frmLogin.chkSSL.Font.Style:= [];
 
-    btnCrapSong.Enabled := FClient.State >= hsAuthenticated;
-    mitmVoteOff.Enabled := FClient.State >= hsAuthenticated;
+    btnCrapSong.Enabled := btnCrapSong.Enabled and
+      (FClient.State >= hsAuthenticated);
+
+    mitmVoteOff.Enabled := mitmVoteOff.Enabled and
+      (FClient.State >= hsAuthenticated);
+
     btnQueue.Enabled := FClient.State >= hsAuthenticated;
     mitmQueue.Enabled := FClient.State >= hsAuthenticated;
     btnSkip.Visible := FClient.State >= hsAdmin;

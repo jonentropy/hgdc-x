@@ -690,7 +690,7 @@ begin
     begin
       FState := hsAuthenticated;
       Log('SendUser Successful');
-      FStatusMessage := 'User authenticated.';
+      FStatusMessage := 'User ' + FUserName + ' authenticated.';
     end
     else
     begin
@@ -723,6 +723,7 @@ begin
   begin
     Result := True;
     Log('User is admin.');
+    FStatusMessage := 'User ' + FUserName + ' authenticated as an administrator.';
   end
   else
   begin

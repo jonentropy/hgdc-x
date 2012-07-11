@@ -110,4 +110,4 @@ Function ReadImage (Filename : String ; image : TBitmapImage ;
     decoder.Destroy ;
     End ;
   End ;
-End.
+End.

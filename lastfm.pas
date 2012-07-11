@@ -109,7 +109,7 @@ begin
 
   CoverURL := '';
   try
-    Connection.Timeout := 1000;
+    Connection.Timeout := 2000;
 
     RequestURL := API_ROOT_URL + '?method=album.getinfo&api_key=' + API_KEY +
       '&artist=' + EncodeURLElement(Artist) + '&album=' +
@@ -184,9 +184,12 @@ begin
             begin
               //The cache directory is present, so utilise it to create a jpg
               //and use that (works around black image issue at
-              //http://bugs.freepascal.org/view.php?id=20361
+              //http://bugs.freepascal.org/view.php?id=20361)
 
               Log('Creating jpg for album art caching');
+
+              if FileExistsUTF8(FCacheDirectory + '.tempimage') then
+                  DeleteFileUTF8(FCacheDirectory + '.tempimage');
 
               Connection.Document.SaveToFile(FCacheDirectory + '.tempimage');
               JPGEncoder := TJpegEncoder.Create;
@@ -209,18 +212,25 @@ begin
             end
             else
             begin
-              Log('There was a problem caching the album art.');
+              Log('There was a problem caching the album art, loading directly.');
               //Try and load it directly if we can't write to the cache
               CoverImage.Picture.LoadFromStream(Connection.Document);
             end;
 
           except
-            Log('Exception when loading image from stream.');
+            on E: Exception do
+              Log(E.ClassName + 'exception when loading image from stream: ' +
+                E.Message);
           end;
+        end
+        else
+        begin
+          Log('Error ' + IntToStr(Connection.ResultCode) + ' getting album art: ' +
+            Connection.ResultString);
         end;
       end
       else
-        log('No URL found for album art.');
+        Log('No URL found for album art.');
     end
     else
     begin
@@ -312,4 +322,4 @@ begin
 end;
 
 end.
-
+

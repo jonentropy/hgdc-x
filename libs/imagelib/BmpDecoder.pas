@@ -1,4 +1,4 @@
-unit bmpdecoder ;
+unit BmpDecoder ;
 //
 // Copyright (c) 1997,1998, 2001 Colosseum Builders, Inc.
 // All rights reserved.
@@ -810,4 +810,4 @@ End .
 
 
 
-
+

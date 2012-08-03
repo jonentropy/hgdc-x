@@ -54,6 +54,7 @@ type
     procedure lblCowMouseLeave(Sender: TObject);
     procedure lblSynapseClick(Sender: TObject);
     procedure lblhgdcxClick(Sender: TObject);
+    procedure DoOpenURL(URL: string);
   private
     { private declarations }
   public
@@ -100,20 +101,22 @@ begin
   imSynapseDis.Visible := True;
 end;
 
-procedure TfrmAbout.imHgdcXClick(Sender: TObject);
+procedure TfrmAbout.DoOpenURL(URL: string);
 begin
   Screen.Cursor := crHourglass;
-  OpenURL('http://theartofindigo.com/');
+  OpenURL(URL);
   Sleep(300);
   Screen.Cursor := crDefault;
 end;
 
+procedure TfrmAbout.imHgdcXClick(Sender: TObject);
+begin
+  DoOpenURL('http://theartofindigo.com/');
+end;
+
 procedure TfrmAbout.lblCowClick(Sender: TObject);
 begin
-  Screen.Cursor := crHourglass;
-  OpenURL('http://www.fatcow.com/free-icons');
-  Sleep(300);
-  Screen.Cursor := crDefault;
+  DoOpenURL('http://www.fatcow.com/free-icons');
 end;
 
 procedure TfrmAbout.lblCowMouseEnter(Sender: TObject);
@@ -132,18 +135,12 @@ end;
 
 procedure TfrmAbout.lblSynapseClick(Sender: TObject);
 begin
-  Screen.Cursor := crHourglass;
-  OpenURL('http://www.ararat.cz/synapse/doku.php/start');
-  Sleep(300);
-  Screen.Cursor := crDefault;
+  DoOpenURL('http://www.ararat.cz/synapse/doku.php/start');
 end;
 
 procedure TfrmAbout.lblhgdcxClick(Sender: TObject);
 begin
-  Screen.Cursor := crHourglass;
-  OpenURL('http://hgdcx.canthack.org');
-  Sleep(300);
-  Screen.Cursor := crDefault;
+  DoOpenURL('http://hgdcx.canthack.org');
 end;
 
 end.

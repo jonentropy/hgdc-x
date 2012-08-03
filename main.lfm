@@ -5,7 +5,7 @@ object frmMain: TfrmMain
   Width = 579
   AllowDropFiles = True
   Caption = 'Hgdc-X'
-  ClientHeight = 507
+  ClientHeight = 527
   ClientWidth = 579
   Color = clForm
   Constraints.MinHeight = 200
@@ -8353,7 +8353,7 @@ object frmMain: TfrmMain
   Visible = True
   object sgPlaylist: TStringGrid
     Left = 5
-    Height = 319
+    Height = 339
     Top = 160
     Width = 568
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -8397,8 +8397,8 @@ object frmMain: TfrmMain
     Width = 568
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 103
-    ClientWidth = 564
+    ClientHeight = 99
+    ClientWidth = 560
     TabOrder = 1
     object lblNoAlbumArt: TLabel
       Left = 7
@@ -8416,8 +8416,8 @@ object frmMain: TfrmMain
     object lblNoPlaylist: TLabel
       Left = -2
       Height = 16
-      Top = 42
-      Width = 570
+      Top = 38
+      Width = 566
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
       AutoSize = False
@@ -8741,7 +8741,7 @@ object frmMain: TfrmMain
       ParentFont = False
     end
     object btnCrapSong: TSpeedButton
-      Left = 530
+      Left = 526
       Height = 32
       Hint = 'Vote off current song.'
       Top = 2
@@ -8890,7 +8890,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 16
     Hint = 'Connection is encrypted.'
-    Top = 484
+    Top = 504
     Width = 16
     Anchors = [akLeft, akBottom]
     ParentShowHint = False
@@ -8926,7 +8926,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 16
     Hint = 'Connection is not encrypted.'
-    Top = 484
+    Top = 504
     Width = 16
     Anchors = [akLeft, akBottom]
     ParentShowHint = False
@@ -9489,10 +9489,21 @@ object frmMain: TfrmMain
     end
     object mitmHelp: TMenuItem
       Caption = 'Help'
+      object mitmSite: TMenuItem
+        Caption = 'Visit Website'
+        OnClick = mitmSiteClick
+      end
+      object mitmCode: TMenuItem
+        Caption = 'Browse Source Code'
+        OnClick = mitmCodeClick
+      end
+      object mitmAboutDash: TMenuItem
+        Caption = '-'
+      end
       object mitmAbout: TMenuItem
         Caption = 'About'
         OnClick = mitmAboutClick
       end
     end
   end
-end
+end

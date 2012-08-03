@@ -26,7 +26,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
   ExtCtrls, XMLPropStorage, Buttons, Grids, ComCtrls, HGDClient,
-  LastFM, Login, About, LCLProc, Menus;
+  LastFM, Login, About, LCLProc, Menus, LCLIntf;
 
 type
 
@@ -53,6 +53,9 @@ type
     lblArtist: TLabel;
     lblAlbum: TLabel;
     lblNoPlaylist: TLabel;
+    mitmAboutDash: TMenuItem;
+    mitmSite: TMenuItem;
+    mitmCode: TMenuItem;
     mitmPause: TMenuItem;
     mitmVoteOff: TMenuItem;
     mitmSkip: TMenuItem;
@@ -87,14 +90,17 @@ type
     procedure FormShow(Sender: TObject);
     procedure mitmAboutClick(Sender: TObject);
     procedure mitmAboutMacClick(Sender: TObject);
+    procedure mitmCodeClick(Sender: TObject);
     procedure mitmLoginClick(Sender: TObject);
     procedure mitmPauseClick(Sender: TObject);
     procedure mitmQueueClick(Sender: TObject);
     procedure mitmQuitClick(Sender: TObject);
+    procedure mitmSiteClick(Sender: TObject);
     procedure mitmSkipClick(Sender: TObject);
     procedure mitmVoteOffClick(Sender: TObject);
     procedure tmrPlaylistTimer(Sender: TObject);
     procedure tmrStateTimer(Sender: TObject);
+    procedure DoOpenURL(URL: string);
   private
     { private declarations }
     FClient: THGDClient;
@@ -268,6 +274,14 @@ begin
   FCurrentlyDisplayedArtwork := '';
 end;
 
+procedure TfrmMain.DoOpenURL(URL: string);
+begin
+  Screen.Cursor := crHourglass;
+  OpenURL(URL);
+  Sleep(300);
+  Screen.Cursor := crDefault;
+end;
+
 procedure TfrmMain.SetGUIForOS;
 begin
   //Sets up platform specifics in the user interface, e.g. Mac about menus etc.
@@ -278,6 +292,7 @@ begin
   //of the top level menu (File).
 
   mitmAbout.Free;
+  mitmAboutDash.Free;
   mitmQuit.Free;
   mitmFile.Free;
   {$ELSE DARWIN}
@@ -377,6 +392,11 @@ begin
   frmAbout.Show();
 end;
 
+procedure TfrmMain.mitmCodeClick(Sender: TObject);
+begin
+  DoOpenURL('https://github.com/tristan2468/hgdc-x');
+end;
+
 procedure TfrmMain.mitmLoginClick(Sender: TObject);
 begin
   tmrPlaylist.Enabled := False;
@@ -400,6 +420,11 @@ end;
 procedure TfrmMain.mitmQuitClick(Sender: TObject);
 begin
   Close();
+end;
+
+procedure TfrmMain.mitmSiteClick(Sender: TObject);
+begin
+  DoOpenURL('http://hgdcx.canthack.org');
 end;
 
 procedure TfrmMain.mitmSkipClick(Sender: TObject);

@@ -170,7 +170,7 @@ begin
 
       if CoverURL <> '' then
       begin
-        Log('Fetching the album cover image');
+        Log('Fetching the album cover image.');
         //Get the cover
 
         CoverURL := EncodeURL(CoverURL);
@@ -186,7 +186,7 @@ begin
               //and use that (works around black image issue at
               //http://bugs.freepascal.org/view.php?id=20361)
 
-              Log('Creating jpg for album art caching');
+              Log('Creating jpg for album art caching.');
 
               if FileExistsUTF8(FCacheDirectory + '.tempimage') then
                   DeleteFileUTF8(FCacheDirectory + '.tempimage');
@@ -234,7 +234,7 @@ begin
     end
     else
     begin
-      Log('Last.fm GET request failed : ' + Connection.ResultString);
+      Log('Last.fm GET request failed : ' + Connection.ResultString + '.');
     end;
 
   finally

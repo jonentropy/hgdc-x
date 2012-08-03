@@ -356,10 +356,7 @@ begin
   {$ENDIF WINDOWS}
 
   Log('Creating HGD client…');
-  FClient := THGDClient.Create(frmLogin.edtHost.Text, frmLogin.edtPort.Text,
-    frmLogin.edtUser.Text, frmLogin.edtPwd.Text, frmLogin.chkSSL.Checked,
-    FDebug);
-
+  FClient := THGDClient.Create(FDebug);
   FClient.ProgressCallBack := @ProgressCallback;
 
   Log('Creating LastFM webservices client…');
@@ -643,4 +640,4 @@ begin
     DebugLn(Self.ClassName + #9 + Message);
 end;
 
-end.
+end.

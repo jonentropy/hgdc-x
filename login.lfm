@@ -1,10 +1,10 @@
 object frmLogin: TfrmLogin
   Left = 419
-  Height = 197
+  Height = 233
   Top = 130
   Width = 290
   Caption = 'Log in to hgd'
-  ClientHeight = 197
+  ClientHeight = 233
   ClientWidth = 290
   Color = clForm
   Constraints.MinHeight = 197
@@ -57,11 +57,11 @@ object frmLogin: TfrmLogin
   LCLVersion = '0.9.30.4'
   object gbLastFM: TGroupBox
     Left = 8
-    Height = 189
+    Height = 225
     Top = 216
     Width = 274
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ClientHeight = 171
+    ClientHeight = 221
     ClientWidth = 270
     TabOrder = 0
     Visible = False
@@ -137,9 +137,9 @@ object frmLogin: TfrmLogin
     end
     object lblLastFM: TLabel
       Left = 46
-      Height = 16
+      Height = 22
       Top = 6
-      Width = 42
+      Width = 55
       HelpType = htKeyword
       Caption = 'Last.fm'
       Enabled = False
@@ -150,33 +150,33 @@ object frmLogin: TfrmLogin
     end
     object chkScrobbling: TCheckBox
       Left = 6
-      Height = 19
+      Height = 25
       Top = 38
-      Width = 115
+      Width = 142
       Caption = 'Enable Scrobbling'
       Enabled = False
       TabOrder = 0
     end
     object chkScrobbling1: TCheckBox
       Left = 6
-      Height = 19
+      Height = 25
       Top = 54
-      Width = 120
+      Width = 154
       Caption = 'Scrobble All Tracks'
       Enabled = False
       TabOrder = 1
     end
     object edtLastFMUser: TLabeledEdit
       Left = 6
-      Height = 23
+      Height = 31
       Top = 102
       Width = 144
       EditLabel.AnchorSideLeft.Control = edtLastFMUser
       EditLabel.AnchorSideBottom.Control = edtLastFMUser
       EditLabel.Left = 6
-      EditLabel.Height = 16
-      EditLabel.Top = 83
-      EditLabel.Width = 57
+      EditLabel.Height = 22
+      EditLabel.Top = 77
+      EditLabel.Width = 70
       EditLabel.Caption = 'Username:'
       EditLabel.ParentColor = False
       Enabled = False
@@ -194,17 +194,17 @@ object frmLogin: TfrmLogin
   end
   object gbHGDServer: TGroupBox
     Left = 5
-    Height = 187
+    Height = 223
     Top = 8
     Width = 280
     Anchors = [akTop, akLeft, akRight, akBottom]
     Caption = 'HGD Server'
-    ClientHeight = 169
+    ClientHeight = 200
     ClientWidth = 276
     TabOrder = 1
     object edtHost: TEdit
       Left = 112
-      Height = 23
+      Height = 31
       Top = 6
       Width = 154
       Anchors = [akTop, akLeft, akRight]
@@ -213,8 +213,8 @@ object frmLogin: TfrmLogin
     end
     object edtPort: TEdit
       Left = 112
-      Height = 23
-      Top = 40
+      Height = 31
+      Top = 53
       Width = 154
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 2
@@ -222,8 +222,8 @@ object frmLogin: TfrmLogin
     end
     object edtPwd: TEdit
       Left = 112
-      Height = 23
-      Top = 94
+      Height = 31
+      Top = 119
       Width = 154
       Anchors = [akTop, akLeft, akRight]
       EchoMode = emPassword
@@ -232,41 +232,41 @@ object frmLogin: TfrmLogin
     end
     object edtUser: TEdit
       Left = 112
-      Height = 23
-      Top = 67
+      Height = 31
+      Top = 86
       Width = 154
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 3
     end
     object lblPassword: TLabel
       Left = 34
-      Height = 16
-      Top = 103
-      Width = 54
+      Height = 22
+      Top = 125
+      Width = 69
       Caption = 'Password:'
       ParentColor = False
     end
     object lblUser: TLabel
       Left = 34
-      Height = 16
-      Top = 76
-      Width = 27
+      Height = 22
+      Top = 93
+      Width = 36
       Caption = 'User:'
       ParentColor = False
     end
     object lblPort: TLabel
       Left = 34
-      Height = 16
-      Top = 49
-      Width = 26
+      Height = 22
+      Top = 59
+      Width = 34
       Caption = 'Port:'
       ParentColor = False
     end
     object lblHost: TLabel
       Left = 34
-      Height = 16
+      Height = 22
       Top = 10
-      Width = 29
+      Width = 37
       Caption = 'Host:'
       Layout = tlBottom
       ParentColor = False
@@ -275,7 +275,7 @@ object frmLogin: TfrmLogin
       Left = 143
       Height = 26
       Hint = 'Apply changes to the connection settings.'
-      Top = 132
+      Top = 163
       Width = 114
       Anchors = [akRight, akBottom]
       Caption = 'Log in'
@@ -324,10 +324,10 @@ object frmLogin: TfrmLogin
     end
     object chkSSL: TCheckBox
       Left = 32
-      Height = 19
+      Height = 25
       Hint = 'Encrypt connection to server (if server supports it).'
-      Top = 25
-      Width = 38
+      Top = 27
+      Width = 50
       Caption = 'SSL'
       ParentFont = False
       ParentShowHint = False
@@ -363,7 +363,7 @@ object frmLogin: TfrmLogin
     object imPort: TImage
       Left = 8
       Height = 16
-      Top = 49
+      Top = 59
       Width = 16
       ParentShowHint = False
       Picture.Data = {
@@ -397,7 +397,7 @@ object frmLogin: TfrmLogin
     object imUser: TImage
       Left = 8
       Height = 16
-      Top = 76
+      Top = 93
       Width = 16
       ParentShowHint = False
       Picture.Data = {
@@ -427,7 +427,7 @@ object frmLogin: TfrmLogin
     object imPassword: TImage
       Left = 8
       Height = 16
-      Top = 103
+      Top = 125
       Width = 16
       ParentShowHint = False
       Picture.Data = {
@@ -466,7 +466,7 @@ object frmLogin: TfrmLogin
     object btnCancel: TBitBtn
       Left = 23
       Height = 26
-      Top = 132
+      Top = 163
       Width = 110
       Anchors = [akLeft, akBottom]
       Caption = 'Cancel'
@@ -515,7 +515,7 @@ object frmLogin: TfrmLogin
   end
   object XMLPropStorage1: TXMLPropStorage
     StoredValues = <>
-    left = 81
-    top = 32
+    left = 240
+    top = 8
   end
 end

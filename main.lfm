@@ -5,7 +5,7 @@ object frmMain: TfrmMain
   Width = 579
   AllowDropFiles = True
   Caption = 'Hgdc-X'
-  ClientHeight = 527
+  ClientHeight = 498
   ClientWidth = 579
   Color = clForm
   Constraints.MinHeight = 200
@@ -8353,7 +8353,7 @@ object frmMain: TfrmMain
   Visible = True
   object sgPlaylist: TStringGrid
     Left = 5
-    Height = 339
+    Height = 310
     Top = 160
     Width = 568
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -8397,13 +8397,13 @@ object frmMain: TfrmMain
     Width = 568
     Anchors = [akTop, akLeft, akRight]
     Caption = 'Now Playing'
-    ClientHeight = 99
-    ClientWidth = 560
+    ClientHeight = 98
+    ClientWidth = 564
     TabOrder = 1
     object lblNoAlbumArt: TLabel
       Left = 7
       Height = 38
-      Top = 32
+      Top = 28
       Width = 90
       Alignment = taCenter
       AutoSize = False
@@ -8415,9 +8415,9 @@ object frmMain: TfrmMain
     end
     object lblNoPlaylist: TLabel
       Left = -2
-      Height = 16
-      Top = 38
-      Width = 566
+      Height = 32
+      Top = 37
+      Width = 570
       Alignment = taCenter
       Anchors = [akLeft, akRight, akBottom]
       AutoSize = False
@@ -8430,7 +8430,7 @@ object frmMain: TfrmMain
     object lblTitle: TLabel
       Left = 120
       Height = 1
-      Top = 6
+      Top = 4
       Width = 1
       ParentColor = False
       ParentFont = False
@@ -8439,7 +8439,7 @@ object frmMain: TfrmMain
     object lblArtist: TLabel
       Left = 120
       Height = 1
-      Top = 22
+      Top = 20
       Width = 1
       ParentColor = False
       ParentFont = False
@@ -8448,7 +8448,7 @@ object frmMain: TfrmMain
     object lblAlbum: TLabel
       Left = 120
       Height = 1
-      Top = 38
+      Top = 36
       Width = 1
       ParentColor = False
       ParentFont = False
@@ -8457,7 +8457,7 @@ object frmMain: TfrmMain
     object Bevel1: TBevel
       Left = 7
       Height = 92
-      Top = 6
+      Top = 2
       Width = 92
       Shape = bsFrame
       Visible = False
@@ -8466,7 +8466,7 @@ object frmMain: TfrmMain
       Left = 8
       Height = 90
       Hint = 'Artwork provided by Last.fm.'
-      Top = 7
+      Top = 3
       Width = 90
       ParentShowHint = False
       ShowHint = True
@@ -8477,7 +8477,7 @@ object frmMain: TfrmMain
       Left = 21
       Height = 64
       Hint = 'You have voted this song off.'
-      Top = 19
+      Top = 15
       Width = 64
       ParentShowHint = False
       Picture.Data = {
@@ -8702,7 +8702,7 @@ object frmMain: TfrmMain
     object lblGenre: TLabel
       Left = 120
       Height = 1
-      Top = 55
+      Top = 53
       Width = 1
       ParentColor = False
       ParentFont = False
@@ -8735,13 +8735,13 @@ object frmMain: TfrmMain
     object lblYear: TLabel
       Left = 120
       Height = 1
-      Top = 72
+      Top = 70
       Width = 1
       ParentColor = False
       ParentFont = False
     end
     object btnCrapSong: TSpeedButton
-      Left = 526
+      Left = 530
       Height = 32
       Hint = 'Vote off current song.'
       Top = 2
@@ -8890,7 +8890,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 16
     Hint = 'Connection is encrypted.'
-    Top = 504
+    Top = 475
     Width = 16
     Anchors = [akLeft, akBottom]
     ParentShowHint = False
@@ -8926,7 +8926,7 @@ object frmMain: TfrmMain
     Left = 4
     Height = 16
     Hint = 'Connection is not encrypted.'
-    Top = 504
+    Top = 475
     Width = 16
     Anchors = [akLeft, akBottom]
     ParentShowHint = False

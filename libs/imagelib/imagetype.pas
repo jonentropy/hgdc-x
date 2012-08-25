@@ -45,7 +45,10 @@ Function GetStreamImageType (Filename : String) : TImageType ;
 
   count := strm.read (buffer, sizeof (buffer)) ;
   If count < Sizeof (Buffer) Then
+  Begin
+    strm.Free;
     Exit ;
+  End;
 
   If (Buffer [1] = 137)
       And (Buffer [2] = 80)
@@ -86,6 +89,8 @@ Function GetStreamImageType (Filename : String) : TImageType ;
     Result := GifImage 
   Else if (Buffer [1] = Ord ('B')) And (Buffer [2] = Ord ('M')) Then
     Result := BmpImage ;
+
+  strm.Free;
   End ;
 
 Function ReadImage (Filename : String ; image : TBitmapImage ;
@@ -110,4 +115,4 @@ Function ReadImage (Filename : String ; image : TBitmapImage ;
     decoder.Destroy ;
     End ;
   End ;
-End.
+End.

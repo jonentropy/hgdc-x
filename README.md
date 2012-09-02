@@ -1,5 +1,5 @@
-hgdcx-www
-=========
+hgdc-x/gh-pages
+===============
 
 Website code for the Hgdc-X project website, currently available at
 http://hgdcx.canthack.org

@@ -131,7 +131,7 @@ var
 
 const
   MAX_ARTWORK_ATTEMPTS = 3;
-  VERSION = '0.5.4';
+  VERSION = '0.5.5';
 
 implementation
 
@@ -665,4 +665,4 @@ begin
     DebugLn(Self.ClassName + #9 + Message);
 end;
 
-end.
+end.

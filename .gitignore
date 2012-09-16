@@ -2,6 +2,7 @@
 *.rpm
 lib/
 backup/
+hgdcx
 hgdcx.exe
 hgdcx.xml
 *.lps
@@ -13,4 +14,6 @@ build/release/i386-linux-qt/
 build/release/.DS_Store
 build/release/i386-darwin-carbon/
 build/release/powerpc-darwin-carbon/
+link.res
+hgdcx.res
 

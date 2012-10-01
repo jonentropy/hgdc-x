@@ -31,7 +31,7 @@
       <Item1 Name="Debug" Default="True"/>
       <Item2 Name="Release Default">
         <CompilerOptions>
-          <Version Value="9"/>
+          <Version Value="11"/>
           <Target>
             <Filename Value="build/release/$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)/hgdcx"/>
           </Target>
@@ -49,6 +49,7 @@
           </CodeGeneration>
           <Linking>
             <Debugging>
+              <GenerateDebugInfo Value="False"/>
               <UseLineInfoUnit Value="False"/>
               <StripSymbols Value="True"/>
             </Debugging>
@@ -69,7 +70,7 @@
       </Item2>
       <Item3 Name="Release Mac OS X">
         <CompilerOptions>
-          <Version Value="9"/>
+          <Version Value="11"/>
           <Target>
             <Filename Value="build/release/$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)/hgdcx"/>
           </Target>
@@ -87,6 +88,7 @@
           </CodeGeneration>
           <Linking>
             <Debugging>
+              <GenerateDebugInfo Value="False"/>
               <UseLineInfoUnit Value="False"/>
               <StripSymbols Value="True"/>
             </Debugging>
@@ -135,6 +137,7 @@
         <Filename Value="main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMain"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
       </Unit1>
@@ -152,6 +155,7 @@
         <Filename Value="login.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmLogin"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Login"/>
       </Unit4>
@@ -175,7 +179,7 @@
     </Units>
   </ProjectOptions>
   <CompilerOptions>
-    <Version Value="9"/>
+    <Version Value="11"/>
     <Target>
       <Filename Value="build/debug/$(TargetCPU)-$(TargetOS)-$(LCLWidgetType)/hgdcx"/>
     </Target>
@@ -186,7 +190,7 @@
     </SearchPaths>
     <Linking>
       <Debugging>
-        <GenerateDebugInfo Value="True"/>
+        <DebugInfoType Value="dsStabs"/>
         <UseHeaptrc Value="True"/>
         <UseValgrind Value="True"/>
       </Debugging>

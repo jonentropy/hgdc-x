@@ -1,0 +1,20 @@
+Hgdc-X build instructions on release.
+For reference purposes.
+Tris Linnell 2012
+
+1. Bump version numbers.
+	a) In Project Options
+	b) Constant in main.pas
+	c) In Info.plist file in build/release/universal-darwin-carbon/Hgdc-X.app/Contents/
+	d) In Inno install script installers/win32/hgdc-x.iss
+	
+2. Build executables using Lazbuild. From the project directory:
+	a) Linux: lazbuild --build-all --build-mode="Release Default" hgdcx.lpi
+	b) OS X (must have correct environment configured, see below): Run the script build_mac_universal_binary.sh
+	c) Windows (use 7 or later): lazbuild --build-all --build-mode="Release Default" hgdcx.lpi
+	
+3. Package
+	a) Linux: Set dependencies in control file, then run installers/linux/build_linux_packages.sh with one argument, version number e.g. 0.5.5. This generates deb and RPM files.
+	b) OS X: Create a DMG called Hgdc-X.dmg and titled Hgdc-X X.Y.Z where X.Y.Z is the version number, and copy the app bundle in build/release/universal-darwin-carbon/ into it.
+	c) Windows: Get latest SSL DLLs if required and run Inno install script. Additionally create a zip of the exe.
+	

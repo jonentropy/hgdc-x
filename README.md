@@ -16,7 +16,7 @@ Hgdc-X will build with no additional libraries (except for synapse and imagelib,
 Binaries
 ========
 
-Installers for the latest version can be downloaded from the "Downloads" tab above.
+Installers for the latest version can be downloaded from the offical website at http://hgdcx.canthack.org.
 
 
 Licensing
@@ -30,7 +30,7 @@ Other icons are from the Fat Cow icon set, which is Creative Commons licensed an
 Support/Develop
 ===============
 
-There is an IRC room at #hgdcx on irc.freenode.net. I can be found in there for any questions or conversation about Hgdc-X. Commits are also posted there as they happen.
+There is an IRC channel at #hgdcx on irc.freenode.net. I can be found in there for any questions or conversation about Hgdc-X. Commits are also posted there as they happen.
 
 
 Acknowledgements
@@ -39,7 +39,7 @@ Acknowledgements
 Thanks to the hgd developers, Edd and Mex for such a great music daemon, and hence the opportunity for this client to exist.
 Thanks to Hannah for "GUI consultancy", Shaun for DEB/RPM packaging and Ed for testing the PowerPC OS X builds.
 
-Copyright (C) Tristan Linnell 2012
+Copyright (C) Tristan Linnell 2013
 http://hgdcx.canthack.org
 http://canthack.org
 

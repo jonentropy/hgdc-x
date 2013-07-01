@@ -64,11 +64,11 @@ begin
     'Duplicate SSL Negotiation.'
 
   else if ServerResp = HGD_RESP_E_SSLNOAVAIL then Result :=
-    'SSL in not available.'
+    'SSL is not available.'
 
   else if ServerResp = HGD_RESP_E_INVCMD then Result := 'Invalid command.'
-  else if ServerResp = HGD_RESP_E_SSLREQ then result := 'SSL is required.'
-  else if ServerResp = HGD_RESP_E_SHTDWN then result :=
+  else if ServerResp = HGD_RESP_E_SSLREQ then Result := 'SSL is required.'
+  else if ServerResp = HGD_RESP_E_SHTDWN then Result :=
     'Server is shutting down.'
 
   else if ServerResp = HGD_RESP_E_KICK then Result := 'Stop misbehaving, d00d!'
@@ -82,7 +82,7 @@ begin
     'Username does not exist.'
 
   else
-    Result := 'Unknown Error Code.';
+    Result := 'Unknown error code.';
 end;
 
 end.

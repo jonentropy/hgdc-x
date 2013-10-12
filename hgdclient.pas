@@ -453,7 +453,7 @@ end;
 function THGDClient.QueueSong(Filename: string): boolean;
 var
   Reply, Msg: string;
-  Fin: File;
+  Fin: THandle;
   DataArray: array of byte;
   FileSizeValue: int64;
   SizeToSend: int64;
@@ -465,9 +465,9 @@ begin
   //only do this if at least authenticated…
   if FState >= hsAuthenticated then
   begin
-    FileSizeValue := FileSize(Filename);
-    Log('Queueing song ' + ExtractFilename(Filename) + '…');
-    SendString('q|' + ExtractFilename(Filename) + '|' +
+    FileSizeValue := FileUtil.FileSize(Filename);
+    Log('Queueing song ' + SysToUTF8(ExtractFilename(UTF8ToSys(Filename))) + '…');
+    SendString('q|' + SysToUTF8(ExtractFilename(UTF8ToSys(Filename))) + '|' +
       IntToStr(FileSizeValue));
 
     Reply := ReceiveString();
@@ -481,11 +481,9 @@ begin
       Log('q successful, sending data…');
 
       SetLength(DataArray, BLOCK_SIZE);
-      AssignFile(Fin, Filename);
 
       try
-        FileMode := fmOpenRead;
-        Reset(Fin, 1);
+        Fin := FileOpenUTF8(Filename, fmOpenRead);
 
         for i := 0 to (FileSizeValue div BLOCK_SIZE) do
         begin
@@ -494,7 +492,7 @@ begin
           else
             SizeToSend := FileSizeValue - i * BLOCK_SIZE;
 
-          BlockRead(Fin, DataArray[0], SizeToSend);
+          FileRead(Fin, DataArray[0], SizeToSend);
           Socket.SendBuffer(@DataArray[0], SizeToSend);
 
           Percentage := Round((i * BLOCK_SIZE / FileSizeValue) * 100);
@@ -504,7 +502,7 @@ begin
           if Assigned(ProgressCallBack) then ProgressCallBack(Percentage);
         end;
       finally
-        CloseFile(fin);
+        FileClose(fin);
       end;
 
       SetLength(DataArray, 0);

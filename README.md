@@ -10,7 +10,7 @@ Hgdc-X is a feature complete GUI client for hgd, including SSL encryption and ad
 Building
 ========
 
-Hgdc-X will build with no additional libraries (except for synapse and imagelib, which are statically linked and included in the source tree), with Lazarus 0.9.30 or later, which can be downloaded from the website at http://lazarus.freepascal.com
+Hgdc-X will build with no additional libraries (except for synapse and imagelib, which are statically linked and included in the source tree), with Lazarus 0.9.30 or later, which can be downloaded from the website at http://www.lazarus.freepascal.org/
 
 
 Binaries

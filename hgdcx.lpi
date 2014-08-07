@@ -104,7 +104,7 @@
               <UseMsgFile Value="True"/>
             </CompilerMessages>
             <CustomOptions Value="-k-macosx_version_min -k10.4
--XR/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.4u.sdk"/>
+-XR/SDKs/MacOSX10.4u.sdk"/>
             <CompilerPath Value="$(CompPath)"/>
           </Other>
         </CompilerOptions>
